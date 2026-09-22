@@ -1,0 +1,234 @@
+// License: GPL. For details, see LICENSE file.
+package org.openstreetmap.josm.plugins.addressconflation.io;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
+import jakarta.json.Json;
+import jakarta.json.JsonArray;
+import jakarta.json.JsonArrayBuilder;
+import jakarta.json.JsonObject;
+import jakarta.json.JsonObjectBuilder;
+import jakarta.json.JsonString;
+import jakarta.json.JsonValue;
+
+import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.GeometryFactory;
+import org.locationtech.jts.geom.LinearRing;
+import org.locationtech.jts.geom.Point;
+import org.locationtech.jts.geom.Polygon;
+
+/**
+ * An ArcGIS FeatureServer/MapServer layer plus the OpenAddresses-style
+ * "conform" that maps its fields onto OA properties. Covers the National
+ * Address Database preset and any layer of an OpenAddresses source definition.
+ */
+public final class EsriFeatureSource {
+
+    /** Which OpenAddresses layer the service feeds. */
+    public enum Kind {
+        ADDRESSES, PARCELS, BUILDINGS
+    }
+
+    public static final String NAD_URL =
+            "https://services6.arcgis.com/Do88DoK2xjTUCXd1/arcgis/rest/services/USA_NAD_Addresses/FeatureServer/0";
+
+    private static final GeometryFactory GF = new GeometryFactory();
+
+    private final String name;
+    private final String url;
+    private final Kind kind;
+    private final Map<String, List<String>> conform;
+    private final String where;
+    private final boolean expandStreets;
+
+    public EsriFeatureSource(String name, String url, Kind kind, Map<String, List<String>> conform, String where, boolean expandStreets) {
+        this.name = name;
+        this.url = url;
+        this.kind = kind;
+        this.conform = Collections.unmodifiableMap(new LinkedHashMap<>(conform));
+        this.where = where;
+        this.expandStreets = expandStreets;
+    }
+
+    /** The National Address Database as processed by Esri (streets already expanded). */
+    public static EsriFeatureSource nad() {
+        Map<String, List<String>> c = new LinkedHashMap<>();
+        c.put("number", Collections.singletonList("addr_housenumber"));
+        c.put("street", Collections.singletonList("addr_street"));
+        c.put("unit", Collections.singletonList("addr_unit"));
+        c.put("city", Collections.singletonList("addr_city"));
+        c.put("region", Collections.singletonList("addr_state"));
+        c.put("postcode", Collections.singletonList("addr_postcode"));
+        return new EsriFeatureSource("National Address Database", NAD_URL, Kind.ADDRESSES, c, null, false);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public Kind getKind() {
+        return kind;
+    }
+
+    public Map<String, List<String>> getConform() {
+        return conform;
+    }
+
+    public String getWhere() {
+        return where;
+    }
+
+    public boolean isExpandStreets() {
+        return expandStreets;
+    }
+
+    /** Fields to request from the service; "*" when the conform is empty. */
+    public String outFields() {
+        List<String> fields = new ArrayList<>();
+        for (List<String> l : conform.values()) {
+            for (String f : l) {
+                if (!fields.contains(f)) {
+                    fields.add(f);
+                }
+            }
+        }
+        return fields.isEmpty() ? "*" : String.join(",", fields);
+    }
+
+    /**
+     * Turn a raw ESRI GeoJSON feature into an OpenAddresses-shaped one, or null
+     * when it should be dropped (no housenumber, no geometry). Polygon sources
+     * feeding the addresses layer are collapsed to their centroid, which is how
+     * OpenAddresses handles parcel layers used as address sources.
+     */
+    public JsonObject toOaFeature(JsonObject feature) {
+        JsonValue geomValue = feature.get("geometry");
+        if (geomValue == null || geomValue.getValueType() != JsonValue.ValueType.OBJECT) {
+            return null;
+        }
+        JsonObject geometry = geomValue.asJsonObject();
+        JsonValue propsValue = feature.get("properties");
+        JsonObject props = propsValue != null && propsValue.getValueType() == JsonValue.ValueType.OBJECT
+                ? propsValue.asJsonObject() : JsonValue.EMPTY_JSON_OBJECT;
+        JsonObjectBuilder out = Json.createObjectBuilder();
+        switch (kind) {
+        case ADDRESSES:
+            String number = value(props, "number");
+            if (number.isEmpty()) {
+                return null;
+            }
+            for (String k : new String[] {"id", "number", "street", "unit", "city", "district", "region", "postcode"}) {
+                out.add(k, value(props, k));
+            }
+            String type = geometry.getString("type", "");
+            if ("Polygon".equals(type) || "MultiPolygon".equals(type)) {
+                geometry = centroid(geometry);
+                if (geometry == null) {
+                    return null;
+                }
+            }
+            break;
+        case PARCELS:
+            out.add("id", value(props, "id"));
+            out.add("pid", value(props, "pid"));
+            break;
+        default:
+            out.add("id", value(props, "id"));
+            out.add("height", value(props, "height"));
+            break;
+        }
+        return Json.createObjectBuilder().add("type", "Feature").add("properties", out).add("geometry", geometry).build();
+    }
+
+    private String value(JsonObject props, String oaKey) {
+        List<String> fields = conform.get(oaKey);
+        if (fields == null) {
+            return "";
+        }
+        StringBuilder sb = new StringBuilder();
+        for (String f : fields) {
+            JsonValue v = props.get(f);
+            String s = null;
+            if (v instanceof JsonString) {
+                s = ((JsonString) v).getString();
+            } else if (v != null && v.getValueType() == JsonValue.ValueType.NUMBER) {
+                s = v.toString();
+            }
+            if (s != null && !s.trim().isEmpty()) {
+                if (sb.length() > 0) {
+                    sb.append(' ');
+                }
+                sb.append(s.trim());
+            }
+        }
+        return sb.toString();
+    }
+
+    /** Point geometry at the area centroid of the largest ring. */
+    static JsonObject centroid(JsonObject geometry) {
+        JsonArray coords = geometry.getJsonArray("coordinates");
+        if (coords == null || coords.isEmpty()) {
+            return null;
+        }
+        List<JsonArray> polys = new ArrayList<>();
+        if ("Polygon".equals(geometry.getString("type", ""))) {
+            polys.add(coords);
+        } else {
+            for (JsonValue v : coords) {
+                polys.add(v.asJsonArray());
+            }
+        }
+        Point best = null;
+        double bestArea = -1;
+        for (JsonArray poly : polys) {
+            JsonArray ring = poly.getJsonArray(0);
+            if (ring.size() < 4) {
+                continue;
+            }
+            // Work in degrees scaled to be roughly isotropic; fine for a centroid.
+            double lat0 = ring.getJsonArray(0).getJsonNumber(1).doubleValue();
+            double kx = Math.cos(Math.toRadians(lat0));
+            Coordinate[] cs = new Coordinate[ring.size()];
+            for (int i = 0; i < ring.size(); i++) {
+                JsonArray p = ring.getJsonArray(i);
+                cs[i] = new Coordinate(p.getJsonNumber(0).doubleValue() * kx, p.getJsonNumber(1).doubleValue());
+            }
+            if (!cs[0].equals2D(cs[cs.length - 1])) {
+                Coordinate[] closed = new Coordinate[cs.length + 1];
+                System.arraycopy(cs, 0, closed, 0, cs.length);
+                closed[cs.length] = cs[0];
+                cs = closed;
+            }
+            try {
+                LinearRing lr = GF.createLinearRing(cs);
+                Polygon pg = GF.createPolygon(lr);
+                double a = pg.getArea();
+                if (a > bestArea) {
+                    bestArea = a;
+                    Point c = pg.getCentroid();
+                    best = GF.createPoint(new Coordinate(c.getX() / kx, c.getY()));
+                }
+            } catch (IllegalArgumentException e) {
+                // degenerate ring
+            }
+        }
+        if (best == null) {
+            return null;
+        }
+        JsonArrayBuilder c = Json.createArrayBuilder().add(best.getX()).add(best.getY());
+        return Json.createObjectBuilder().add("type", "Point").add("coordinates", c).build();
+    }
+
+    @Override
+    public String toString() {
+        return name + " [" + kind.name().toLowerCase() + "]";
+    }
+}

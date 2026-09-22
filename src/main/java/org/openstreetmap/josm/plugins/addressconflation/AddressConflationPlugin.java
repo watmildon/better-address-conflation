@@ -9,6 +9,7 @@ import org.openstreetmap.josm.plugins.Plugin;
 import org.openstreetmap.josm.plugins.PluginInformation;
 import org.openstreetmap.josm.plugins.addressconflation.gui.AddressConflationDialog;
 import org.openstreetmap.josm.plugins.addressconflation.gui.AddressConflationPreferences;
+import org.openstreetmap.josm.plugins.addressconflation.io.DownloadSourceAction;
 import org.openstreetmap.josm.plugins.addressconflation.io.OpenAddressesImportAction;
 
 /**
@@ -24,6 +25,7 @@ public class AddressConflationPlugin extends Plugin {
     public AddressConflationPlugin(PluginInformation info) {
         super(info);
         MainMenu.add(MainApplication.getMenu().fileMenu, new OpenAddressesImportAction(), false, 0);
+        MainMenu.add(MainApplication.getMenu().fileMenu, new DownloadSourceAction(), false, 1);
     }
 
     @Override

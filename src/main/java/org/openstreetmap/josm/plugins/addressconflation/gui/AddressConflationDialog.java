@@ -56,6 +56,7 @@ import org.openstreetmap.josm.plugins.addressconflation.cells.ParcelCellSource;
 import org.openstreetmap.josm.plugins.addressconflation.cells.VoronoiCellSource;
 import org.openstreetmap.josm.plugins.addressconflation.engine.Analyzer;
 import org.openstreetmap.josm.plugins.addressconflation.engine.ConflationSettings;
+import org.openstreetmap.josm.plugins.addressconflation.io.DownloadSourceAction;
 import org.openstreetmap.josm.plugins.addressconflation.model.AnalysisResult;
 import org.openstreetmap.josm.plugins.addressconflation.model.Bucket;
 import org.openstreetmap.josm.plugins.addressconflation.model.Proposal;
@@ -82,6 +83,7 @@ public class AddressConflationDialog extends ToggleDialog implements LayerChange
     private final AbstractAction applyAction;
     private final AbstractAction applyBucketAction;
     private final AbstractAction zoomAction;
+    private final AbstractAction downloadAction = new DownloadSourceAction();
 
     private AnalysisResult result;
     private OsmDataLayer targetLayer;
@@ -179,8 +181,8 @@ public class AddressConflationDialog extends ToggleDialog implements LayerChange
         JPanel content = new JPanel(new BorderLayout());
         content.add(top, BorderLayout.NORTH);
         content.add(new JScrollPane(tree), BorderLayout.CENTER);
-        createLayout(content, false, Arrays.asList(new SideButton(analyzeAction), new SideButton(applyAction),
-                new SideButton(applyBucketAction), new SideButton(zoomAction)));
+        createLayout(content, false, Arrays.asList(new SideButton(downloadAction), new SideButton(analyzeAction),
+                new SideButton(applyAction), new SideButton(applyBucketAction), new SideButton(zoomAction)));
 
         MainApplication.getLayerManager().addLayerChangeListener(this);
         refreshLayerBoxes();

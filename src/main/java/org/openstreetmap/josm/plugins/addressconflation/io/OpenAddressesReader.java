@@ -77,6 +77,18 @@ public final class OpenAddressesReader {
         return r.ds;
     }
 
+    /**
+     * Build a dataset from already-parsed OpenAddresses-shaped features (as produced by
+     * {@link EsriFeatureSource#toOaFeature}).
+     */
+    public static DataSet fromFeatures(Iterable<JsonObject> features, Layer layer, boolean expandStreets) {
+        OpenAddressesReader r = new OpenAddressesReader(layer, expandStreets);
+        for (JsonObject f : features) {
+            r.feature(f);
+        }
+        return r.ds;
+    }
+
     public static Layer sniff(JsonObject feature) {
         JsonObject props = feature.getJsonObject("properties");
         if (props == null) {
