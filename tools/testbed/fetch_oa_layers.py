@@ -22,6 +22,7 @@ Example (Maricopa County, AZ):
 import argparse
 import hashlib
 import json
+import math
 import os
 import sys
 import urllib.parse
@@ -38,7 +39,7 @@ def load_source(ref):
         return json.load(f)
 
 
-def esri_query(url, bbox, offset):
+def esri_query(url, bbox, offset, where=None):
     south, west, north, east = bbox
     params = {
         "geometry": f"{west},{south},{east},{north}",
@@ -51,16 +52,21 @@ def esri_query(url, bbox, offset):
         "resultOffset": str(offset),
         "resultRecordCount": str(PAGE),
     }
+    if where:
+        params["where"] = where
     q = url.rstrip("/") + "/query?" + urllib.parse.urlencode(params)
-    with urllib.request.urlopen(q, timeout=120) as r:
+    req = urllib.request.Request(q, headers={"User-Agent": "Mozilla/5.0 (better-address-conflation testbed)"})
+    with urllib.request.urlopen(req, timeout=120) as r:
         return json.load(r)
 
 
-def fetch_all(url, bbox):
+def fetch_all(url, bbox, where=None):
     feats = []
     offset = 0
     while True:
-        d = esri_query(url, bbox, offset)
+        d = esri_query(url, bbox, offset, where)
+        if "error" in d:
+            raise SystemExit(f"{url}: {d['error']}")
         page = d.get("features", [])
         feats.extend(page)
         more = d.get("properties", {}).get("exceededTransferLimit") or d.get("exceededTransferLimit")
@@ -88,9 +94,43 @@ def oa_hash(geometry, props):
     return h[:16]
 
 
+def polygon_centroid(geom):
+    """Area centroid of the largest ring of a Polygon/MultiPolygon, as a Point geometry."""
+    polys = [geom["coordinates"]] if geom["type"] == "Polygon" else list(geom["coordinates"])
+    best = None
+    for poly in polys:
+        ring = poly[0]
+        lon0 = sum(p[0] for p in ring) / len(ring)
+        lat0 = sum(p[1] for p in ring) / len(ring)
+        kx = 111320.0 * math.cos(math.radians(lat0))
+        ky = 110540.0
+        pts = [((p[0] - lon0) * kx, (p[1] - lat0) * ky) for p in ring]
+        a = cx = cy = 0.0
+        for i in range(len(pts)):
+            x1, y1 = pts[i]
+            x2, y2 = pts[(i + 1) % len(pts)]
+            cross = x1 * y2 - x2 * y1
+            a += cross
+            cx += (x1 + x2) * cross
+            cy += (y1 + y2) * cross
+        if abs(a) < 1e-9:
+            c = (lon0, lat0, 0)
+        else:
+            a *= 0.5
+            c = (lon0 + cx / (6 * a) / kx, lat0 + cy / (6 * a) / ky, abs(a))
+        if best is None or c[2] > best[2]:
+            best = c
+    return {"type": "Point", "coordinates": [best[0], best[1]]}
+
+
 def to_oa_feature(layer, feat, conform):
     p = feat.get("properties", {})
     g = feat.get("geometry")
+    if layer == "addresses" and g and g.get("type") in ("Polygon", "MultiPolygon"):
+        # A parcel layer used as an address source: OpenAddresses places the
+        # address at the polygon centroid. This is the "address on parcel
+        # centroid" case the conflation engine has to handle.
+        g = polygon_centroid(g)
     if layer == "addresses":
         out = {
             "id": conform_value(p, conform.get("id")),
@@ -118,6 +158,7 @@ def main():
     ap.add_argument("bbox", help="south,west,north,east")
     ap.add_argument("out_dir")
     ap.add_argument("--layers", default="addresses,parcels")
+    ap.add_argument("--suffix", default="", help="appended to output file names, e.g. -parcel-situs")
     a = ap.parse_args()
 
     src = load_source(a.source)
@@ -134,9 +175,11 @@ def main():
         entry = entries[0]
         if entry.get("protocol") != "ESRI":
             raise SystemExit(f"{layer}: only ESRI protocol sources are supported")
-        feats = fetch_all(entry["data"], bbox)
+        feats = fetch_all(entry["data"], bbox, entry.get("_where"))
         conform = entry.get("conform", {})
-        path = os.path.join(a.out_dir, f"{layer}.geojson")
+        if layer == "addresses" and conform.get("number"):
+            feats = [f for f in feats if conform_value(f.get("properties", {}), conform["number"])]
+        path = os.path.join(a.out_dir, f"{layer}{a.suffix}.geojson")
         with open(path, "w") as f:
             for feat in feats:
                 f.write(json.dumps(to_oa_feature(layer, feat, conform), separators=(",", ":")) + "\n")

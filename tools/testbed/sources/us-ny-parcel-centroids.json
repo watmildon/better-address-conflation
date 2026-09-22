@@ -1,0 +1,32 @@
+{
+  "_comment": "New York State tax parcel centroid points used as an ADDRESS source (situs address at the parcel centroid), NYS parcel polygons as the parcel layer. Same shape as an OpenAddresses source so fetch_oa_layers.py can read it. Owner and valuation fields are dropped by the conform.",
+  "coverage": {"country": "us", "state": "ny"},
+  "schema": 2,
+  "layers": {
+    "addresses": [
+      {
+        "name": "parcel-centroids",
+        "protocol": "ESRI",
+        "data": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcel_Centroid_Points/FeatureServer/0",
+        "conform": {
+          "format": "geojson",
+          "number": "LOC_ST_NBR",
+          "street": "LOC_STREET",
+          "unit": "LOC_UNIT",
+          "city": "CITYTOWN_NAME",
+          "district": "COUNTY_NAME",
+          "postcode": "LOC_ZIP",
+          "id": "SWIS_SBL_ID"
+        }
+      }
+    ],
+    "parcels": [
+      {
+        "name": "state",
+        "protocol": "ESRI",
+        "data": "https://services6.arcgis.com/EbVsqZ18sv1kVJ3k/arcgis/rest/services/NYS_Tax_Parcels_Public/FeatureServer/1",
+        "conform": {"format": "geojson", "pid": "SWIS_SBL_ID"}
+      }
+    ]
+  }
+}

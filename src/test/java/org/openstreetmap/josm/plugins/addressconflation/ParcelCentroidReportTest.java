@@ -7,6 +7,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.openstreetmap.josm.data.osm.DataSet;
@@ -30,7 +32,11 @@ class ParcelCentroidReportTest {
     static JosmTestSetup josm = new JosmTestSetup();
 
     private static DataSet parcels() throws IOException {
-        try (InputStream is = JosmTestSetup.resource("glendale-olive/oa/parcels.geojson")) {
+        return parcels("glendale-olive");
+    }
+
+    private static DataSet parcels(String bed) throws IOException {
+        try (InputStream is = JosmTestSetup.resource(bed + "/oa/parcels.geojson")) {
             return OpenAddressesReader.read(is, OpenAddressesReader.Layer.PARCELS, false);
         }
     }
@@ -64,7 +70,7 @@ class ParcelCentroidReportTest {
                         OsmPrimitive exp = buildings.getPrimitiveById(expected, org.openstreetmap.josm.data.osm.OsmPrimitiveType.WAY);
                         String reason = "expected building=" + (exp == null ? "?" : exp.get("building")) + " got building=" + p.getTarget().getBuildingValue();
                         wrongByReason.merge(reason, 1, Integer::sum);
-                        if (!cell.equals("14820471H") && !cell.equals("14820463A") && details.length() < 4000) {
+                        if (p.getAddresses().size() < 50 && details.length() < 4000) {
                             details.append("    ").append(p.getBucket()).append(' ').append(g.describe()).append(" cell ").append(cell)
                                 .append(": ").append(reason).append(' ').append(p.getReasons()).append('\n');
                         }
@@ -98,10 +104,54 @@ class ParcelCentroidReportTest {
         report("parcel-centroid points + parcels, all building=yes", Analyzer.analyze(addresses, generic, new ParcelCellSource(parcels(), "parcels"), new ConflationSettings()), generic);
     }
 
-    /** Real county points, scored by matching housenumber|street|unit back to the snapshot's buildings. */
     @Test
     void countyPoints() throws IOException {
-        DataSet snapshot = JosmTestSetup.loadDataSet("glendale-olive/snapshot.osm");
+        countyLayer("glendale-olive", "oa/addresses.geojson", "Maricopa county address points (rooftop)");
+    }
+
+    @Test
+    void parcelSitusPoints() throws IOException {
+        countyLayer("glendale-olive", "oa/addresses-parcel-situs.geojson", "Maricopa parcel situs addresses at parcel centroids");
+    }
+
+    @Test
+    void colonieParcelCentroids() throws IOException {
+        // Real parcel-centroid addresses: this is the case the plugin exists for.
+        double[] acc = countyLayer("colonie-ny", "oa/addresses.geojson", "NYS tax parcel centroids (Colonie)");
+        assertTrue(acc[0] > 0.97, "parcel-centroid addresses with parcels: " + acc[0]);
+        assertTrue(acc[1] > 0.95, "parcel-centroid addresses with Voronoi: " + acc[1]);
+        double[] sam = countyLayer("colonie-ny", "oa/addresses-sam.geojson", "NYS SAM points, mostly rooftop (Colonie)");
+        assertTrue(sam[0] > 0.98, "SAM with parcels: " + sam[0]);
+    }
+
+    @Test
+    void maricopaParcelSitusAccuracy() throws IOException {
+        double[] acc = countyLayer("glendale-olive", "oa/addresses-parcel-situs.geojson", "Maricopa parcel situs addresses at parcel centroids");
+        assertTrue(acc[0] > 0.98, "parcel situs with parcels: " + acc[0]);
+    }
+
+    @Test
+    void colonieVariants() throws IOException {
+        DataSet buildings = JosmTestSetup.loadDataSet("colonie-ny/buildings-stripped.osm");
+        DataSet addresses = JosmTestSetup.loadDataSet("colonie-ny/addresses-full.osm");
+        report("Colonie: centroid points + parcels", Analyzer.analyze(addresses, buildings, new ParcelCellSource(parcels("colonie-ny"), "parcels"), new ConflationSettings()), buildings);
+        addresses = JosmTestSetup.loadDataSet("colonie-ny/addresses-full-parcel.osm");
+        report("Colonie: parcel-centroid points + parcels", Analyzer.analyze(addresses, buildings, new ParcelCellSource(parcels("colonie-ny"), "parcels"), new ConflationSettings()), buildings);
+        addresses = JosmTestSetup.loadDataSet("colonie-ny/addresses-full-parcel.osm");
+        report("Colonie: parcel-centroid points + Voronoi", Analyzer.analyze(addresses, buildings, new VoronoiCellSource(), new ConflationSettings()), buildings);
+        DataSet generic = JosmTestSetup.loadDataSet("colonie-ny/buildings-stripped-generic.osm");
+        addresses = JosmTestSetup.loadDataSet("colonie-ny/addresses-full-parcel.osm");
+        report("Colonie: parcel-centroid points + parcels, all building=yes", Analyzer.analyze(addresses, generic, new ParcelCellSource(parcels("colonie-ny"), "parcels"), new ConflationSettings()), generic);
+    }
+
+    /**
+     * Real county points, scored by matching housenumber|street|unit back to the snapshot's
+     * buildings. Returns accuracy with parcels and with Voronoi cells.
+     */
+    private static double[] countyLayer(String bed, String resource, String label) throws IOException {
+        double[] accuracies = new double[2];
+        int run = 0;
+        DataSet snapshot = JosmTestSetup.loadDataSet(bed + "/snapshot.osm");
         Map<String, Long> truth = new HashMap<>();
         Map<String, Integer> truthCount = new HashMap<>();
         for (Way w : snapshot.getWays()) {
@@ -111,12 +161,12 @@ class ParcelCentroidReportTest {
                 truthCount.merge(k, 1, Integer::sum);
             }
         }
-        DataSet buildings = JosmTestSetup.loadDataSet("glendale-olive/buildings-stripped.osm");
+        DataSet buildings = JosmTestSetup.loadDataSet(bed + "/buildings-stripped.osm");
         DataSet addresses;
-        try (InputStream is = JosmTestSetup.resource("glendale-olive/oa/addresses.geojson")) {
+        try (InputStream is = JosmTestSetup.resource(bed + "/" + resource)) {
             addresses = OpenAddressesReader.read(is, OpenAddressesReader.Layer.ADDRESSES, true);
         }
-        for (CellSource cs : new CellSource[] {new ParcelCellSource(parcels(), "parcels"), new VoronoiCellSource()}) {
+        for (CellSource cs : new CellSource[] {new ParcelCellSource(parcels(bed), "parcels"), new VoronoiCellSource()}) {
             AnalysisResult r = Analyzer.analyze(addresses, buildings, cs, new ConflationSettings());
             int correct = 0, wrong = 0, unknown = 0, noTarget = 0, unknownNoTarget = 0;
             Map<String, Integer> wrongBuckets = new TreeMap<>();
@@ -143,11 +193,13 @@ class ParcelCentroidReportTest {
                     }
                 }
             }
-            System.out.println("=== real county points + " + cs.describe());
+            System.out.println("=== " + label + " + " + cs.describe());
             System.out.printf("  in-snapshot addresses: correct=%d wrong=%d (%.1f%%), no building assigned=%d%n", correct, wrong, 100.0 * correct / Math.max(1, correct + wrong), noTarget);
             System.out.printf("  addresses not in snapshot (outside area or never mapped): assigned=%d, no target=%d%n", unknown, unknownNoTarget);
             System.out.println("  buckets: " + r.countByBucket() + " wrong by bucket: " + wrongBuckets);
             System.out.print(sample);
+            accuracies[run++] = (double) correct / Math.max(1, correct + wrong);
         }
+        return accuracies;
     }
 }

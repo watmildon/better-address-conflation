@@ -1,0 +1,23 @@
+{
+  "_comment": "Maricopa County parcel polygons used as an ADDRESS source: the assessor's situs address placed at the parcel centroid. Same shape as an OpenAddresses source so fetch_oa_layers.py can read it.",
+  "coverage": {"country": "us", "state": "az", "county": "Maricopa"},
+  "schema": 2,
+  "layers": {
+    "addresses": [
+      {
+        "name": "parcel-situs",
+        "protocol": "ESRI",
+        "data": "https://services.arcgis.com/ykpntM6e3tHvzKRJ/ArcGIS/rest/services/Parcels_view/FeatureServer/0",
+        "conform": {
+          "format": "geojson",
+          "number": "PHYSICAL_STREET_NUM",
+          "street": ["PHYSICAL_STREET_DIR", "PHYSICAL_STREET_NAME", "PHYSICAL_STREET_TYPE", "PHYSICAL_STREET_POSTDIR"],
+          "unit": "PHYSICAL_SUITE",
+          "city": "PHYSICAL_CITY",
+          "postcode": "PHYSICAL_ZIP",
+          "id": "APN"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,4701 @@
+<?xml version='1.0' encoding='utf-8'?>
+<osm version="0.6" generator="make_testbed.py">
+  <node id="-74738142" lat="42.7462598" lon="-73.7591331" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="185" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="testbed:source" v="way/74738142" />
+  </node>
+  <node id="-110160424" lat="42.7470165" lon="-73.7586698" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="471" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Troy Schenectady Road" />
+    <tag k="testbed:source" v="way/110160424" />
+  </node>
+  <node id="-427577069" lat="42.7455104" lon="-73.7528122" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="389" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Troy Schenectady Road" />
+    <tag k="testbed:source" v="way/427577069" />
+  </node>
+  <node id="-751175390" lat="42.7463599" lon="-73.7587278" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="468" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Troy Schenectady Road" />
+    <tag k="testbed:source" v="way/751175390" />
+  </node>
+  <node id="-751175589" lat="42.7468404" lon="-73.7579041" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="461" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Troy Schenectady Road" />
+    <tag k="testbed:source" v="way/751175589" />
+  </node>
+  <node id="-871028137" lat="42.7419923" lon="-73.7595797" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="122" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="testbed:source" v="way/871028137" />
+  </node>
+  <node id="-871028139" lat="42.7418112" lon="-73.7595288" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="120" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="testbed:source" v="way/871028139" />
+  </node>
+  <node id="-871028141" lat="42.7414962" lon="-73.7594080" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="114" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="testbed:source" v="way/871028141" />
+  </node>
+  <node id="-871028142" lat="42.7412169" lon="-73.7593266" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="110" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="testbed:source" v="way/871028142" />
+  </node>
+  <node id="-871028144" lat="42.7404877" lon="-73.7592593" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="104" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="testbed:source" v="way/871028144" />
+  </node>
+  <node id="-871028147" lat="42.7402511" lon="-73.7592967" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="102" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="testbed:source" v="way/871028147" />
+  </node>
+  <node id="-871028149" lat="42.7400280" lon="-73.7593630" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="100" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="testbed:source" v="way/871028149" />
+  </node>
+  <node id="-871028150" lat="42.7406982" lon="-73.7592303" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="106" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="testbed:source" v="way/871028150" />
+  </node>
+  <node id="-871411496" lat="42.7399550" lon="-73.7586922" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="91" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="testbed:source" v="way/871411496" />
+  </node>
+  <node id="-871411502" lat="42.7400827" lon="-73.7583230" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="93" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="testbed:source" v="way/871411502" />
+  </node>
+  <node id="-871411508" lat="42.7410872" lon="-73.7578853" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="96" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Park Avenue" />
+    <tag k="testbed:source" v="way/871411508" />
+  </node>
+  <node id="-871411509" lat="42.7411144" lon="-73.7577145" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="94" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Park Avenue" />
+    <tag k="testbed:source" v="way/871411509" />
+  </node>
+  <node id="-871411511" lat="42.7407688" lon="-73.7575357" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="79" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Hillcrest Road" />
+    <tag k="testbed:source" v="way/871411511" />
+  </node>
+  <node id="-871411512" lat="42.7405525" lon="-73.7575458" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="79" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Hillcrest Road" />
+    <tag k="testbed:source" v="way/871411512" />
+  </node>
+  <node id="-871411513" lat="42.7403383" lon="-73.7575748" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="83" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Hillcrest Road" />
+    <tag k="testbed:source" v="way/871411513" />
+  </node>
+  <node id="-871411514" lat="42.7401680" lon="-73.7575650" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="85" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Hillcrest Road" />
+    <tag k="testbed:source" v="way/871411514" />
+  </node>
+  <node id="-871411530" lat="42.7403157" lon="-73.7534521" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="72" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Glendale Road" />
+    <tag k="testbed:source" v="way/871411530" />
+  </node>
+  <node id="-871411533" lat="42.7402379" lon="-73.7536810" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="76" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Glendale Rd" />
+    <tag k="testbed:source" v="way/871411533" />
+  </node>
+  <node id="-871411535" lat="42.7401439" lon="-73.7539043" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="78" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Glendale Road" />
+    <tag k="testbed:source" v="way/871411535" />
+  </node>
+  <node id="-871411536" lat="42.7401295" lon="-73.7541487" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="80" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Glendale Road" />
+    <tag k="testbed:source" v="way/871411536" />
+  </node>
+  <node id="-871411540" lat="42.7400778" lon="-73.7554052" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="92" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Glendale Road" />
+    <tag k="testbed:source" v="way/871411540" />
+  </node>
+  <node id="-871411545" lat="42.7400322" lon="-73.7560393" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="98" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Glendale Road" />
+    <tag k="testbed:source" v="way/871411545" />
+  </node>
+  <node id="-871411547" lat="42.7400210" lon="-73.7562906" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="100" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Glendale Road" />
+    <tag k="testbed:source" v="way/871411547" />
+  </node>
+  <node id="-871411551" lat="42.7401283" lon="-73.7567253" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="104" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Glendale Road" />
+    <tag k="testbed:source" v="way/871411551" />
+  </node>
+  <node id="-871411553" lat="42.7402975" lon="-73.7570977" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="80" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Hillcrest Road" />
+    <tag k="testbed:source" v="way/871411553" />
+  </node>
+  <node id="-871411554" lat="42.7401223" lon="-73.7571070" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="82" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Hillcrest Road" />
+    <tag k="testbed:source" v="way/871411554" />
+  </node>
+  <node id="-871438618" lat="42.7414169" lon="-73.7551118" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="52" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Spring Avenue" />
+    <tag k="testbed:source" v="way/871438618" />
+  </node>
+  <node id="-871438619" lat="42.7415814" lon="-73.7549661" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="58" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Park Avenue" />
+    <tag k="testbed:source" v="way/871438619" />
+  </node>
+  <node id="-871438620" lat="42.7416461" lon="-73.7547907" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="54" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Park Avenue" />
+    <tag k="testbed:source" v="way/871438620" />
+  </node>
+  <node id="-871438623" lat="42.7417299" lon="-73.7546081" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="54" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Park Avenue" />
+    <tag k="testbed:source" v="way/871438623" />
+  </node>
+  <node id="-871438625" lat="42.7417589" lon="-73.7543830" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="3" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Clinton Road" />
+    <tag k="testbed:source" v="way/871438625" />
+  </node>
+  <node id="-871438628" lat="42.7414661" lon="-73.7541604" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="7" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Mohawk Place" />
+    <tag k="testbed:source" v="way/871438628" />
+  </node>
+  <node id="-871438630" lat="42.7412093" lon="-73.7544406" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="9" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Mohawk Place" />
+    <tag k="testbed:source" v="way/871438630" />
+  </node>
+  <node id="-871438637" lat="42.7409936" lon="-73.7559417" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="24" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Valley View Avenue" />
+    <tag k="testbed:source" v="way/871438637" />
+  </node>
+  <node id="-871438638" lat="42.7413450" lon="-73.7559746" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="70" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Park Avenue" />
+    <tag k="testbed:source" v="way/871438638" />
+  </node>
+  <node id="-871438639" lat="42.7414347" lon="-73.7554749" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="64" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Park Avenue" />
+    <tag k="addr:unit" v="A" />
+    <tag k="testbed:source" v="way/871438639" />
+  </node>
+  <node id="-871438642" lat="42.7410431" lon="-73.7554786" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="57" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Spring Avenue" />
+    <tag k="testbed:source" v="way/871438642" />
+  </node>
+  <node id="-871438648" lat="42.7404158" lon="-73.7558906" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="32" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Valley View Avenue" />
+    <tag k="testbed:source" v="way/871438648" />
+  </node>
+  <node id="-871438654" lat="42.7405798" lon="-73.7563507" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="25" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Valley View Avenue" />
+    <tag k="testbed:source" v="way/871438654" />
+  </node>
+  <node id="-871438655" lat="42.7409895" lon="-73.7563605" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="21" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Valley View Avenue" />
+    <tag k="testbed:source" v="way/871438655" />
+  </node>
+  <node id="-871438656" lat="42.7412614" lon="-73.7563534" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="72" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Park Avenue" />
+    <tag k="addr:unit" v="2" />
+    <tag k="testbed:source" v="way/871438656" />
+  </node>
+  <node id="-871438657" lat="42.7412638" lon="-73.7565907" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="74" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Park Avenue" />
+    <tag k="testbed:source" v="way/871438657" />
+  </node>
+  <node id="-871438662" lat="42.7408288" lon="-73.7569913" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="117" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Glendale Road" />
+    <tag k="testbed:source" v="way/871438662" />
+  </node>
+  <node id="-871516846" lat="42.7425025" lon="-73.7576905" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="61" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Woodlawn Road" />
+    <tag k="testbed:source" v="way/871516846" />
+  </node>
+  <node id="-871516867" lat="42.7434662" lon="-73.7599150" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="142" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="testbed:source" v="way/871516867" />
+  </node>
+  <node id="-871516872" lat="42.7430640" lon="-73.7598847" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="138" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="testbed:source" v="way/871516872" />
+  </node>
+  <node id="-871516885" lat="42.7425510" lon="-73.7597303" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="130" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="testbed:source" v="way/871516885" />
+  </node>
+  <node id="-871516886" lat="42.7424229" lon="-73.7596940" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="128" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="testbed:source" v="way/871516886" />
+  </node>
+  <node id="-871516887" lat="42.7423044" lon="-73.7597012" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:flats" v="1-2" />
+    <tag k="addr:housenumber" v="126" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="testbed:source" v="way/871516887" />
+  </node>
+  <node id="-871516890" lat="42.7431096" lon="-73.7586211" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="24" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Summit Avenue" />
+    <tag k="testbed:source" v="way/871516890" />
+  </node>
+  <node id="-871516895" lat="42.7427749" lon="-73.7590874" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="129" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="testbed:source" v="way/871516895" />
+  </node>
+  <node id="-871516898" lat="42.7423585" lon="-73.7591139" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="125" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="testbed:source" v="way/871516898" />
+  </node>
+  <node id="-871516899" lat="42.7422481" lon="-73.7590837" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="123" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="testbed:source" v="way/871516899" />
+  </node>
+  <node id="-871516901" lat="42.7419821" lon="-73.7589634" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="119" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="testbed:source" v="way/871516901" />
+  </node>
+  <node id="-871516902" lat="42.7418277" lon="-73.7589035" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="117" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="testbed:source" v="way/871516902" />
+  </node>
+  <node id="-871516903" lat="42.7425699" lon="-73.7584568" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="20" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Summit Avenue" />
+    <tag k="testbed:source" v="way/871516903" />
+  </node>
+  <node id="-871516905" lat="42.7424316" lon="-73.7584668" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="18" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Summit Avenue" />
+    <tag k="testbed:source" v="way/871516905" />
+  </node>
+  <node id="-871516910" lat="42.7420126" lon="-73.7583989" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="12" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Summit Avenue" />
+    <tag k="testbed:source" v="way/871516910" />
+  </node>
+  <node id="-871516911" lat="42.7418820" lon="-73.7583663" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="10" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Summit Avenue" />
+    <tag k="testbed:source" v="way/871516911" />
+  </node>
+  <node id="-871516913" lat="42.7415329" lon="-73.7587969" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="111" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="testbed:source" v="way/871516913" />
+  </node>
+  <node id="-871516917" lat="42.7414005" lon="-73.7582624" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="93" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Park Avenue" />
+    <tag k="testbed:source" v="way/871516917" />
+  </node>
+  <node id="-871516921" lat="42.7417985" lon="-73.7579495" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="7" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Summit Avenue" />
+    <tag k="testbed:source" v="way/871516921" />
+  </node>
+  <node id="-871516925" lat="42.7420766" lon="-73.7579515" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="11" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Summit Avenue" />
+    <tag k="testbed:source" v="way/871516925" />
+  </node>
+  <node id="-871516928" lat="42.7419252" lon="-73.7580026" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="9" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Summit Avenue" />
+    <tag k="testbed:source" v="way/871516928" />
+  </node>
+  <node id="-871516932" lat="42.7414629" lon="-73.7577488" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="89" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Park Avenue" />
+    <tag k="testbed:source" v="way/871516932" />
+  </node>
+  <node id="-871516933" lat="42.7414978" lon="-73.7575399" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="87" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Park Avenue" />
+    <tag k="testbed:source" v="way/871516933" />
+  </node>
+  <node id="-871516934" lat="42.7416379" lon="-73.7573807" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="65" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Hillcrest Road" />
+    <tag k="testbed:source" v="way/871516934" />
+  </node>
+  <node id="-871516942" lat="42.7420751" lon="-73.7572763" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="59" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Hillcrest Road" />
+    <tag k="testbed:source" v="way/871516942" />
+  </node>
+  <node id="-871516944" lat="42.7422437" lon="-73.7571527" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="55" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Hillcrest Road" />
+    <tag k="testbed:source" v="way/871516944" />
+  </node>
+  <node id="-871516945" lat="42.7420443" lon="-73.7564548" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="9" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Valley View Avenue" />
+    <tag k="testbed:source" v="way/871516945" />
+  </node>
+  <node id="-871516949" lat="42.7416508" lon="-73.7567679" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="75" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Park Avenue" />
+    <tag k="testbed:source" v="way/871516949" />
+  </node>
+  <node id="-871516959" lat="42.7421600" lon="-73.7567529" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="58" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Hillcrest Road" />
+    <tag k="testbed:source" v="way/871516959" />
+  </node>
+  <node id="-871516963" lat="42.7423344" lon="-73.7564622" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="54" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Hillcrest Road" />
+    <tag k="testbed:source" v="way/871516963" />
+  </node>
+  <node id="-871516964" lat="42.7422203" lon="-73.7556107" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="37" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Spring Avenue" />
+    <tag k="testbed:source" v="way/871516964" />
+  </node>
+  <node id="-871516967" lat="42.7426093" lon="-73.7559263" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="40" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Woodlawn Road" />
+    <tag k="testbed:source" v="way/871516967" />
+  </node>
+  <node id="-871516968" lat="42.7425490" lon="-73.7561085" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="2" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Valley View Avenue" />
+    <tag k="testbed:source" v="way/871516968" />
+  </node>
+  <node id="-871516969" lat="42.7422770" lon="-73.7560022" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="4" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Valley View Avenue" />
+    <tag k="testbed:source" v="way/871516969" />
+  </node>
+  <node id="-871516972" lat="42.7420476" lon="-73.7559960" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="10" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Valley View Avenue" />
+    <tag k="testbed:source" v="way/871516972" />
+  </node>
+  <node id="-871516980" lat="42.7423791" lon="-73.7551688" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="40" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Spring Avenue" />
+    <tag k="testbed:source" v="way/871516980" />
+  </node>
+  <node id="-871516981" lat="42.7422430" lon="-73.7551409" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="42" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Spring Avenue" />
+    <tag k="testbed:source" v="way/871516981" />
+  </node>
+  <node id="-871516985" lat="42.7422952" lon="-73.7545290" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="43" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Park Avenue" />
+    <tag k="testbed:source" v="way/871516985" />
+  </node>
+  <node id="-871516988" lat="42.7426592" lon="-73.7546926" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="24" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Woodlawn Road" />
+    <tag k="testbed:source" v="way/871516988" />
+  </node>
+  <node id="-871516990" lat="42.7425789" lon="-73.7543241" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="39" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Park Avenue" />
+    <tag k="testbed:source" v="way/871516990" />
+  </node>
+  <node id="-871516996" lat="42.7421941" lon="-73.7539928" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="44" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Park Avenue" />
+    <tag k="testbed:source" v="way/871516996" />
+  </node>
+  <node id="-871516997" lat="42.7419814" lon="-73.7541292" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="6" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Clinton Road" />
+    <tag k="testbed:source" v="way/871516997" />
+  </node>
+  <node id="-871516998" lat="42.7418773" lon="-73.7538808" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="8" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Clinton Road" />
+    <tag k="testbed:source" v="way/871516998" />
+  </node>
+  <node id="-871516999" lat="42.7417429" lon="-73.7536760" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="10" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Clinton Road" />
+    <tag k="testbed:source" v="way/871516999" />
+  </node>
+  <node id="-871517004" lat="42.7419637" lon="-73.7533054" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="6" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Woodlawn Road" />
+    <tag k="testbed:source" v="way/871517004" />
+  </node>
+  <node id="-871517005" lat="42.7418240" lon="-73.7530357" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="2" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Woodlawn Road" />
+    <tag k="testbed:source" v="way/871517005" />
+  </node>
+  <node id="-871517006" lat="42.7416094" lon="-73.7535000" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="12" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Clinton Road" />
+    <tag k="testbed:source" v="way/871517006" />
+  </node>
+  <node id="-871517008" lat="42.7415617" lon="-73.7530355" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="53" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Glendale Road" />
+    <tag k="testbed:source" v="way/871517008" />
+  </node>
+  <node id="-871517010" lat="42.7413756" lon="-73.7530945" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="16" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Clinton Road" />
+    <tag k="testbed:source" v="way/871517010" />
+  </node>
+  <node id="-871517014" lat="42.7409819" lon="-73.7540792" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="12" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Mohawk Place" />
+    <tag k="testbed:source" v="way/871517014" />
+  </node>
+  <node id="-871517015" lat="42.7411131" lon="-73.7538300" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="10" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Mohawk Place" />
+    <tag k="testbed:source" v="way/871517015" />
+  </node>
+  <node id="-871517016" lat="42.7412529" lon="-73.7536251" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="8" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Mohawk Place" />
+    <tag k="testbed:source" v="way/871517016" />
+  </node>
+  <node id="-871517018" lat="42.7410052" lon="-73.7532560" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="61" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Glendale Road" />
+    <tag k="testbed:source" v="way/871517018" />
+  </node>
+  <node id="-871517020" lat="42.7408798" lon="-73.7533766" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="63" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Glendale Road" />
+    <tag k="testbed:source" v="way/871517020" />
+  </node>
+  <node id="-871517021" lat="42.7407503" lon="-73.7535300" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="67" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Glendale Road" />
+    <tag k="testbed:source" v="way/871517021" />
+  </node>
+  <node id="-871517022" lat="42.7406327" lon="-73.7536893" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="71" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Glendale Road" />
+    <tag k="testbed:source" v="way/871517022" />
+  </node>
+  <node id="-871517023" lat="42.7405654" lon="-73.7539169" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="73" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Glendale Road" />
+    <tag k="testbed:source" v="way/871517023" />
+  </node>
+  <node id="-871517024" lat="42.7404860" lon="-73.7541630" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="75" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Glendale Road" />
+    <tag k="testbed:source" v="way/871517024" />
+  </node>
+  <node id="-871517031" lat="42.7404236" lon="-73.7546097" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="83" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Glendale Road" />
+    <tag k="testbed:source" v="way/871517031" />
+  </node>
+  <node id="-871631809" lat="42.7463860" lon="-73.7595298" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="186" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="testbed:source" v="way/871631809" />
+  </node>
+  <node id="-871631811" lat="42.7459730" lon="-73.7597398" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="178" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="addr:unit" v="2" />
+    <tag k="testbed:source" v="way/871631811" />
+  </node>
+  <node id="-871631815" lat="42.7457341" lon="-73.7600108" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="180" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="testbed:source" v="way/871631815" />
+  </node>
+  <node id="-871631834" lat="42.7441125" lon="-73.7601153" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:flats" v="1-2" />
+    <tag k="addr:housenumber" v="154" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="testbed:source" v="way/871631834" />
+  </node>
+  <node id="-871631836" lat="42.7439067" lon="-73.7600596" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="150" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="testbed:source" v="way/871631836" />
+  </node>
+  <node id="-871670940" lat="42.7460380" lon="-73.7584037" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="22" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Best Avenue" />
+    <tag k="testbed:source" v="way/871670940" />
+  </node>
+  <node id="-871694568" lat="42.7450030" lon="-73.7571724" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="8" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Raymond Street" />
+    <tag k="testbed:source" v="way/871694568" />
+  </node>
+  <node id="-871694570" lat="42.7450170" lon="-73.7573678" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="10" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Raymond Street" />
+    <tag k="testbed:source" v="way/871694570" />
+  </node>
+  <node id="-871694573" lat="42.7448637" lon="-73.7577314" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="14" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Raymond Street" />
+    <tag k="testbed:source" v="way/871694573" />
+  </node>
+  <node id="-871694574" lat="42.7447582" lon="-73.7580606" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="18" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Raymond Street" />
+    <tag k="testbed:source" v="way/871694574" />
+  </node>
+  <node id="-871694578" lat="42.7458410" lon="-73.7585513" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="18" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Best Avenue" />
+    <tag k="testbed:source" v="way/871694578" />
+  </node>
+  <node id="-871694580" lat="42.7453083" lon="-73.7583620" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="12" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Best Avenue" />
+    <tag k="testbed:source" v="way/871694580" />
+  </node>
+  <node id="-871694586" lat="42.7449357" lon="-73.7585809" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="21" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Raymond Street" />
+    <tag k="testbed:source" v="way/871694586" />
+  </node>
+  <node id="-871694587" lat="42.7448679" lon="-73.7587746" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="23" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Raymond Street" />
+    <tag k="testbed:source" v="way/871694587" />
+  </node>
+  <node id="-871694590" lat="42.7448091" lon="-73.7590325" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="27" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Raymond Street" />
+    <tag k="testbed:source" v="way/871694590" />
+  </node>
+  <node id="-871694594" lat="42.7458019" lon="-73.7592081" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="179" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="testbed:source" v="way/871694594" />
+  </node>
+  <node id="-871694597" lat="42.7454411" lon="-73.7591996" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="175" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="testbed:source" v="way/871694597" />
+  </node>
+  <node id="-871694600" lat="42.7451123" lon="-73.7588649" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="169" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="testbed:source" v="way/871694600" />
+  </node>
+  <node id="-871694601" lat="42.7450857" lon="-73.7595780" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="167" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="testbed:source" v="way/871694601" />
+  </node>
+  <node id="-871694602" lat="42.7449463" lon="-73.7596220" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="165" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="testbed:source" v="way/871694602" />
+  </node>
+  <node id="-871694604" lat="42.7448397" lon="-73.7596631" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="163" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="testbed:source" v="way/871694604" />
+  </node>
+  <node id="-871694608" lat="42.7444966" lon="-73.7596944" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="157" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="testbed:source" v="way/871694608" />
+  </node>
+  <node id="-871694610" lat="42.7445793" lon="-73.7585097" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="26" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Raymond Street" />
+    <tag k="testbed:source" v="way/871694610" />
+  </node>
+  <node id="-871694615" lat="42.7444443" lon="-73.7587893" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="28" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Raymond Street" />
+    <tag k="testbed:source" v="way/871694615" />
+  </node>
+  <node id="-871694627" lat="42.7437946" lon="-73.7593652" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="147" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="testbed:source" v="way/871694627" />
+  </node>
+  <node id="-871763625" lat="42.7438559" lon="-73.7557819" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="17" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Spring Avenue" />
+    <tag k="testbed:source" v="way/871763625" />
+  </node>
+  <node id="-871763627" lat="42.7436740" lon="-73.7557517" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="19" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Spring Avenue" />
+    <tag k="testbed:source" v="way/871763627" />
+  </node>
+  <node id="-871763628" lat="42.7433847" lon="-73.7557379" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="23" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Spring Avenue" />
+    <tag k="testbed:source" v="way/871763628" />
+  </node>
+  <node id="-871763629" lat="42.7430626" lon="-73.7556720" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="27" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Spring Avenue" />
+    <tag k="testbed:source" v="way/871763629" />
+  </node>
+  <node id="-871763631" lat="42.7447245" lon="-73.7559999" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="16" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Hillcrest Road" />
+    <tag k="testbed:source" v="way/871763631" />
+  </node>
+  <node id="-871763632" lat="42.7445413" lon="-73.7561708" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="22" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Hillcrest Road" />
+    <tag k="testbed:source" v="way/871763632" />
+  </node>
+  <node id="-871763634" lat="42.7442499" lon="-73.7562828" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="26" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Hillcrest Road" />
+    <tag k="testbed:source" v="way/871763634" />
+  </node>
+  <node id="-871763636" lat="42.7439100" lon="-73.7562354" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="30" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Hillcrest Road" />
+    <tag k="testbed:source" v="way/871763636" />
+  </node>
+  <node id="-871763637" lat="42.7436180" lon="-73.7561963" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="38" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Hillcrest Road" />
+    <tag k="testbed:source" v="way/871763637" />
+  </node>
+  <node id="-871763644" lat="42.7448280" lon="-73.7564841" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="17" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Hillcrest Road" />
+    <tag k="testbed:source" v="way/871763644" />
+  </node>
+  <node id="-871763647" lat="42.7445531" lon="-73.7567115" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="21" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Hillcrest Road" />
+    <tag k="testbed:source" v="way/871763647" />
+  </node>
+  <node id="-871763649" lat="42.7441519" lon="-73.7567333" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="27" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Hillcrest Road" />
+    <tag k="testbed:source" v="way/871763649" />
+  </node>
+  <node id="-871763651" lat="42.7436766" lon="-73.7566479" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="31" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Hillcrest Road" />
+    <tag k="testbed:source" v="way/871763651" />
+  </node>
+  <node id="-871763652" lat="42.7434759" lon="-73.7566309" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="41" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Hillcrest Road" />
+    <tag k="testbed:source" v="way/871763652" />
+  </node>
+  <node id="-871763653" lat="42.7432959" lon="-73.7566080" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="43" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Hillcrest Road" />
+    <tag k="testbed:source" v="way/871763653" />
+  </node>
+  <node id="-871763654" lat="42.7430958" lon="-73.7565672" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="45" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Hillcrest Road" />
+    <tag k="testbed:source" v="way/871763654" />
+  </node>
+  <node id="-871763656" lat="42.7428675" lon="-73.7565959" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="49" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Hillcrest Road" />
+    <tag k="testbed:source" v="way/871763656" />
+  </node>
+  <node id="-871763658" lat="42.7425921" lon="-73.7567905" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="51" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Hillcrest Road" />
+    <tag k="testbed:source" v="way/871763658" />
+  </node>
+  <node id="-871763660" lat="42.7429486" lon="-73.7576576" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="21" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Summit Avenue" />
+    <tag k="testbed:source" v="way/871763660" />
+  </node>
+  <node id="-871763662" lat="42.7431109" lon="-73.7573799" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="23" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Summit Avenue" />
+    <tag k="testbed:source" v="way/871763662" />
+  </node>
+  <node id="-871763663" lat="42.7433590" lon="-73.7572868" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="25" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Summit Avenue" />
+    <tag k="testbed:source" v="way/871763663" />
+  </node>
+  <node id="-871763665" lat="42.7435611" lon="-73.7573664" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="27" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Summit Avenue" />
+    <tag k="testbed:source" v="way/871763665" />
+  </node>
+  <node id="-871763668" lat="42.7437641" lon="-73.7573440" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="29" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Summit Avenue" />
+    <tag k="testbed:source" v="way/871763668" />
+  </node>
+  <node id="-871763674" lat="42.7441797" lon="-73.7573997" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="33" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Summit Avenue" />
+    <tag k="testbed:source" v="way/871763674" />
+  </node>
+  <node id="-871763675" lat="42.7443873" lon="-73.7573812" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="35" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Summit Avenue" />
+    <tag k="testbed:source" v="way/871763675" />
+  </node>
+  <node id="-871763677" lat="42.7443929" lon="-73.7581211" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="36" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Summit Avenue" />
+    <tag k="testbed:source" v="way/871763677" />
+  </node>
+  <node id="-871763679" lat="42.7442043" lon="-73.7580058" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="34" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Summit Avenue" />
+    <tag k="testbed:source" v="way/871763679" />
+  </node>
+  <node id="-871763681" lat="42.7437895" lon="-73.7579849" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="30" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Summit Avenue" />
+    <tag k="testbed:source" v="way/871763681" />
+  </node>
+  <node id="-871763682" lat="42.7435827" lon="-73.7579441" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="28" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Summit Avenue" />
+    <tag k="testbed:source" v="way/871763682" />
+  </node>
+  <node id="-871763683" lat="42.7433896" lon="-73.7579132" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="26" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Summit Avenue" />
+    <tag k="testbed:source" v="way/871763683" />
+  </node>
+  <node id="-871876446" lat="42.7434722" lon="-73.7553101" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="24" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Spring Avenue" />
+    <tag k="testbed:source" v="way/871876446" />
+  </node>
+  <node id="-871876448" lat="42.7438396" lon="-73.7553312" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="18" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Spring Avenue" />
+    <tag k="testbed:source" v="way/871876448" />
+  </node>
+  <node id="-871876450" lat="42.7439627" lon="-73.7553414" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="16" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Spring Avenue" />
+    <tag k="testbed:source" v="way/871876450" />
+  </node>
+  <node id="-871876454" lat="42.7443897" lon="-73.7553826" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="12" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Spring Avenue" />
+    <tag k="testbed:source" v="way/871876454" />
+  </node>
+  <node id="-871876456" lat="42.7429903" lon="-73.7548260" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="31" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Schuyler Avenue" />
+    <tag k="testbed:source" v="way/871876456" />
+  </node>
+  <node id="-871876458" lat="42.7432406" lon="-73.7548229" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="27" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Schuyler Avenue" />
+    <tag k="testbed:source" v="way/871876458" />
+  </node>
+  <node id="-871876462" lat="42.7435049" lon="-73.7548716" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="23" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Schuyler Avenue" />
+    <tag k="testbed:source" v="way/871876462" />
+  </node>
+  <node id="-871876464" lat="42.7439959" lon="-73.7549204" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="17" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Schuyler Avenue" />
+    <tag k="testbed:source" v="way/871876464" />
+  </node>
+  <node id="-871876465" lat="42.7441951" lon="-73.7549357" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="15" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Schuyler Avenue" />
+    <tag k="testbed:source" v="way/871876465" />
+  </node>
+  <node id="-871876467" lat="42.7443317" lon="-73.7549824" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="13" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Schuyler Avenue" />
+    <tag k="testbed:source" v="way/871876467" />
+  </node>
+  <node id="-871876469" lat="42.7444360" lon="-73.7549659" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="11" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Schuyler Avenue" />
+    <tag k="testbed:source" v="way/871876469" />
+  </node>
+  <node id="-871876477" lat="42.7448732" lon="-73.7554090" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="8" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Hillcrest Road" />
+    <tag k="testbed:source" v="way/871876477" />
+  </node>
+  <node id="-871876479" lat="42.7456495" lon="-73.7555724" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="430" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Troy Schenectady Road" />
+    <tag k="testbed:source" v="way/871876479" />
+  </node>
+  <node id="-871876487" lat="42.7451490" lon="-73.7557433" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="9" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Hillcrest Road" />
+    <tag k="testbed:source" v="way/871876487" />
+  </node>
+  <node id="-871876489" lat="42.7450258" lon="-73.7561617" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="13" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Hillcrest Road" />
+    <tag k="testbed:source" v="way/871876489" />
+  </node>
+  <node id="-871876492" lat="42.7454342" lon="-73.7562112" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="8" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Lindbergh Drive" />
+    <tag k="testbed:source" v="way/871876492" />
+  </node>
+  <node id="-871876496" lat="42.7453660" lon="-73.7573504" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="7" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Raymond Street" />
+    <tag k="testbed:source" v="way/871876496" />
+  </node>
+  <node id="-871876499" lat="42.7455019" lon="-73.7567430" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="7" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Lindbergh Drive" />
+    <tag k="testbed:source" v="way/871876499" />
+  </node>
+  <node id="-871876500" lat="42.7456473" lon="-73.7566822" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="5" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Lindbergh Drive" />
+    <tag k="testbed:source" v="way/871876500" />
+  </node>
+  <node id="-871876502" lat="42.7458025" lon="-73.7566217" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="3" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Lindbergh Drive" />
+    <tag k="testbed:source" v="way/871876502" />
+  </node>
+  <node id="-871876503" lat="42.7459479" lon="-73.7565614" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="1" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Lindbergh Drive" />
+    <tag k="testbed:source" v="way/871876503" />
+  </node>
+  <node id="-871876505" lat="42.7460948" lon="-73.7571742" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="452" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Troy Schenectady Road" />
+    <tag k="testbed:source" v="way/871876505" />
+  </node>
+  <node id="-871876511" lat="42.7461100" lon="-73.7578240" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="23" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Best Avenue" />
+    <tag k="testbed:source" v="way/871876511" />
+  </node>
+  <node id="-871876515" lat="42.7457725" lon="-73.7580130" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="17" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Best Avenue" />
+    <tag k="testbed:source" v="way/871876515" />
+  </node>
+  <node id="-871876517" lat="42.7455777" lon="-73.7579835" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="15" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Best Avenue" />
+    <tag k="testbed:source" v="way/871876517" />
+  </node>
+  <node id="-871876518" lat="42.7454201" lon="-73.7578576" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="13" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Best Avenue" />
+    <tag k="testbed:source" v="way/871876518" />
+  </node>
+  <node id="-871884536" lat="42.7439878" lon="-73.7535864" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="17" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Park Avenue" />
+    <tag k="testbed:source" v="way/871884536" />
+  </node>
+  <node id="-871884540" lat="42.7438640" lon="-73.7536338" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="19" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Park Avenue" />
+    <tag k="testbed:source" v="way/871884540" />
+  </node>
+  <node id="-871884541" lat="42.7437389" lon="-73.7536903" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="21" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Park Avenue" />
+    <tag k="testbed:source" v="way/871884541" />
+  </node>
+  <node id="-871884545" lat="42.7436199" lon="-73.7537768" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="23" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Park Avenue" />
+    <tag k="testbed:source" v="way/871884545" />
+  </node>
+  <node id="-871884551" lat="42.7432296" lon="-73.7540122" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="29" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Park Avenue" />
+    <tag k="testbed:source" v="way/871884551" />
+  </node>
+  <node id="-871884554" lat="42.7428358" lon="-73.7541864" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="35" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Park Avenue" />
+    <tag k="testbed:source" v="way/871884554" />
+  </node>
+  <node id="-871884560" lat="42.7431537" lon="-73.7543570" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="36" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Schuyler Avenue" />
+    <tag k="testbed:source" v="way/871884560" />
+  </node>
+  <node id="-871884561" lat="42.7433609" lon="-73.7543807" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="34" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Schuyler Avenue" />
+    <tag k="testbed:source" v="way/871884561" />
+  </node>
+  <node id="-871884563" lat="42.7435962" lon="-73.7544231" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="30" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Schuyler Avenue" />
+    <tag k="testbed:source" v="way/871884563" />
+  </node>
+  <node id="-871884564" lat="42.7437875" lon="-73.7544345" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="26" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Schuyler Avenue" />
+    <tag k="testbed:source" v="way/871884564" />
+  </node>
+  <node id="-871884566" lat="42.7441126" lon="-73.7544494" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="22" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Schuyler Avenue" />
+    <tag k="testbed:source" v="way/871884566" />
+  </node>
+  <node id="-871884571" lat="42.7442441" lon="-73.7534547" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="13" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Park Avenue" />
+    <tag k="testbed:source" v="way/871884571" />
+  </node>
+  <node id="-871884574" lat="42.7442993" lon="-73.7537508" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="22" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Saxton Road" />
+    <tag k="testbed:source" v="way/871884574" />
+  </node>
+  <node id="-871884575" lat="42.7443288" lon="-73.7539412" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="24" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Saxton Road" />
+    <tag k="testbed:source" v="way/871884575" />
+  </node>
+  <node id="-871884576" lat="42.7443453" lon="-73.7541487" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="26" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Saxton Road" />
+    <tag k="testbed:source" v="way/871884576" />
+  </node>
+  <node id="-871884581" lat="42.7449907" lon="-73.7545619" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="8" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Schuyler Avenue" />
+    <tag k="testbed:source" v="way/871884581" />
+  </node>
+  <node id="-871884586" lat="42.7446610" lon="-73.7541645" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="25" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Saxton Road" />
+    <tag k="testbed:source" v="way/871884586" />
+  </node>
+  <node id="-871884587" lat="42.7446371" lon="-73.7539326" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="23" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Saxton Road" />
+    <tag k="testbed:source" v="way/871884587" />
+  </node>
+  <node id="-871884588" lat="42.7445911" lon="-73.7537147" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="21" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Saxton Road" />
+    <tag k="testbed:source" v="way/871884588" />
+  </node>
+  <node id="-871884590" lat="42.7445131" lon="-73.7533427" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="17" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Saxton Road" />
+    <tag k="testbed:source" v="way/871884590" />
+  </node>
+  <node id="-871884601" lat="42.7452334" lon="-73.7542518" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="422" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Troy Schenectady Road" />
+    <tag k="testbed:source" v="way/871884601" />
+  </node>
+  <node id="-871924599" lat="42.7433082" lon="-73.7529470" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="8" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Hudson Place" />
+    <tag k="testbed:source" v="way/871924599" />
+  </node>
+  <node id="-871924609" lat="42.7428571" lon="-73.7536490" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="34" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Park Avenue" />
+    <tag k="testbed:source" v="way/871924609" />
+  </node>
+  <node id="-871924615" lat="42.7430034" lon="-73.7535749" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="32" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Park Avenue" />
+    <tag k="testbed:source" v="way/871924615" />
+  </node>
+  <node id="-871924616" lat="42.7431936" lon="-73.7534443" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="28" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Park Avenue" />
+    <tag k="testbed:source" v="way/871924616" />
+  </node>
+  <node id="-871924624" lat="42.7438469" lon="-73.7522388" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="2" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Saxton Road" />
+    <tag k="testbed:source" v="way/871924624" />
+  </node>
+  <node id="-871924627" lat="42.7435137" lon="-73.7522847" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="6" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Seneca Road" />
+    <tag k="testbed:source" v="way/871924627" />
+  </node>
+  <node id="-871924629" lat="42.7436568" lon="-73.7528592" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="2" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Seneca Road" />
+    <tag k="testbed:source" v="way/871924629" />
+  </node>
+  <node id="-871924638" lat="42.7440562" lon="-73.7529990" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="14" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Park Avenue" />
+    <tag k="testbed:source" v="way/871924638" />
+  </node>
+  <node id="-871924642" lat="42.7444607" lon="-73.7528012" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="8" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Park Avenue" />
+    <tag k="testbed:source" v="way/871924642" />
+  </node>
+  <node id="-871924644" lat="42.7447017" lon="-73.7526744" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="402" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Troy Schenectady Road" />
+    <tag k="testbed:source" v="way/871924644" />
+  </node>
+  <node id="-872005801" lat="42.7440337" lon="-73.7507420" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="0" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Aragon Avenue" />
+    <tag k="testbed:source" v="way/872005801" />
+  </node>
+  <node id="-872005804" lat="42.7438148" lon="-73.7507436" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="6" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Aragon Avenue" />
+    <tag k="testbed:source" v="way/872005804" />
+  </node>
+  <node id="-872005806" lat="42.7436219" lon="-73.7507436" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="8" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Aragon Avenue" />
+    <tag k="testbed:source" v="way/872005806" />
+  </node>
+  <node id="-872005807" lat="42.7433968" lon="-73.7507377" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="10" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Aragon Avenue" />
+    <tag k="testbed:source" v="way/872005807" />
+  </node>
+  <node id="-872005808" lat="42.7433087" lon="-73.7503963" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="2" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Duncan Drive" />
+    <tag k="testbed:source" v="way/872005808" />
+  </node>
+  <node id="-872005830" lat="42.7411032" lon="-73.7504547" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="32" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Duncan Drive" />
+    <tag k="testbed:source" v="way/872005830" />
+  </node>
+  <node id="-872005832" lat="42.7411009" lon="-73.7512835" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="36" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Duncan Drive" />
+    <tag k="testbed:source" v="way/872005832" />
+  </node>
+  <node id="-872005836" lat="42.7410636" lon="-73.7520874" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="40" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Duncan Drive" />
+    <tag k="testbed:source" v="way/872005836" />
+  </node>
+  <node id="-872005838" lat="42.7414418" lon="-73.7524271" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="29" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Duncan Drive" />
+    <tag k="testbed:source" v="way/872005838" />
+  </node>
+  <node id="-872005842" lat="42.7415138" lon="-73.7518235" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="25" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Duncan Drive" />
+    <tag k="testbed:source" v="way/872005842" />
+  </node>
+  <node id="-872005843" lat="42.7415109" lon="-73.7512982" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="29" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Aragon Ave" />
+    <tag k="testbed:source" v="way/872005843" />
+  </node>
+  <node id="-872005844" lat="42.7416996" lon="-73.7512687" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="27" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Aragon Avenue" />
+    <tag k="testbed:source" v="way/872005844" />
+  </node>
+  <node id="-872005846" lat="42.7419016" lon="-73.7512662" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="25" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Aragon Avenue" />
+    <tag k="testbed:source" v="way/872005846" />
+  </node>
+  <node id="-872005847" lat="42.7421005" lon="-73.7512615" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="23" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Aragon Avenue" />
+    <tag k="testbed:source" v="way/872005847" />
+  </node>
+  <node id="-872005850" lat="42.7425473" lon="-73.7512676" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="19" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Aragon Avenue" />
+    <tag k="testbed:source" v="way/872005850" />
+  </node>
+  <node id="-872005854" lat="42.7429644" lon="-73.7512531" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="15" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Aragon Avenue" />
+    <tag k="testbed:source" v="way/872005854" />
+  </node>
+  <node id="-872005856" lat="42.7431717" lon="-73.7512655" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="13" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Aragon Avenue" />
+    <tag k="testbed:source" v="way/872005856" />
+  </node>
+  <node id="-872005857" lat="42.7433749" lon="-73.7512524" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="11" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Aragon Avenue" />
+    <tag k="testbed:source" v="way/872005857" />
+  </node>
+  <node id="-872005858" lat="42.7435694" lon="-73.7512749" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="9" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Aragon Avenue" />
+    <tag k="testbed:source" v="way/872005858" />
+  </node>
+  <node id="-872005860" lat="42.7440078" lon="-73.7512528" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="5" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Aragon Avenue" />
+    <tag k="testbed:source" v="way/872005860" />
+  </node>
+  <node id="-872005863" lat="42.7443994" lon="-73.7512480" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="1" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Aragon Avenue" />
+    <tag k="testbed:source" v="way/872005863" />
+  </node>
+  <node id="-872022525" lat="42.7428442" lon="-73.7522835" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="35" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Glendale Road" />
+    <tag k="testbed:source" v="way/872022525" />
+  </node>
+  <node id="-872022528" lat="42.7423512" lon="-73.7525037" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="41" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Glendale Road" />
+    <tag k="testbed:source" v="way/872022528" />
+  </node>
+  <node id="-872022529" lat="42.7420914" lon="-73.7527624" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="43" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Glendale Road" />
+    <tag k="testbed:source" v="way/872022529" />
+  </node>
+  <node id="-872022532" lat="42.7424555" lon="-73.7528850" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="1" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Hudson Place" />
+    <tag k="testbed:source" v="way/872022532" />
+  </node>
+  <node id="-872022533" lat="42.7427138" lon="-73.7527332" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="3" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Hudson Place" />
+    <tag k="testbed:source" v="way/872022533" />
+  </node>
+  <node id="-872022534" lat="42.7429128" lon="-73.7526491" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="7" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Hudson Place" />
+    <tag k="testbed:source" v="way/872022534" />
+  </node>
+  <node id="-872022536" lat="42.7418730" lon="-73.7522706" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="44" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Glendale Road" />
+    <tag k="testbed:source" v="way/872022536" />
+  </node>
+  <node id="-872022537" lat="42.7420532" lon="-73.7520956" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="42" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Glendale Road" />
+    <tag k="testbed:source" v="way/872022537" />
+  </node>
+  <node id="-872022538" lat="42.7422591" lon="-73.7519202" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="40" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Glendale Road" />
+    <tag k="testbed:source" v="way/872022538" />
+  </node>
+  <node id="-872022541" lat="42.7425353" lon="-73.7518301" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="38" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Glendale Road" />
+    <tag k="testbed:source" v="way/872022541" />
+  </node>
+  <node id="-872022542" lat="42.7427535" lon="-73.7518147" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="36" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Glendale Road" />
+    <tag k="testbed:source" v="way/872022542" />
+  </node>
+  <node id="-872022543" lat="42.7430690" lon="-73.7518071" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="34" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Glendale Road" />
+    <tag k="testbed:source" v="way/872022543" />
+  </node>
+  <node id="-872022545" lat="42.7432953" lon="-73.7517937" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="32" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Glendale Road" />
+    <tag k="testbed:source" v="way/872022545" />
+  </node>
+  <node id="-872022546" lat="42.7435688" lon="-73.7518118" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="32" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Glendale Road" />
+    <tag k="testbed:source" v="way/872022546" />
+  </node>
+  <node id="-872022551" lat="42.7442350" lon="-73.7523137" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="5" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Saxton Road" />
+    <tag k="testbed:source" v="way/872022551" />
+  </node>
+  <node id="-872738162" lat="42.7439096" lon="-73.7502932" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="368" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Troy Schenectady Road" />
+    <tag k="testbed:source" v="way/872738162" />
+  </node>
+  <node id="-872738163" lat="42.7415351" lon="-73.7502590" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="17" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Duncan Drive" />
+    <tag k="testbed:source" v="way/872738163" />
+  </node>
+  <node id="-872738164" lat="42.7417240" lon="-73.7501391" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="15" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Duncan Drive" />
+    <tag k="testbed:source" v="way/872738164" />
+  </node>
+  <node id="-872738165" lat="42.7419163" lon="-73.7501064" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="13" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Duncan Drive" />
+    <tag k="testbed:source" v="way/872738165" />
+  </node>
+  <node id="-872738166" lat="42.7421211" lon="-73.7500739" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="11" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Duncan Drive" />
+    <tag k="testbed:source" v="way/872738166" />
+  </node>
+  <node id="-872738169" lat="42.7427630" lon="-73.7499234" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="5" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Duncan Drive" />
+    <tag k="testbed:source" v="way/872738169" />
+  </node>
+  <node id="-872738170" lat="42.7428534" lon="-73.7501708" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="3" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Duncan Drive" />
+    <tag k="testbed:source" v="way/872738170" />
+  </node>
+  <node id="-872738173" lat="42.7428916" lon="-73.7504615" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="1" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Duncan Drive" />
+    <tag k="testbed:source" v="way/872738173" />
+  </node>
+  <node id="-872738174" lat="42.7415221" lon="-73.7506753" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="24" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Aragon Avenue" />
+    <tag k="testbed:source" v="way/872738174" />
+  </node>
+  <node id="-872738177" lat="42.7419810" lon="-73.7507389" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="20" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Aragon Ave" />
+    <tag k="testbed:source" v="way/872738177" />
+  </node>
+  <node id="-872738181" lat="42.7421722" lon="-73.7507469" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="18" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Aragon Avenue" />
+    <tag k="testbed:source" v="way/872738181" />
+  </node>
+  <node id="-872738183" lat="42.7423819" lon="-73.7507505" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="16" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Aragon Avenue" />
+    <tag k="testbed:source" v="way/872738183" />
+  </node>
+  <node id="-872738184" lat="42.7425983" lon="-73.7507461" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="14" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Aragon Avenue" />
+    <tag k="testbed:source" v="way/872738184" />
+  </node>
+  <node id="-879967274" lat="42.7446923" lon="-73.7501641" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="369" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Troy Schenectady Road" />
+    <tag k="testbed:source" v="way/879967274" />
+  </node>
+  <node id="-880027208" lat="42.7465410" lon="-73.7568339" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="449" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Troy Schenectady Road" />
+    <tag k="testbed:source" v="way/880027208" />
+  </node>
+  <node id="-880027210" lat="42.7464232" lon="-73.7565099" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="447" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Troy Schenectady Road" />
+    <tag k="testbed:source" v="way/880027210" />
+  </node>
+  <node id="-880027211" lat="42.7464242" lon="-73.7563333" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="443" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Troy Schenectady Road" />
+    <tag k="testbed:source" v="way/880027211" />
+  </node>
+  <node id="-880027212" lat="42.7463417" lon="-73.7561786" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:flats" v="A;B;D" />
+    <tag k="addr:housenumber" v="441" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Troy Schenectady Road" />
+    <tag k="testbed:source" v="way/880027212" />
+  </node>
+  <node id="-880027215" lat="42.7462319" lon="-73.7558624" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="437" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Troy Schenectady Road" />
+    <tag k="testbed:source" v="way/880027215" />
+  </node>
+  <node id="-880027217" lat="42.7461880" lon="-73.7556554" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="435" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Troy Schenectady Road" />
+    <tag k="testbed:source" v="way/880027217" />
+  </node>
+  <node id="-880027221" lat="42.7461496" lon="-73.7550974" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="429" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Troy Schenectady Road" />
+    <tag k="testbed:source" v="way/880027221" />
+  </node>
+  <node id="-880027222" lat="42.7460259" lon="-73.7553013" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="431" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Troy Schenectady Road" />
+    <tag k="testbed:source" v="way/880027222" />
+  </node>
+  <node id="-880027223" lat="42.7459518" lon="-73.7549535" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="427" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Troy Schenectady Road" />
+    <tag k="testbed:source" v="way/880027223" />
+  </node>
+  <node id="-880027226" lat="42.7458365" lon="-73.7544936" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="421" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Troy Schenectady Road" />
+    <tag k="testbed:source" v="way/880027226" />
+  </node>
+  <node id="-881154554" lat="42.7499701" lon="-73.7523284" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="8" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="York Place" />
+    <tag k="testbed:source" v="way/881154554" />
+  </node>
+  <node id="-881154559" lat="42.7498176" lon="-73.7511976" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="52A" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Broadway" />
+    <tag k="testbed:source" v="way/881154559" />
+  </node>
+  <node id="-881154560" lat="42.7497616" lon="-73.7513777" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="52" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Broadway" />
+    <tag k="testbed:source" v="way/881154560" />
+  </node>
+  <node id="-881154565" lat="42.7495470" lon="-73.7518881" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="46" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Broadway" />
+    <tag k="testbed:source" v="way/881154565" />
+  </node>
+  <node id="-881154566" lat="42.7494684" lon="-73.7522227" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="42" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Broadway" />
+    <tag k="testbed:source" v="way/881154566" />
+  </node>
+  <node id="-881154568" lat="42.7495365" lon="-73.7524522" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="36" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Broadway" />
+    <tag k="testbed:source" v="way/881154568" />
+  </node>
+  <node id="-881154569" lat="42.7493780" lon="-73.7527408" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="34" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Broadway" />
+    <tag k="testbed:source" v="way/881154569" />
+  </node>
+  <node id="-881154572" lat="42.7499081" lon="-73.7501924" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="56" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Broadway" />
+    <tag k="testbed:source" v="way/881154572" />
+  </node>
+  <node id="-881154573" lat="42.7499282" lon="-73.7506008" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="54" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Broadway" />
+    <tag k="testbed:source" v="way/881154573" />
+  </node>
+  <node id="-881154611" lat="42.7488433" lon="-73.7520612" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="32" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Green Island Avenue" />
+    <tag k="testbed:source" v="way/881154611" />
+  </node>
+  <node id="-881154615" lat="42.7489571" lon="-73.7517397" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="34" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Green Island Avenue" />
+    <tag k="testbed:source" v="way/881154615" />
+  </node>
+  <node id="-881154616" lat="42.7490308" lon="-73.7514922" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="36" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Green Island Avenue" />
+    <tag k="testbed:source" v="way/881154616" />
+  </node>
+  <node id="-881154620" lat="42.7491783" lon="-73.7510635" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="42" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Green Island Avenue" />
+    <tag k="testbed:source" v="way/881154620" />
+  </node>
+  <node id="-881154625" lat="42.7491051" lon="-73.7523262" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="31" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Broadway" />
+    <tag k="testbed:source" v="way/881154625" />
+  </node>
+  <node id="-881154629" lat="42.7492066" lon="-73.7520997" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="33" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Broadway" />
+    <tag k="testbed:source" v="way/881154629" />
+  </node>
+  <node id="-881154635" lat="42.7495694" lon="-73.7508095" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="45" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Broadway" />
+    <tag k="testbed:source" v="way/881154635" />
+  </node>
+  <node id="-881154639" lat="42.7492821" lon="-73.7501644" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="2" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Avenue" />
+    <tag k="testbed:source" v="way/881154639" />
+  </node>
+  <node id="-881154643" lat="42.7484924" lon="-73.7520068" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="31" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Green Island Avenue" />
+    <tag k="testbed:source" v="way/881154643" />
+  </node>
+  <node id="-881154644" lat="42.7486208" lon="-73.7515662" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="35" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Green Island Avenue" />
+    <tag k="testbed:source" v="way/881154644" />
+  </node>
+  <node id="-881154645" lat="42.7486877" lon="-73.7513064" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="39" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Green Island Avenue" />
+    <tag k="testbed:source" v="way/881154645" />
+  </node>
+  <node id="-881154646" lat="42.7487906" lon="-73.7509584" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="41" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Green Island Avenue" />
+    <tag k="testbed:source" v="way/881154646" />
+  </node>
+  <node id="-881265023" lat="42.7478836" lon="-73.7584524" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="211" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="testbed:source" v="way/881265023" />
+  </node>
+  <node id="-881265024" lat="42.7476559" lon="-73.7581697" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="35 REAR" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Purtell Avenue" />
+    <tag k="testbed:source" v="way/881265024" />
+  </node>
+  <node id="-881265027" lat="42.7473295" lon="-73.7585880" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="203" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="testbed:source" v="way/881265027" />
+  </node>
+  <node id="-881265030" lat="42.7477194" lon="-73.7585033" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="35" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Purtell Avenue" />
+    <tag k="testbed:source" v="way/881265030" />
+  </node>
+  <node id="-881265031" lat="42.7476709" lon="-73.7580156" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="33" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Purtell Avenue" />
+    <tag k="testbed:source" v="way/881265031" />
+  </node>
+  <node id="-881265033" lat="42.7475673" lon="-73.7576614" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="29" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Purtell Avenue" />
+    <tag k="testbed:source" v="way/881265033" />
+  </node>
+  <node id="-881265034" lat="42.7475038" lon="-73.7574670" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="27" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Purtell Avenue" />
+    <tag k="testbed:source" v="way/881265034" />
+  </node>
+  <node id="-881265037" lat="42.7474497" lon="-73.7573125" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="25" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Purtell Avenue" />
+    <tag k="testbed:source" v="way/881265037" />
+  </node>
+  <node id="-881265038" lat="42.7473043" lon="-73.7567810" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="21" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Purtell Avenue" />
+    <tag k="testbed:source" v="way/881265038" />
+  </node>
+  <node id="-881265039" lat="42.7472046" lon="-73.7565142" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="19" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Purtell Avenue" />
+    <tag k="testbed:source" v="way/881265039" />
+  </node>
+  <node id="-881265042" lat="42.7474072" lon="-73.7540540" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="1A" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Webster Court" />
+    <tag k="testbed:source" v="way/881265042" />
+  </node>
+  <node id="-881265043" lat="42.7474872" lon="-73.7540391" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="1B" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Webster Court" />
+    <tag k="testbed:source" v="way/881265043" />
+  </node>
+  <node id="-881265044" lat="42.7472701" lon="-73.7544398" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="3A" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Webster Court" />
+    <tag k="testbed:source" v="way/881265044" />
+  </node>
+  <node id="-881265045" lat="42.7473195" lon="-73.7543527" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="3B" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Webster Court" />
+    <tag k="testbed:source" v="way/881265045" />
+  </node>
+  <node id="-881265046" lat="42.7470695" lon="-73.7546679" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="5A" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Webster Court" />
+    <tag k="testbed:source" v="way/881265046" />
+  </node>
+  <node id="-881265047" lat="42.7471455" lon="-73.7546309" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="5B" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Webster Court" />
+    <tag k="testbed:source" v="way/881265047" />
+  </node>
+  <node id="-881265049" lat="42.7468656" lon="-73.7546274" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="4B" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Webster Court" />
+    <tag k="testbed:source" v="way/881265049" />
+  </node>
+  <node id="-881265053" lat="42.7464888" lon="-73.7546568" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:flats" v="1-5" />
+    <tag k="addr:housenumber" v="12" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="First Avenue" />
+    <tag k="testbed:source" v="way/881265053" />
+  </node>
+  <node id="-881265054" lat="42.7483884" lon="-73.7523722" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="27" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Green Island Avenue" />
+    <tag k="testbed:source" v="way/881265054" />
+  </node>
+  <node id="-881265056" lat="42.7483668" lon="-73.7524945" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="25" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Green Island Avenue" />
+    <tag k="testbed:source" v="way/881265056" />
+  </node>
+  <node id="-881265057" lat="42.7482063" lon="-73.7529015" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="23" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Green Island Avenue" />
+    <tag k="testbed:source" v="way/881265057" />
+  </node>
+  <node id="-881265062" lat="42.7478709" lon="-73.7540737" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="9A" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Green Island Avenue" />
+    <tag k="testbed:source" v="way/881265062" />
+  </node>
+  <node id="-881265064" lat="42.7477243" lon="-73.7545069" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="7" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Green Island Avenue" />
+    <tag k="testbed:source" v="way/881265064" />
+  </node>
+  <node id="-881265066" lat="42.7485362" lon="-73.7530717" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="22" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Green Island Avenue" />
+    <tag k="testbed:source" v="way/881265066" />
+  </node>
+  <node id="-881265067" lat="42.7484656" lon="-73.7533550" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="20" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Green Island Avenue" />
+    <tag k="testbed:source" v="way/881265067" />
+  </node>
+  <node id="-881265068" lat="42.7483986" lon="-73.7536417" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="14" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Green Island Avenue" />
+    <tag k="testbed:source" v="way/881265068" />
+  </node>
+  <node id="-881265072" lat="42.7482474" lon="-73.7540231" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="12" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Green Island Avenue" />
+    <tag k="testbed:source" v="way/881265072" />
+  </node>
+  <node id="-881265074" lat="42.7488659" lon="-73.7530445" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="6" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Taylor Street" />
+    <tag k="testbed:source" v="way/881265074" />
+  </node>
+  <node id="-881265075" lat="42.7488136" lon="-73.7532992" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="13" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Broadway" />
+    <tag k="testbed:source" v="way/881265075" />
+  </node>
+  <node id="-881265076" lat="42.7487314" lon="-73.7535144" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="11" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Broadway" />
+    <tag k="testbed:source" v="way/881265076" />
+  </node>
+  <node id="-881265077" lat="42.7486716" lon="-73.7537799" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="9" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Broadway" />
+    <tag k="testbed:source" v="way/881265077" />
+  </node>
+  <node id="-881265078" lat="42.7486102" lon="-73.7539926" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="7" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Broadway" />
+    <tag k="testbed:source" v="way/881265078" />
+  </node>
+  <node id="-881265079" lat="42.7485383" lon="-73.7542101" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="5" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Broadway" />
+    <tag k="testbed:source" v="way/881265079" />
+  </node>
+  <node id="-881265083" lat="42.7484546" lon="-73.7545058" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="3" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Broadway" />
+    <tag k="testbed:source" v="way/881265083" />
+  </node>
+  <node id="-881265090" lat="42.7481793" lon="-73.7543287" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="10" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Green Island Avenue" />
+    <tag k="testbed:source" v="way/881265090" />
+  </node>
+  <node id="-881265091" lat="42.7480454" lon="-73.7547160" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="8" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Green Island Avenue" />
+    <tag k="testbed:source" v="way/881265091" />
+  </node>
+  <node id="-881265093" lat="42.7479574" lon="-73.7549167" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="6" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Green Island Avenue" />
+    <tag k="testbed:source" v="way/881265093" />
+  </node>
+  <node id="-881265096" lat="42.7482646" lon="-73.7551219" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="31" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Scully Avenue" />
+    <tag k="testbed:source" v="way/881265096" />
+  </node>
+  <node id="-881265099" lat="42.7475801" lon="-73.7551302" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="23" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Scully Avenue" />
+    <tag k="testbed:source" v="way/881265099" />
+  </node>
+  <node id="-881265101" lat="42.7472053" lon="-73.7550042" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="19" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Scully Avenue" />
+    <tag k="testbed:source" v="way/881265101" />
+  </node>
+  <node id="-881265105" lat="42.7469038" lon="-73.7552048" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="13" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Scully Avenue" />
+    <tag k="testbed:source" v="way/881265105" />
+  </node>
+  <node id="-881265107" lat="42.7465230" lon="-73.7552481" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="5" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Scully Avenue" />
+    <tag k="testbed:source" v="way/881265107" />
+  </node>
+  <node id="-881265108" lat="42.7462839" lon="-73.7551568" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="3A;3B" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Scully Avenue" />
+    <tag k="testbed:source" v="way/881265108" />
+  </node>
+  <node id="-881265109" lat="42.7465791" lon="-73.7556748" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="4" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Scully Avenue" />
+    <tag k="testbed:source" v="way/881265109" />
+  </node>
+  <node id="-881265111" lat="42.7469105" lon="-73.7557097" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="8B" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Scully Avenue" />
+    <tag k="testbed:source" v="way/881265111" />
+  </node>
+  <node id="-881265112" lat="42.7468506" lon="-73.7557108" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="8A" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Scully Avenue" />
+    <tag k="testbed:source" v="way/881265112" />
+  </node>
+  <node id="-881265115" lat="42.7474542" lon="-73.7556849" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="22" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Scully Avenue" />
+    <tag k="testbed:source" v="way/881265115" />
+  </node>
+  <node id="-881265116" lat="42.7478126" lon="-73.7556099" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="26" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Scully Avenue" />
+    <tag k="testbed:source" v="way/881265116" />
+  </node>
+  <node id="-881265117" lat="42.7480003" lon="-73.7556912" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="28" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Scully Avenue" />
+    <tag k="testbed:source" v="way/881265117" />
+  </node>
+  <node id="-881265121" lat="42.7481727" lon="-73.7557276" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="24" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Scully Avenue" />
+    <tag k="testbed:source" v="way/881265121" />
+  </node>
+  <node id="-881265125" lat="42.7485417" lon="-73.7555120" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="2" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Broadway" />
+    <tag k="testbed:source" v="way/881265125" />
+  </node>
+  <node id="-881265132" lat="42.7490073" lon="-73.7539361" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="14" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Broadway" />
+    <tag k="testbed:source" v="way/881265132" />
+  </node>
+  <node id="-881265134" lat="42.7490745" lon="-73.7537090" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="16" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Broadway" />
+    <tag k="testbed:source" v="way/881265134" />
+  </node>
+  <node id="-881265135" lat="42.7491502" lon="-73.7534637" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="18" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Broadway" />
+    <tag k="testbed:source" v="way/881265135" />
+  </node>
+  <node id="-881265138" lat="42.7492330" lon="-73.7531674" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="30" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Broadway" />
+    <tag k="testbed:source" v="way/881265138" />
+  </node>
+  <node id="-881265139" lat="42.7493566" lon="-73.7531869" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="2" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Taylor Street" />
+    <tag k="testbed:source" v="way/881265139" />
+  </node>
+  <node id="-881278507" lat="42.7470041" lon="-73.7583594" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:flats" v="1-2" />
+    <tag k="addr:housenumber" v="467" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Troy Schenectady Road" />
+    <tag k="testbed:source" v="way/881278507" />
+  </node>
+  <node id="-881278508" lat="42.7469008" lon="-73.7582389" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="465" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Troy Schenectady Road" />
+    <tag k="testbed:source" v="way/881278508" />
+  </node>
+  <node id="-881278519" lat="42.7466313" lon="-73.7571840" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="453" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Troy Schenectady Road" />
+    <tag k="testbed:source" v="way/881278519" />
+  </node>
+  <node id="-881278523" lat="42.7471976" lon="-73.7577934" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:flats" v="1-2" />
+    <tag k="addr:housenumber" v="32" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Purtell Avenue" />
+    <tag k="testbed:source" v="way/881278523" />
+  </node>
+  <node id="-881289982" lat="42.7462825" lon="-73.7506474" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="1" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="testbed:source" v="way/881289982" />
+  </node>
+  <node id="-881289985" lat="42.7479670" lon="-73.7498414" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="35" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="testbed:source" v="way/881289985" />
+  </node>
+  <node id="-881289986" lat="42.7483035" lon="-73.7506481" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="37" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="testbed:source" v="way/881289986" />
+  </node>
+  <node id="-891569748" lat="42.7480633" lon="-73.7596182" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="3" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="School Street" />
+    <tag k="testbed:source" v="way/891569748" />
+  </node>
+  <node id="-891569753" lat="42.7487828" lon="-73.7586373" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="224" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="testbed:source" v="way/891569753" />
+  </node>
+  <node id="-891569758" lat="42.7483701" lon="-73.7588054" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="216" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="testbed:source" v="way/891569758" />
+  </node>
+  <node id="-891569762" lat="42.7482304" lon="-73.7582903" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="215" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="testbed:source" v="way/891569762" />
+  </node>
+  <node id="-891569772" lat="42.7474924" lon="-73.7593110" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="477" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Troy Schenectady Road" />
+    <tag k="testbed:source" v="way/891569772" />
+  </node>
+  <node id="-891583581" lat="42.7497229" lon="-73.7573119" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="2" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Austin Avenue" />
+    <tag k="testbed:source" v="way/891583581" />
+  </node>
+  <node id="-891583582" lat="42.7496894" lon="-73.7569914" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="4" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Austin Avenue" />
+    <tag k="testbed:source" v="way/891583582" />
+  </node>
+  <node id="-891583583" lat="42.7497110" lon="-73.7566694" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="6" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Austin Avenue" />
+    <tag k="testbed:source" v="way/891583583" />
+  </node>
+  <node id="-891583587" lat="42.7493556" lon="-73.7564373" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="17" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Austin Avenue" />
+    <tag k="testbed:source" v="way/891583587" />
+  </node>
+  <node id="-891583588" lat="42.7492846" lon="-73.7566876" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="11" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Austin Avenue" />
+    <tag k="testbed:source" v="way/891583588" />
+  </node>
+  <node id="-891583590" lat="42.7492353" lon="-73.7570872" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="5" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Austin Avenue" />
+    <tag k="testbed:source" v="way/891583590" />
+  </node>
+  <node id="-891583594" lat="42.7494638" lon="-73.7576810" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="235" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="testbed:source" v="way/891583594" />
+  </node>
+  <node id="-891583605" lat="42.7490952" lon="-73.7580336" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="229" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="testbed:source" v="way/891583605" />
+  </node>
+  <node id="-891583606" lat="42.7489720" lon="-73.7580800" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="227" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="testbed:source" v="way/891583606" />
+  </node>
+  <node id="-891583613" lat="42.7486387" lon="-73.7572389" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="3" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Marlyn Drive" />
+    <tag k="testbed:source" v="way/891583613" />
+  </node>
+  <node id="-891583617" lat="42.7482035" lon="-73.7565678" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="10" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Marlyn Drive" />
+    <tag k="addr:unit" v="1" />
+    <tag k="testbed:source" v="way/891583617" />
+  </node>
+  <node id="-891583619" lat="42.7482912" lon="-73.7573741" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="6" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Marlyn Drive" />
+    <tag k="testbed:source" v="way/891583619" />
+  </node>
+  <node id="-891583620" lat="42.7483341" lon="-73.7577435" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="4" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Marlyn Drive" />
+    <tag k="testbed:source" v="way/891583620" />
+  </node>
+  <node id="-891583623" lat="42.7488192" lon="-73.7580050" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:flats" v="1-3" />
+    <tag k="addr:housenumber" v="225" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="testbed:source" v="way/891583623" />
+  </node>
+  <node id="-891583625" lat="42.7483872" lon="-73.7582205" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="2" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Marlyn Drive" />
+    <tag k="testbed:source" v="way/891583625" />
+  </node>
+  <node id="-8119013014" lat="42.7463893" lon="-73.7583775" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="460" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Troy Schenectady Road" />
+    <tag k="addr:unit" v="B" />
+    <tag k="testbed:source" v="node/8119013014" />
+  </node>
+  <node id="-8186004911" lat="42.7454733" lon="-73.7528629" visible="true">
+    <tag k="addr:housenumber" v="389" />
+    <tag k="addr:street" v="Troy Schenectady Road" />
+    <tag k="testbed:source" v="node/8186004911" />
+  </node>
+  <node id="-8399536561" lat="42.7487247" lon="-73.7593111" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="7" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="School Street" />
+    <tag k="testbed:source" v="node/8399536561" />
+  </node>
+  <node id="-8399537560" lat="42.7415314" lon="-73.7516202" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="23" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Duncan Drive" />
+    <tag k="testbed:source" v="node/8399537560" />
+  </node>
+  <node id="-8399539460" lat="42.7443060" lon="-73.7525358" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="7" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Saxton Road" />
+    <tag k="testbed:source" v="node/8399539460" />
+  </node>
+  <node id="-8399542845" lat="42.7408493" lon="-73.7590894" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="108" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="testbed:source" v="node/8399542845" />
+  </node>
+  <node id="-8399549563" lat="42.7482342" lon="-73.7570184" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="8" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Marlyn Drive" />
+    <tag k="testbed:source" v="node/8399549563" />
+  </node>
+  <node id="-8399549618" lat="42.7450002" lon="-73.7538121" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:flats" v="201-204" />
+    <tag k="addr:floor" v="Floor 2" />
+    <tag k="addr:housenumber" v="410" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Troy Schenectady Road" />
+    <tag k="testbed:source" v="node/8399549618" />
+  </node>
+  <node id="-8399549850" lat="42.7458403" lon="-73.7598250" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:flats" v="1-2" />
+    <tag k="addr:housenumber" v="178" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="testbed:source" v="node/8399549850" />
+  </node>
+  <node id="-8399549947" lat="42.7450727" lon="-73.7538150" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:flats" v="101-102" />
+    <tag k="addr:housenumber" v="410" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Troy Schenectady Road" />
+    <tag k="testbed:source" v="node/8399549947" />
+  </node>
+  <node id="-8399549957" lat="42.7458757" lon="-73.7598262" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="178" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="testbed:source" v="node/8399549957" />
+  </node>
+  <node id="-8399552678" lat="42.7456882" lon="-73.7539712" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="415" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Troy Schenectady Road" />
+    <tag k="testbed:source" v="node/8399552678" />
+  </node>
+  <node id="-8399565192" lat="42.7495669" lon="-73.7520851" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="40" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Broadway" />
+    <tag k="testbed:source" v="node/8399565192" />
+  </node>
+  <node id="-8399571944" lat="42.7469668" lon="-73.7570674" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="20" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Purtell Avenue" />
+    <tag k="testbed:source" v="node/8399571944" />
+  </node>
+  <node id="-8399581346" lat="42.7487073" lon="-73.7525300" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="28" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Green Island Avenue" />
+    <tag k="testbed:source" v="node/8399581346" />
+  </node>
+  <node id="-8399583997" lat="42.7464232" lon="-73.7557281" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="2" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Scully Avenue" />
+    <tag k="testbed:source" v="node/8399583997" />
+  </node>
+  <node id="-8399589968" lat="42.7456545" lon="-73.7560490" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="2" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Lindbergh Drive" />
+    <tag k="testbed:source" v="node/8399589968" />
+  </node>
+  <node id="-8399591128" lat="42.7493887" lon="-73.7599302" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="10" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="School Street" />
+    <tag k="testbed:source" v="node/8399591128" />
+  </node>
+  <node id="-8399596047" lat="42.7462497" lon="-73.7506971" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:floor" v="Floor 2" />
+    <tag k="addr:housenumber" v="1" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="4" />
+    <tag k="testbed:source" v="node/8399596047" />
+  </node>
+  <node id="-8399596183" lat="42.7483320" lon="-73.7577323" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="4 A" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Marlyn Drive" />
+    <tag k="testbed:source" v="node/8399596183" />
+  </node>
+  <node id="-8399596291" lat="42.7483150" lon="-73.7574807" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="6 A" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Marlyn Drive" />
+    <tag k="testbed:source" v="node/8399596291" />
+  </node>
+  <node id="-8399596353" lat="42.7468196" lon="-73.7545465" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="4 A" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Webster Court" />
+    <tag k="testbed:source" v="node/8399596353" />
+  </node>
+  <node id="-8399596936" lat="42.7464854" lon="-73.7566682" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="447" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Troy Schenectady Road" />
+    <tag k="addr:unit" v="1" />
+    <tag k="testbed:source" v="node/8399596936" />
+  </node>
+  <node id="-8399597070" lat="42.7482303" lon="-73.7502027" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="35" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="17" />
+    <tag k="testbed:source" v="node/8399597070" />
+  </node>
+  <node id="-8399597098" lat="42.7460181" lon="-73.7583889" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="22" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Best Avenue" />
+    <tag k="addr:unit" v="1" />
+    <tag k="testbed:source" v="node/8399597098" />
+  </node>
+  <node id="-8399597135" lat="42.7480680" lon="-73.7509219" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:floor" v="Floor 2" />
+    <tag k="addr:housenumber" v="37" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="14" />
+    <tag k="testbed:source" v="node/8399597135" />
+  </node>
+  <node id="-8399597162" lat="42.7473860" lon="-73.7504984" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="39" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="27" />
+    <tag k="testbed:source" v="node/8399597162" />
+  </node>
+  <node id="-8399597176" lat="42.7485684" lon="-73.7502757" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:floor" v="Floor 2" />
+    <tag k="addr:housenumber" v="37" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="32" />
+    <tag k="testbed:source" v="node/8399597176" />
+  </node>
+  <node id="-8399597267" lat="42.7482451" lon="-73.7508729" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:floor" v="Floor 2" />
+    <tag k="addr:housenumber" v="37" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="22" />
+    <tag k="testbed:source" v="node/8399597267" />
+  </node>
+  <node id="-8399597372" lat="42.7471275" lon="-73.7546019" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="5 B" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Webster Court" />
+    <tag k="testbed:source" v="node/8399597372" />
+  </node>
+  <node id="-8399597457" lat="42.7402228" lon="-73.7536797" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="76" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Glendale Road" />
+    <tag k="addr:unit" v="1" />
+    <tag k="testbed:source" v="node/8399597457" />
+  </node>
+  <node id="-8399597524" lat="42.7468222" lon="-73.7512792" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="41" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="7" />
+    <tag k="testbed:source" v="node/8399597524" />
+  </node>
+  <node id="-8399597961" lat="42.7484453" lon="-73.7505055" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="37" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="27" />
+    <tag k="testbed:source" v="node/8399597961" />
+  </node>
+  <node id="-8399597967" lat="42.7484803" lon="-73.7501907" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="37" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="1" />
+    <tag k="testbed:source" v="node/8399597967" />
+  </node>
+  <node id="-8399598039" lat="42.7482883" lon="-73.7505324" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="37" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="7" />
+    <tag k="testbed:source" v="node/8399598039" />
+  </node>
+  <node id="-8399598120" lat="42.7437386" lon="-73.7599625" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="148" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="addr:unit" v="1" />
+    <tag k="testbed:source" v="node/8399598120" />
+  </node>
+  <node id="-8399598127" lat="42.7480521" lon="-73.7500418" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="35" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="21" />
+    <tag k="testbed:source" v="node/8399598127" />
+  </node>
+  <node id="-8399598153" lat="42.7462324" lon="-73.7577202" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="25" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Best Avenue" />
+    <tag k="addr:unit" v="2" />
+    <tag k="testbed:source" v="node/8399598153" />
+  </node>
+  <node id="-8399598177" lat="42.7473933" lon="-73.7540239" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="1 A" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Webster Court" />
+    <tag k="testbed:source" v="node/8399598177" />
+  </node>
+  <node id="-8399598180" lat="42.7468142" lon="-73.7546112" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="4" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Webster Court" />
+    <tag k="testbed:source" v="node/8399598180" />
+  </node>
+  <node id="-8399598263" lat="42.7471635" lon="-73.7511022" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="41" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="13" />
+    <tag k="testbed:source" v="node/8399598263" />
+  </node>
+  <node id="-8399598363" lat="42.7479243" lon="-73.7585739" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="211" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="addr:unit" v="2" />
+    <tag k="testbed:source" v="node/8399598363" />
+  </node>
+  <node id="-8399598400" lat="42.7472009" lon="-73.7512457" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="41" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="19" />
+    <tag k="testbed:source" v="node/8399598400" />
+  </node>
+  <node id="-8399598444" lat="42.7448382" lon="-73.7532045" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="404" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Troy Schenectady Road" />
+    <tag k="addr:unit" v="2" />
+    <tag k="testbed:source" v="node/8399598444" />
+  </node>
+  <node id="-8399598602" lat="42.7483603" lon="-73.7580029" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:flats" v="1-2" />
+    <tag k="addr:housenumber" v="2 A" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Marlyn Drive" />
+    <tag k="testbed:source" v="node/8399598602" />
+  </node>
+  <node id="-8399598662" lat="42.7478956" lon="-73.7507598" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="39" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="15" />
+    <tag k="testbed:source" v="node/8399598662" />
+  </node>
+  <node id="-8399598713" lat="42.7470453" lon="-73.7511913" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:floor" v="Floor 2" />
+    <tag k="addr:housenumber" v="41" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="12" />
+    <tag k="testbed:source" v="node/8399598713" />
+  </node>
+  <node id="-8399599039" lat="42.7476460" lon="-73.7507429" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="39" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="21" />
+    <tag k="testbed:source" v="node/8399599039" />
+  </node>
+  <node id="-8399599072" lat="42.7498067" lon="-73.7511578" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="52 A" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Broadway" />
+    <tag k="testbed:source" v="node/8399599072" />
+  </node>
+  <node id="-8399599135" lat="42.7481632" lon="-73.7510118" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:floor" v="Floor 2" />
+    <tag k="addr:housenumber" v="37" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="20" />
+    <tag k="testbed:source" v="node/8399599135" />
+  </node>
+  <node id="-8399599545" lat="42.7494857" lon="-73.7576891" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="235" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="testbed:source" v="node/8399599545" />
+  </node>
+  <node id="-8399599546" lat="42.7460404" lon="-73.7501781" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:floor" v="Floor 2" />
+    <tag k="addr:housenumber" v="3" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="8" />
+    <tag k="testbed:source" v="node/8399599546" />
+  </node>
+  <node id="-8399599715" lat="42.7478365" lon="-73.7507056" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:floor" v="Floor 2" />
+    <tag k="addr:housenumber" v="39" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="14" />
+    <tag k="testbed:source" v="node/8399599715" />
+  </node>
+  <node id="-8399600117" lat="42.7461232" lon="-73.7506173" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="1" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="5" />
+    <tag k="testbed:source" v="node/8399600117" />
+  </node>
+  <node id="-8399600199" lat="42.7472856" lon="-73.7511746" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:floor" v="Floor 2" />
+    <tag k="addr:housenumber" v="41" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="18" />
+    <tag k="testbed:source" v="node/8399600199" />
+  </node>
+  <node id="-8399600227" lat="42.7404304" lon="-73.7532795" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="70" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Glendale Road" />
+    <tag k="addr:unit" v="1" />
+    <tag k="testbed:source" v="node/8399600227" />
+  </node>
+  <node id="-8399600275" lat="42.7446768" lon="-73.7545540" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="10" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Schuyler Avenue" />
+    <tag k="testbed:source" v="node/8399600275" />
+  </node>
+  <node id="-8399600665" lat="42.7477553" lon="-73.7508360" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="39" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="19" />
+    <tag k="testbed:source" v="node/8399600665" />
+  </node>
+  <node id="-8399601049" lat="42.7434583" lon="-73.7599172" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="142" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="addr:unit" v="1" />
+    <tag k="testbed:source" v="node/8399601049" />
+  </node>
+  <node id="-8399601101" lat="42.7482811" lon="-73.7505452" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:floor" v="Floor 2" />
+    <tag k="addr:housenumber" v="37" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="8" />
+    <tag k="testbed:source" v="node/8399601101" />
+  </node>
+  <node id="-8399601143" lat="42.7454155" lon="-73.7527671" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="389" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Troy Schenectady Road" />
+    <tag k="addr:unit" v="2" />
+    <tag k="testbed:source" v="node/8399601143" />
+  </node>
+  <node id="-8399601300" lat="42.7478251" lon="-73.7506938" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="39" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="13" />
+    <tag k="testbed:source" v="node/8399601300" />
+  </node>
+  <node id="-8399602083" lat="42.7411273" lon="-73.7550338" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="54" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Spring Avenue" />
+    <tag k="addr:unit" v="A" />
+    <tag k="testbed:source" v="node/8399602083" />
+  </node>
+  <node id="-8399602092" lat="42.7494623" lon="-73.7521941" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="38" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Broadway" />
+    <tag k="testbed:source" v="node/8399602092" />
+  </node>
+  <node id="-8399602392" lat="42.7466454" lon="-73.7515052" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:floor" v="Floor 2" />
+    <tag k="addr:housenumber" v="41" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="30" />
+    <tag k="testbed:source" v="node/8399602392" />
+  </node>
+  <node id="-8399602406" lat="42.7461694" lon="-73.7505268" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:floor" v="Floor 2" />
+    <tag k="addr:housenumber" v="1" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="8" />
+    <tag k="testbed:source" v="node/8399602406" />
+  </node>
+  <node id="-8399602408" lat="42.7430397" lon="-73.7598949" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="138" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Rd" />
+    <tag k="addr:unit" v="1" />
+    <tag k="testbed:source" v="node/8399602408" />
+  </node>
+  <node id="-8399602457" lat="42.7461947" lon="-73.7500903" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="3" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="3" />
+    <tag k="testbed:source" v="node/8399602457" />
+  </node>
+  <node id="-8399602573" lat="42.7474300" lon="-73.7503388" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="39" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="5" />
+    <tag k="testbed:source" v="node/8399602573" />
+  </node>
+  <node id="-8399602791" lat="42.7477092" lon="-73.7505879" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="39" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="11" />
+    <tag k="testbed:source" v="node/8399602791" />
+  </node>
+  <node id="-8399602894" lat="42.7470832" lon="-73.7513067" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="41" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="21" />
+    <tag k="testbed:source" v="node/8399602894" />
+  </node>
+  <node id="-8399602989" lat="42.7440182" lon="-73.7507089" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="4" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Aragon Avenue" />
+    <tag k="testbed:source" v="node/8399602989" />
+  </node>
+  <node id="-8399603025" lat="42.7473186" lon="-73.7502321" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="39" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="3" />
+    <tag k="testbed:source" v="node/8399603025" />
+  </node>
+  <node id="-8399603109" lat="42.7472532" lon="-73.7501799" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="39" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="1" />
+    <tag k="testbed:source" v="node/8399603109" />
+  </node>
+  <node id="-8399603199" lat="42.7465389" lon="-73.7566411" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="447" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Troy Schenectady Road" />
+    <tag k="addr:unit" v="A" />
+    <tag k="testbed:source" v="node/8399603199" />
+  </node>
+  <node id="-8399603311" lat="42.7462506" lon="-73.7577214" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="25" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Best Avenue" />
+    <tag k="addr:unit" v="1" />
+    <tag k="testbed:source" v="node/8399603311" />
+  </node>
+  <node id="-8399603359" lat="42.7494331" lon="-73.7511978" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="53" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Broadway" />
+    <tag k="testbed:source" v="node/8399603359" />
+  </node>
+  <node id="-8399604000" lat="42.7467449" lon="-73.7513476" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:floor" v="Floor 2" />
+    <tag k="addr:housenumber" v="41" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Laatham Village Lane" />
+    <tag k="addr:unit" v="6" />
+    <tag k="testbed:source" v="node/8399604000" />
+  </node>
+  <node id="-8399604098" lat="42.7466623" lon="-73.7565859" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="447" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Troy Schenectady Road" />
+    <tag k="addr:unit" v="D" />
+    <tag k="testbed:source" v="node/8399604098" />
+  </node>
+  <node id="-8399604780" lat="42.7476385" lon="-73.7507370" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:floor" v="Floor 2" />
+    <tag k="addr:housenumber" v="39" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="22" />
+    <tag k="testbed:source" v="node/8399604780" />
+  </node>
+  <node id="-8399604877" lat="42.7483085" lon="-73.7507635" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="37" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="23" />
+    <tag k="testbed:source" v="node/8399604877" />
+  </node>
+  <node id="-8399605137" lat="42.7464457" lon="-73.7566834" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="447" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Troy Schenectady Road" />
+    <tag k="addr:unit" v="2" />
+    <tag k="testbed:source" v="node/8399605137" />
+  </node>
+  <node id="-8399605277" lat="42.7483379" lon="-73.7504404" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:floor" v="Floor 2" />
+    <tag k="addr:housenumber" v="37" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="6" />
+    <tag k="testbed:source" v="node/8399605277" />
+  </node>
+  <node id="-8399605371" lat="42.7462955" lon="-73.7506032" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="1" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="9" />
+    <tag k="testbed:source" v="node/8399605371" />
+  </node>
+  <node id="-8399605403" lat="42.7480809" lon="-73.7580268" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="215" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="addr:unit" v="1" />
+    <tag k="testbed:source" v="node/8399605403" />
+  </node>
+  <node id="-8399605643" lat="42.7483417" lon="-73.7504281" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="37" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="5" />
+    <tag k="testbed:source" v="node/8399605643" />
+  </node>
+  <node id="-8399605651" lat="42.7472511" lon="-73.7510559" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="41" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="15" />
+    <tag k="testbed:source" v="node/8399605651" />
+  </node>
+  <node id="-8399605900" lat="42.7417444" lon="-73.7564101" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="13" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Valley View Avenue" />
+    <tag k="testbed:source" v="node/8399605900" />
+  </node>
+  <node id="-8399606133" lat="42.7436845" lon="-73.7587408" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="141" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="addr:unit" v="1" />
+    <tag k="testbed:source" v="node/8399606133" />
+  </node>
+  <node id="-8399607954" lat="42.7486582" lon="-73.7569236" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="5" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Marlyn Drive" />
+    <tag k="testbed:source" v="node/8399607954" />
+  </node>
+  <node id="-8399610843" lat="42.7410279" lon="-73.7529055" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="18" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Clinton Road" />
+    <tag k="testbed:source" v="node/8399610843" />
+  </node>
+  <node id="-8399611763" lat="42.7499905" lon="-73.7558431" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="8" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Austin Avenue" />
+    <tag k="testbed:source" v="node/8399611763" />
+  </node>
+  <node id="-8399614366" lat="42.7411231" lon="-73.7558952" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="22" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Valley View Avenue" />
+    <tag k="testbed:source" v="node/8399614366" />
+  </node>
+  <node id="-8399616535" lat="42.7474531" lon="-73.7556781" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="22 B" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Scully Avenue" />
+    <tag k="testbed:source" v="node/8399616535" />
+  </node>
+  <node id="-8399616539" lat="42.7453090" lon="-73.7583433" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="12" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Best Avenue" />
+    <tag k="addr:unit" v="1" />
+    <tag k="testbed:source" v="node/8399616539" />
+  </node>
+  <node id="-8399616894" lat="42.7404616" lon="-73.7553538" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="63 A" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Spring Avenue" />
+    <tag k="testbed:source" v="node/8399616894" />
+  </node>
+  <node id="-8399617694" lat="42.7481039" lon="-73.7511169" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:floor" v="Floor 2" />
+    <tag k="addr:housenumber" v="37" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="18" />
+    <tag k="testbed:source" v="node/8399617694" />
+  </node>
+  <node id="-8399617739" lat="42.7494400" lon="-73.7576891" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:flats" v="1B;1C;2D;2E" />
+    <tag k="addr:housenumber" v="235" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="testbed:source" v="node/8399617739" />
+  </node>
+  <node id="-8399617860" lat="42.7457868" lon="-73.7592080" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="179" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="addr:unit" v="1" />
+    <tag k="testbed:source" v="node/8399617860" />
+  </node>
+  <node id="-8399617975" lat="42.7468357" lon="-73.7556643" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="8 A" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Scully Avenue" />
+    <tag k="testbed:source" v="node/8399617975" />
+  </node>
+  <node id="-8399618134" lat="42.7483862" lon="-73.7582692" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="2" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Marlyn Drive" />
+    <tag k="addr:unit" v="1" />
+    <tag k="testbed:source" v="node/8399618134" />
+  </node>
+  <node id="-8399618144" lat="42.7461340" lon="-73.7505958" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:floor" v="Floor 2" />
+    <tag k="addr:housenumber" v="1" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="6" />
+    <tag k="testbed:source" v="node/8399618144" />
+  </node>
+  <node id="-8399618232" lat="42.7462799" lon="-73.7551842" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="3" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Scully Avenue" />
+    <tag k="testbed:source" v="node/8399618232" />
+  </node>
+  <node id="-8399618258" lat="42.7472611" lon="-73.7503858" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="39" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="29" />
+    <tag k="testbed:source" v="node/8399618258" />
+  </node>
+  <node id="-8399618302" lat="42.7474516" lon="-73.7540516" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="1" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Webster Court" />
+    <tag k="testbed:source" v="node/8399618302" />
+  </node>
+  <node id="-8399618367" lat="42.7468567" lon="-73.7514207" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="41" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="25" />
+    <tag k="testbed:source" v="node/8399618367" />
+  </node>
+  <node id="-8399619445" lat="42.7482555" lon="-73.7508593" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="37" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="21" />
+    <tag k="testbed:source" v="node/8399619445" />
+  </node>
+  <node id="-8399619531" lat="42.7472570" lon="-73.7510800" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:floor" v="Floor 2" />
+    <tag k="addr:housenumber" v="41" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="16" />
+    <tag k="testbed:source" v="node/8399619531" />
+  </node>
+  <node id="-8399619644" lat="42.7463960" lon="-73.7507051" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="1" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="testbed:source" v="node/8399619644" />
+  </node>
+  <node id="-8399620760" lat="42.7479746" lon="-73.7536596" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="11 A" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Green Island Avenue" />
+    <tag k="testbed:source" v="node/8399620760" />
+  </node>
+  <node id="-8399620862" lat="42.7476448" lon="-73.7505325" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:floor" v="Floor 2" />
+    <tag k="addr:housenumber" v="39" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="10" />
+    <tag k="testbed:source" v="node/8399620862" />
+  </node>
+  <node id="-8399620945" lat="42.7403942" lon="-73.7532781" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="70" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Glendale Road" />
+    <tag k="addr:unit" v="2" />
+    <tag k="testbed:source" v="node/8399620945" />
+  </node>
+  <node id="-8399621031" lat="42.7472997" lon="-73.7543896" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="3" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Webster Court" />
+    <tag k="testbed:source" v="node/8399621031" />
+  </node>
+  <node id="-8399621361" lat="42.7481468" lon="-73.7507949" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:floor" v="Floor 2" />
+    <tag k="addr:housenumber" v="37" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="12" />
+    <tag k="testbed:source" v="node/8399621361" />
+  </node>
+  <node id="-8399621363" lat="42.7475241" lon="-73.7504207" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:floor" v="Floor 2" />
+    <tag k="addr:housenumber" v="39" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="8" />
+    <tag k="testbed:source" v="node/8399621363" />
+  </node>
+  <node id="-8399621398" lat="42.7460481" lon="-73.7501645" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="3" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="testbed:source" v="node/8399621398" />
+  </node>
+  <node id="-8399621704" lat="42.7470058" lon="-73.7598980" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="492" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Troy Schenectady Road" />
+    <tag k="addr:unit" v="1" />
+    <tag k="testbed:source" v="node/8399621704" />
+  </node>
+  <node id="-8399621738" lat="42.7480058" lon="-73.7510462" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="37" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="15" />
+    <tag k="testbed:source" v="node/8399621738" />
+  </node>
+  <node id="-8399621920" lat="42.7480611" lon="-73.7509341" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="37" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="13" />
+    <tag k="testbed:source" v="node/8399621920" />
+  </node>
+  <node id="-8399622124" lat="42.7467667" lon="-73.7543028" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="2 B" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Webster Court" />
+    <tag k="testbed:source" v="node/8399622124" />
+  </node>
+  <node id="-8399622380" lat="42.7470990" lon="-73.7546740" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="5" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Webster Court" />
+    <tag k="testbed:source" v="node/8399622380" />
+  </node>
+  <node id="-8399622442" lat="42.7463331" lon="-73.7595277" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="186" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="addr:unit" v="3" />
+    <tag k="testbed:source" v="node/8399622442" />
+  </node>
+  <node id="-8399622520" lat="42.7469818" lon="-73.7513597" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="41" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="23" />
+    <tag k="testbed:source" v="node/8399622520" />
+  </node>
+  <node id="-8399622734" lat="42.7452618" lon="-73.7522524" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="385" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Troy Schenectady Road" />
+    <tag k="addr:unit" v="2" />
+    <tag k="testbed:source" v="node/8399622734" />
+  </node>
+  <node id="-8399622755" lat="42.7469876" lon="-73.7597793" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="492" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Troy Schenectady Road" />
+    <tag k="addr:unit" v="2" />
+    <tag k="testbed:source" v="node/8399622755" />
+  </node>
+  <node id="-8399622765" lat="42.7471945" lon="-73.7512215" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:floor" v="Floor 2" />
+    <tag k="addr:housenumber" v="41" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="20" />
+    <tag k="testbed:source" v="node/8399622765" />
+  </node>
+  <node id="-8399623109" lat="42.7472427" lon="-73.7544246" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="3 A" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Webster Court" />
+    <tag k="testbed:source" v="node/8399623109" />
+  </node>
+  <node id="-8399623201" lat="42.7463780" lon="-73.7595324" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="186" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="addr:unit" v="1" />
+    <tag k="testbed:source" v="node/8399623201" />
+  </node>
+  <node id="-8399623239" lat="42.7477468" lon="-73.7508275" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:floor" v="Floor 2" />
+    <tag k="addr:housenumber" v="39" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="20" />
+    <tag k="testbed:source" v="node/8399623239" />
+  </node>
+  <node id="-8399623241" lat="42.7457660" lon="-73.7592068" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="179" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="addr:unit" v="2" />
+    <tag k="testbed:source" v="node/8399623241" />
+  </node>
+  <node id="-8399623374" lat="42.7470384" lon="-73.7511692" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="41" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="11" />
+    <tag k="testbed:source" v="node/8399623374" />
+  </node>
+  <node id="-8399623687" lat="42.7484854" lon="-73.7501756" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:floor" v="Floor 2" />
+    <tag k="addr:housenumber" v="37" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="2" />
+    <tag k="testbed:source" v="node/8399623687" />
+  </node>
+  <node id="-8399623725" lat="42.7498832" lon="-73.7506367" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="60" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Broadway" />
+    <tag k="testbed:source" v="node/8399623725" />
+  </node>
+  <node id="-8399623806" lat="42.7493387" lon="-73.7513997" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="51" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Broadway" />
+    <tag k="testbed:source" v="node/8399623806" />
+  </node>
+  <node id="-8399623937" lat="42.7498148" lon="-73.7577791" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="241" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="addr:unit" v="B" />
+    <tag k="testbed:source" v="node/8399623937" />
+  </node>
+  <node id="-8399623981" lat="42.7459905" lon="-73.7583889" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="22" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Best Avenue" />
+    <tag k="addr:unit" v="2" />
+    <tag k="testbed:source" v="node/8399623981" />
+  </node>
+  <node id="-8399624020" lat="42.7452541" lon="-73.7524486" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="385" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Troy Schenectady Road" />
+    <tag k="addr:unit" v="1" />
+    <tag k="testbed:source" v="node/8399624020" />
+  </node>
+  <node id="-8399624094" lat="42.7448192" lon="-73.7532022" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="404" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Troy Schenectady Road" />
+    <tag k="addr:unit" v="3" />
+    <tag k="testbed:source" v="node/8399624094" />
+  </node>
+  <node id="-8399624451" lat="42.7482970" lon="-73.7572644" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="6 D" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Marlyn Drive" />
+    <tag k="testbed:source" v="node/8399624451" />
+  </node>
+  <node id="-8399624622" lat="42.7454673" lon="-73.7529446" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="389" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Troy Schenectady Road" />
+    <tag k="addr:unit" v="1" />
+    <tag k="testbed:source" v="node/8399624622" />
+  </node>
+  <node id="-8399624869" lat="42.7410963" lon="-73.7550361" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="54 B" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Spring Avenue" />
+    <tag k="testbed:source" v="node/8399624869" />
+  </node>
+  <node id="-8399624950" lat="42.7468616" lon="-73.7557133" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="10" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Scully Avenue" />
+    <tag k="testbed:source" v="node/8399624950" />
+  </node>
+  <node id="-8399625198" lat="42.7483226" lon="-73.7579981" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="2 A" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Marlyn Drive" />
+    <tag k="addr:unit" v="3" />
+    <tag k="testbed:source" v="node/8399625198" />
+  </node>
+  <node id="-8399625224" lat="42.7481520" lon="-73.7507809" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="37" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="11" />
+    <tag k="testbed:source" v="node/8399625224" />
+  </node>
+  <node id="-8399625460" lat="42.7469473" lon="-73.7512423" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:floor" v="Floor 2" />
+    <tag k="addr:housenumber" v="41" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="10" />
+    <tag k="testbed:source" v="node/8399625460" />
+  </node>
+  <node id="-8399626596" lat="42.7476306" lon="-73.7505206" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="39" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="9" />
+    <tag k="testbed:source" v="node/8399626596" />
+  </node>
+  <node id="-8399626623" lat="42.7481673" lon="-73.7501115" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:floor" v="Floor 2" />
+    <tag k="addr:housenumber" v="35" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="20" />
+    <tag k="testbed:source" v="node/8399626623" />
+  </node>
+  <node id="-8399626629" lat="42.7468935" lon="-73.7596470" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="486" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Troy Schenectady Road" />
+    <tag k="testbed:source" v="node/8399626629" />
+  </node>
+  <node id="-8399626748" lat="42.7473038" lon="-73.7543231" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="3 B" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Webster Court" />
+    <tag k="testbed:source" v="node/8399626748" />
+  </node>
+  <node id="-8399626970" lat="42.7483049" lon="-73.7573289" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="6 C" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Marlyn Drive" />
+    <tag k="testbed:source" v="node/8399626970" />
+  </node>
+  <node id="-8399627025" lat="42.7470569" lon="-73.7546389" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="5 A" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Webster Court" />
+    <tag k="testbed:source" v="node/8399627025" />
+  </node>
+  <node id="-8399627224" lat="42.7481020" lon="-73.7511334" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="37" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="17" />
+    <tag k="testbed:source" v="node/8399627224" />
+  </node>
+  <node id="-8399627252" lat="42.7457986" lon="-73.7545220" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="421" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Troy Schenectady Road" />
+    <tag k="addr:unit" v="2" />
+    <tag k="testbed:source" v="node/8399627252" />
+  </node>
+  <node id="-8399627390" lat="42.7482210" lon="-73.7500109" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="35" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="3" />
+    <tag k="testbed:source" v="node/8399627390" />
+  </node>
+  <node id="-8399627426" lat="42.7458812" lon="-73.7585228" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="20" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Best Avenue" />
+    <tag k="testbed:source" v="node/8399627426" />
+  </node>
+  <node id="-8399627502" lat="42.7462409" lon="-73.7507186" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="1" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="3" />
+    <tag k="testbed:source" v="node/8399627502" />
+  </node>
+  <node id="-8399627534" lat="42.7473241" lon="-73.7502402" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:floor" v="Floor 2" />
+    <tag k="addr:housenumber" v="39" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="4" />
+    <tag k="testbed:source" v="node/8399627534" />
+  </node>
+  <node id="-8399627538" lat="42.7446846" lon="-73.7592139" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="29" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Raymond Street" />
+    <tag k="addr:unit" v="2" />
+    <tag k="testbed:source" v="node/8399627538" />
+  </node>
+  <node id="-8399627755" lat="42.7483116" lon="-73.7574056" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="6 B" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Marlyn Drive" />
+    <tag k="testbed:source" v="node/8399627755" />
+  </node>
+  <node id="-8399627915" lat="42.7482766" lon="-73.7577243" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="4 D" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Marlyn Drive" />
+    <tag k="testbed:source" v="node/8399627915" />
+  </node>
+  <node id="-8399628158" lat="42.7415050" lon="-73.7588112" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="113" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="testbed:source" v="node/8399628158" />
+  </node>
+  <node id="-8399628202" lat="42.7483850" lon="-73.7506209" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="35" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="25" />
+    <tag k="testbed:source" v="node/8399628202" />
+  </node>
+  <node id="-8399628205" lat="42.7480126" lon="-73.7510368" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:floor" v="Floor 2" />
+    <tag k="addr:housenumber" v="37" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="16" />
+    <tag k="testbed:source" v="node/8399628205" />
+  </node>
+  <node id="-8399628322" lat="42.7473774" lon="-73.7504878" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:floor" v="Floor 2" />
+    <tag k="addr:housenumber" v="39" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="28" />
+    <tag k="testbed:source" v="node/8399628322" />
+  </node>
+  <node id="-8399628549" lat="42.7480619" lon="-73.7500156" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:floor" v="Floor 2" />
+    <tag k="addr:housenumber" v="35" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="22" />
+    <tag k="testbed:source" v="node/8399628549" />
+  </node>
+  <node id="-8399628617" lat="42.7485593" lon="-73.7502882" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="37" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="31" />
+    <tag k="testbed:source" v="node/8399628617" />
+  </node>
+  <node id="-8399628722" lat="42.7430173" lon="-73.7598961" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="138" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="addr:unit" v="2" />
+    <tag k="testbed:source" v="node/8399628722" />
+  </node>
+  <node id="-8399628793" lat="42.7482412" lon="-73.7501846" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:floor" v="Floor 2" />
+    <tag k="addr:housenumber" v="35" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="18" />
+    <tag k="testbed:source" v="node/8399628793" />
+  </node>
+  <node id="-8399628858" lat="42.7484363" lon="-73.7505166" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:floor" v="Floor 2" />
+    <tag k="addr:housenumber" v="37" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="28" />
+    <tag k="testbed:source" v="node/8399628858" />
+  </node>
+  <node id="-8399629003" lat="42.7463832" lon="-73.7507293" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:floor" v="Floor 2" />
+    <tag k="addr:housenumber" v="1" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="12" />
+    <tag k="testbed:source" v="node/8399629003" />
+  </node>
+  <node id="-8399629049" lat="42.7467789" lon="-73.7514622" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="41" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="27" />
+    <tag k="testbed:source" v="node/8399629049" />
+  </node>
+  <node id="-8399629243" lat="42.7448615" lon="-73.7532057" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="404" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Troy Schenectady Road" />
+    <tag k="addr:unit" v="1" />
+    <tag k="testbed:source" v="node/8399629243" />
+  </node>
+  <node id="-8399629360" lat="42.7482948" lon="-73.7500807" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="35" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="1" />
+    <tag k="testbed:source" v="node/8399629360" />
+  </node>
+  <node id="-8399629524" lat="42.7465558" lon="-73.7515508" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:floor" v="Floor 2" />
+    <tag k="addr:housenumber" v="41" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="32" />
+    <tag k="testbed:source" v="node/8399629524" />
+  </node>
+  <node id="-8399629652" lat="42.7472153" lon="-73.7502982" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:floor" v="Floor 2" />
+    <tag k="addr:housenumber" v="39" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="32" />
+    <tag k="testbed:source" v="node/8399629652" />
+  </node>
+  <node id="-8399629832" lat="42.7402015" lon="-73.7536782" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="76" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Glendale Road" />
+    <tag k="addr:unit" v="2" />
+    <tag k="testbed:source" v="node/8399629832" />
+  </node>
+  <node id="-8399630658" lat="42.7467089" lon="-73.7565589" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="447" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Troy Schenectady Road" />
+    <tag k="addr:unit" v="E" />
+    <tag k="testbed:source" v="node/8399630658" />
+  </node>
+  <node id="-8399630850" lat="42.7437043" lon="-73.7587408" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="141" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Old Loudon Road" />
+    <tag k="addr:unit" v="1" />
+    <tag k="testbed:source" v="node/8399630850" />
+  </node>
+  <node id="-8399631029" lat="42.7452814" lon="-73.7583420" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="12" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Best Avenue" />
+    <tag k="addr:unit" v="2" />
+    <tag k="testbed:source" v="node/8399631029" />
+  </node>
+  <node id="-8399631236" lat="42.7484253" lon="-73.7502948" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="37" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="3" />
+    <tag k="testbed:source" v="node/8399631236" />
+  </node>
+  <node id="-8399631450" lat="42.7482260" lon="-73.7565548" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="10 A" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Marlyn Drive" />
+    <tag k="testbed:source" v="node/8399631450" />
+  </node>
+  <node id="-8399632276" lat="42.7461813" lon="-73.7505026" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="1" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="7" />
+    <tag k="testbed:source" v="node/8399632276" />
+  </node>
+  <node id="-13082000697" lat="42.7479076" lon="-73.7507719" visible="true">
+    <tag k="addr:city" v="Latham" />
+    <tag k="addr:housenumber" v="39" />
+    <tag k="addr:postcode" v="12110" />
+    <tag k="addr:state" v="NY" />
+    <tag k="addr:street" v="Latham Village Lane" />
+    <tag k="addr:unit" v="16" />
+    <tag k="testbed:source" v="node/13082000697" />
+  </node>
+</osm>

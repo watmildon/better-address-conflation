@@ -69,11 +69,29 @@ public final class ConflationSettings {
         }
     }
 
+    /** Keys that make a primitive a feature in its own right, whatever its building=* value. */
+    public static final List<String> FEATURE_KEYS = Collections.unmodifiableList(Arrays.asList(
+            "amenity", "shop", "office", "craft", "leisure", "tourism", "healthcare", "emergency", "public_transport"));
+
     public double weightFor(String buildingValue) {
         if (buildingValue == null) {
             return 1.0;
         }
         return buildingWeights.getOrDefault(buildingValue, 1.0);
+    }
+
+    /**
+     * Weight for a building primitive. A gas-station canopy tagged
+     * {@code building=roof} + {@code amenity=fuel} is the feature that carries the
+     * address, so a POI tag cancels the outbuilding penalty.
+     */
+    public double weightFor(org.openstreetmap.josm.data.osm.OsmPrimitive prim) {
+        for (String k : FEATURE_KEYS) {
+            if (prim.hasKey(k)) {
+                return 1.0;
+            }
+        }
+        return weightFor(prim.get("building"));
     }
 
     public boolean shouldCopyKey(String key) {

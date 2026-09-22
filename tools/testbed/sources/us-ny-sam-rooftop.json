@@ -1,0 +1,25 @@
+{
+  "_comment": "New York State SAM address points (mostly rooftop; PointType 1=Rooftop, 4=Parcel Centroid). Used as an independent truth layer for the parcel-centroid bed.",
+  "coverage": {"country": "us", "state": "ny"},
+  "schema": 2,
+  "layers": {
+    "addresses": [
+      {
+        "name": "sam",
+        "protocol": "ESRI",
+        "data": "https://gisservices.its.ny.gov/arcgis/rest/services/SAM_Address_Points_Symbolized/MapServer/1",
+        "conform": {
+          "format": "geojson",
+          "number": ["PrefixAddressNumber", "AddressNumber", "SuffixAddressNumber"],
+          "street": "CompleteStreetName",
+          "unit": "Unit",
+          "city": "CityTownName",
+          "district": "CountyName",
+          "region": "State",
+          "postcode": "ZipCode",
+          "id": "NYSAddressPointID"
+        }
+      }
+    ]
+  }
+}

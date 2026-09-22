@@ -244,7 +244,7 @@ public final class Analyzer {
             if (g == null || g.isEmpty() || g.getArea() < 1 || !g.getEnvelopeInternal().intersects(search)) {
                 continue;
             }
-            BuildingCandidate b = new BuildingCandidate(prim, g, settings.weightFor(prim.get("building")));
+            BuildingCandidate b = new BuildingCandidate(prim, g, settings.weightFor(prim));
             buildingIndex.insert(g.getEnvelopeInternal(), b);
             for (Cell cell : (List<Cell>) cellIndex.query(g.getEnvelopeInternal())) {
                 if (!cell.getPrepared().intersects(g)) {
@@ -399,7 +399,10 @@ public final class Analyzer {
                 continue;
             }
             double score = cb.getScore();
-            if (contains) {
+            if (contains && b.getTagFactor() >= 1.0) {
+                // Being inside a house or a unit outline is strong evidence; being under a
+                // gas-station canopy or inside a garage that happens to sit at the parcel
+                // centroid is not.
                 score *= settings.containsFactor;
             }
             if (b.hasAddress() && AddressNormalizer.compare(g.getTags(), b.getAddrTags()) == null) {
