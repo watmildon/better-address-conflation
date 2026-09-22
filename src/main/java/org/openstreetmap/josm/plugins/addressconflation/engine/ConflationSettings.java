@@ -32,6 +32,13 @@ public final class ConflationSettings {
 
     /** Roofs and canopies are not buildings at all unless a POI tag says otherwise. */
     public static final List<String> ROOF_VALUES = Collections.unmodifiableList(Arrays.asList("roof", "canopy"));
+
+    /** building=* values that say nothing about what the building is. */
+    public static final List<String> GENERIC_VALUES = Collections.unmodifiableList(Arrays.asList("yes", "true", "1"));
+
+    public static boolean isGeneric(String buildingValue) {
+        return buildingValue == null || GENERIC_VALUES.contains(buildingValue);
+    }
     public double roofFactor = 0.02;
 
     /**
@@ -45,6 +52,18 @@ public final class ConflationSettings {
      * times the outbuilding's score takes the address instead.
      */
     public double hintOverOutbuildingRatio = 3.0;
+
+    /**
+     * When a cell also holds a building with an explicit value (house, detached, retail...),
+     * plain building=yes is probably the barn or the shop, not the address carrier.
+     */
+    public double genericBesideExplicitFactor = 0.3;
+
+    /**
+     * A match further than this from the address point is sent to review even when it is
+     * the only building in the parcel: on big rural parcels that is often a pump house.
+     */
+    public double farMatchMeters = 100.0;
 
     /** Score multiplier for a building whose footprint contains the address point. */
     public double containsFactor = 4.0;
@@ -98,12 +117,19 @@ public final class ConflationSettings {
      */
     public double weightFor(org.openstreetmap.josm.data.osm.OsmPrimitive prim) {
         for (String k : FEATURE_KEYS) {
-            if (prim.hasKey(k)) {
+            if (prim.hasKey(k) && !NON_ADDRESS_FEATURES.contains(k + "=" + prim.get(k))) {
                 return 1.0;
             }
         }
         return weightFor(prim.get("building"));
     }
+
+    /** Feature tags that sit on canopies and sheds without making them address carriers. */
+    public static final java.util.Set<String> NON_ADDRESS_FEATURES = java.util.Set.of(
+            "amenity=parking", "amenity=parking_space", "amenity=parking_entrance", "amenity=bicycle_parking",
+            "amenity=shelter", "amenity=bench", "amenity=waste_basket", "amenity=waste_disposal", "amenity=recycling",
+            "amenity=fountain", "amenity=grave_yard", "amenity=loading_dock", "leisure=picnic_table", "leisure=pitch",
+            "leisure=swimming_pool", "leisure=playground", "public_transport=platform");
 
     public boolean shouldCopyKey(String key) {
         for (String p : copyKeyPrefixes) {

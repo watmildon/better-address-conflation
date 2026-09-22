@@ -1,0 +1,2162 @@
+<?xml version='1.0' encoding='utf-8'?>
+<osm version="0.6" generator="make_testbed.py">
+  <node id="-1273254766" lat="42.9906620" lon="-116.0967284" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="410" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Roosevelt Avenue" />
+    <tag k="testbed:source" v="way/1273254766" />
+  </node>
+  <node id="-1273254767" lat="42.9877415" lon="-116.0967614" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="525" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Main Street" />
+    <tag k="testbed:source" v="way/1273254767" />
+  </node>
+  <node id="-1273254768" lat="42.9878845" lon="-116.0953827" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="660" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Boise Avenue" />
+    <tag k="testbed:source" v="way/1273254768" />
+  </node>
+  <node id="-1273254770" lat="42.9900498" lon="-116.0962084" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="440" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Boise Avenue" />
+    <tag k="testbed:source" v="way/1273254770" />
+  </node>
+  <node id="-1273254772" lat="42.9891396" lon="-116.0968080" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="425" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Boise Avenue" />
+    <tag k="testbed:source" v="way/1273254772" />
+  </node>
+  <node id="-1273254773" lat="42.9895985" lon="-116.0977972" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="602" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Roosevelt Avenue" />
+    <tag k="testbed:source" v="way/1273254773" />
+  </node>
+  <node id="-1273254774" lat="42.9896474" lon="-116.0987739" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="600" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Roosevelt Avenue" />
+    <tag k="testbed:source" v="way/1273254774" />
+  </node>
+  <node id="-1273254777" lat="42.9889101" lon="-116.1008959" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="101" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Lawrence Lane" />
+    <tag k="testbed:source" v="way/1273254777" />
+  </node>
+  <node id="-1273254779" lat="42.9887044" lon="-116.0962371" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="520" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Boise Avenue" />
+    <tag k="testbed:source" v="way/1273254779" />
+  </node>
+  <node id="-1273254780" lat="42.9890090" lon="-116.0958272" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="265" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="State Street" />
+    <tag k="testbed:source" v="way/1273254780" />
+  </node>
+  <node id="-1273254781" lat="42.9891414" lon="-116.0956115" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="255" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="State Street" />
+    <tag k="testbed:source" v="way/1273254781" />
+  </node>
+  <node id="-1273254782" lat="42.9893539" lon="-116.0952738" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="510" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Idaho Avenue" />
+    <tag k="testbed:source" v="way/1273254782" />
+  </node>
+  <node id="-1273254785" lat="42.9898142" lon="-116.0944483" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="135" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="State Street" />
+    <tag k="testbed:source" v="way/1273254785" />
+  </node>
+  <node id="-1273254786" lat="42.9896683" lon="-116.0947152" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="165" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="State Street" />
+    <tag k="testbed:source" v="way/1273254786" />
+  </node>
+  <node id="-1273254787" lat="42.9910862" lon="-116.0955499" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="310" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Riverside Avenue" />
+    <tag k="testbed:source" v="way/1273254787" />
+  </node>
+  <node id="-1273515842" lat="42.9850470" lon="-116.0977311" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="721" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Roosevelt Avenue" />
+    <tag k="testbed:source" v="way/1273515842" />
+  </node>
+  <node id="-1273515844" lat="42.9903826" lon="-116.0982049" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="100" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Estate Place" />
+    <tag k="testbed:source" v="way/1273515844" />
+  </node>
+  <node id="-1273515845" lat="42.9903909" lon="-116.0977529" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="596" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Roosevelt Avenue" />
+    <tag k="testbed:source" v="way/1273515845" />
+  </node>
+  <node id="-1273515846" lat="42.9900592" lon="-116.0977423" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="598" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Roosevelt Avenue" />
+    <tag k="testbed:source" v="way/1273515846" />
+  </node>
+  <node id="-1273515847" lat="42.9903705" lon="-116.0988157" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="120" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Estate Place" />
+    <tag k="testbed:source" v="way/1273515847" />
+  </node>
+  <node id="-1273515848" lat="42.9903613" lon="-116.0992663" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="140" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Estate Place" />
+    <tag k="testbed:source" v="way/1273515848" />
+  </node>
+  <node id="-1273515849" lat="42.9906664" lon="-116.0977398" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="10" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Rodeo Drive" />
+    <tag k="testbed:source" v="way/1273515849" />
+  </node>
+  <node id="-1273515850" lat="42.9906583" lon="-116.0981868" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="30" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Rodeo Drive" />
+    <tag k="testbed:source" v="way/1273515850" />
+  </node>
+  <node id="-1431820882" lat="43.0097783" lon="-116.1162031" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="24210" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Millet Lane" />
+    <tag k="testbed:source" v="way/1431820882" />
+  </node>
+  <node id="-1431820885" lat="43.0057292" lon="-116.1266606" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="24201" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Millet Lane" />
+    <tag k="testbed:source" v="way/1431820885" />
+  </node>
+  <node id="-1431820902" lat="43.0084985" lon="-116.1159628" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="24240" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Millet Lane" />
+    <tag k="testbed:source" v="way/1431820902" />
+  </node>
+  <node id="-1431820910" lat="43.0077245" lon="-116.1161149" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="24264" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Millet Lane" />
+    <tag k="testbed:source" v="way/1431820910" />
+  </node>
+  <node id="-1431820920" lat="43.0063027" lon="-116.1147679" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="24380" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Millet Lane" />
+    <tag k="testbed:source" v="way/1431820920" />
+  </node>
+  <node id="-1431820929" lat="43.0006975" lon="-116.1122409" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="24384" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Millet Lane" />
+    <tag k="testbed:source" v="way/1431820929" />
+  </node>
+  <node id="-1431834062" lat="42.9991505" lon="-116.1292633" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="25214" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="River Road" />
+    <tag k="testbed:source" v="way/1431834062" />
+  </node>
+  <node id="-1431834076" lat="42.9978189" lon="-116.1254599" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="25278" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="River Road" />
+    <tag k="testbed:source" v="way/1431834076" />
+  </node>
+  <node id="-1432079088" lat="42.9948086" lon="-116.1142342" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="25599" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="River Road" />
+    <tag k="testbed:source" v="way/1432079088" />
+  </node>
+  <node id="-1432084904" lat="42.9953728" lon="-116.1269268" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="25351" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="River Road" />
+    <tag k="testbed:source" v="way/1432084904" />
+  </node>
+  <node id="-1432084909" lat="42.9953728" lon="-116.1269268" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="25347" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="River Road" />
+    <tag k="testbed:source" v="way/1432084909" />
+  </node>
+  <node id="-1432106122" lat="42.9932110" lon="-116.1273319" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="34566" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="State Highway 78" />
+    <tag k="testbed:source" v="way/1432106122" />
+  </node>
+  <node id="-1432374248" lat="42.9979480" lon="-116.1077955" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="25702" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="River Road" />
+    <tag k="testbed:source" v="way/1432374248" />
+  </node>
+  <node id="-1432374262" lat="42.9983005" lon="-116.1050815" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="25792" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="River Road" />
+    <tag k="testbed:source" v="way/1432374262" />
+  </node>
+  <node id="-1432374272" lat="42.9977750" lon="-116.1036296" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="25798" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="River Road" />
+    <tag k="testbed:source" v="way/1432374272" />
+  </node>
+  <node id="-1432374276" lat="42.9977375" lon="-116.1048775" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="25762" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="River Road" />
+    <tag k="testbed:source" v="way/1432374276" />
+  </node>
+  <node id="-1432374283" lat="42.9947856" lon="-116.1006035" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="25995" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="River Road" />
+    <tag k="testbed:source" v="way/1432374283" />
+  </node>
+  <node id="-1432388255" lat="42.9921672" lon="-116.1163125" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="24800" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Vista Road" />
+    <tag k="testbed:source" v="way/1432388255" />
+  </node>
+  <node id="-1432388256" lat="42.9918055" lon="-116.1155075" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="24038" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Quail Lane" />
+    <tag k="testbed:source" v="way/1432388256" />
+  </node>
+  <node id="-1432388258" lat="42.9917010" lon="-116.1148634" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="24058" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Quail Lane" />
+    <tag k="testbed:source" v="way/1432388258" />
+  </node>
+  <node id="-1432388260" lat="42.9915703" lon="-116.1140568" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="24070" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Quail Lane" />
+    <tag k="testbed:source" v="way/1432388260" />
+  </node>
+  <node id="-1432388263" lat="42.9906896" lon="-116.1125861" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="24095" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Quail Lane" />
+    <tag k="testbed:source" v="way/1432388263" />
+  </node>
+  <node id="-1432388269" lat="42.9905767" lon="-116.1140318" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="24075" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Quail Lane" />
+    <tag k="testbed:source" v="way/1432388269" />
+  </node>
+  <node id="-1432388270" lat="42.9905676" lon="-116.1161899" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="24870" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Vista Road" />
+    <tag k="testbed:source" v="way/1432388270" />
+  </node>
+  <node id="-1432388274" lat="42.9866482" lon="-116.1094099" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="35148" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="State Highway 78" />
+    <tag k="testbed:source" v="way/1432388274" />
+  </node>
+  <node id="-1432388283" lat="42.9892587" lon="-116.1205659" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="34931" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="State Highway 78" />
+    <tag k="testbed:source" v="way/1432388283" />
+  </node>
+  <node id="-1432632500" lat="42.9892587" lon="-116.1205659" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="25299" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Whitted Lane" />
+    <tag k="testbed:source" v="way/1432632500" />
+  </node>
+  <node id="-1432632503" lat="42.9825156" lon="-116.1209482" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="25307" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Whitted Lane" />
+    <tag k="testbed:source" v="way/1432632503" />
+  </node>
+  <node id="-1432632505" lat="42.9825166" lon="-116.1198095" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="25303" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Whitted Lane" />
+    <tag k="testbed:source" v="way/1432632505" />
+  </node>
+  <node id="-1432632507" lat="42.9825244" lon="-116.1181175" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="25325" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Whitted Lane" />
+    <tag k="testbed:source" v="way/1432632507" />
+  </node>
+  <node id="-1432632510" lat="42.9813988" lon="-116.1176998" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="25347" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Whitted Lane" />
+    <tag k="testbed:source" v="way/1432632510" />
+  </node>
+  <node id="-1432632513" lat="42.9826308" lon="-116.1165696" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="25320" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Whitted Lane" />
+    <tag k="testbed:source" v="way/1432632513" />
+  </node>
+  <node id="-1432632530" lat="42.9798308" lon="-116.1173889" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="25411" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Whitted Lane" />
+    <tag k="testbed:source" v="way/1432632530" />
+  </node>
+  <node id="-1432632553" lat="42.9701578" lon="-116.1294326" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="25769" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Whitted Lane" />
+    <tag k="testbed:source" v="way/1432632553" />
+  </node>
+  <node id="-1432648659" lat="42.9782311" lon="-116.1094092" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="25289" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Hipwell Lane" />
+    <tag k="testbed:source" v="way/1432648659" />
+  </node>
+  <node id="-1432648670" lat="42.9812621" lon="-116.1111570" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="25231" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Hipwell Lane" />
+    <tag k="testbed:source" v="way/1432648670" />
+  </node>
+  <node id="-1432648673" lat="42.9815271" lon="-116.1087838" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="25227" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Hipwell Lane" />
+    <tag k="testbed:source" v="way/1432648673" />
+  </node>
+  <node id="-1432648691" lat="42.9834897" lon="-116.1012399" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="50" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="State Highway 78" />
+    <tag k="testbed:source" v="way/1432648691" />
+  </node>
+  <node id="-1432648692" lat="42.9835863" lon="-116.1018551" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="20" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="State Highway 78" />
+    <tag k="testbed:source" v="way/1432648692" />
+  </node>
+  <node id="-1432648693" lat="42.9835998" lon="-116.1026762" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="35343" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="State Highway 78" />
+    <tag k="testbed:source" v="way/1432648693" />
+  </node>
+  <node id="-1433154434" lat="42.9763437" lon="-116.1165231" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="25534" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Whitted Lane" />
+    <tag k="testbed:source" v="way/1433154434" />
+  </node>
+  <node id="-1433170996" lat="42.9690953" lon="-116.1034024" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="25694" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Boundary Lane" />
+    <tag k="testbed:source" v="way/1433170996" />
+  </node>
+  <node id="-1433171003" lat="42.9708823" lon="-116.1032061" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="25686" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Boundary Lane" />
+    <tag k="testbed:source" v="way/1433171003" />
+  </node>
+  <node id="-1433171015" lat="42.9731466" lon="-116.1026957" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="25592" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Boundary Lane" />
+    <tag k="testbed:source" v="way/1433171015" />
+  </node>
+  <node id="-1433171029" lat="42.9800489" lon="-116.1012647" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="25396" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Boundary Lane" />
+    <tag k="testbed:source" v="way/1433171029" />
+  </node>
+  <node id="-1433365061" lat="42.9635221" lon="-116.1164243" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="25760" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Whitted Lane" />
+    <tag k="testbed:source" v="way/1433365061" />
+  </node>
+  <node id="-1433367004" lat="42.9907841" lon="-116.0948607" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="410" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Riverside Avenue" />
+    <tag k="testbed:source" v="way/1433367004" />
+  </node>
+  <node id="-1433367005" lat="42.9905617" lon="-116.0945237" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="420" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Riverside Avenue" />
+    <tag k="testbed:source" v="way/1433367005" />
+  </node>
+  <node id="-1433367007" lat="42.9903351" lon="-116.0946734" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="120" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="State Street" />
+    <tag k="testbed:source" v="way/1433367007" />
+  </node>
+  <node id="-1433367009" lat="42.9901222" lon="-116.0951374" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="475" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Idaho Avenue" />
+    <tag k="testbed:source" v="way/1433367009" />
+  </node>
+  <node id="-1433367012" lat="42.9905090" lon="-116.0953770" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="465" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Idaho Avenue" />
+    <tag k="testbed:source" v="way/1433367012" />
+  </node>
+  <node id="-1433414298" lat="42.9887553" lon="-116.0953463" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="550" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Main Street" />
+    <tag k="testbed:source" v="way/1433414298" />
+  </node>
+  <node id="-1433414299" lat="42.9894662" lon="-116.0962477" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="260" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="State Street" />
+    <tag k="testbed:source" v="way/1433414299" />
+  </node>
+  <node id="-1433414301" lat="42.9896063" lon="-116.0960189" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="240" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="State Street" />
+    <tag k="testbed:source" v="way/1433414301" />
+  </node>
+  <node id="-1433414302" lat="42.9897274" lon="-116.0958242" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="230" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="State Street" />
+    <tag k="testbed:source" v="way/1433414302" />
+  </node>
+  <node id="-1433414303" lat="42.9897887" lon="-116.0955175" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="220" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="State Street" />
+    <tag k="testbed:source" v="way/1433414303" />
+  </node>
+  <node id="-1433414308" lat="42.9899368" lon="-116.0956811" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="460" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Idaho Avenue" />
+    <tag k="testbed:source" v="way/1433414308" />
+  </node>
+  <node id="-1433414311" lat="42.9889677" lon="-116.0950152" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="330" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Main Street" />
+    <tag k="testbed:source" v="way/1433414311" />
+  </node>
+  <node id="-1433414312" lat="42.9892957" lon="-116.0944802" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="270" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Main Street" />
+    <tag k="testbed:source" v="way/1433414312" />
+  </node>
+  <node id="-1433414314" lat="42.9893424" lon="-116.0943560" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="260" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Main Street" />
+    <tag k="testbed:source" v="way/1433414314" />
+  </node>
+  <node id="-1433414315" lat="42.9894514" lon="-116.0941568" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="250" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Main Street" />
+    <tag k="testbed:source" v="way/1433414315" />
+  </node>
+  <node id="-1433414316" lat="42.9895857" lon="-116.0938895" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="230" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Main Street" />
+    <tag k="testbed:source" v="way/1433414316" />
+  </node>
+  <node id="-1433414317" lat="42.9895876" lon="-116.0936519" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="210" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Main Street" />
+    <tag k="testbed:source" v="way/1433414317" />
+  </node>
+  <node id="-1433414318" lat="42.9897433" lon="-116.0937864" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="530" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Riverside Avenue" />
+    <tag k="testbed:source" v="way/1433414318" />
+  </node>
+  <node id="-1433414320" lat="42.9888579" lon="-116.0938958" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="255" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Main Street" />
+    <tag k="testbed:source" v="way/1433414320" />
+  </node>
+  <node id="-1433414322" lat="42.9886158" lon="-116.0943158" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="300" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Main Street" />
+    <tag k="testbed:source" v="way/1433414322" />
+  </node>
+  <node id="-1433414323" lat="42.9884631" lon="-116.0945689" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="345" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Main Street" />
+    <tag k="testbed:source" v="way/1433414323" />
+  </node>
+  <node id="-1433414324" lat="42.9883261" lon="-116.0947810" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="650" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Boise Avenue" />
+    <tag k="testbed:source" v="way/1433414324" />
+  </node>
+  <node id="-1433414326" lat="42.9901671" lon="-116.0936779" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="525" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Riverside Avenue" />
+    <tag k="testbed:source" v="way/1433414326" />
+  </node>
+  <node id="-1433425502" lat="42.9877716" lon="-116.0948742" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="670" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Boise Avenue" />
+    <tag k="testbed:source" v="way/1433425502" />
+  </node>
+  <node id="-1433425505" lat="42.9881157" lon="-116.0931657" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="165" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="1st Street" />
+    <tag k="testbed:source" v="way/1433425505" />
+  </node>
+  <node id="-1433425506" lat="42.9885132" lon="-116.0934809" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="695" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Idaho Avenue" />
+    <tag k="testbed:source" v="way/1433425506" />
+  </node>
+  <node id="-1433425509" lat="42.9886581" lon="-116.0930716" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="660" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Riverside Avenue" />
+    <tag k="testbed:source" v="way/1433425509" />
+  </node>
+  <node id="-1433425510" lat="42.9888071" lon="-116.0932088" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="650" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Riverside Avenue" />
+    <tag k="testbed:source" v="way/1433425510" />
+  </node>
+  <node id="-1433425511" lat="42.9885132" lon="-116.0934809" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="645" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Idaho Avenue" />
+    <tag k="testbed:source" v="way/1433425511" />
+  </node>
+  <node id="-1433425512" lat="42.9882223" lon="-116.0939818" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="630" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Idaho Avenue" />
+    <tag k="testbed:source" v="way/1433425512" />
+  </node>
+  <node id="-1433425513" lat="42.9882223" lon="-116.0939818" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="690" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Idaho Avenue" />
+    <tag k="testbed:source" v="way/1433425513" />
+  </node>
+  <node id="-1433425522" lat="42.9862113" lon="-116.0937382" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="235" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="2nd Street" />
+    <tag k="testbed:source" v="way/1433425522" />
+  </node>
+  <node id="-1433425523" lat="42.9862113" lon="-116.0937382" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="295" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="2nd Street" />
+    <tag k="testbed:source" v="way/1433425523" />
+  </node>
+  <node id="-1433610246" lat="42.9880040" lon="-116.0930524" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="725" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Idaho Avenue" />
+    <tag k="testbed:source" v="way/1433610246" />
+  </node>
+  <node id="-1433610247" lat="42.9878941" lon="-116.0929395" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="735" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Idaho Avenue" />
+    <tag k="testbed:source" v="way/1433610247" />
+  </node>
+  <node id="-1433610248" lat="42.9876737" lon="-116.0927162" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="755" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Idaho Avenue" />
+    <tag k="testbed:source" v="way/1433610248" />
+  </node>
+  <node id="-1433610251" lat="42.9875594" lon="-116.0926021" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="765" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Idaho Avenue" />
+    <tag k="testbed:source" v="way/1433610251" />
+  </node>
+  <node id="-1433610252" lat="42.9881894" lon="-116.0927057" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="665" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Riverside Avenue" />
+    <tag k="testbed:source" v="way/1433610252" />
+  </node>
+  <node id="-1433610253" lat="42.9879324" lon="-116.0924463" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="770" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Riverside Avenue" />
+    <tag k="testbed:source" v="way/1433610253" />
+  </node>
+  <node id="-1433610255" lat="42.9877585" lon="-116.0922766" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="780" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Riverside Avenue" />
+    <tag k="testbed:source" v="way/1433610255" />
+  </node>
+  <node id="-1433610256" lat="42.9874833" lon="-116.0918780" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="820" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Riverside Avenue" />
+    <tag k="testbed:source" v="way/1433610256" />
+  </node>
+  <node id="-1433610257" lat="42.9872959" lon="-116.0917141" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="850" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Riverside Avenue" />
+    <tag k="testbed:source" v="way/1433610257" />
+  </node>
+  <node id="-1433610258" lat="42.9873954" lon="-116.0921465" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="145" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="2nd Street" />
+    <tag k="testbed:source" v="way/1433610258" />
+  </node>
+  <node id="-1433610259" lat="42.9872181" lon="-116.0922812" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="165" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="2nd Street" />
+    <tag k="testbed:source" v="way/1433610259" />
+  </node>
+  <node id="-1433610261" lat="42.9872034" lon="-116.0919709" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="155" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="2nd Street" />
+    <tag k="testbed:source" v="way/1433610261" />
+  </node>
+  <node id="-1433610262" lat="42.9870888" lon="-116.0925175" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="205" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="2nd Street" />
+    <tag k="testbed:source" v="way/1433610262" />
+  </node>
+  <node id="-1433610263" lat="42.9868948" lon="-116.0928388" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="215" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="2nd Street" />
+    <tag k="testbed:source" v="way/1433610263" />
+  </node>
+  <node id="-1433610265" lat="42.9865741" lon="-116.0932993" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="305" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="2nd Street" />
+    <tag k="testbed:source" v="way/1433610265" />
+  </node>
+  <node id="-1433610267" lat="42.9866201" lon="-116.0923881" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="150" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="3rd Street" />
+    <tag k="testbed:source" v="way/1433610267" />
+  </node>
+  <node id="-1433610268" lat="42.9868261" lon="-116.0920482" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="140" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="3rd Street" />
+    <tag k="testbed:source" v="way/1433610268" />
+  </node>
+  <node id="-1433610269" lat="42.9870164" lon="-116.0916577" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="860" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Riverside Avenue" />
+    <tag k="testbed:source" v="way/1433610269" />
+  </node>
+  <node id="-1433610270" lat="42.9866085" lon="-116.0913881" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="105" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="3rd Street" />
+    <tag k="testbed:source" v="way/1433610270" />
+  </node>
+  <node id="-1433610271" lat="42.9863263" lon="-116.0916786" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="125" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="3rd Street" />
+    <tag k="testbed:source" v="way/1433610271" />
+  </node>
+  <node id="-1433610272" lat="42.9861510" lon="-116.0919665" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="135" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="3rd Street" />
+    <tag k="testbed:source" v="way/1433610272" />
+  </node>
+  <node id="-1433610273" lat="42.9855807" lon="-116.0924638" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="145" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="3rd Street" />
+    <tag k="testbed:source" v="way/1433610273" />
+  </node>
+  <node id="-1433610274" lat="42.9859523" lon="-116.0914415" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="205" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="4th Street" />
+    <tag k="testbed:source" v="way/1433610274" />
+  </node>
+  <node id="-1433610276" lat="42.9862096" lon="-116.0909731" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="970" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Riverside Avenue" />
+    <tag k="testbed:source" v="way/1433610276" />
+  </node>
+  <node id="-1433610278" lat="42.9864406" lon="-116.0912238" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="930" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Riverside Avenue" />
+    <tag k="testbed:source" v="way/1433610278" />
+  </node>
+  <node id="-1433610280" lat="42.9856582" lon="-116.0908504" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="1010" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Riverside Avenue" />
+    <tag k="testbed:source" v="way/1433610280" />
+  </node>
+  <node id="-1433610283" lat="42.9853981" lon="-116.0905730" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="1030" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Riverside Avenue" />
+    <tag k="testbed:source" v="way/1433610283" />
+  </node>
+  <node id="-1433610287" lat="42.9849010" lon="-116.0902530" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="140" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="5th Street" />
+    <tag k="testbed:source" v="way/1433610287" />
+  </node>
+  <node id="-1433610290" lat="42.9848160" lon="-116.0907441" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="150" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="5th Street" />
+    <tag k="testbed:source" v="way/1433610290" />
+  </node>
+  <node id="-1433610291" lat="42.9844600" lon="-116.0909106" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="210" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="5th Street" />
+    <tag k="testbed:source" v="way/1433610291" />
+  </node>
+  <node id="-1433610293" lat="42.9839714" lon="-116.0925129" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="240" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="5th Street" />
+    <tag k="testbed:source" v="way/1433610293" />
+  </node>
+  <node id="-1433612903" lat="42.9840097" lon="-116.0903421" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="205" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="5th Street" />
+    <tag k="testbed:source" v="way/1433612903" />
+  </node>
+  <node id="-1433612906" lat="42.9838383" lon="-116.0907258" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="215" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="5th Street" />
+    <tag k="testbed:source" v="way/1433612906" />
+  </node>
+  <node id="-1433612907" lat="42.9836488" lon="-116.0910616" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="225" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="5th Street" />
+    <tag k="testbed:source" v="way/1433612907" />
+  </node>
+  <node id="-1433612909" lat="42.9835780" lon="-116.0913637" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="235" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="5th Street" />
+    <tag k="testbed:source" v="way/1433612909" />
+  </node>
+  <node id="-1433612910" lat="42.9833170" lon="-116.0910367" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="245" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="5th Street" />
+    <tag k="testbed:source" v="way/1433612910" />
+  </node>
+  <node id="-1433612911" lat="42.9833705" lon="-116.0917764" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="255" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="5th Street" />
+    <tag k="testbed:source" v="way/1433612911" />
+  </node>
+  <node id="-1433612914" lat="42.9835642" lon="-116.0896512" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="1150" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Riverside Avenue" />
+    <tag k="testbed:source" v="way/1433612914" />
+  </node>
+  <node id="-1433612916" lat="42.9837208" lon="-116.0886082" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="1230" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Riverside Avenue" />
+    <tag k="testbed:source" v="way/1433612916" />
+  </node>
+  <node id="-1433612919" lat="42.9841126" lon="-116.0886649" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="1210" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Riverside Avenue" />
+    <tag k="testbed:source" v="way/1433612919" />
+  </node>
+  <node id="-1433612922" lat="42.9824605" lon="-116.0871399" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="1310" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Riverside Avenue" />
+    <tag k="testbed:source" v="way/1433612922" />
+  </node>
+  <node id="-1433612931" lat="42.9815256" lon="-116.0856423" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="1410" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Riverside Avenue" />
+    <tag k="testbed:source" v="way/1433612931" />
+  </node>
+  <node id="-1433612933" lat="42.9816776" lon="-116.0848414" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="1510" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Riverside Avenue" />
+    <tag k="testbed:source" v="way/1433612933" />
+  </node>
+  <node id="-1433612937" lat="42.9811605" lon="-116.0847480" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="1710" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Riverside Avenue" />
+    <tag k="testbed:source" v="way/1433612937" />
+  </node>
+  <node id="-1433612940" lat="42.9810468" lon="-116.0837173" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="26524" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="River Road" />
+    <tag k="testbed:source" v="way/1433612940" />
+  </node>
+  <node id="-1433626089" lat="42.9845576" lon="-116.0965010" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="815" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Roosevelt Avenue" />
+    <tag k="testbed:source" v="way/1433626089" />
+  </node>
+  <node id="-1433626092" lat="42.9852715" lon="-116.0967703" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="735" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Roosevelt Avenue" />
+    <tag k="testbed:source" v="way/1433626092" />
+  </node>
+  <node id="-1433626094" lat="42.9858834" lon="-116.0967281" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="635" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Roosevelt Avenue" />
+    <tag k="testbed:source" v="way/1433626094" />
+  </node>
+  <node id="-1433626096" lat="42.9862804" lon="-116.0967780" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="625" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Roosevelt Avenue" />
+    <tag k="testbed:source" v="way/1433626096" />
+  </node>
+  <node id="-1433626098" lat="42.9867761" lon="-116.0976608" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="610" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Roosevelt Avenue" />
+    <tag k="testbed:source" v="way/1433626098" />
+  </node>
+  <node id="-1433626099" lat="42.9866500" lon="-116.0980599" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="620" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Roosevelt Avenue" />
+    <tag k="testbed:source" v="way/1433626099" />
+  </node>
+  <node id="-1433626102" lat="42.9862887" lon="-116.0980199" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="630" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Roosevelt Avenue" />
+    <tag k="testbed:source" v="way/1433626102" />
+  </node>
+  <node id="-1433626103" lat="42.9859980" lon="-116.0977541" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="640" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Roosevelt Avenue" />
+    <tag k="testbed:source" v="way/1433626103" />
+  </node>
+  <node id="-1433626104" lat="42.9858152" lon="-116.0980125" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="650" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Roosevelt Avenue" />
+    <tag k="testbed:source" v="way/1433626104" />
+  </node>
+  <node id="-1433626107" lat="42.9854946" lon="-116.0987024" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="750" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Jack Avenue" />
+    <tag k="testbed:source" v="way/1433626107" />
+  </node>
+  <node id="-1433626109" lat="42.9854483" lon="-116.0991709" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="230" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Judith Drive" />
+    <tag k="testbed:source" v="way/1433626109" />
+  </node>
+  <node id="-1433626110" lat="42.9851358" lon="-116.0993541" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="330" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="A Kathleen Drive" />
+    <tag k="testbed:source" v="way/1433626110" />
+  </node>
+  <node id="-1433626113" lat="42.9842118" lon="-116.0992687" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="315" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Kathleen Drive" />
+    <tag k="testbed:source" v="way/1433626113" />
+  </node>
+  <node id="-1433626114" lat="42.9842123" lon="-116.0987996" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="215" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Kathleen Drive" />
+    <tag k="testbed:source" v="way/1433626114" />
+  </node>
+  <node id="-1433626117" lat="42.9842290" lon="-116.1001948" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="375" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Kathleen Drive" />
+    <tag k="testbed:source" v="way/1433626117" />
+  </node>
+  <node id="-1433626118" lat="42.9847386" lon="-116.0997911" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="410" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Kathleen Drive" />
+    <tag k="testbed:source" v="way/1433626118" />
+  </node>
+  <node id="-1433626119" lat="42.9847616" lon="-116.1002669" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="400" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Sierra Way" />
+    <tag k="testbed:source" v="way/1433626119" />
+  </node>
+  <node id="-1433626121" lat="42.9856272" lon="-116.1000874" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="440" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Sierra Way" />
+    <tag k="testbed:source" v="way/1433626121" />
+  </node>
+  <node id="-1433626124" lat="42.9851010" lon="-116.1007043" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="440" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Westphal Drive" />
+    <tag k="testbed:source" v="way/1433626124" />
+  </node>
+  <node id="-1433626126" lat="42.9862134" lon="-116.1006490" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="715" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Westphal Drive" />
+    <tag k="testbed:source" v="way/1433626126" />
+  </node>
+  <node id="-1433626128" lat="42.9848336" lon="-116.0986156" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="740" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Jack Avenue" />
+    <tag k="testbed:source" v="way/1433626128" />
+  </node>
+  <node id="-1433626131" lat="42.9903198" lon="-116.1018617" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="260" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Estate Place" />
+    <tag k="testbed:source" v="way/1433626131" />
+  </node>
+  <node id="-1433626133" lat="42.9899769" lon="-116.1018621" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="265" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Estate Place" />
+    <tag k="testbed:source" v="way/1433626133" />
+  </node>
+  <node id="-1433640516" lat="42.9830243" lon="-116.0971577" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="110" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="State Highway 78" />
+    <tag k="testbed:source" v="way/1433640516" />
+  </node>
+  <node id="-1433640518" lat="42.9829262" lon="-116.0967362" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="130" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="State Highway 78" />
+    <tag k="testbed:source" v="way/1433640518" />
+  </node>
+  <node id="-1433640519" lat="42.9825904" lon="-116.0965727" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="100" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Burghardt Road" />
+    <tag k="testbed:source" v="way/1433640519" />
+  </node>
+  <node id="-1433640520" lat="42.9826137" lon="-116.0972181" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="120" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="State Highway 78" />
+    <tag k="testbed:source" v="way/1433640520" />
+  </node>
+  <node id="-1433640522" lat="42.9828033" lon="-116.0977179" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="102" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="State Highway 78" />
+    <tag k="testbed:source" v="way/1433640522" />
+  </node>
+  <node id="-1433640523" lat="42.9827765" lon="-116.0982571" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="100" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="State Highway 78" />
+    <tag k="testbed:source" v="way/1433640523" />
+  </node>
+  <node id="-1433640529" lat="42.9800918" lon="-116.0955755" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="330" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Burghardt Road" />
+    <tag k="testbed:source" v="way/1433640529" />
+  </node>
+  <node id="-1433640532" lat="42.9810716" lon="-116.0939458" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="400" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Burghardt Road" />
+    <tag k="testbed:source" v="way/1433640532" />
+  </node>
+  <node id="-1433640533" lat="42.9810798" lon="-116.0967295" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="300" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Burghardt Road" />
+    <tag k="testbed:source" v="way/1433640533" />
+  </node>
+  <node id="-1433640537" lat="42.9823190" lon="-116.0954864" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="230" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Frontage Road" />
+    <tag k="testbed:source" v="way/1433640537" />
+  </node>
+  <node id="-1433640539" lat="42.9786269" lon="-116.0958844" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="1209" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Burghardt Road" />
+    <tag k="testbed:source" v="way/1433640539" />
+  </node>
+  <node id="-1433683204" lat="42.9822279" lon="-116.0942494" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="260" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Frontage Road" />
+    <tag k="testbed:source" v="way/1433683204" />
+  </node>
+  <node id="-1433683209" lat="42.9822419" lon="-116.0933758" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="310" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Frontage Road" />
+    <tag k="testbed:source" v="way/1433683209" />
+  </node>
+  <node id="-1433683211" lat="42.9818172" lon="-116.0934759" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="110" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Carothers Lane" />
+    <tag k="testbed:source" v="way/1433683211" />
+  </node>
+  <node id="-1433683212" lat="42.9820778" lon="-116.0927736" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="410" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Frontage Road" />
+    <tag k="testbed:source" v="way/1433683212" />
+  </node>
+  <node id="-1433683213" lat="42.9817231" lon="-116.0927100" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="530" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Johnson Lane" />
+    <tag k="testbed:source" v="way/1433683213" />
+  </node>
+  <node id="-1433683215" lat="42.9813269" lon="-116.0926766" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="417" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Johnson Lane" />
+    <tag k="testbed:source" v="way/1433683215" />
+  </node>
+  <node id="-1433683217" lat="42.9820124" lon="-116.0923857" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="416" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Frontage Road" />
+    <tag k="testbed:source" v="way/1433683217" />
+  </node>
+  <node id="-1433683218" lat="42.9819420" lon="-116.0918879" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="420" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Frontage Road" />
+    <tag k="testbed:source" v="way/1433683218" />
+  </node>
+  <node id="-1433683219" lat="42.9815547" lon="-116.0920296" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="535" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Kessinger Lane" />
+    <tag k="testbed:source" v="way/1433683219" />
+  </node>
+  <node id="-1433683220" lat="42.9809139" lon="-116.0919487" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="510" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Kessinger Lane" />
+    <tag k="testbed:source" v="way/1433683220" />
+  </node>
+  <node id="-1433801038" lat="42.9827770" lon="-116.0923341" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="505" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="State Highway 78" />
+    <tag k="testbed:source" v="way/1433801038" />
+  </node>
+  <node id="-1433801049" lat="42.9826826" lon="-116.0917916" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="515" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="State Highway 78" />
+    <tag k="testbed:source" v="way/1433801049" />
+  </node>
+  <node id="-1433801052" lat="42.9825852" lon="-116.0911187" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="535" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="State Highway 78" />
+    <tag k="testbed:source" v="way/1433801052" />
+  </node>
+  <node id="-1433801064" lat="42.9811317" lon="-116.0914183" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="520" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Kessinger Lane" />
+    <tag k="testbed:source" v="way/1433801064" />
+  </node>
+  <node id="-1433801065" lat="42.9816378" lon="-116.0913922" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="530" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Kessinger Lane" />
+    <tag k="testbed:source" v="way/1433801065" />
+  </node>
+  <node id="-1433801066" lat="42.9818594" lon="-116.0913175" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="540" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Kessinger Lane" />
+    <tag k="testbed:source" v="way/1433801066" />
+  </node>
+  <node id="-1433801067" lat="42.9822633" lon="-116.0902947" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="615" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="State Highway 78" />
+    <tag k="testbed:source" v="way/1433801067" />
+  </node>
+  <node id="-1433858865" lat="42.9813612" lon="-116.0880691" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="625" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="State Highway 78" />
+    <tag k="testbed:source" v="way/1433858865" />
+  </node>
+  <node id="-1433943675" lat="42.9806637" lon="-116.0866402" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="630" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="State Highway 78" />
+    <tag k="testbed:source" v="way/1433943675" />
+  </node>
+  <node id="-1433943676" lat="42.9806637" lon="-116.0866402" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="635" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="State Highway 78" />
+    <tag k="testbed:source" v="way/1433943676" />
+  </node>
+  <node id="-1433943680" lat="42.9796074" lon="-116.0866998" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="860" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="State Highway 78" />
+    <tag k="testbed:source" v="way/1433943680" />
+  </node>
+  <node id="-1433943705" lat="42.9789621" lon="-116.0860625" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="1220" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="State Highway 78" />
+    <tag k="testbed:source" v="way/1433943705" />
+  </node>
+  <node id="-1433943710" lat="42.9762056" lon="-116.0819955" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="1215" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="State Highway 78" />
+    <tag k="testbed:source" v="way/1433943710" />
+  </node>
+  <node id="-1434638730" lat="42.9777927" lon="-116.0806813" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="1185" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="State Highway 78" />
+    <tag k="testbed:source" v="way/1434638730" />
+  </node>
+  <node id="-1434638733" lat="42.9794791" lon="-116.0843717" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="925" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="State Highway 78" />
+    <tag k="testbed:source" v="way/1434638733" />
+  </node>
+  <node id="-1434638741" lat="42.9789741" lon="-116.0833115" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="905" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="State Highway 78" />
+    <tag k="testbed:source" v="way/1434638741" />
+  </node>
+  <node id="-1434663565" lat="42.9782067" lon="-116.0819006" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="1005" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="State Highway 78" />
+    <tag k="testbed:source" v="way/1434663565" />
+  </node>
+  <node id="-1434663568" lat="42.9768038" lon="-116.0798754" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="1205" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="State Highway 78" />
+    <tag k="testbed:source" v="way/1434663568" />
+  </node>
+  <node id="-1434663573" lat="42.9753097" lon="-116.0810117" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="1230" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="State Highway 78" />
+    <tag k="testbed:source" v="way/1434663573" />
+  </node>
+  <node id="-1434663574" lat="42.9758173" lon="-116.0815112" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="1210" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="State Highway 78" />
+    <tag k="testbed:source" v="way/1434663574" />
+  </node>
+  <node id="-1434663583" lat="42.9756844" lon="-116.0784087" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="1235" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="State Highway 78" />
+    <tag k="testbed:source" v="way/1434663583" />
+  </node>
+  <node id="-1434663596" lat="42.9769225" lon="-116.0782748" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="26800" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="River Road" />
+    <tag k="testbed:source" v="way/1434663596" />
+  </node>
+  <node id="-1434663604" lat="42.9764217" lon="-116.0766292" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="25066" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Sheep Camp Road" />
+    <tag k="testbed:source" v="way/1434663604" />
+  </node>
+  <node id="-1434663608" lat="42.9737940" lon="-116.0780075" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="1255" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="State Highway 78" />
+    <tag k="testbed:source" v="way/1434663608" />
+  </node>
+  <node id="-1434663619" lat="42.9763990" lon="-116.0845749" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="24912" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Sagebrush Hill Lane" />
+    <tag k="testbed:source" v="way/1434663619" />
+  </node>
+  <node id="-1434663625" lat="42.9770717" lon="-116.0857308" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="24886" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Sagebrush Hill Lane" />
+    <tag k="testbed:source" v="way/1434663625" />
+  </node>
+  <node id="-1434663632" lat="42.9733521" lon="-116.0868477" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="24789" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Sagebrush Hill Lane" />
+    <tag k="testbed:source" v="way/1434663632" />
+  </node>
+  <node id="-1434887952" lat="42.9797722" lon="-116.0797235" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="26647" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="River Road" />
+    <tag k="testbed:source" v="way/1434887952" />
+  </node>
+  <node id="-1434887957" lat="42.9808145" lon="-116.0783723" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="26687" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="River Road" />
+    <tag k="testbed:source" v="way/1434887957" />
+  </node>
+  <node id="-1434887969" lat="42.9818803" lon="-116.0729601" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="26674" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="River Road" />
+    <tag k="testbed:source" v="way/1434887969" />
+  </node>
+  <node id="-1434887970" lat="42.9818803" lon="-116.0729601" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="26680" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="River Road" />
+    <tag k="testbed:source" v="way/1434887970" />
+  </node>
+  <node id="-1434887996" lat="42.9802488" lon="-116.0713237" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="25192" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Sub Power Lane" />
+    <tag k="testbed:source" v="way/1434887996" />
+  </node>
+  <node id="-1434963230" lat="42.9594205" lon="-116.0848597" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="24780" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Bybee Lane" />
+    <tag k="testbed:source" v="way/1434963230" />
+  </node>
+  <node id="-1434980618" lat="42.9623375" lon="-116.0862512" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="24781" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Bybee Lane" />
+    <tag k="testbed:source" v="way/1434980618" />
+  </node>
+  <node id="-1434980625" lat="42.9683678" lon="-116.0788019" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="36873" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="State Highway 78" />
+    <tag k="testbed:source" v="way/1434980625" />
+  </node>
+  <node id="-1435143666" lat="42.9606400" lon="-116.0779331" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="24964" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Draper Lane" />
+    <tag k="testbed:source" v="way/1435143666" />
+  </node>
+  <node id="-1436294751" lat="42.9731266" lon="-116.0707778" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="25158" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Sheep Camp Road" />
+    <tag k="testbed:source" v="way/1436294751" />
+  </node>
+  <node id="-12415099940" lat="42.9917585" lon="-116.0918788" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="2619" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="South Hayland Road" />
+    <tag k="testbed:source" v="node/12415099940" />
+  </node>
+  <node id="-12415108617" lat="42.9927643" lon="-116.0726052" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="2650" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="South Old Dixie Lane" />
+    <tag k="testbed:source" v="node/12415108617" />
+  </node>
+  <node id="-12415108618" lat="43.0067304" lon="-116.0926068" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="218" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Grandview Road" />
+    <tag k="testbed:source" v="node/12415108618" />
+  </node>
+  <node id="-12426909125" lat="42.9875427" lon="-116.1016675" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="606" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Roosevelt Avenue" />
+    <tag k="testbed:source" v="node/12426909125" />
+  </node>
+  <node id="-12426926523" lat="42.9862244" lon="-116.0993858" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="300" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Jensen Drive" />
+    <tag k="testbed:source" v="node/12426926523" />
+  </node>
+  <node id="-12426926632" lat="42.9850024" lon="-116.0915989" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="160" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="4th Street" />
+    <tag k="testbed:source" v="node/12426926632" />
+  </node>
+  <node id="-12426927160" lat="42.9809902" lon="-116.0871714" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="627" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="State Highway 78" />
+    <tag k="testbed:source" v="node/12426927160" />
+  </node>
+  <node id="-12426927290" lat="42.9899827" lon="-116.1014295" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="245" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Estate Place" />
+    <tag k="testbed:source" v="node/12426927290" />
+  </node>
+  <node id="-12426927503" lat="42.9828519" lon="-116.0963572" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="140" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="State Highway 78" />
+    <tag k="testbed:source" v="node/12426927503" />
+  </node>
+  <node id="-12426927576" lat="42.9900304" lon="-116.0990669" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="145" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Estate Place" />
+    <tag k="testbed:source" v="node/12426927576" />
+  </node>
+  <node id="-12426927820" lat="42.9890728" lon="-116.0948432" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="320" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Main Street" />
+    <tag k="testbed:source" v="node/12426927820" />
+  </node>
+  <node id="-12426927863" lat="42.9900396" lon="-116.0986335" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="125" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Estate Place" />
+    <tag k="testbed:source" v="node/12426927863" />
+  </node>
+  <node id="-12426927891" lat="42.9917463" lon="-116.1065461" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="25847" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="River Road" />
+    <tag k="testbed:source" v="node/12426927891" />
+  </node>
+  <node id="-12426928019" lat="42.9903145" lon="-116.1014303" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="240" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Estate Place" />
+    <tag k="testbed:source" v="node/12426928019" />
+  </node>
+  <node id="-12426928385" lat="42.9850470" lon="-116.0977311" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="810" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Roosevelt Avenue" />
+    <tag k="testbed:source" v="node/12426928385" />
+  </node>
+  <node id="-12426928556" lat="42.9890281" lon="-116.0935333" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="215" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Main Street" />
+    <tag k="testbed:source" v="node/12426928556" />
+  </node>
+  <node id="-12426928595" lat="42.9736921" lon="-116.0919559" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="1000" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Burghardt Road" />
+    <tag k="testbed:source" v="node/12426928595" />
+  </node>
+  <node id="-12426928599" lat="42.9900097" lon="-116.1001380" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="185" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Estate Place" />
+    <tag k="testbed:source" v="node/12426928599" />
+  </node>
+  <node id="-12426929047" lat="42.9903330" lon="-116.1005859" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="200" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Estate Place" />
+    <tag k="testbed:source" v="node/12426929047" />
+  </node>
+  <node id="-12426929330" lat="42.9900192" lon="-116.0997050" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="165" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Estate Place" />
+    <tag k="testbed:source" v="node/12426929330" />
+  </node>
+  <node id="-12426929518" lat="42.9866406" lon="-116.1243730" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="34671" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="State Highway 78" />
+    <tag k="testbed:source" v="node/12426929518" />
+  </node>
+  <node id="-12426929773" lat="42.9903240" lon="-116.1010155" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="220" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Estate Place" />
+    <tag k="testbed:source" v="node/12426929773" />
+  </node>
+  <node id="-12426930031" lat="42.9867444" lon="-116.0969183" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="500" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Burghardt Road" />
+    <tag k="testbed:source" v="node/12426930031" />
+  </node>
+  <node id="-12426930060" lat="42.9899910" lon="-116.1010140" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="225" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Estate Place" />
+    <tag k="testbed:source" v="node/12426930060" />
+  </node>
+  <node id="-12426930312" lat="42.9702042" lon="-116.1023600" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="25688" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Boundary Lane" />
+    <tag k="testbed:source" v="node/12426930312" />
+  </node>
+  <node id="-12426930339" lat="42.9877844" lon="-116.0928275" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="745" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Idaho Avenue" />
+    <tag k="testbed:source" v="node/12426930339" />
+  </node>
+  <node id="-12426930343" lat="42.9899999" lon="-116.1005826" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="205" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Estate Place" />
+    <tag k="testbed:source" v="node/12426930343" />
+  </node>
+  <node id="-12426930458" lat="42.9899769" lon="-116.0941182" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="500" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Riverside Avenue" />
+    <tag k="testbed:source" v="node/12426930458" />
+  </node>
+  <node id="-12426930500" lat="42.9903514" lon="-116.0997032" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="160" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Estate Place" />
+    <tag k="testbed:source" v="node/12426930500" />
+  </node>
+  <node id="-12426930616" lat="42.9920657" lon="-116.0965000" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="100" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Riverside Avenue" />
+    <tag k="testbed:source" v="node/12426930616" />
+  </node>
+  <node id="-12426930631" lat="42.9900495" lon="-116.0982057" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="105" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Estate Place" />
+    <tag k="testbed:source" v="node/12426930631" />
+  </node>
+  <node id="-12426930745" lat="42.9897254" lon="-116.0967304" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="420" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Boise Avenue" />
+    <tag k="testbed:source" v="node/12426930745" />
+  </node>
+  <node id="-12426930787" lat="42.9903424" lon="-116.1001363" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="180" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="Estate Place" />
+    <tag k="testbed:source" v="node/12426930787" />
+  </node>
+  <node id="-12679295221" lat="43.0085575" lon="-116.0826070" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="1027" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="South Hayland Road" />
+    <tag k="testbed:source" v="node/12679295221" />
+  </node>
+  <node id="-12679295420" lat="43.0118076" lon="-116.0755478" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="1097" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="East Shaw Road" />
+    <tag k="testbed:source" v="node/12679295420" />
+  </node>
+  <node id="-12679295595" lat="43.0074524" lon="-116.0671143" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="1470" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="South Hayland Road" />
+    <tag k="testbed:source" v="node/12679295595" />
+  </node>
+  <node id="-12679296355" lat="42.9925137" lon="-116.0817603" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="2553" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="South Hayland Road" />
+    <tag k="testbed:source" v="node/12679296355" />
+  </node>
+  <node id="-12679296487" lat="43.0160924" lon="-116.0745801" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="1390" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="East Shaw Road" />
+    <tag k="testbed:source" v="node/12679296487" />
+  </node>
+  <node id="-12679296610" lat="43.0074524" lon="-116.0671143" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="1487" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="South Hayland Road" />
+    <tag k="testbed:source" v="node/12679296610" />
+  </node>
+  <node id="-12679296793" lat="43.0103281" lon="-116.0725223" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="1331" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="East Shaw Road" />
+    <tag k="testbed:source" v="node/12679296793" />
+  </node>
+  <node id="-12679296977" lat="43.0012942" lon="-116.0725581" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="1912" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="South Hayland Road" />
+    <tag k="testbed:source" v="node/12679296977" />
+  </node>
+  <node id="-12679297564" lat="42.9946964" lon="-116.0903165" visible="true">
+    <tag k="addr:city" v="Grand View" />
+    <tag k="addr:housenumber" v="2621" />
+    <tag k="addr:postcode" v="83624" />
+    <tag k="addr:state" v="ID" />
+    <tag k="addr:street" v="South Hayland Road" />
+    <tag k="testbed:source" v="node/12679297564" />
+  </node>
+</osm>

@@ -1,0 +1,7848 @@
+{
+ "generator": "tools/testbed/make_testbed.py",
+ "seed": 42,
+ "strip_fraction": 0.6,
+ "overlap_fraction": 0.15,
+ "counts": {
+  "buildings": 580,
+  "addressed_buildings": 228,
+  "standalone_address_nodes": 42,
+  "poi_address_nodes": 0,
+  "outbuildings": 0,
+  "addresses-full.osm": 270,
+  "addresses-partial.osm": 165,
+  "addresses-overlap.osm": 181,
+  "addresses-full-parcel.osm": 270
+ },
+ "addresses": [
+  {
+   "node_id": -1273254766,
+   "source": {
+    "type": "way",
+    "id": 1273254766
+   },
+   "kind": "building",
+   "building": "yes",
+   "lat": 42.99067485,
+   "lon": -116.09680614999999,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "410",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Roosevelt Avenue"
+   },
+   "parcel": "RPD004000E0000",
+   "parcel_centroid": [
+    42.990662039193765,
+    -116.09672841960277
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1273254767,
+   "source": {
+    "type": "way",
+    "id": 1273254767
+   },
+   "kind": "building",
+   "building": "yes",
+   "lat": 42.9877178284642,
+   "lon": -116.09669691743761,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "525",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Main Street"
+   },
+   "parcel": "RPD00400040000",
+   "parcel_centroid": [
+    42.98774151694147,
+    -116.09676142965112
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1273254768,
+   "source": {
+    "type": "way",
+    "id": 1273254768
+   },
+   "kind": "building",
+   "building": "yes",
+   "lat": 42.98802475,
+   "lon": -116.09522655,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "660",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Boise Avenue"
+   },
+   "parcel": "RPD0040006001A",
+   "parcel_centroid": [
+    42.98788445971158,
+    -116.09538272980525
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1273254770,
+   "source": {
+    "type": "way",
+    "id": 1273254770
+   },
+   "kind": "building",
+   "building": "yes",
+   "lat": 42.99004758458885,
+   "lon": -116.09618650726576,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "440",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Boise Avenue"
+   },
+   "parcel": "RPD004000F001A",
+   "parcel_centroid": [
+    42.990049818814825,
+    -116.09620835745241
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1273254772,
+   "source": {
+    "type": "way",
+    "id": 1273254772
+   },
+   "kind": "building",
+   "building": "yes",
+   "lat": 42.98936045,
+   "lon": -116.0969561,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "425",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Boise Avenue"
+   },
+   "parcel": "RPD004000G0000",
+   "parcel_centroid": [
+    42.989139594101125,
+    -116.09680800689038
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1273254773,
+   "source": {
+    "type": "way",
+    "id": 1273254773
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98949442549912,
+   "lon": -116.09780015516263,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "602",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Roosevelt Avenue"
+   },
+   "parcel": "RPD00000164660",
+   "parcel_centroid": [
+    42.98959851847776,
+    -116.09779719893027
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1273254774,
+   "source": {
+    "type": "way",
+    "id": 1273254774
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.989664325055976,
+   "lon": -116.09825102129086,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "600",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Roosevelt Avenue"
+   },
+   "parcel": "RPD00000164670",
+   "parcel_centroid": [
+    42.989647420815956,
+    -116.09877387591375
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1273254777,
+   "source": {
+    "type": "way",
+    "id": 1273254777
+   },
+   "kind": "building",
+   "building": "yes",
+   "lat": 42.98911191417669,
+   "lon": -116.10008292470269,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "101",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Lawrence Lane"
+   },
+   "parcel": "RPD00000164630",
+   "parcel_centroid": [
+    42.988910117718895,
+    -116.1008959470178
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1273254779,
+   "source": {
+    "type": "way",
+    "id": 1273254779
+   },
+   "kind": "building",
+   "building": "yes",
+   "lat": 42.98878369074922,
+   "lon": -116.09619997963962,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "520",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Boise Avenue"
+   },
+   "parcel": "RPD0040003001A",
+   "parcel_centroid": [
+    42.98870438375785,
+    -116.09623705929634
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1273254780,
+   "source": {
+    "type": "way",
+    "id": 1273254780
+   },
+   "kind": "building",
+   "building": "yes",
+   "lat": 42.98906389586396,
+   "lon": -116.09585126563007,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "265",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "State Street"
+   },
+   "parcel": "RPD0040002009A",
+   "parcel_centroid": [
+    42.98900897085725,
+    -116.09582721741825
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1273254781,
+   "source": {
+    "type": "way",
+    "id": 1273254781
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98915218741783,
+   "lon": -116.09565689266215,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "255",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "State Street"
+   },
+   "parcel": "RPD0040002007B",
+   "parcel_centroid": [
+    42.989141362844975,
+    -116.09561154559425
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1273254782,
+   "source": {
+    "type": "way",
+    "id": 1273254782
+   },
+   "kind": "building",
+   "building": "yes",
+   "lat": 42.989482014565425,
+   "lon": -116.09520964466607,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "510",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Idaho Avenue"
+   },
+   "parcel": "RPD0040002001A",
+   "parcel_centroid": [
+    42.989353900434736,
+    -116.09527383231176
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1273254785,
+   "source": {
+    "type": "way",
+    "id": 1273254785
+   },
+   "kind": "building",
+   "building": "house",
+   "lat": 42.98987827329797,
+   "lon": -116.09451772227216,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "135",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "State Street"
+   },
+   "parcel": "RPD0040001005A",
+   "parcel_centroid": [
+    42.98981417188686,
+    -116.0944482952707
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1273254786,
+   "source": {
+    "type": "way",
+    "id": 1273254786
+   },
+   "kind": "building",
+   "building": "house",
+   "lat": 42.98975820464194,
+   "lon": -116.0948508380726,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "165",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "State Street"
+   },
+   "parcel": "RPD0040001008A",
+   "parcel_centroid": [
+    42.98966829354619,
+    -116.09471521001642
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1273254787,
+   "source": {
+    "type": "way",
+    "id": 1273254787
+   },
+   "kind": "building",
+   "building": "yes",
+   "lat": 42.9912015,
+   "lon": -116.09517465,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "310",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Riverside Avenue"
+   },
+   "parcel": "RPD004000C0000",
+   "parcel_centroid": [
+    42.99108616414735,
+    -116.09554991157087
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": true
+   },
+   "perturbation": "street-abbrev"
+  },
+  {
+   "node_id": -1273515842,
+   "source": {
+    "type": "way",
+    "id": 1273515842
+   },
+   "kind": "building",
+   "building": "fire_station",
+   "lat": 42.985058932375125,
+   "lon": -116.09777114578938,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "721",
+    "addr:state": "ID",
+    "addr:street": "Roosevelt Avenue"
+   },
+   "parcel": "RPD0540004001A",
+   "parcel_centroid": [
+    42.985047028734144,
+    -116.09773111423144
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1273515844,
+   "source": {
+    "type": "way",
+    "id": 1273515844
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.99039192004222,
+   "lon": -116.09819880264973,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "100",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Estate Place"
+   },
+   "parcel": "RPD06000000020",
+   "parcel_centroid": [
+    42.99038262073981,
+    -116.09820490587872
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1273515845,
+   "source": {
+    "type": "way",
+    "id": 1273515845
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.990366660853674,
+   "lon": -116.0977616239207,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "596",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Roosevelt Avenue"
+   },
+   "parcel": "RPD06000000010",
+   "parcel_centroid": [
+    42.99039093502714,
+    -116.0977529056961
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1273515846,
+   "source": {
+    "type": "way",
+    "id": 1273515846
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.99004635,
+   "lon": -116.0978434,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "598",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Roosevelt Avenue"
+   },
+   "parcel": "RPD06000000110",
+   "parcel_centroid": [
+    42.99005924202855,
+    -116.09774232569542
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1273515847,
+   "source": {
+    "type": "way",
+    "id": 1273515847
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.99031727425409,
+   "lon": -116.09880481993271,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "120",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Estate Place"
+   },
+   "parcel": "RPD06000000030",
+   "parcel_centroid": [
+    42.99037053371638,
+    -116.09881566319908
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1273515848,
+   "source": {
+    "type": "way",
+    "id": 1273515848
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.9903506,
+   "lon": -116.0991628,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "140",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Estate Place"
+   },
+   "parcel": "RPD06000000040",
+   "parcel_centroid": [
+    42.990361335827195,
+    -116.09926633257756
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1273515849,
+   "source": {
+    "type": "way",
+    "id": 1273515849
+   },
+   "kind": "building",
+   "building": "house",
+   "lat": 42.990644389799655,
+   "lon": -116.09775110045345,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "10",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Rodeo Drive"
+   },
+   "parcel": "RPD0000016464A",
+   "parcel_centroid": [
+    42.99066640938357,
+    -116.09773982005589
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1273515850,
+   "source": {
+    "type": "way",
+    "id": 1273515850
+   },
+   "kind": "building",
+   "building": "house",
+   "lat": 42.99064812670461,
+   "lon": -116.09815639315826,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "30",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Rodeo Drive"
+   },
+   "parcel": "RPD0000016464B",
+   "parcel_centroid": [
+    42.99065829103874,
+    -116.0981868304309
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1431820882,
+   "source": {
+    "type": "way",
+    "id": 1431820882
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 43.009710652123864,
+   "lon": -116.11609444605372,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "24210",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Millet Lane"
+   },
+   "parcel": "RP05S03E093770",
+   "parcel_centroid": [
+    43.00977825561029,
+    -116.11620307237594
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1431820885,
+   "source": {
+    "type": "way",
+    "id": 1431820885
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 43.01076216578575,
+   "lon": -116.11900530666519,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "24201",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Millet Lane"
+   },
+   "parcel": "RP05S03E080001",
+   "parcel_centroid": [
+    43.00572924807883,
+    -116.12666059737077
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1431820902,
+   "source": {
+    "type": "way",
+    "id": 1431820902
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 43.00883725393092,
+   "lon": -116.11604868785463,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "24240",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Millet Lane"
+   },
+   "parcel": "RP05S03E093760",
+   "parcel_centroid": [
+    43.008498512521335,
+    -116.1159627670351
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1431820910,
+   "source": {
+    "type": "way",
+    "id": 1431820910
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 43.007697772981565,
+   "lon": -116.11590684858491,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "24264",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Millet Lane"
+   },
+   "parcel": "RP05S03E093600",
+   "parcel_centroid": [
+    43.00772452987633,
+    -116.11611488478533
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1431820920,
+   "source": {
+    "type": "way",
+    "id": 1431820920
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 43.005734007742554,
+   "lon": -116.11356307343829,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "24380",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Millet Lane"
+   },
+   "parcel": "RP05S03E093768",
+   "parcel_centroid": [
+    43.00630270519509,
+    -116.11476790404839
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1431820929,
+   "source": {
+    "type": "way",
+    "id": 1431820929
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 43.00406545065042,
+   "lon": -116.11270908370044,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "24384",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Millet Lane"
+   },
+   "parcel": "RP05S03E095400",
+   "parcel_centroid": [
+    43.00069754831077,
+    -116.11224093812046
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1431834062,
+   "source": {
+    "type": "way",
+    "id": 1431834062
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.99782510290642,
+   "lon": -116.12738782481502,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "25214",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "River Road"
+   },
+   "parcel": "RP05S03E086602",
+   "parcel_centroid": [
+    42.99915046790208,
+    -116.12926333134456
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1431834076,
+   "source": {
+    "type": "way",
+    "id": 1431834076
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.9978214620741,
+   "lon": -116.12487060732913,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "25278",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "River Road"
+   },
+   "parcel": "RP05S03E086604",
+   "parcel_centroid": [
+    42.997818946900345,
+    -116.12545991880947
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1432079088,
+   "source": {
+    "type": "way",
+    "id": 1432079088
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.994416449999996,
+   "lon": -116.11207275,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "25599",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "River Road"
+   },
+   "parcel": "RP05S03E163000",
+   "parcel_centroid": [
+    42.99480864756227,
+    -116.11423423157706
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1432084904,
+   "source": {
+    "type": "way",
+    "id": 1432084904
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.99383895,
+   "lon": -116.11729855,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "25351",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "River Road"
+   },
+   "parcel": "RP05S03E170030",
+   "parcel_centroid": [
+    42.995372786884694,
+    -116.1269267715707
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1432084909,
+   "source": {
+    "type": "way",
+    "id": 1432084909
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.9945651640066,
+   "lon": -116.12111704426134,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "25347",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "River Road"
+   },
+   "parcel": "RP05S03E170030",
+   "parcel_centroid": [
+    42.995372786884694,
+    -116.1269267715707
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1432106122,
+   "source": {
+    "type": "way",
+    "id": 1432106122
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.993535428900536,
+   "lon": -116.12720573413984,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "34566",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "State Highway 78"
+   },
+   "parcel": "RP05S03E170020",
+   "parcel_centroid": [
+    42.99321103451776,
+    -116.12733187960609
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1432374248,
+   "source": {
+    "type": "way",
+    "id": 1432374248
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.997839632577694,
+   "lon": -116.10723641125011,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "25702",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "River Road"
+   },
+   "parcel": "RP05S03E097199",
+   "parcel_centroid": [
+    42.997947962240936,
+    -116.10779546717855
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1432374262,
+   "source": {
+    "type": "way",
+    "id": 1432374262
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.998137299549946,
+   "lon": -116.10464756402266,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "25792",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "River Road"
+   },
+   "parcel": "RP05S03E098405",
+   "parcel_centroid": [
+    42.99830052610808,
+    -116.10508154722929
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1432374272,
+   "source": {
+    "type": "way",
+    "id": 1432374272
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.997683665519205,
+   "lon": -116.10376504020944,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "25798",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "River Road"
+   },
+   "parcel": "RP05S03E098404",
+   "parcel_centroid": [
+    42.997775019623816,
+    -116.1036296307261
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1432374276,
+   "source": {
+    "type": "way",
+    "id": 1432374276
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.99772843919102,
+   "lon": -116.10490531242526,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "25762",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "River Road"
+   },
+   "parcel": "RP05S03E098500",
+   "parcel_centroid": [
+    42.99773751110282,
+    -116.10487753727318
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1432374283,
+   "source": {
+    "type": "way",
+    "id": 1432374283
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.995012252691446,
+   "lon": -116.10075462786841,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "25995",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "River Road"
+   },
+   "parcel": "RP05S03E160180",
+   "parcel_centroid": [
+    42.994785578014366,
+    -116.10060347228082
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1432388255,
+   "source": {
+    "type": "way",
+    "id": 1432388255
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.992232,
+   "lon": -116.1165763,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "24800",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Vista Road"
+   },
+   "parcel": "RP00710001001A",
+   "parcel_centroid": [
+    42.9921671711521,
+    -116.11631253545272
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": true
+   },
+   "perturbation": "housenumber"
+  },
+  {
+   "node_id": -1432388256,
+   "source": {
+    "type": "way",
+    "id": 1432388256
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.99233389254996,
+   "lon": -116.11553737195702,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "24038",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Quail Lane"
+   },
+   "parcel": "RP007100010050",
+   "parcel_centroid": [
+    42.99180552529425,
+    -116.11550749246744
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1432388258,
+   "source": {
+    "type": "way",
+    "id": 1432388258
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.99200268795716,
+   "lon": -116.11501182037867,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "24058",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Quail Lane"
+   },
+   "parcel": "RP00710001006A",
+   "parcel_centroid": [
+    42.99170100400637,
+    -116.11486343050397
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1432388260,
+   "source": {
+    "type": "way",
+    "id": 1432388260
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.991923114064306,
+   "lon": -116.11411979569019,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "24070",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Quail Lane"
+   },
+   "parcel": "RP00710001007A",
+   "parcel_centroid": [
+    42.991570324251924,
+    -116.11405680970951
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1432388263,
+   "source": {
+    "type": "way",
+    "id": 1432388263
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.99088000895805,
+   "lon": -116.11290552468947,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "24095",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Quail Lane"
+   },
+   "parcel": "RP007100030010",
+   "parcel_centroid": [
+    42.99068960248159,
+    -116.11258608254931
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1432388269,
+   "source": {
+    "type": "way",
+    "id": 1432388269
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.99085308508993,
+   "lon": -116.11376298290368,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "24075",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Quail Lane"
+   },
+   "parcel": "RP00710002005A",
+   "parcel_centroid": [
+    42.9905767017028,
+    -116.11403176071215
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1432388270,
+   "source": {
+    "type": "way",
+    "id": 1432388270
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.9904347034118,
+   "lon": -116.11652811365883,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "24870",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Vista Road"
+   },
+   "parcel": "RP00710002001A",
+   "parcel_centroid": [
+    42.9905676257205,
+    -116.11618988400852
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1432388274,
+   "source": {
+    "type": "way",
+    "id": 1432388274
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98668465,
+   "lon": -116.1096998,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "35148",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "State Highway 78"
+   },
+   "parcel": "RP05S03E166750",
+   "parcel_centroid": [
+    42.986648179569016,
+    -116.10940994895469
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1432388283,
+   "source": {
+    "type": "way",
+    "id": 1432388283
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98864488601056,
+   "lon": -116.11741323147113,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "34931",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "State Highway 78"
+   },
+   "parcel": "RP05S03E177540",
+   "parcel_centroid": [
+    42.98925871464769,
+    -116.12056589061609
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1432632500,
+   "source": {
+    "type": "way",
+    "id": 1432632500
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98350722096428,
+   "lon": -116.11892221518669,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "25299",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Whitted Lane"
+   },
+   "parcel": "RP05S03E177540",
+   "parcel_centroid": [
+    42.98925871464769,
+    -116.12056589061609
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1432632503,
+   "source": {
+    "type": "way",
+    "id": 1432632503
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98214694794046,
+   "lon": -116.12075422903756,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "25307",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Whitted Lane"
+   },
+   "parcel": "RP05S03E200301",
+   "parcel_centroid": [
+    42.982515565602206,
+    -116.12094817273525
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1432632505,
+   "source": {
+    "type": "way",
+    "id": 1432632505
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.9821345,
+   "lon": -116.11931175000001,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "25303",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Whitted Lane"
+   },
+   "parcel": "RP05S03E200320",
+   "parcel_centroid": [
+    42.9825165819678,
+    -116.11980951655472
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1432632507,
+   "source": {
+    "type": "way",
+    "id": 1432632507
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.9821989,
+   "lon": -116.11738635,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "25325",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Whitted Lane"
+   },
+   "parcel": "RP05S03E200020",
+   "parcel_centroid": [
+    42.9825243831137,
+    -116.11811747008113
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1432632510,
+   "source": {
+    "type": "way",
+    "id": 1432632510
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98167536842168,
+   "lon": -116.11739587404219,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "25347",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Whitted Lane"
+   },
+   "parcel": "RP05S03E200500",
+   "parcel_centroid": [
+    42.98139877519583,
+    -116.11769983296621
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1432632513,
+   "source": {
+    "type": "way",
+    "id": 1432632513
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.982516775855906,
+   "lon": -116.11655405507878,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "25320",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Whitted Lane"
+   },
+   "parcel": "RP05S03E213010",
+   "parcel_centroid": [
+    42.98263076595514,
+    -116.11656961561529
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1432632530,
+   "source": {
+    "type": "way",
+    "id": 1432632530
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.979828001028146,
+   "lon": -116.11739423767806,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "25411",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Whitted Lane"
+   },
+   "parcel": "RP05S03E200412",
+   "parcel_centroid": [
+    42.97983080447463,
+    -116.11738885776316
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1432632553,
+   "source": {
+    "type": "way",
+    "id": 1432632553
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.969594930386535,
+   "lon": -116.12719537291463,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "25769",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Whitted Lane"
+   },
+   "parcel": "RP05S03E206600",
+   "parcel_centroid": [
+    42.97015783174635,
+    -116.12943259693648
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1432648659,
+   "source": {
+    "type": "way",
+    "id": 1432648659
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.977938511065794,
+   "lon": -116.10928229239975,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "25289",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Hipwell Lane"
+   },
+   "parcel": "RP05S03E214200",
+   "parcel_centroid": [
+    42.97823107433389,
+    -116.10940916480035
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1432648670,
+   "source": {
+    "type": "way",
+    "id": 1432648670
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.979702027739876,
+   "lon": -116.11104585669325,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "25231",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Hipwell Lane"
+   },
+   "parcel": "RP05S03E212450",
+   "parcel_centroid": [
+    42.98126214289486,
+    -116.11115703442945
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1432648673,
+   "source": {
+    "type": "way",
+    "id": 1432648673
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.97977668151884,
+   "lon": -116.1099679542444,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "25227",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Hipwell Lane"
+   },
+   "parcel": "RP05S03E212411",
+   "parcel_centroid": [
+    42.981527126673846,
+    -116.10878378456317
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1432648691,
+   "source": {
+    "type": "way",
+    "id": 1432648691
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98333380148899,
+   "lon": -116.10120697691207,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "50",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "State Highway 78"
+   },
+   "parcel": "RPD00000169702",
+   "parcel_centroid": [
+    42.98348967557195,
+    -116.10123994618228
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1432648692,
+   "source": {
+    "type": "way",
+    "id": 1432648692
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98326137020521,
+   "lon": -116.10179789384402,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "20",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "State Highway 78"
+   },
+   "parcel": "RPD00000169704",
+   "parcel_centroid": [
+    42.9835863259473,
+    -116.10185506945308
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1432648693,
+   "source": {
+    "type": "way",
+    "id": 1432648693
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98331137577591,
+   "lon": -116.10260826919907,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "35343",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "State Highway 78"
+   },
+   "parcel": "RP05S03E168990",
+   "parcel_centroid": [
+    42.983599843793584,
+    -116.1026762359243
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433154434,
+   "source": {
+    "type": "way",
+    "id": 1433154434
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.9762195,
+   "lon": -116.11657185,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "25534",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Whitted Lane"
+   },
+   "parcel": "RP05S03E214080",
+   "parcel_centroid": [
+    42.976343652603354,
+    -116.11652306653332
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433170996,
+   "source": {
+    "type": "way",
+    "id": 1433170996
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.96929073754103,
+   "lon": -116.10268022239818,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "25694",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Boundary Lane"
+   },
+   "parcel": "RP05S03E218999",
+   "parcel_centroid": [
+    42.96909529830285,
+    -116.10340242186952
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433171003,
+   "source": {
+    "type": "way",
+    "id": 1433171003
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.97170498612853,
+   "lon": -116.1025221358971,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "25686",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Boundary Lane"
+   },
+   "parcel": "RP05S03E218507",
+   "parcel_centroid": [
+    42.97088228307938,
+    -116.10320609446536
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433171015,
+   "source": {
+    "type": "way",
+    "id": 1433171015
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.97343268378801,
+   "lon": -116.10242033336174,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "25592",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Boundary Lane"
+   },
+   "parcel": "RP05S03E217800",
+   "parcel_centroid": [
+    42.97314660913067,
+    -116.102695710285
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433171029,
+   "source": {
+    "type": "way",
+    "id": 1433171029
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.97605989707717,
+   "lon": -116.10109325116578,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "25396",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Boundary Lane"
+   },
+   "parcel": "RP05S03E210160",
+   "parcel_centroid": [
+    42.9800488871128,
+    -116.10126469243443
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433365061,
+   "source": {
+    "type": "way",
+    "id": 1433365061
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.963467887813685,
+   "lon": -116.11622571330795,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "25760",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Whitted Lane"
+   },
+   "parcel": "RP05S03E283600",
+   "parcel_centroid": [
+    42.96352214710908,
+    -116.11642432584874
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433367004,
+   "source": {
+    "type": "way",
+    "id": 1433367004
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.99078645673698,
+   "lon": -116.09479635803521,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "410",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Riverside Avenue"
+   },
+   "parcel": "RPD004000D001A",
+   "parcel_centroid": [
+    42.99078412673892,
+    -116.09486069966286
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433367005,
+   "source": {
+    "type": "way",
+    "id": 1433367005
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.99052030788726,
+   "lon": -116.09456394698282,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "420",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Riverside Avenue"
+   },
+   "parcel": "RPD004000D011C",
+   "parcel_centroid": [
+    42.99056166238076,
+    -116.09452367306203
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433367007,
+   "source": {
+    "type": "way",
+    "id": 1433367007
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.99036925,
+   "lon": -116.09446410000001,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "120",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "State Street"
+   },
+   "parcel": "RPD004000D011B",
+   "parcel_centroid": [
+    42.9903351257257,
+    -116.09467341957675
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": true
+   },
+   "perturbation": "housenumber"
+  },
+  {
+   "node_id": -1433367009,
+   "source": {
+    "type": "way",
+    "id": 1433367009
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.9900444,
+   "lon": -116.0951304,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "475",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Idaho Avenue"
+   },
+   "parcel": "RPD004000D018A",
+   "parcel_centroid": [
+    42.990122221527606,
+    -116.09513737682077
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433367012,
+   "source": {
+    "type": "way",
+    "id": 1433367012
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.990394304703095,
+   "lon": -116.09539655427653,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "465",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Idaho Avenue"
+   },
+   "parcel": "RPD004000D006A",
+   "parcel_centroid": [
+    42.99050898199859,
+    -116.09537697951639
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433414298,
+   "source": {
+    "type": "way",
+    "id": 1433414298
+   },
+   "kind": "building",
+   "building": "yes",
+   "lat": 42.988709146579176,
+   "lon": -116.09539337869087,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "550",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Main Street"
+   },
+   "parcel": "RPD0040002019A",
+   "parcel_centroid": [
+    42.98875526908185,
+    -116.09534626741112
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433414299,
+   "source": {
+    "type": "way",
+    "id": 1433414299
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.989417469526664,
+   "lon": -116.09632218646794,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "260",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "State Street"
+   },
+   "parcel": "RPD004000F018B",
+   "parcel_centroid": [
+    42.989466224119305,
+    -116.09624766316126
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433414301,
+   "source": {
+    "type": "way",
+    "id": 1433414301
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98952222309292,
+   "lon": -116.09603164446663,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "240",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "State Street"
+   },
+   "parcel": "RPD004000F016A",
+   "parcel_centroid": [
+    42.9896062968256,
+    -116.09601885022856
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433414302,
+   "source": {
+    "type": "way",
+    "id": 1433414302
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98968795,
+   "lon": -116.09584175,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "230",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "State Street"
+   },
+   "parcel": "RPD004000F014A",
+   "parcel_centroid": [
+    42.98972738406199,
+    -116.09582419200872
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433414303,
+   "source": {
+    "type": "way",
+    "id": 1433414303
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98980555,
+   "lon": -116.09558865,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "220",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "State Street"
+   },
+   "parcel": "RPD004000F011M",
+   "parcel_centroid": [
+    42.98978874729104,
+    -116.09551747818044
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433414308,
+   "source": {
+    "type": "way",
+    "id": 1433414308
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.989943477149254,
+   "lon": -116.09574486765507,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "460",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Idaho Avenue"
+   },
+   "parcel": "RPD004000F012A",
+   "parcel_centroid": [
+    42.989936838152495,
+    -116.0956810735328
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433414311,
+   "source": {
+    "type": "way",
+    "id": 1433414311
+   },
+   "kind": "building",
+   "building": "yes",
+   "lat": 42.98884991656498,
+   "lon": -116.09495937052145,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "330",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Main Street"
+   },
+   "parcel": "RPD0040002015A",
+   "parcel_centroid": [
+    42.98896767755484,
+    -116.09501524348482
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433414312,
+   "source": {
+    "type": "way",
+    "id": 1433414312
+   },
+   "kind": "building",
+   "building": "yes",
+   "lat": 42.9891948,
+   "lon": -116.0944169,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "270",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Main Street"
+   },
+   "parcel": "RPD0040001021A",
+   "parcel_centroid": [
+    42.98929570316721,
+    -116.09448024705961
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433414314,
+   "source": {
+    "type": "way",
+    "id": 1433414314
+   },
+   "kind": "building",
+   "building": "yes",
+   "lat": 42.989291244653636,
+   "lon": -116.09431505243631,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "260",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Main Street"
+   },
+   "parcel": "RPD0040001019A",
+   "parcel_centroid": [
+    42.98934240900326,
+    -116.09435596236237
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433414315,
+   "source": {
+    "type": "way",
+    "id": 1433414315
+   },
+   "kind": "building",
+   "building": "yes",
+   "lat": 42.989398245048434,
+   "lon": -116.09414649585199,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "250",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Main Street"
+   },
+   "parcel": "RPD0040001016A",
+   "parcel_centroid": [
+    42.989451392829075,
+    -116.0941568124447
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433414316,
+   "source": {
+    "type": "way",
+    "id": 1433414316
+   },
+   "kind": "building",
+   "building": "yes",
+   "lat": 42.989524883721266,
+   "lon": -116.09384614076325,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "230",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Main Street"
+   },
+   "parcel": "RPD0040001013C",
+   "parcel_centroid": [
+    42.98958574462872,
+    -116.09388952045755
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433414317,
+   "source": {
+    "type": "way",
+    "id": 1433414317
+   },
+   "kind": "building",
+   "building": "yes",
+   "lat": 42.98957192267683,
+   "lon": -116.09367417038078,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "210",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Main Street"
+   },
+   "parcel": "RPD0040001011E",
+   "parcel_centroid": [
+    42.989587614377285,
+    -116.0936519067542
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433414318,
+   "source": {
+    "type": "way",
+    "id": 1433414318
+   },
+   "kind": "building",
+   "building": "yes",
+   "lat": 42.989751943819584,
+   "lon": -116.09383030621619,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "530",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Riverside Avenue"
+   },
+   "parcel": "RPD0040001011D",
+   "parcel_centroid": [
+    42.98974332351452,
+    -116.09378637454824
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433414320,
+   "source": {
+    "type": "way",
+    "id": 1433414320
+   },
+   "kind": "building",
+   "building": "yes",
+   "lat": 42.988929287102415,
+   "lon": -116.0941077841407,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "255",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Main Street"
+   },
+   "parcel": "RPD0040008003A",
+   "parcel_centroid": [
+    42.988857948426634,
+    -116.09389584473345
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433414322,
+   "source": {
+    "type": "way",
+    "id": 1433414322
+   },
+   "kind": "building",
+   "building": "yes",
+   "lat": 42.98863416575172,
+   "lon": -116.09435055873638,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "300",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Main Street"
+   },
+   "parcel": "RPD0040007001A",
+   "parcel_centroid": [
+    42.988615806675575,
+    -116.09431578832651
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433414323,
+   "source": {
+    "type": "way",
+    "id": 1433414323
+   },
+   "kind": "building",
+   "building": "yes",
+   "lat": 42.98848599033024,
+   "lon": -116.09472714933128,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "345",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Main Street"
+   },
+   "parcel": "RPD0040007005A",
+   "parcel_centroid": [
+    42.98846314716607,
+    -116.09456891385243
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433414324,
+   "source": {
+    "type": "way",
+    "id": 1433414324
+   },
+   "kind": "building",
+   "building": "yes",
+   "lat": 42.98836441267861,
+   "lon": -116.0949786581741,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "650",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Boise Avenue"
+   },
+   "parcel": "RPD0040007008A",
+   "parcel_centroid": [
+    42.9883261027398,
+    -116.09478104787593
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433414326,
+   "source": {
+    "type": "way",
+    "id": 1433414326
+   },
+   "kind": "building",
+   "building": "yes",
+   "lat": 42.99011327175098,
+   "lon": -116.09360828905261,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "525",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Riverside Avenue"
+   },
+   "parcel": "RPD004000H000A",
+   "parcel_centroid": [
+    42.99016708148288,
+    -116.0936778955208
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": true
+   },
+   "perturbation": "housenumber"
+  },
+  {
+   "node_id": -1433425502,
+   "source": {
+    "type": "way",
+    "id": 1433425502
+   },
+   "kind": "building",
+   "building": "yes",
+   "lat": 42.98781195,
+   "lon": -116.09488384999999,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "670",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Boise Avenue"
+   },
+   "parcel": "RPD0040006011A",
+   "parcel_centroid": [
+    42.98777162517411,
+    -116.09487421497393
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433425505,
+   "source": {
+    "type": "way",
+    "id": 1433425505
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.988198246440945,
+   "lon": -116.09316473233964,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "165",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "1st Street"
+   },
+   "parcel": "RPD0040009001A",
+   "parcel_centroid": [
+    42.98811571829906,
+    -116.09316573712042
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433425506,
+   "source": {
+    "type": "way",
+    "id": 1433425506
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.988397300423664,
+   "lon": -116.09345431383166,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "695",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Idaho Avenue"
+   },
+   "parcel": "RPD0040008011A",
+   "parcel_centroid": [
+    42.988513208024905,
+    -116.09348094463978
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433425509,
+   "source": {
+    "type": "way",
+    "id": 1433425509
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98856443061482,
+   "lon": -116.0930657916193,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "660",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Riverside Avenue"
+   },
+   "parcel": "RPD0040008008A",
+   "parcel_centroid": [
+    42.988658083869346,
+    -116.09307158117895
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433425510,
+   "source": {
+    "type": "way",
+    "id": 1433425510
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.9887697,
+   "lon": -116.09317745,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "650",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Riverside Avenue"
+   },
+   "parcel": "RPD0040008006A",
+   "parcel_centroid": [
+    42.98880710903267,
+    -116.09320880828115
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433425511,
+   "source": {
+    "type": "way",
+    "id": 1433425511
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98857336634582,
+   "lon": -116.09367915903884,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "645",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Idaho Avenue"
+   },
+   "parcel": "RPD0040008011A",
+   "parcel_centroid": [
+    42.988513208024905,
+    -116.09348094463978
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433425512,
+   "source": {
+    "type": "way",
+    "id": 1433425512
+   },
+   "kind": "building",
+   "building": "yes",
+   "lat": 42.98824855434179,
+   "lon": -116.09417254532885,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "630",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Idaho Avenue"
+   },
+   "parcel": "RPD0040007011A",
+   "parcel_centroid": [
+    42.988222255722654,
+    -116.09398182369662
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433425513,
+   "source": {
+    "type": "way",
+    "id": 1433425513
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.9881317,
+   "lon": -116.093865,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "690",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Idaho Avenue"
+   },
+   "parcel": "RPD0040007011A",
+   "parcel_centroid": [
+    42.988222255722654,
+    -116.09398182369662
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433425522,
+   "source": {
+    "type": "way",
+    "id": 1433425522
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.986272826110536,
+   "lon": -116.09386476239887,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "235",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "2nd Street"
+   },
+   "parcel": "RPD0040013004A",
+   "parcel_centroid": [
+    42.9862112602976,
+    -116.09373820733596
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433425523,
+   "source": {
+    "type": "way",
+    "id": 1433425523
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.9860520918734,
+   "lon": -116.09415209022686,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "295",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "2nd Street"
+   },
+   "parcel": "RPD0040013004A",
+   "parcel_centroid": [
+    42.9862112602976,
+    -116.09373820733596
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433610246,
+   "source": {
+    "type": "way",
+    "id": 1433610246
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98803174077422,
+   "lon": -116.09306811768555,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "725",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Idaho Avenue"
+   },
+   "parcel": "RPD0040009003B",
+   "parcel_centroid": [
+    42.98800401441864,
+    -116.09305241340024
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433610247,
+   "source": {
+    "type": "way",
+    "id": 1433610247
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.987925585261465,
+   "lon": -116.09294653726928,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "735",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Idaho Avenue"
+   },
+   "parcel": "RPD0040009005A",
+   "parcel_centroid": [
+    42.987894067691286,
+    -116.09293947090022
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433610248,
+   "source": {
+    "type": "way",
+    "id": 1433610248
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.987716150000004,
+   "lon": -116.092749,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "755",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Idaho Avenue"
+   },
+   "parcel": "RPD0040009009A",
+   "parcel_centroid": [
+    42.98767371375248,
+    -116.09271618167375
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433610251,
+   "source": {
+    "type": "way",
+    "id": 1433610251
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98759136442298,
+   "lon": -116.0926283937511,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "765",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Idaho Avenue"
+   },
+   "parcel": "RPD0040009011A",
+   "parcel_centroid": [
+    42.98755935844923,
+    -116.09260205559234
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433610252,
+   "source": {
+    "type": "way",
+    "id": 1433610252
+   },
+   "kind": "building",
+   "building": "yes",
+   "lat": 42.98814223882485,
+   "lon": -116.09266301185566,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "665",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Riverside Avenue"
+   },
+   "parcel": "RPD004000900AA",
+   "parcel_centroid": [
+    42.98818942719867,
+    -116.09270574864998
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433610253,
+   "source": {
+    "type": "way",
+    "id": 1433610253
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98795326656234,
+   "lon": -116.09240054957922,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "770",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Riverside Avenue"
+   },
+   "parcel": "RPD004000900CA",
+   "parcel_centroid": [
+    42.98793239399643,
+    -116.09244634634642
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433610255,
+   "source": {
+    "type": "way",
+    "id": 1433610255
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.9878136003811,
+   "lon": -116.0921970827404,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "780",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Riverside Avenue"
+   },
+   "parcel": "RPD004000900CB",
+   "parcel_centroid": [
+    42.9877584592536,
+    -116.09227662990166
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433610256,
+   "source": {
+    "type": "way",
+    "id": 1433610256
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98753878147381,
+   "lon": -116.09189915440146,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "820",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Riverside Avenue"
+   },
+   "parcel": "RPD0040014010B",
+   "parcel_centroid": [
+    42.987483309572134,
+    -116.09187797599567
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433610257,
+   "source": {
+    "type": "way",
+    "id": 1433610257
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98731061775817,
+   "lon": -116.09174815310125,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "850",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Riverside Avenue"
+   },
+   "parcel": "RPD0040014010D",
+   "parcel_centroid": [
+    42.987295946629,
+    -116.09171407065381
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433610258,
+   "source": {
+    "type": "way",
+    "id": 1433610258
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.987402016257455,
+   "lon": -116.09223217640199,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "145",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "2nd Street"
+   },
+   "parcel": "RPD0040014010E",
+   "parcel_centroid": [
+    42.98739538075754,
+    -116.0921464877268
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433610259,
+   "source": {
+    "type": "way",
+    "id": 1433610259
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.987275908230465,
+   "lon": -116.09236770866083,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "165",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "2nd Street"
+   },
+   "parcel": "RPD0040014001A",
+   "parcel_centroid": [
+    42.987218149558316,
+    -116.09228123619229
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433610261,
+   "source": {
+    "type": "way",
+    "id": 1433610261
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98718875809569,
+   "lon": -116.0920469420267,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "155",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "2nd Street"
+   },
+   "parcel": "RPD0040014010C",
+   "parcel_centroid": [
+    42.987203378885084,
+    -116.0919709498704
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433610262,
+   "source": {
+    "type": "way",
+    "id": 1433610262
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98711934062402,
+   "lon": -116.09261439471211,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "205",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "2nd Street"
+   },
+   "parcel": "RPD0040014003A",
+   "parcel_centroid": [
+    42.98708876585331,
+    -116.0925174887741
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433610263,
+   "source": {
+    "type": "way",
+    "id": 1433610263
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98703087742618,
+   "lon": -116.09286631539545,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "215",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "2nd Street"
+   },
+   "parcel": "RPD0040014006B",
+   "parcel_centroid": [
+    42.98689480844495,
+    -116.0928387958132
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433610265,
+   "source": {
+    "type": "way",
+    "id": 1433610265
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98667763164223,
+   "lon": -116.09338947168987,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "305",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "2nd Street"
+   },
+   "parcel": "RPD0040013001A",
+   "parcel_centroid": [
+    42.986574080732204,
+    -116.09329934479663
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433610267,
+   "source": {
+    "type": "way",
+    "id": 1433610267
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98662845942619,
+   "lon": -116.09232316508105,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "150",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "3rd Street"
+   },
+   "parcel": "RPD0040014016A",
+   "parcel_centroid": [
+    42.98662012060327,
+    -116.0923881454307
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433610268,
+   "source": {
+    "type": "way",
+    "id": 1433610268
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98674094381733,
+   "lon": -116.09210562370347,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "140",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "3rd Street"
+   },
+   "parcel": "RPD0040014014A",
+   "parcel_centroid": [
+    42.98682607553327,
+    -116.09204822631338
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433610269,
+   "source": {
+    "type": "way",
+    "id": 1433610269
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.987068949999994,
+   "lon": -116.09169444999999,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "860",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Riverside Avenue"
+   },
+   "parcel": "RPD0040014011A",
+   "parcel_centroid": [
+    42.98701643041987,
+    -116.09165771644896
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433610270,
+   "source": {
+    "type": "way",
+    "id": 1433610270
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98668248601562,
+   "lon": -116.09132527919593,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "105",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "3rd Street"
+   },
+   "parcel": "RPD00400156753",
+   "parcel_centroid": [
+    42.9866084966517,
+    -116.09138806087792
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433610271,
+   "source": {
+    "type": "way",
+    "id": 1433610271
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98636707175376,
+   "lon": -116.09168525215485,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "125",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "3rd Street"
+   },
+   "parcel": "RPD00400156752",
+   "parcel_centroid": [
+    42.986326255168535,
+    -116.09167856114283
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433610272,
+   "source": {
+    "type": "way",
+    "id": 1433610272
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.986104184499744,
+   "lon": -116.0920669056562,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "135",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "3rd Street"
+   },
+   "parcel": "RPD00400156751",
+   "parcel_centroid": [
+    42.9861509959357,
+    -116.0919665136899
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433610273,
+   "source": {
+    "type": "way",
+    "id": 1433610273
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98586188090834,
+   "lon": -116.0923618094488,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "145",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "3rd Street"
+   },
+   "parcel": "RPD00000156148",
+   "parcel_centroid": [
+    42.985580669658276,
+    -116.09246379534427
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433610274,
+   "source": {
+    "type": "way",
+    "id": 1433610274
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.985923497303666,
+   "lon": -116.09163893517739,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "205",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "4th Street"
+   },
+   "parcel": "RPD00400156762",
+   "parcel_centroid": [
+    42.9859523169975,
+    -116.09144146794816
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433610276,
+   "source": {
+    "type": "way",
+    "id": 1433610276
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.986163544919066,
+   "lon": -116.09100045754013,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "970",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Riverside Avenue"
+   },
+   "parcel": "RPD00400156761",
+   "parcel_centroid": [
+    42.98620956686578,
+    -116.09097308773514
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433610278,
+   "source": {
+    "type": "way",
+    "id": 1433610278
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.986409772230026,
+   "lon": -116.09125802456073,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "930",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Riverside Avenue"
+   },
+   "parcel": "RPD00400156750",
+   "parcel_centroid": [
+    42.98644057253408,
+    -116.09122379654198
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433610280,
+   "source": {
+    "type": "way",
+    "id": 1433610280
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98569295857742,
+   "lon": -116.09069437847695,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "1010",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Riverside Avenue"
+   },
+   "parcel": "RPD00000156893",
+   "parcel_centroid": [
+    42.98565820873537,
+    -116.09085042536053
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433610283,
+   "source": {
+    "type": "way",
+    "id": 1433610283
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98549724915993,
+   "lon": -116.09040187035968,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "1030",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Riverside Avenue"
+   },
+   "parcel": "RPD00000156895",
+   "parcel_centroid": [
+    42.985398113349454,
+    -116.09057298987238
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433610287,
+   "source": {
+    "type": "way",
+    "id": 1433610287
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98476795023673,
+   "lon": -116.09006098122121,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "140",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "5th Street"
+   },
+   "parcel": "RPD00000156905",
+   "parcel_centroid": [
+    42.98490101811928,
+    -116.09025303680683
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433610290,
+   "source": {
+    "type": "way",
+    "id": 1433610290
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98450197456734,
+   "lon": -116.0905336481618,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "150",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "5th Street"
+   },
+   "parcel": "RPD00000156901",
+   "parcel_centroid": [
+    42.98481598116745,
+    -116.0907441205071
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433610291,
+   "source": {
+    "type": "way",
+    "id": 1433610291
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98432551825232,
+   "lon": -116.09091982505606,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "210",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "5th Street"
+   },
+   "parcel": "RPD00000156904",
+   "parcel_centroid": [
+    42.984459971592315,
+    -116.09091061091593
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433610293,
+   "source": {
+    "type": "way",
+    "id": 1433610293
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98360921322388,
+   "lon": -116.09268260006644,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "240",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "5th Street"
+   },
+   "parcel": "RPD00000156595",
+   "parcel_centroid": [
+    42.98397138159541,
+    -116.09251293845212
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433612903,
+   "source": {
+    "type": "way",
+    "id": 1433612903
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98406024721,
+   "lon": -116.09048172391151,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "205",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "5th Street"
+   },
+   "parcel": "RPD00000157404",
+   "parcel_centroid": [
+    42.98400970702209,
+    -116.09034209451974
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": true
+   },
+   "perturbation": "housenumber"
+  },
+  {
+   "node_id": -1433612906,
+   "source": {
+    "type": "way",
+    "id": 1433612906
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98379060623992,
+   "lon": -116.0909181134324,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "215",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "5th Street"
+   },
+   "parcel": "RPD00000157405",
+   "parcel_centroid": [
+    42.98383834145934,
+    -116.09072583007702
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433612907,
+   "source": {
+    "type": "way",
+    "id": 1433612907
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98366912078674,
+   "lon": -116.09114260832607,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "225",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "5th Street"
+   },
+   "parcel": "RPD00000157406",
+   "parcel_centroid": [
+    42.983648803029816,
+    -116.09106160109205
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433612909,
+   "source": {
+    "type": "way",
+    "id": 1433612909
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.983597111484784,
+   "lon": -116.09146655964284,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "235",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "5th Street"
+   },
+   "parcel": "RPD00000157420",
+   "parcel_centroid": [
+    42.98357801274464,
+    -116.09136373908261
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433612910,
+   "source": {
+    "type": "way",
+    "id": 1433612910
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.983330190283986,
+   "lon": -116.09104581250557,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "245",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "5th Street"
+   },
+   "parcel": "RPD00000157400",
+   "parcel_centroid": [
+    42.98331695935782,
+    -116.09103673740158
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433612911,
+   "source": {
+    "type": "way",
+    "id": 1433612911
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98337095,
+   "lon": -116.0918319,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "255",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "5th Street"
+   },
+   "parcel": "RPD00000157402",
+   "parcel_centroid": [
+    42.983370473495775,
+    -116.09177640428803
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433612914,
+   "source": {
+    "type": "way",
+    "id": 1433612914
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98434738555521,
+   "lon": -116.08913026450585,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "1150",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Riverside Avenue"
+   },
+   "parcel": "RPDM0040150000",
+   "parcel_centroid": [
+    42.983564196485446,
+    -116.0896512486445
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433612916,
+   "source": {
+    "type": "way",
+    "id": 1433612916
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98393819111626,
+   "lon": -116.08915762044619,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "1230",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Riverside Avenue"
+   },
+   "parcel": "RPD00000157120",
+   "parcel_centroid": [
+    42.983720823892796,
+    -116.08860817654515
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433612919,
+   "source": {
+    "type": "way",
+    "id": 1433612919
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.984131565701404,
+   "lon": -116.08877168577641,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "1210",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Riverside Avenue"
+   },
+   "parcel": "RPD00000157101",
+   "parcel_centroid": [
+    42.98411262679818,
+    -116.0886648579599
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433612922,
+   "source": {
+    "type": "way",
+    "id": 1433612922
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.9832047983259,
+   "lon": -116.08793120200956,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "1310",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Riverside Avenue"
+   },
+   "parcel": "RPD00000222402",
+   "parcel_centroid": [
+    42.98246050318081,
+    -116.08713990512197
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433612931,
+   "source": {
+    "type": "way",
+    "id": 1433612931
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.9816241,
+   "lon": -116.08542569999999,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "1410",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Riverside Avenue"
+   },
+   "parcel": "RPD00000220880",
+   "parcel_centroid": [
+    42.981525600963046,
+    -116.08564226915163
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433612933,
+   "source": {
+    "type": "way",
+    "id": 1433612933
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.981680065017215,
+   "lon": -116.08493822373977,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "1510",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Riverside Avenue"
+   },
+   "parcel": "RPD00000220881",
+   "parcel_centroid": [
+    42.98167756267292,
+    -116.0848413748438
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433612937,
+   "source": {
+    "type": "way",
+    "id": 1433612937
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98159939180385,
+   "lon": -116.08446869520807,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "1710",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Riverside Avenue"
+   },
+   "parcel": "RPD00000220749",
+   "parcel_centroid": [
+    42.981160476425664,
+    -116.08474797319035
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433612940,
+   "source": {
+    "type": "way",
+    "id": 1433612940
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98093596252099,
+   "lon": -116.08389423861539,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "26524",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "River Road"
+   },
+   "parcel": "RP05S03E220700",
+   "parcel_centroid": [
+    42.981046771511814,
+    -116.08371729638048
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433626089,
+   "source": {
+    "type": "way",
+    "id": 1433626089
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98444565,
+   "lon": -116.0964039,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "815",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Roosevelt Avenue"
+   },
+   "parcel": "RPD00000156313",
+   "parcel_centroid": [
+    42.98455758093591,
+    -116.0965009923492
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433626092,
+   "source": {
+    "type": "way",
+    "id": 1433626092
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.9855273997061,
+   "lon": -116.09678292706454,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "735",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Roosevelt Avenue"
+   },
+   "parcel": "RPD00000156230",
+   "parcel_centroid": [
+    42.98527150005069,
+    -116.09677033711836
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433626094,
+   "source": {
+    "type": "way",
+    "id": 1433626094
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98588071849179,
+   "lon": -116.09676062587423,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "635",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Roosevelt Avenue"
+   },
+   "parcel": "RPD00000156157",
+   "parcel_centroid": [
+    42.98588340030933,
+    -116.09672808287344
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433626096,
+   "source": {
+    "type": "way",
+    "id": 1433626096
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98617717613991,
+   "lon": -116.09670330672323,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "625",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Roosevelt Avenue"
+   },
+   "parcel": "RPD00000156155",
+   "parcel_centroid": [
+    42.98628042373599,
+    -116.09677802488108
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433626098,
+   "source": {
+    "type": "way",
+    "id": 1433626098
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98684866048213,
+   "lon": -116.09774382528249,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "610",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Roosevelt Avenue"
+   },
+   "parcel": "RPD05400050080",
+   "parcel_centroid": [
+    42.98677611524665,
+    -116.09766077208891
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433626099,
+   "source": {
+    "type": "way",
+    "id": 1433626099
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98658024854739,
+   "lon": -116.09768575895286,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "620",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Roosevelt Avenue"
+   },
+   "parcel": "RPD00000169010",
+   "parcel_centroid": [
+    42.98664996826513,
+    -116.09805987806766
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433626102,
+   "source": {
+    "type": "way",
+    "id": 1433626102
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98622143167924,
+   "lon": -116.09763879326684,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "630",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Roosevelt Avenue"
+   },
+   "parcel": "RPD00000169012",
+   "parcel_centroid": [
+    42.986288718891,
+    -116.098019925428
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433626103,
+   "source": {
+    "type": "way",
+    "id": 1433626103
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.985962425944166,
+   "lon": -116.09756051587559,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "640",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Roosevelt Avenue"
+   },
+   "parcel": "RPD00000169222",
+   "parcel_centroid": [
+    42.98599802852927,
+    -116.0977540508772
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433626104,
+   "source": {
+    "type": "way",
+    "id": 1433626104
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98573899755272,
+   "lon": -116.09762577540798,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "650",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Roosevelt Avenue"
+   },
+   "parcel": "RPD00000169220",
+   "parcel_centroid": [
+    42.98581519809601,
+    -116.09801249097316
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433626107,
+   "source": {
+    "type": "way",
+    "id": 1433626107
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98542668932963,
+   "lon": -116.09872986139092,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "750",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Jack Avenue"
+   },
+   "parcel": "RPD00000169015",
+   "parcel_centroid": [
+    42.98549455324113,
+    -116.0987023941513
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433626109,
+   "source": {
+    "type": "way",
+    "id": 1433626109
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98543350301619,
+   "lon": -116.09910156861659,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "230",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Judith Drive"
+   },
+   "parcel": "RPD00000169210",
+   "parcel_centroid": [
+    42.9854482675889,
+    -116.09917086946245
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433626110,
+   "source": {
+    "type": "way",
+    "id": 1433626110
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.985126114756014,
+   "lon": -116.0992725134292,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "330",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "A Kathleen Drive"
+   },
+   "parcel": "RPD0540002003B",
+   "parcel_centroid": [
+    42.98513581734315,
+    -116.09935411201366
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433626113,
+   "source": {
+    "type": "way",
+    "id": 1433626113
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98415573838018,
+   "lon": -116.09922983937727,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "315",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Kathleen Drive"
+   },
+   "parcel": "RPD0540001001A",
+   "parcel_centroid": [
+    42.984211763131896,
+    -116.09926867153939
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433626114,
+   "source": {
+    "type": "way",
+    "id": 1433626114
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.984264374979084,
+   "lon": -116.09892257949312,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "215",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Kathleen Drive"
+   },
+   "parcel": "RPD0540001003B",
+   "parcel_centroid": [
+    42.98421230363191,
+    -116.09879963985799
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433626117,
+   "source": {
+    "type": "way",
+    "id": 1433626117
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98417272671686,
+   "lon": -116.1002228912659,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "375",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Kathleen Drive"
+   },
+   "parcel": "RPD00000169402",
+   "parcel_centroid": [
+    42.9842290011066,
+    -116.1001948191175
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433626118,
+   "source": {
+    "type": "way",
+    "id": 1433626118
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98470765122704,
+   "lon": -116.099769653052,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "410",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Kathleen Drive"
+   },
+   "parcel": "RPD00000169018",
+   "parcel_centroid": [
+    42.98473863600025,
+    -116.09979105196943
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433626119,
+   "source": {
+    "type": "way",
+    "id": 1433626119
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.984717512470226,
+   "lon": -116.10022132473267,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "400",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Sierra Way"
+   },
+   "parcel": "RPD00000169025",
+   "parcel_centroid": [
+    42.98476158724284,
+    -116.1002668790941
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433626121,
+   "source": {
+    "type": "way",
+    "id": 1433626121
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98558580245786,
+   "lon": -116.0999803253613,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "440",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Sierra Way"
+   },
+   "parcel": "RPD00000169000",
+   "parcel_centroid": [
+    42.985627206817135,
+    -116.1000874412097
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": true
+   },
+   "perturbation": "street-abbrev"
+  },
+  {
+   "node_id": -1433626124,
+   "source": {
+    "type": "way",
+    "id": 1433626124
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.985414724953465,
+   "lon": -116.10067290470465,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "440",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Westphal Drive"
+   },
+   "parcel": "RPD00000169401",
+   "parcel_centroid": [
+    42.985101027904186,
+    -116.10070431489801
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433626126,
+   "source": {
+    "type": "way",
+    "id": 1433626126
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98578212411625,
+   "lon": -116.10058250012749,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "715",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Westphal Drive"
+   },
+   "parcel": "RPD00000169300",
+   "parcel_centroid": [
+    42.98621335898031,
+    -116.10064898635339
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433626128,
+   "source": {
+    "type": "way",
+    "id": 1433626128
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98481112579633,
+   "lon": -116.09847921024144,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "740",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Jack Avenue"
+   },
+   "parcel": "RPD0540003001A",
+   "parcel_centroid": [
+    42.98483356366044,
+    -116.0986156427812
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433626131,
+   "source": {
+    "type": "way",
+    "id": 1433626131
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.99029365,
+   "lon": -116.10178365,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "260",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Estate Place"
+   },
+   "parcel": "RPD06000000100",
+   "parcel_centroid": [
+    42.990319764385994,
+    -116.10186171020379
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433626133,
+   "source": {
+    "type": "way",
+    "id": 1433626133
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98990495364749,
+   "lon": -116.10171621272659,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "265",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Estate Place"
+   },
+   "parcel": "RPD06000000200",
+   "parcel_centroid": [
+    42.98997688025868,
+    -116.10186213039441
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433640516,
+   "source": {
+    "type": "way",
+    "id": 1433640516
+   },
+   "kind": "building",
+   "building": "yes",
+   "lat": 42.98303002360433,
+   "lon": -116.09721875723426,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "110",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "State Highway 78"
+   },
+   "parcel": "RPD00000223159",
+   "parcel_centroid": [
+    42.98302434839316,
+    -116.09715766317308
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433640518,
+   "source": {
+    "type": "way",
+    "id": 1433640518
+   },
+   "kind": "building",
+   "building": "yes",
+   "lat": 42.98294545589,
+   "lon": -116.09669035087458,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "130",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "State Highway 78"
+   },
+   "parcel": "RPD00000223156",
+   "parcel_centroid": [
+    42.98292624468106,
+    -116.09673615097805
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433640519,
+   "source": {
+    "type": "way",
+    "id": 1433640519
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98251789935774,
+   "lon": -116.096377231219,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "100",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Burghardt Road"
+   },
+   "parcel": "RPD00000223157",
+   "parcel_centroid": [
+    42.982590404875005,
+    -116.09657271859044
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433640520,
+   "source": {
+    "type": "way",
+    "id": 1433640520
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98275648382671,
+   "lon": -116.09721790103778,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "120",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "State Highway 78"
+   },
+   "parcel": "RPD00000223160",
+   "parcel_centroid": [
+    42.982613722932726,
+    -116.09721807156353
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433640522,
+   "source": {
+    "type": "way",
+    "id": 1433640522
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98274966830002,
+   "lon": -116.09770011040646,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "102",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "State Highway 78"
+   },
+   "parcel": "RP05S03E210010",
+   "parcel_centroid": [
+    42.98280327247047,
+    -116.0977178603081
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433640523,
+   "source": {
+    "type": "way",
+    "id": 1433640523
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98299486596737,
+   "lon": -116.09823229553355,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "100",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "State Highway 78"
+   },
+   "parcel": "RP05S03E210020",
+   "parcel_centroid": [
+    42.9827765215667,
+    -116.09825710304311
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433640529,
+   "source": {
+    "type": "way",
+    "id": 1433640529
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98012125795277,
+   "lon": -116.09524868095853,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "330",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Burghardt Road"
+   },
+   "parcel": "RP05S03E223440",
+   "parcel_centroid": [
+    42.9800918103122,
+    -116.09557550769294
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433640532,
+   "source": {
+    "type": "way",
+    "id": 1433640532
+   },
+   "kind": "building",
+   "building": "yes",
+   "lat": 42.981392405316434,
+   "lon": -116.09492253296317,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "400",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Burghardt Road"
+   },
+   "parcel": "RPD00000223450",
+   "parcel_centroid": [
+    42.98107155464195,
+    -116.09394580407049
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433640533,
+   "source": {
+    "type": "way",
+    "id": 1433640533
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98064824974102,
+   "lon": -116.09660962279341,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "300",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Burghardt Road"
+   },
+   "parcel": "RP05S03E223210",
+   "parcel_centroid": [
+    42.98107981915585,
+    -116.09672949134432
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433640537,
+   "source": {
+    "type": "way",
+    "id": 1433640537
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98257040744761,
+   "lon": -116.09473488494962,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "230",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Frontage Road"
+   },
+   "parcel": "RPD00000223140",
+   "parcel_centroid": [
+    42.98231901145322,
+    -116.09548638447231
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433640539,
+   "source": {
+    "type": "way",
+    "id": 1433640539
+   },
+   "kind": "building",
+   "building": "yes",
+   "lat": 42.978940198578094,
+   "lon": -116.09640814480694,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "1209",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Burghardt Road"
+   },
+   "parcel": "RP05S03E222400",
+   "parcel_centroid": [
+    42.97862690094396,
+    -116.09588444413707
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433683204,
+   "source": {
+    "type": "way",
+    "id": 1433683204
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98233545530374,
+   "lon": -116.0942005566025,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "260",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Frontage Road"
+   },
+   "parcel": "RPD00000223015",
+   "parcel_centroid": [
+    42.98222792880716,
+    -116.09424941514062
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433683209,
+   "source": {
+    "type": "way",
+    "id": 1433683209
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98228516238677,
+   "lon": -116.09345449905219,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "310",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Frontage Road"
+   },
+   "parcel": "RPD00000223026",
+   "parcel_centroid": [
+    42.98224185496571,
+    -116.0933758092601
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433683211,
+   "source": {
+    "type": "way",
+    "id": 1433683211
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98190532154973,
+   "lon": -116.0936042339521,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "110",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Carothers Lane"
+   },
+   "parcel": "RPD00000223050",
+   "parcel_centroid": [
+    42.98181717849099,
+    -116.0934759389749
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433683212,
+   "source": {
+    "type": "way",
+    "id": 1433683212
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.982114100000004,
+   "lon": -116.09263345,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "410",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Frontage Road"
+   },
+   "parcel": "RPD00000223018",
+   "parcel_centroid": [
+    42.9820778017398,
+    -116.09277361431317
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433683213,
+   "source": {
+    "type": "way",
+    "id": 1433683213
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98175335411819,
+   "lon": -116.09273849917615,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "530",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Johnson Lane"
+   },
+   "parcel": "RPD00000223014",
+   "parcel_centroid": [
+    42.98172311999582,
+    -116.09270997373373
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433683215,
+   "source": {
+    "type": "way",
+    "id": 1433683215
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98129312797182,
+   "lon": -116.09248706348521,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "417",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Johnson Lane"
+   },
+   "parcel": "RPD00000223012",
+   "parcel_centroid": [
+    42.98132692393205,
+    -116.09267659069344
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433683217,
+   "source": {
+    "type": "way",
+    "id": 1433683217
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98203281777129,
+   "lon": -116.09231443493286,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "416",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Frontage Road"
+   },
+   "parcel": "RPD00000223019",
+   "parcel_centroid": [
+    42.982012369166824,
+    -116.09238570253358
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433683218,
+   "source": {
+    "type": "way",
+    "id": 1433683218
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.9819833,
+   "lon": -116.09204575,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "420",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Frontage Road"
+   },
+   "parcel": "RPD00000222558",
+   "parcel_centroid": [
+    42.981942037879065,
+    -116.09188791263529
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433683219,
+   "source": {
+    "type": "way",
+    "id": 1433683219
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.981415784582715,
+   "lon": -116.09202149731368,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "535",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Kessinger Lane"
+   },
+   "parcel": "RPD00000222600",
+   "parcel_centroid": [
+    42.981554660391055,
+    -116.09202960237094
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433683220,
+   "source": {
+    "type": "way",
+    "id": 1433683220
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98093984068011,
+   "lon": -116.09199858453042,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "510",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Kessinger Lane"
+   },
+   "parcel": "RPD00000222705",
+   "parcel_centroid": [
+    42.98091385837625,
+    -116.0919487247404
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433801038,
+   "source": {
+    "type": "way",
+    "id": 1433801038
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98271819656408,
+   "lon": -116.09245487986533,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "505",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "State Highway 78"
+   },
+   "parcel": "RPD00000223004",
+   "parcel_centroid": [
+    42.98277700848071,
+    -116.092334130968
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433801049,
+   "source": {
+    "type": "way",
+    "id": 1433801049
+   },
+   "kind": "building",
+   "building": "yes",
+   "lat": 42.98257320332059,
+   "lon": -116.09181402053979,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "515",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "State Highway 78"
+   },
+   "parcel": "RPD00000222580",
+   "parcel_centroid": [
+    42.982682623287126,
+    -116.09179160413198
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433801052,
+   "source": {
+    "type": "way",
+    "id": 1433801052
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98246185454304,
+   "lon": -116.09119282079773,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "535",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "State Highway 78"
+   },
+   "parcel": "RPD00000222554",
+   "parcel_centroid": [
+    42.982585239110364,
+    -116.09111871612636
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433801064,
+   "source": {
+    "type": "way",
+    "id": 1433801064
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98125064939801,
+   "lon": -116.09145983143527,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "520",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Kessinger Lane"
+   },
+   "parcel": "RPD00000222613",
+   "parcel_centroid": [
+    42.98113173763694,
+    -116.09141831813206
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433801065,
+   "source": {
+    "type": "way",
+    "id": 1433801065
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98161361431394,
+   "lon": -116.09133514912936,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "530",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Kessinger Lane"
+   },
+   "parcel": "RPD00000222614",
+   "parcel_centroid": [
+    42.98163776998497,
+    -116.09139220457827
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433801066,
+   "source": {
+    "type": "way",
+    "id": 1433801066
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98183776348271,
+   "lon": -116.09120113761725,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "540",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Kessinger Lane"
+   },
+   "parcel": "RPD00000222610",
+   "parcel_centroid": [
+    42.98185936815086,
+    -116.09131753058071
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433801067,
+   "source": {
+    "type": "way",
+    "id": 1433801067
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98243453485425,
+   "lon": -116.09066388778385,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "615",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "State Highway 78"
+   },
+   "parcel": "RPD00000222570",
+   "parcel_centroid": [
+    42.98226329109073,
+    -116.09029473783124
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433858865,
+   "source": {
+    "type": "way",
+    "id": 1433858865
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98128907618536,
+   "lon": -116.08771844525694,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "625",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "State Highway 78"
+   },
+   "parcel": "RPD00000222548",
+   "parcel_centroid": [
+    42.98136119765216,
+    -116.08806908233768
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433943675,
+   "source": {
+    "type": "way",
+    "id": 1433943675
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98063841590779,
+   "lon": -116.08659309265978,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "630",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "State Highway 78"
+   },
+   "parcel": "RPD00000221043",
+   "parcel_centroid": [
+    42.98066370404983,
+    -116.08664018957252
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433943676,
+   "source": {
+    "type": "way",
+    "id": 1433943676
+   },
+   "kind": "building",
+   "building": "yes",
+   "lat": 42.9804702238457,
+   "lon": -116.08638996671577,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "635",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "State Highway 78"
+   },
+   "parcel": "RPD00000221043",
+   "parcel_centroid": [
+    42.98066370404983,
+    -116.08664018957252
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433943680,
+   "source": {
+    "type": "way",
+    "id": 1433943680
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.97950295768269,
+   "lon": -116.08710727569996,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "860",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "State Highway 78"
+   },
+   "parcel": "RPD00000221042",
+   "parcel_centroid": [
+    42.97960743505925,
+    -116.0866998439
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433943705,
+   "source": {
+    "type": "way",
+    "id": 1433943705
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.97869761669918,
+   "lon": -116.08604584318891,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "1220",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "State Highway 78"
+   },
+   "parcel": "RPD00000221222",
+   "parcel_centroid": [
+    42.97896213493969,
+    -116.08606245364288
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1433943710,
+   "source": {
+    "type": "way",
+    "id": 1433943710
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.9760463293064,
+   "lon": -116.08225337878211,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "1215",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "State Highway 78"
+   },
+   "parcel": "RPD00000221228",
+   "parcel_centroid": [
+    42.97620561443916,
+    -116.0819955312429
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1434638730,
+   "source": {
+    "type": "way",
+    "id": 1434638730
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.977255135871864,
+   "lon": -116.08088988259712,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "1185",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "State Highway 78"
+   },
+   "parcel": "RPD00000222098",
+   "parcel_centroid": [
+    42.9777927099855,
+    -116.08068132263516
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1434638733,
+   "source": {
+    "type": "way",
+    "id": 1434638733
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.97950472005692,
+   "lon": -116.08462055503921,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "925",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "State Highway 78"
+   },
+   "parcel": "RPD00000221212",
+   "parcel_centroid": [
+    42.97947907586429,
+    -116.0843717180225
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1434638741,
+   "source": {
+    "type": "way",
+    "id": 1434638741
+   },
+   "kind": "building",
+   "building": "yes",
+   "lat": 42.97873733471209,
+   "lon": -116.08355580981056,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "905",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "State Highway 78"
+   },
+   "parcel": "RPD00000221200",
+   "parcel_centroid": [
+    42.97897407639898,
+    -116.08331148556103
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1434663565,
+   "source": {
+    "type": "way",
+    "id": 1434663565
+   },
+   "kind": "building",
+   "building": "yes",
+   "lat": 42.97796173796785,
+   "lon": -116.08217716722567,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "1005",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "State Highway 78"
+   },
+   "parcel": "RPD00000222000",
+   "parcel_centroid": [
+    42.978206738581555,
+    -116.08190062314665
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1434663568,
+   "source": {
+    "type": "way",
+    "id": 1434663568
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.97687236688963,
+   "lon": -116.07989350080395,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "1205",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "State Highway 78"
+   },
+   "parcel": "RPD00000222259",
+   "parcel_centroid": [
+    42.976803804594034,
+    -116.07987543751615
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1434663573,
+   "source": {
+    "type": "way",
+    "id": 1434663573
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.975202043867995,
+   "lon": -116.0800463677087,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "1230",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "State Highway 78"
+   },
+   "parcel": "RPD00000227352",
+   "parcel_centroid": [
+    42.975309734204075,
+    -116.08101170624509
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1434663574,
+   "source": {
+    "type": "way",
+    "id": 1434663574
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.975740271023895,
+   "lon": -116.08053559826642,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "1210",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "State Highway 78"
+   },
+   "parcel": "RPD00000227350",
+   "parcel_centroid": [
+    42.97581730507225,
+    -116.08151117972282
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1434663583,
+   "source": {
+    "type": "way",
+    "id": 1434663583
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.975736810317045,
+   "lon": -116.07922772124682,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "1235",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "State Highway 78"
+   },
+   "parcel": "RPD00000222399",
+   "parcel_centroid": [
+    42.97568442498229,
+    -116.07840874511628
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1434663596,
+   "source": {
+    "type": "way",
+    "id": 1434663596
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.9768713,
+   "lon": -116.07821394999999,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "26800",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "River Road"
+   },
+   "parcel": "RPD00000222252",
+   "parcel_centroid": [
+    42.976922546322584,
+    -116.07827475093023
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1434663604,
+   "source": {
+    "type": "way",
+    "id": 1434663604
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.97617021404125,
+   "lon": -116.07700591693637,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "25066",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Sheep Camp Road"
+   },
+   "parcel": "RP05S03E233221",
+   "parcel_centroid": [
+    42.97642169338548,
+    -116.07662916607022
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1434663608,
+   "source": {
+    "type": "way",
+    "id": 1434663608
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.97368708096536,
+   "lon": -116.07776625998261,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "1255",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "State Highway 78"
+   },
+   "parcel": "RPD00000227650",
+   "parcel_centroid": [
+    42.97379400638056,
+    -116.07800746616557
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1434663619,
+   "source": {
+    "type": "way",
+    "id": 1434663619
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.976247092074686,
+   "lon": -116.08508621555677,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "24912",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Sagebrush Hill Lane"
+   },
+   "parcel": "RP05S03E221700",
+   "parcel_centroid": [
+    42.97639895782486,
+    -116.08457485302938
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1434663625,
+   "source": {
+    "type": "way",
+    "id": 1434663625
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.97635384248551,
+   "lon": -116.08598887092994,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "24886",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Sagebrush Hill Lane"
+   },
+   "parcel": "RP05S03E221600",
+   "parcel_centroid": [
+    42.97707172219962,
+    -116.08573083312719
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1434663632,
+   "source": {
+    "type": "way",
+    "id": 1434663632
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.973493200842874,
+   "lon": -116.08685605370927,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "24789",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Sagebrush Hill Lane"
+   },
+   "parcel": "RP05S03E228100",
+   "parcel_centroid": [
+    42.97335209968068,
+    -116.08684771518989
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1434887952,
+   "source": {
+    "type": "way",
+    "id": 1434887952
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98090024530804,
+   "lon": -116.07973342362466,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "26647",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "River Road"
+   },
+   "parcel": "RP05S03E220601",
+   "parcel_centroid": [
+    42.97977217319843,
+    -116.07972353049708
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1434887957,
+   "source": {
+    "type": "way",
+    "id": 1434887957
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.981026675029234,
+   "lon": -116.07832623207167,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "26687",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "River Road"
+   },
+   "parcel": "RP05S03E220110",
+   "parcel_centroid": [
+    42.98081453524646,
+    -116.07837226929047
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1434887969,
+   "source": {
+    "type": "way",
+    "id": 1434887969
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.982311356294844,
+   "lon": -116.07324155789011,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "26674",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "River Road"
+   },
+   "parcel": "RP05S03E233215",
+   "parcel_centroid": [
+    42.981880290689745,
+    -116.07296008901447
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1434887970,
+   "source": {
+    "type": "way",
+    "id": 1434887970
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.9823853,
+   "lon": -116.0730144,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "26680",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "River Road"
+   },
+   "parcel": "RP05S03E233215",
+   "parcel_centroid": [
+    42.981880290689745,
+    -116.07296008901447
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1434887996,
+   "source": {
+    "type": "way",
+    "id": 1434887996
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.98025755370842,
+   "lon": -116.07117991258983,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "25192",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Sub Power Lane"
+   },
+   "parcel": "RP05S03E232403",
+   "parcel_centroid": [
+    42.980248756604965,
+    -116.0713237224684
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1434963230,
+   "source": {
+    "type": "way",
+    "id": 1434963230
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.96068580106208,
+   "lon": -116.08560730371074,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "24780",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Bybee Lane"
+   },
+   "parcel": "RP05S03E277800",
+   "parcel_centroid": [
+    42.95942048115964,
+    -116.08485974914394
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1434980618,
+   "source": {
+    "type": "way",
+    "id": 1434980618
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.96163958515828,
+   "lon": -116.08646225281299,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "24781",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Bybee Lane"
+   },
+   "parcel": "RP05S03E271300",
+   "parcel_centroid": [
+    42.96233750712198,
+    -116.08625121303368
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1434980625,
+   "source": {
+    "type": "way",
+    "id": 1434980625
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.96822400119237,
+   "lon": -116.0779625720755,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "36873",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "State Highway 78"
+   },
+   "parcel": "RP05S03E229491",
+   "parcel_centroid": [
+    42.968367779743744,
+    -116.0788018569145
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1435143666,
+   "source": {
+    "type": "way",
+    "id": 1435143666
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.96081543920498,
+   "lon": -116.07849193254083,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "24964",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Draper Lane"
+   },
+   "parcel": "RP05S03E277300",
+   "parcel_centroid": [
+    42.96064002857435,
+    -116.07793310518922
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -1436294751,
+   "source": {
+    "type": "way",
+    "id": 1436294751
+   },
+   "kind": "building",
+   "building": "detached",
+   "lat": 42.972597036750564,
+   "lon": -116.07169748335482,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "25158",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Sheep Camp Road"
+   },
+   "parcel": "RP05S03E235100",
+   "parcel_centroid": [
+    42.97312662421162,
+    -116.07077784436129
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -12415099940,
+   "source": {
+    "type": "node",
+    "id": 12415099940
+   },
+   "kind": "standalone",
+   "building": null,
+   "lat": 42.9917585,
+   "lon": -116.0918788,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "2619",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "South Hayland Road"
+   },
+   "parcel": "RP05S03E154200",
+   "parcel_centroid": [
+    42.9917584640164,
+    -116.09187882030915
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -12415108617,
+   "source": {
+    "type": "node",
+    "id": 12415108617
+   },
+   "kind": "standalone",
+   "building": null,
+   "lat": 42.9927645,
+   "lon": -116.0726052,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "2650",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "South Old Dixie Lane"
+   },
+   "parcel": "RP05S03E142415",
+   "parcel_centroid": [
+    42.9927643214907,
+    -116.07260524344646
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -12415108618,
+   "source": {
+    "type": "node",
+    "id": 12415108618
+   },
+   "kind": "standalone",
+   "building": null,
+   "lat": 43.0067307,
+   "lon": -116.0926068,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "218",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Grandview Road"
+   },
+   "parcel": "RP05S03E102410",
+   "parcel_centroid": [
+    43.00673043425208,
+    -116.09260678781179
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -12426909125,
+   "source": {
+    "type": "node",
+    "id": 12426909125
+   },
+   "kind": "standalone",
+   "building": null,
+   "lat": 42.9875426,
+   "lon": -116.1016675,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "606",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Roosevelt Avenue"
+   },
+   "parcel": "RPD00000168394",
+   "parcel_centroid": [
+    42.98754265035932,
+    -116.1016675362013
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -12426926523,
+   "source": {
+    "type": "node",
+    "id": 12426926523
+   },
+   "kind": "standalone",
+   "building": null,
+   "lat": 42.9862244,
+   "lon": -116.0993858,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "300",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Jensen Drive"
+   },
+   "parcel": "RPD00000169034",
+   "parcel_centroid": [
+    42.9862243899362,
+    -116.0993857702258
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -12426926632,
+   "source": {
+    "type": "node",
+    "id": 12426926632
+   },
+   "kind": "standalone",
+   "building": null,
+   "lat": 42.9853346,
+   "lon": -116.0913749,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "160",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "4th Street"
+   },
+   "parcel": "RPD00000156903",
+   "parcel_centroid": [
+    42.985002415539434,
+    -116.09159894988032
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -12426927160,
+   "source": {
+    "type": "node",
+    "id": 12426927160
+   },
+   "kind": "standalone",
+   "building": null,
+   "lat": 42.9809902,
+   "lon": -116.0871714,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "627",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "State Highway 78"
+   },
+   "parcel": "RPD00000221044",
+   "parcel_centroid": [
+    42.980990157441234,
+    -116.0871714485981
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -12426927290,
+   "source": {
+    "type": "node",
+    "id": 12426927290
+   },
+   "kind": "standalone",
+   "building": null,
+   "lat": 42.9899827,
+   "lon": -116.1014295,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "245",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Estate Place"
+   },
+   "parcel": "RPD06000000190",
+   "parcel_centroid": [
+    42.98998273917623,
+    -116.10142951691195
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -12426927503,
+   "source": {
+    "type": "node",
+    "id": 12426927503
+   },
+   "kind": "standalone",
+   "building": null,
+   "lat": 42.9828519,
+   "lon": -116.0963572,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "140",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "State Highway 78"
+   },
+   "parcel": "RPD00000223155",
+   "parcel_centroid": [
+    42.98285189219797,
+    -116.09635723792154
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -12426927576,
+   "source": {
+    "type": "node",
+    "id": 12426927576
+   },
+   "kind": "standalone",
+   "building": null,
+   "lat": 42.9900312,
+   "lon": -116.0990678,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "145",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Estate Place"
+   },
+   "parcel": "RPD06000000140",
+   "parcel_centroid": [
+    42.99003040990753,
+    -116.0990668568233
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -12426927820,
+   "source": {
+    "type": "node",
+    "id": 12426927820
+   },
+   "kind": "standalone",
+   "building": null,
+   "lat": 42.9891087,
+   "lon": -116.0947662,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "320",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Main Street"
+   },
+   "parcel": "RPD0040002012A",
+   "parcel_centroid": [
+    42.98907281170266,
+    -116.0948432349282
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -12426927863,
+   "source": {
+    "type": "node",
+    "id": 12426927863
+   },
+   "kind": "standalone",
+   "building": null,
+   "lat": 42.9900399,
+   "lon": -116.0986337,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "125",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Estate Place"
+   },
+   "parcel": "RPD06000000130",
+   "parcel_centroid": [
+    42.99003955929031,
+    -116.09863352766746
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -12426927891,
+   "source": {
+    "type": "node",
+    "id": 12426927891
+   },
+   "kind": "standalone",
+   "building": null,
+   "lat": 42.9916794,
+   "lon": -116.106529,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "25847",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "River Road"
+   },
+   "parcel": "RP05S03E160610",
+   "parcel_centroid": [
+    42.99174627513954,
+    -116.10654610411434
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -12426928019,
+   "source": {
+    "type": "node",
+    "id": 12426928019
+   },
+   "kind": "standalone",
+   "building": null,
+   "lat": 42.9903145,
+   "lon": -116.1014303,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "240",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Estate Place"
+   },
+   "parcel": "RPD06000000090",
+   "parcel_centroid": [
+    42.99031449157699,
+    -116.10143030793745
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -12426928385,
+   "source": {
+    "type": "node",
+    "id": 12426928385
+   },
+   "kind": "standalone",
+   "building": null,
+   "lat": 42.985047,
+   "lon": -116.0977311,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "810",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Roosevelt Avenue"
+   },
+   "parcel": "RPD0540004001A",
+   "parcel_centroid": [
+    42.985047028734144,
+    -116.09773111423144
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -12426928556,
+   "source": {
+    "type": "node",
+    "id": 12426928556
+   },
+   "kind": "standalone",
+   "building": null,
+   "lat": 42.9891441,
+   "lon": -116.0935049,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "215",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Main Street"
+   },
+   "parcel": "RPD0040008001A",
+   "parcel_centroid": [
+    42.98902812687427,
+    -116.09353326685041
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -12426928595,
+   "source": {
+    "type": "node",
+    "id": 12426928595
+   },
+   "kind": "standalone",
+   "building": null,
+   "lat": 42.9736923,
+   "lon": -116.0919559,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "1000",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Burghardt Road"
+   },
+   "parcel": "RP05S03E223600",
+   "parcel_centroid": [
+    42.973692088093436,
+    -116.09195591420387
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -12426928599,
+   "source": {
+    "type": "node",
+    "id": 12426928599
+   },
+   "kind": "standalone",
+   "building": null,
+   "lat": 42.9900097,
+   "lon": -116.100138,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "185",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Estate Place"
+   },
+   "parcel": "RPD0600000016A",
+   "parcel_centroid": [
+    42.99000965207055,
+    -116.10013797422076
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -12426929047,
+   "source": {
+    "type": "node",
+    "id": 12426929047
+   },
+   "kind": "standalone",
+   "building": null,
+   "lat": 42.990333,
+   "lon": -116.1005859,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "200",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Estate Place"
+   },
+   "parcel": "RPD06000000070",
+   "parcel_centroid": [
+    42.990332962075335,
+    -116.10058593879272
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -12426929330,
+   "source": {
+    "type": "node",
+    "id": 12426929330
+   },
+   "kind": "standalone",
+   "building": null,
+   "lat": 42.9900192,
+   "lon": -116.099705,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "165",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Estate Place"
+   },
+   "parcel": "RPD06000000150",
+   "parcel_centroid": [
+    42.9900192323256,
+    -116.09970495603791
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -12426929518,
+   "source": {
+    "type": "node",
+    "id": 12426929518
+   },
+   "kind": "standalone",
+   "building": null,
+   "lat": 42.9866407,
+   "lon": -116.124373,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "34671",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "State Highway 78"
+   },
+   "parcel": "RP05S03E171640",
+   "parcel_centroid": [
+    42.98664063703123,
+    -116.12437295225565
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -12426929773,
+   "source": {
+    "type": "node",
+    "id": 12426929773
+   },
+   "kind": "standalone",
+   "building": null,
+   "lat": 42.990324,
+   "lon": -116.1010155,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "220",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Estate Place"
+   },
+   "parcel": "RPD06000000080",
+   "parcel_centroid": [
+    42.99032399524623,
+    -116.10101552101811
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -12426930031,
+   "source": {
+    "type": "node",
+    "id": 12426930031
+   },
+   "kind": "standalone",
+   "building": null,
+   "lat": 42.9867444,
+   "lon": -116.0969183,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "500",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Burghardt Road"
+   },
+   "parcel": "RPD00000156290",
+   "parcel_centroid": [
+    42.98674442607714,
+    -116.09691829625952
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -12426930060,
+   "source": {
+    "type": "node",
+    "id": 12426930060
+   },
+   "kind": "standalone",
+   "building": null,
+   "lat": 42.989991,
+   "lon": -116.101014,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "225",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Estate Place"
+   },
+   "parcel": "RPD06000000180",
+   "parcel_centroid": [
+    42.98999100751068,
+    -116.10101399465303
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -12426930312,
+   "source": {
+    "type": "node",
+    "id": 12426930312
+   },
+   "kind": "standalone",
+   "building": null,
+   "lat": 42.9702042,
+   "lon": -116.10236,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "25688",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Boundary Lane"
+   },
+   "parcel": "RP05S03E218508",
+   "parcel_centroid": [
+    42.9702041694301,
+    -116.10235995076039
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -12426930339,
+   "source": {
+    "type": "node",
+    "id": 12426930339
+   },
+   "kind": "standalone",
+   "building": null,
+   "lat": 42.9878051,
+   "lon": -116.0928577,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "745",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Idaho Avenue"
+   },
+   "parcel": "RPD0040009007C",
+   "parcel_centroid": [
+    42.98778440314109,
+    -116.09282749103728
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -12426930343,
+   "source": {
+    "type": "node",
+    "id": 12426930343
+   },
+   "kind": "standalone",
+   "building": null,
+   "lat": 42.9899999,
+   "lon": -116.1005826,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "205",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Estate Place"
+   },
+   "parcel": "RPD06000000170",
+   "parcel_centroid": [
+    42.98999992778873,
+    -116.10058264074821
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -12426930458,
+   "source": {
+    "type": "node",
+    "id": 12426930458
+   },
+   "kind": "standalone",
+   "building": null,
+   "lat": 42.9899769,
+   "lon": -116.0941182,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "500",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Riverside Avenue"
+   },
+   "parcel": "RPD0040001001A",
+   "parcel_centroid": [
+    42.989976919183455,
+    -116.09411818385644
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -12426930500,
+   "source": {
+    "type": "node",
+    "id": 12426930500
+   },
+   "kind": "standalone",
+   "building": null,
+   "lat": 42.9903514,
+   "lon": -116.0997032,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "160",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Estate Place"
+   },
+   "parcel": "RPD06000000050",
+   "parcel_centroid": [
+    42.99035143949382,
+    -116.0997031765419
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -12426930616,
+   "source": {
+    "type": "node",
+    "id": 12426930616
+   },
+   "kind": "standalone",
+   "building": null,
+   "lat": 42.9920657,
+   "lon": -116.0965,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "100",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Riverside Avenue"
+   },
+   "parcel": "RPD00000153700",
+   "parcel_centroid": [
+    42.99206569474342,
+    -116.0964999558877
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -12426930631,
+   "source": {
+    "type": "node",
+    "id": 12426930631
+   },
+   "kind": "standalone",
+   "building": null,
+   "lat": 42.9900495,
+   "lon": -116.0982057,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "105",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Estate Place"
+   },
+   "parcel": "RPD06000000120",
+   "parcel_centroid": [
+    42.990049462295644,
+    -116.09820574755273
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -12426930745,
+   "source": {
+    "type": "node",
+    "id": 12426930745
+   },
+   "kind": "standalone",
+   "building": null,
+   "lat": 42.9897254,
+   "lon": -116.0967304,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "420",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Boise Avenue"
+   },
+   "parcel": "RPD004000F0100",
+   "parcel_centroid": [
+    42.98972537227652,
+    -116.09673039661509
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -12426930787,
+   "source": {
+    "type": "node",
+    "id": 12426930787
+   },
+   "kind": "standalone",
+   "building": null,
+   "lat": 42.9903424,
+   "lon": -116.1001363,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "180",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "Estate Place"
+   },
+   "parcel": "RPD06000000060",
+   "parcel_centroid": [
+    42.99034236476352,
+    -116.10013625059021
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -12679295221,
+   "source": {
+    "type": "node",
+    "id": 12679295221
+   },
+   "kind": "standalone",
+   "building": null,
+   "lat": 43.0116713,
+   "lon": -116.0776462,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "1027",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "South Hayland Road"
+   },
+   "parcel": "RP05S03E100010",
+   "parcel_centroid": [
+    43.00855752706654,
+    -116.08260703470147
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -12679295420,
+   "source": {
+    "type": "node",
+    "id": 12679295420
+   },
+   "kind": "standalone",
+   "building": null,
+   "lat": 43.0119547,
+   "lon": -116.0754745,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "1097",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "East Shaw Road"
+   },
+   "parcel": "RP05S03E113050",
+   "parcel_centroid": [
+    43.011807640787055,
+    -116.0755477641888
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -12679295595,
+   "source": {
+    "type": "node",
+    "id": 12679295595
+   },
+   "kind": "standalone",
+   "building": null,
+   "lat": 43.0049397,
+   "lon": -116.0772319,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "1470",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "South Hayland Road"
+   },
+   "parcel": "RP05S03E110610",
+   "parcel_centroid": [
+    43.007452352284744,
+    -116.06711433396887
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -12679296355,
+   "source": {
+    "type": "node",
+    "id": 12679296355
+   },
+   "kind": "standalone",
+   "building": null,
+   "lat": 42.9903325,
+   "lon": -116.0872221,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "2553",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "South Hayland Road"
+   },
+   "parcel": "RP05S03E157850",
+   "parcel_centroid": [
+    42.99251365821941,
+    -116.0817602962601
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -12679296487,
+   "source": {
+    "type": "node",
+    "id": 12679296487
+   },
+   "kind": "standalone",
+   "building": null,
+   "lat": 43.0122923,
+   "lon": -116.0701863,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "1390",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "East Shaw Road"
+   },
+   "parcel": "RP05S03E023750",
+   "parcel_centroid": [
+    43.01609239242344,
+    -116.07458013198179
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -12679296610,
+   "source": {
+    "type": "node",
+    "id": 12679296610
+   },
+   "kind": "standalone",
+   "building": null,
+   "lat": 43.0051865,
+   "lon": -116.0775528,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "1487",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "South Hayland Road"
+   },
+   "parcel": "RP05S03E110610",
+   "parcel_centroid": [
+    43.007452352284744,
+    -116.06711433396887
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -12679296793,
+   "source": {
+    "type": "node",
+    "id": 12679296793
+   },
+   "kind": "standalone",
+   "building": null,
+   "lat": 43.0120317,
+   "lon": -116.0710788,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "1331",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "East Shaw Road"
+   },
+   "parcel": "RP05S03E112420",
+   "parcel_centroid": [
+    43.01032806410223,
+    -116.07252227991127
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -12679296977,
+   "source": {
+    "type": "node",
+    "id": 12679296977
+   },
+   "kind": "standalone",
+   "building": null,
+   "lat": 42.9989157,
+   "lon": -116.0772357,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "1912",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "South Hayland Road"
+   },
+   "parcel": "RP05S03E114810",
+   "parcel_centroid": [
+    43.00129417806632,
+    -116.07255805289822
+   ],
+   "in": {
+    "full": true,
+    "partial": false,
+    "overlap": false
+   },
+   "perturbation": null
+  },
+  {
+   "node_id": -12679297564,
+   "source": {
+    "type": "node",
+    "id": 12679297564
+   },
+   "kind": "standalone",
+   "building": null,
+   "lat": 42.9923669,
+   "lon": -116.091509,
+   "tags": {
+    "addr:city": "Grand View",
+    "addr:housenumber": "2621",
+    "addr:postcode": "83624",
+    "addr:state": "ID",
+    "addr:street": "South Hayland Road"
+   },
+   "parcel": "RP05S03E152400",
+   "parcel_centroid": [
+    42.99469639081977,
+    -116.09031648648205
+   ],
+   "in": {
+    "full": true,
+    "partial": true,
+    "overlap": true
+   },
+   "perturbation": null
+  }
+ ]
+}

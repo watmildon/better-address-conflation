@@ -480,6 +480,12 @@ public final class Analyzer {
         if (cellsHit.size() > 1) {
             reasons.add("Footprint covers " + cellsHit.size() + " addressed cells");
         }
+        double far = farthest(footprint, groups);
+        if (far > settings.farMatchMeters && bucket == Bucket.HINTED_POSITION) {
+            reasons.add(String.format(Locale.ROOT, "Footprint is %.0f m from the address point", far));
+            bucket = Bucket.AMBIGUOUS_BUILDING;
+            confidence = Math.min(confidence, 0.4);
+        }
         return new Proposal(bucket, groups, footprint, first.ranked, clamp(confidence), reasons, null, null, first.cell);
     }
 
@@ -507,6 +513,8 @@ public final class Analyzer {
                 candidates.add(extra);
             }
         }
+        boolean explicitPresent = candidates.stream().map(CellBuilding::getBuilding)
+                .anyMatch(b -> !b.isHint() && b.getTagFactor() >= 1.0 && !ConflationSettings.isGeneric(b.getBuildingValue()));
         for (CellBuilding cb : candidates) {
             BuildingCandidate b = cb.getBuilding();
             boolean contains = containing.contains(b);
@@ -514,6 +522,11 @@ public final class Analyzer {
                 continue;
             }
             double score = cb.getScore();
+            if (explicitPresent && !contains && !b.isHint() && ConflationSettings.isGeneric(b.getBuildingValue()) && b.getTagFactor() >= 1.0) {
+                // Being inside the building is direct evidence about this building and
+                // outweighs the "yes is probably the barn" prior.
+                score *= settings.genericBesideExplicitFactor;
+            }
             if (contains && b.getTagFactor() >= 1.0) {
                 // Being inside a house or a unit outline is strong evidence; being under a
                 // gas-station canopy or inside a garage that happens to sit at the parcel
@@ -598,7 +611,22 @@ public final class Analyzer {
             reasons.add(String.format(Locale.ROOT, "Only %.0f%% of the building is in this cell", minShare * 100));
             confidence -= 0.2;
         }
+        double far = farthest(building, groups);
+        if (far > settings.farMatchMeters && (bucket == Bucket.CLEAN || bucket == Bucket.MULTI_ADDRESS_BUILDING)) {
+            reasons.add(String.format(Locale.ROOT, "Building is %.0f m from the address point", far));
+            bucket = Bucket.AMBIGUOUS_BUILDING;
+            confidence = Math.min(confidence, 0.4);
+        }
         return new Proposal(bucket, groups, building, first.ranked, clamp(confidence), reasons, null, null, cell);
+    }
+
+    /** Largest distance from any of the groups' points to the building outline, metres. */
+    private double farthest(BuildingCandidate building, List<AddressGroup> groups) {
+        double far = 0;
+        for (AddressGroup g : groups) {
+            far = Math.max(far, building.getGeometry().distance(OsmGeometry.factory().createPoint(proj.toXY(g.getPosition()))));
+        }
+        return far;
     }
 
     private Proposal simple(Bucket bucket, AddressGroup g, double confidence, String reason) {

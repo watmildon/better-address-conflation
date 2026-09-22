@@ -51,4 +51,5 @@ points are at most 15 % of a county there (Hamilton, Broome).
 | Directory | Area | Character |
 |-----------|------|-----------|
 | [glendale-olive](glendale-olive/) | Glendale AZ, W Olive Ave / N 55th Ave, bbox 33.560,-112.180,33.570,-112.170 | Single-family grid plus a 206-outline apartment complex, terraces, garages/carports, a strip of address points with no buildings, two POIs |
+| [owyhee-grandview](owyhee-grandview/) | Grand View, Owyhee County ID, bbox 42.960,-116.130,43.020,-116.070 | Rural benchmark: parcel-centroid import partly merged by hand, buildings tagged only `yes`/`detached`, big parcels, 42 unmerged nodes, Idaho parcels and Microsoft footprints as hints |
 | [colonie-ny](colonie-ny/) | Colonie NY (Albany County), bbox 42.740,-73.760,42.750,-73.750 | Post-war suburb with 539 houses, 176 sheds and 135 garages, a commercial strip on Loudon Road with 279 POI address nodes; real parcel-centroid addresses from NYS plus rooftop SAM points |
