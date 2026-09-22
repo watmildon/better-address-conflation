@@ -43,6 +43,14 @@ parcel's situs address compared (after suffix/directional expansion) with the OS
 Building centroid to parcel centroid: median 2.7 m, 90th percentile 100 m (driven by the
 apartment complex).
 
+## Where the county points actually sit
+
+Maricopa's address points are rooftop points, not parcel centroids: of the 1044 county points
+that match an OSM-addressed building by housenumber, street and unit, 97 % fall inside that
+building and the median distance to its centroid is 3 m (90th percentile 6 m). So
+`oa/addresses.geojson` is the easy real-world case; `addresses-full-parcel.osm` is the
+synthetic hard case for counties that place points at the parcel centroid.
+
 ## Files
 
 | File | Use as | Contents |

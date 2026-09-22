@@ -30,6 +30,12 @@ public final class ConflationSettings {
     /** Score multiplier for outbuildings. */
     public double outbuildingFactor = 0.1;
 
+    /**
+     * For a multi-address cell: runner-up / primary score at or above this means the
+     * addresses could belong to different buildings, so the proposal needs review.
+     */
+    public double multiAddressAmbiguityRatio = 0.25;
+
     /** Score multiplier for a building whose footprint contains the address point. */
     public double containsFactor = 4.0;
 

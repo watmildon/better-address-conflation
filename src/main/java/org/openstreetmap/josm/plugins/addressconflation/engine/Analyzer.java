@@ -459,6 +459,13 @@ public final class Analyzer {
         } else if (worstRatio >= settings.ambiguityRatio) {
             bucket = Bucket.AMBIGUOUS_BUILDING;
             confidence = Math.min(confidence, 0.5);
+        } else if (groups.size() > 1 && worstRatio >= settings.multiAddressAmbiguityRatio) {
+            // Several addresses and several real buildings at one point (a strip mall, a
+            // condo complex with points at the parcel centroid): nobody can say which address
+            // belongs to which building, so do not stack them all on the biggest one quietly.
+            bucket = Bucket.AMBIGUOUS_BUILDING;
+            reasons.add(groups.size() + " addresses share this cell with " + n + " candidate buildings");
+            confidence = Math.min(confidence, 0.4);
         } else if (groups.size() > 1) {
             bucket = Bucket.MULTI_ADDRESS_BUILDING;
             reasons.add(groups.size() + " addresses on this building; each stays a node");
