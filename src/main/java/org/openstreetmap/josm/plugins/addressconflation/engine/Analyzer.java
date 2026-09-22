@@ -114,7 +114,9 @@ public final class Analyzer {
 
         List<Proposal> proposals = bucket(groups);
         proposals.sort(Comparator.comparing(Proposal::getBucket).thenComparingDouble(p -> p.getBucket() == Bucket.CLEAN ? -p.getConfidence() : p.getConfidence()));
-        return new AnalysisResult(proposals, cells, proj, sourceNodes.size(), duplicatesRemoved, cellSource.isSynthetic());
+        AnalysisResult result = new AnalysisResult(proposals, cells, proj, sourceNodes.size(), duplicatesRemoved, cellSource.isSynthetic());
+        result.setShift(ShiftEstimator.estimate(proposals, proj));
+        return result;
     }
 
     // ---- source addresses -------------------------------------------------
@@ -461,6 +463,9 @@ public final class Analyzer {
             confidence = Math.min(confidence, 0.6);
         } else if (worstRatio >= settings.ambiguityRatio) {
             bucket = Bucket.AMBIGUOUS_BUILDING;
+            if (groups.size() > 1) {
+                reasons.add(groups.size() + " addresses share this cell with " + n + " candidate buildings");
+            }
             confidence = Math.min(confidence, 0.5);
         } else if (groups.size() > 1 && worstRatio >= settings.multiAddressAmbiguityRatio) {
             // Several addresses and several real buildings at one point (a strip mall, a

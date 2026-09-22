@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.openstreetmap.josm.plugins.addressconflation.engine.LocalProjection;
+import org.openstreetmap.josm.plugins.addressconflation.engine.ShiftEstimator;
 
 /** Output of one analysis run. */
 public final class AnalysisResult {
@@ -16,6 +17,7 @@ public final class AnalysisResult {
     private final int sourceNodes;
     private final int duplicatesRemoved;
     private final boolean synthetic;
+    private ShiftEstimator.Shift shift;
 
     public AnalysisResult(List<Proposal> proposals, List<Cell> cells, LocalProjection projection,
             int sourceNodes, int duplicatesRemoved, boolean synthetic) {
@@ -46,6 +48,15 @@ public final class AnalysisResult {
     /** Source nodes that were absolute duplicates of another node in the same cell. */
     public int getDuplicatesRemoved() {
         return duplicatesRemoved;
+    }
+
+    /** Systematic offset of the address points, or null when none was estimated. */
+    public ShiftEstimator.Shift getShift() {
+        return shift;
+    }
+
+    public void setShift(ShiftEstimator.Shift shift) {
+        this.shift = shift;
     }
 
     /** True when cells were Voronoi cells rather than parcels. */

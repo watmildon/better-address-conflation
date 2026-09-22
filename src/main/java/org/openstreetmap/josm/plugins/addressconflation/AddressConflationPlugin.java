@@ -1,6 +1,7 @@
 // License: GPL. For details, see LICENSE file.
 package org.openstreetmap.josm.plugins.addressconflation;
 
+import org.openstreetmap.josm.data.validation.OsmValidator;
 import org.openstreetmap.josm.gui.MainApplication;
 import org.openstreetmap.josm.gui.MainMenu;
 import org.openstreetmap.josm.gui.MapFrame;
@@ -11,6 +12,7 @@ import org.openstreetmap.josm.plugins.addressconflation.gui.AddressConflationDia
 import org.openstreetmap.josm.plugins.addressconflation.gui.AddressConflationPreferences;
 import org.openstreetmap.josm.plugins.addressconflation.io.DownloadSourceAction;
 import org.openstreetmap.josm.plugins.addressconflation.io.OpenAddressesImportAction;
+import org.openstreetmap.josm.plugins.addressconflation.validation.AddressOnOutbuildingTest;
 
 /**
  * Better Address Conflation plugin for JOSM.
@@ -26,6 +28,7 @@ public class AddressConflationPlugin extends Plugin {
         super(info);
         MainMenu.add(MainApplication.getMenu().fileMenu, new OpenAddressesImportAction(), false, 0);
         MainMenu.add(MainApplication.getMenu().fileMenu, new DownloadSourceAction(), false, 1);
+        OsmValidator.addTest(AddressOnOutbuildingTest.class);
     }
 
     @Override

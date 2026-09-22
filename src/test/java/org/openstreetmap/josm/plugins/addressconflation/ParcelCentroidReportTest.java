@@ -17,6 +17,7 @@ import org.openstreetmap.josm.data.osm.OsmPrimitive;
 import org.openstreetmap.josm.data.osm.Way;
 import org.openstreetmap.josm.plugins.addressconflation.cells.CellSource;
 import org.openstreetmap.josm.plugins.addressconflation.cells.ParcelCellSource;
+import org.openstreetmap.josm.plugins.addressconflation.cells.RoadClippedVoronoiCellSource;
 import org.openstreetmap.josm.plugins.addressconflation.cells.VoronoiCellSource;
 import org.openstreetmap.josm.plugins.addressconflation.engine.AddressNormalizer;
 import org.openstreetmap.josm.plugins.addressconflation.engine.Analyzer;
@@ -120,6 +121,7 @@ class ParcelCentroidReportTest {
         double[] acc = countyLayer("colonie-ny", "oa/addresses.geojson", "NYS tax parcel centroids (Colonie)");
         assertTrue(acc[0] > 0.97, "parcel-centroid addresses with parcels: " + acc[0]);
         assertTrue(acc[1] > 0.95, "parcel-centroid addresses with Voronoi: " + acc[1]);
+        assertTrue(acc[2] >= acc[1], "road clipping must not make Voronoi worse: " + acc[2] + " vs " + acc[1]);
         double[] sam = countyLayer("colonie-ny", "oa/addresses-sam.geojson", "NYS SAM points, mostly rooftop (Colonie)");
         assertTrue(sam[0] > 0.98, "SAM with parcels: " + sam[0]);
     }
@@ -149,7 +151,7 @@ class ParcelCentroidReportTest {
      * buildings. Returns accuracy with parcels and with Voronoi cells.
      */
     private static double[] countyLayer(String bed, String resource, String label) throws IOException {
-        double[] accuracies = new double[2];
+        double[] accuracies = new double[3];
         int run = 0;
         DataSet snapshot = JosmTestSetup.loadDataSet(bed + "/snapshot.osm");
         Map<String, Long> truth = new HashMap<>();
@@ -166,7 +168,8 @@ class ParcelCentroidReportTest {
         try (InputStream is = JosmTestSetup.resource(bed + "/" + resource)) {
             addresses = OpenAddressesReader.read(is, OpenAddressesReader.Layer.ADDRESSES, true);
         }
-        for (CellSource cs : new CellSource[] {new ParcelCellSource(parcels(bed), "parcels"), new VoronoiCellSource()}) {
+        for (CellSource cs : new CellSource[] {new ParcelCellSource(parcels(bed), "parcels"), new VoronoiCellSource(),
+                new RoadClippedVoronoiCellSource(buildings)}) {
             AnalysisResult r = Analyzer.analyze(addresses, buildings, cs, new ConflationSettings());
             int correct = 0, wrong = 0, unknown = 0, noTarget = 0, unknownNoTarget = 0;
             Map<String, Integer> wrongBuckets = new TreeMap<>();

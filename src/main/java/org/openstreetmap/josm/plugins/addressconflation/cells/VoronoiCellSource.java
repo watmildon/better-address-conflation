@@ -39,6 +39,7 @@ public class VoronoiCellSource implements CellSource {
             if (g.isEmpty()) {
                 continue;
             }
+            // JTS stores the site coordinate as user data; subclasses rely on it.
             cells.add(new Cell("voronoi-" + i, g, true, null));
         }
         return cells;

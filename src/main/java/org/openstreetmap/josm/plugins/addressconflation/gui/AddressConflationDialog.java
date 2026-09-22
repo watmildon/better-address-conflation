@@ -16,12 +16,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 
 import javax.swing.AbstractAction;
 import javax.swing.DefaultListCellRenderer;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -35,10 +38,20 @@ import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
 
+import org.locationtech.jts.geom.Coordinate;
 import org.openstreetmap.josm.actions.AutoScaleAction;
 import org.openstreetmap.josm.command.Command;
+import org.openstreetmap.josm.command.MoveCommand;
 import org.openstreetmap.josm.data.UndoRedoHandler;
+import org.openstreetmap.josm.data.UndoRedoHandler.CommandAddedEvent;
+import org.openstreetmap.josm.data.UndoRedoHandler.CommandQueueCleanedEvent;
+import org.openstreetmap.josm.data.UndoRedoHandler.CommandQueuePreciseListener;
+import org.openstreetmap.josm.data.UndoRedoHandler.CommandRedoneEvent;
+import org.openstreetmap.josm.data.UndoRedoHandler.CommandUndoneEvent;
+import org.openstreetmap.josm.data.coor.EastNorth;
+import org.openstreetmap.josm.data.projection.ProjectionRegistry;
 import org.openstreetmap.josm.data.osm.DataSet;
+import org.openstreetmap.josm.data.osm.Node;
 import org.openstreetmap.josm.data.osm.OsmPrimitive;
 import org.openstreetmap.josm.gui.MainApplication;
 import org.openstreetmap.josm.gui.SideButton;
@@ -52,10 +65,13 @@ import org.openstreetmap.josm.gui.layer.OsmDataLayer;
 import org.openstreetmap.josm.plugins.addressconflation.apply.ProposalApplier;
 import org.openstreetmap.josm.plugins.addressconflation.apply.ProposalApplier.Applied;
 import org.openstreetmap.josm.plugins.addressconflation.cells.CellSource;
+import org.openstreetmap.josm.plugins.addressconflation.cells.RoadClippedVoronoiCellSource;
 import org.openstreetmap.josm.plugins.addressconflation.cells.ParcelCellSource;
 import org.openstreetmap.josm.plugins.addressconflation.cells.VoronoiCellSource;
 import org.openstreetmap.josm.plugins.addressconflation.engine.Analyzer;
 import org.openstreetmap.josm.plugins.addressconflation.engine.ConflationSettings;
+import org.openstreetmap.josm.plugins.addressconflation.engine.LocalProjection;
+import org.openstreetmap.josm.plugins.addressconflation.engine.ShiftEstimator;
 import org.openstreetmap.josm.plugins.addressconflation.io.DownloadSourceAction;
 import org.openstreetmap.josm.plugins.addressconflation.model.AnalysisResult;
 import org.openstreetmap.josm.plugins.addressconflation.model.Bucket;
@@ -68,13 +84,19 @@ import org.openstreetmap.josm.tools.Shortcut;
  * Side panel: pick the address layer and the parcel layer (or Voronoi), run
  * the analysis, review proposals grouped by bucket, apply them.
  */
-public class AddressConflationDialog extends ToggleDialog implements LayerChangeListener {
+public class AddressConflationDialog extends ToggleDialog implements LayerChangeListener, CommandQueuePreciseListener {
 
     private static final String VORONOI = "voronoi";
 
     private final JComboBox<OsmDataLayer> addressLayerBox = new JComboBox<>();
     private final JComboBox<Object> cellSourceBox = new JComboBox<>();
     private final JLabel summary = new JLabel(" ");
+    private final JButton shiftButton = new JButton();
+    private final JCheckBox overlayBox = new JCheckBox(tr("Overlay"), true);
+    private final JCheckBox roadClipBox = new JCheckBox(tr("Clip Voronoi by roads"), true);
+    private ProposalOverlayLayer overlay;
+    /** Commands we issued, so undo can bring the proposal back. */
+    private final Map<Command, Proposal> commandProposals = new HashMap<>();
     private final DefaultMutableTreeNode root = new DefaultMutableTreeNode(tr("Proposals"));
     private final DefaultTreeModel treeModel = new DefaultTreeModel(root);
     private final JTree tree = new JTree(treeModel);
@@ -153,7 +175,19 @@ public class AddressConflationDialog extends ToggleDialog implements LayerChange
         gc.gridx = 0;
         gc.gridy = 2;
         gc.gridwidth = 2;
+        JPanel options = new JPanel(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 4, 0));
+        options.add(overlayBox);
+        options.add(roadClipBox);
+        top.add(options, gc);
+        gc.gridy = 3;
         top.add(summary, gc);
+        gc.gridy = 4;
+        shiftButton.setVisible(false);
+        shiftButton.addActionListener(e -> shiftAndRerun());
+        top.add(shiftButton, gc);
+        overlayBox.setToolTipText(tr("Draw cells and address-to-building links on the map"));
+        overlayBox.addActionListener(e -> updateOverlayVisibility());
+        roadClipBox.setToolTipText(tr("With no parcel layer, cut Voronoi cells along streets so a cell never reaches the house across the road"));
 
         DefaultListCellRenderer layerRenderer = new DefaultListCellRenderer() {
             @Override
@@ -185,6 +219,7 @@ public class AddressConflationDialog extends ToggleDialog implements LayerChange
                 new SideButton(applyAction), new SideButton(applyBucketAction), new SideButton(zoomAction)));
 
         MainApplication.getLayerManager().addLayerChangeListener(this);
+        UndoRedoHandler.getInstance().addCommandQueuePreciseListener(this);
         refreshLayerBoxes();
     }
 
@@ -241,7 +276,123 @@ public class AddressConflationDialog extends ToggleDialog implements LayerChange
     @Override
     public void destroy() {
         MainApplication.getLayerManager().removeLayerChangeListener(this);
+        UndoRedoHandler.getInstance().removeCommandQueuePreciseListener(this);
+        removeOverlay();
         super.destroy();
+    }
+
+    // ---- overlay -----------------------------------------------------------------
+
+    private void updateOverlayVisibility() {
+        if (overlayBox.isSelected()) {
+            if (result != null) {
+                ensureOverlay().setResult(result);
+                for (Proposal p : applied) {
+                    overlay.hide(p);
+                }
+            }
+        } else {
+            removeOverlay();
+        }
+    }
+
+    private ProposalOverlayLayer ensureOverlay() {
+        if (overlay == null || !MainApplication.getLayerManager().containsLayer(overlay)) {
+            overlay = new ProposalOverlayLayer();
+            MainApplication.getLayerManager().addLayer(overlay, false);
+        }
+        return overlay;
+    }
+
+    private void removeOverlay() {
+        if (overlay != null && MainApplication.getLayerManager().containsLayer(overlay)) {
+            MainApplication.getLayerManager().removeLayer(overlay);
+        }
+        overlay = null;
+    }
+
+    // ---- undo / redo -----------------------------------------------------------------
+
+    @Override
+    public void commandAdded(CommandAddedEvent e) {
+        // nothing: we track our own commands when we add them
+    }
+
+    @Override
+    public void cleaned(CommandQueueCleanedEvent e) {
+        commandProposals.clear();
+    }
+
+    @Override
+    public void commandUndone(CommandUndoneEvent e) {
+        Proposal p = commandProposals.get(e.getCommand());
+        if (p != null && applied.remove(p)) {
+            addToTree(p);
+            if (overlay != null) {
+                overlay.unhide(p);
+            }
+        }
+    }
+
+    @Override
+    public void commandRedone(CommandRedoneEvent e) {
+        Proposal p = commandProposals.get(e.getCommand());
+        if (p != null && !applied.contains(p)) {
+            applied.add(p);
+            removeFromTree(p);
+            if (overlay != null) {
+                overlay.hide(p);
+            }
+        }
+    }
+
+    /** Put a proposal back under its bucket, keeping bucket order. */
+    private void addToTree(Proposal p) {
+        DefaultMutableTreeNode bucketNode = null;
+        int insertAt = root.getChildCount();
+        for (int i = 0; i < root.getChildCount(); i++) {
+            DefaultMutableTreeNode bn = (DefaultMutableTreeNode) root.getChildAt(i);
+            Bucket b = (Bucket) bn.getUserObject();
+            if (b == p.getBucket()) {
+                bucketNode = bn;
+                break;
+            }
+            if (b.ordinal() > p.getBucket().ordinal()) {
+                insertAt = i;
+                break;
+            }
+        }
+        if (bucketNode == null) {
+            bucketNode = new DefaultMutableTreeNode(p.getBucket());
+            treeModel.insertNodeInto(bucketNode, root, insertAt);
+        }
+        treeModel.insertNodeInto(new DefaultMutableTreeNode(p), bucketNode, bucketNode.getChildCount());
+        treeModel.nodeChanged(bucketNode);
+    }
+
+    // ---- shift -----------------------------------------------------------------------
+
+    private void shiftAndRerun() {
+        if (result == null || result.getShift() == null || sourceLayer == null) {
+            return;
+        }
+        ShiftEstimator.Shift shift = result.getShift();
+        LocalProjection proj = result.getProjection();
+        // Express the metre offset in the map projection's units through two points.
+        EastNorth a = ProjectionRegistry.getProjection().latlon2eastNorth(proj.toLatLon(new Coordinate(0, 0)));
+        EastNorth b = ProjectionRegistry.getProjection().latlon2eastNorth(proj.toLatLon(new Coordinate(shift.getDx(), shift.getDy())));
+        List<OsmPrimitive> nodes = new ArrayList<>();
+        for (Node n : sourceLayer.getDataSet().getNodes()) {
+            if (n.isUsable() && n.hasKey("addr:housenumber") && n.getCoor() != null) {
+                nodes.add(n);
+            }
+        }
+        if (nodes.isEmpty()) {
+            return;
+        }
+        UndoRedoHandler.getInstance().add(new MoveCommand(nodes, b.east() - a.east(), b.north() - a.north()));
+        sourceLayer.invalidate();
+        analyze();
     }
 
     // ---- analysis ----------------------------------------------------------------
@@ -259,6 +410,8 @@ public class AddressConflationDialog extends ToggleDialog implements LayerChange
         if (cellChoice instanceof OsmDataLayer) {
             OsmDataLayer parcels = (OsmDataLayer) cellChoice;
             cellSource = new ParcelCellSource(parcels.getDataSet(), parcels.getName());
+        } else if (roadClipBox.isSelected()) {
+            cellSource = new RoadClippedVoronoiCellSource(edit.getDataSet());
         } else {
             cellSource = new VoronoiCellSource();
         }
@@ -307,6 +460,8 @@ public class AddressConflationDialog extends ToggleDialog implements LayerChange
 
     private void showResult(AnalysisResult r) {
         result = r;
+        applied.clear();
+        commandProposals.clear();
         root.removeAllChildren();
         Map<Bucket, DefaultMutableTreeNode> bucketNodes = new EnumMap<>(Bucket.class);
         for (Proposal p : r.getProposals()) {
@@ -327,13 +482,28 @@ public class AddressConflationDialog extends ToggleDialog implements LayerChange
         applyBucketAction.setEnabled(false);
         applyAction.setEnabled(false);
         zoomAction.setEnabled(false);
+        ShiftEstimator.Shift shift = r.getShift();
+        if (shift != null && shift.isSignificant()) {
+            shiftButton.setText(tr("Points look shifted by {0} m: move the address layer and re-run", Math.round(shift.getDistance())));
+            shiftButton.setToolTipText(shift.toString());
+            shiftButton.setVisible(true);
+        } else {
+            shiftButton.setVisible(false);
+        }
+        if (overlayBox.isSelected()) {
+            ensureOverlay().setResult(r);
+        }
     }
 
     private void clearResult() {
         result = null;
+        applied.clear();
+        commandProposals.clear();
         root.removeAllChildren();
         treeModel.reload();
         summary.setText(" ");
+        shiftButton.setVisible(false);
+        removeOverlay();
     }
 
     // ---- selection ------------------------------------------------------------------
@@ -400,6 +570,9 @@ public class AddressConflationDialog extends ToggleDialog implements LayerChange
         } finally {
             updatingSelection = false;
         }
+        if (overlay != null) {
+            overlay.setSelected(sel);
+        }
     }
 
     private void zoomToSelected() {
@@ -454,11 +627,15 @@ public class AddressConflationDialog extends ToggleDialog implements LayerChange
             }
             for (Command c : Arrays.asList(a.getTargetCommand(), a.getSourceCommand())) {
                 if (c != null) {
+                    commandProposals.put(c, p);
                     UndoRedoHandler.getInstance().add(c);
                 }
             }
             applied.add(p);
             removeFromTree(p);
+            if (overlay != null) {
+                overlay.hide(p);
+            }
             done++;
         }
         summary.setText(tr("Applied {0} proposals", done));

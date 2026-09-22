@@ -15,7 +15,7 @@ public final class ConflationSettings {
 
     /** Default building=* values treated as outbuildings. */
     public static final List<String> DEFAULT_OUTBUILDINGS = Collections.unmodifiableList(Arrays.asList(
-            "garage", "garages", "shed", "carport", "roof", "outbuilding", "greenhouse", "barn",
+            "garage", "garages", "shed", "carport", "roof", "canopy", "outbuilding", "greenhouse", "barn",
             "hut", "cabin", "shelter", "kiosk", "storage_tank", "silo", "service"));
 
     /**
@@ -29,6 +29,10 @@ public final class ConflationSettings {
 
     /** Score multiplier for outbuildings. */
     public double outbuildingFactor = 0.1;
+
+    /** Roofs and canopies are not buildings at all unless a POI tag says otherwise. */
+    public static final List<String> ROOF_VALUES = Collections.unmodifiableList(Arrays.asList("roof", "canopy"));
+    public double roofFactor = 0.02;
 
     /**
      * For a multi-address cell: runner-up / primary score at or above this means the
@@ -57,15 +61,16 @@ public final class ConflationSettings {
     private final Map<String, Double> buildingWeights = new HashMap<>();
 
     public ConflationSettings() {
-        for (String v : DEFAULT_OUTBUILDINGS) {
-            buildingWeights.put(v, outbuildingFactor);
-        }
+        setOutbuildings(DEFAULT_OUTBUILDINGS);
     }
 
     public void setOutbuildings(List<String> values) {
         buildingWeights.clear();
         for (String v : values) {
             buildingWeights.put(v.trim(), outbuildingFactor);
+        }
+        for (String v : ROOF_VALUES) {
+            buildingWeights.put(v, roofFactor);
         }
     }
 
