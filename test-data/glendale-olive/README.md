@@ -65,6 +65,8 @@ synthetic hard case for counties that place points at the parcel centroid.
 | `addresses-overlap.osm` | address layer | `addresses-partial` plus 74 addresses that are still on buildings, 23 of them perturbed (14 wrong housenumber, 8 abbreviated street, 1 dropped unit) |
 | `oa/parcels.geojson` | parcel layer | 1303 county parcels, OpenAddresses format (`id`, `pid`, `hash`) |
 | `oa/addresses.geojson` | address layer | 1547 real county address points, OpenAddresses format |
+| `oa/addresses-parcel-situs.geojson` | address layer | 1300 Maricopa parcel situs addresses placed at the parcel centroid (the "parcel centroid" case, real data) |
+| `oa/buildings.geojson` | hint layer | 1474 City of Glendale building footprints (OpenAddresses `us/az/city_of_glendale` buildings layer); a hint centroid falls inside 98 % of the OSM addressed buildings |
 | `truth.json` | scoring | per generated node: source building or node, kind, parcel id, parcel centroid, which layers it is in, perturbation |
 
 Generated address nodes have `id = -(source way id)` or `-(source node id)` plus a
@@ -81,3 +83,6 @@ Pairings that make sense:
 * `buildings-partial` + `addresses-overlap` — existing-address sub-buckets.
 * `buildings-stripped` + `oa/addresses` + `oa/parcels` — unlinked real county data; score by
   matching housenumber+street against `snapshot.osm`.
+* every OSM building deleted + `addresses-full-parcel` + `oa/parcels` + `oa/buildings` as
+  hints — the "no buildings in OSM" case: 99 % of the hinted nodes land inside the building
+  that really carries the address (`HintLayerTest`).

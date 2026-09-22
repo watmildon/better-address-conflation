@@ -50,6 +50,7 @@ public final class Analyzer {
 
     private final DataSet source;
     private final DataSet target;
+    private final DataSet hints;
     private final CellSource cellSource;
     private final ConflationSettings settings;
 
@@ -57,7 +58,10 @@ public final class Analyzer {
     private List<Cell> cells;
     private STRtree cellIndex;
     private STRtree buildingIndex;
+    private STRtree hintIndex;
     private int duplicatesRemoved;
+    /** For hinted assignments: the OSM outbuilding the hint overrode, or null when OSM had nothing. */
+    private final Map<Assignment, BuildingCandidate> hintedReason = new HashMap<>();
 
     /** A tentative "address group goes to this building in this cell". */
     private static final class Assignment {
@@ -77,14 +81,27 @@ public final class Analyzer {
     }
 
     public Analyzer(DataSet source, DataSet target, CellSource cellSource, ConflationSettings settings) {
+        this(source, target, null, cellSource, settings);
+    }
+
+    /**
+     * @param hints optional dataset of building footprints used for position only (MapWithAI,
+     *              county or Microsoft footprints); never edited, may be null
+     */
+    public Analyzer(DataSet source, DataSet target, DataSet hints, CellSource cellSource, ConflationSettings settings) {
         this.source = source;
         this.target = target;
+        this.hints = hints == target ? null : hints;
         this.cellSource = cellSource;
         this.settings = settings;
     }
 
     public static AnalysisResult analyze(DataSet source, DataSet target, CellSource cellSource, ConflationSettings settings) {
         return new Analyzer(source, target, cellSource, settings).run();
+    }
+
+    public static AnalysisResult analyze(DataSet source, DataSet target, DataSet hints, CellSource cellSource, ConflationSettings settings) {
+        return new Analyzer(source, target, hints, cellSource, settings).run();
     }
 
     public AnalysisResult run() {
@@ -110,6 +127,7 @@ public final class Analyzer {
 
         List<AddressGroup> groups = groupAddresses(sourceNodes);
         indexBuildings(extent);
+        indexHints(extent);
         indexExisting(new HashSet<>(sourceNodes));
 
         List<Proposal> proposals = bucket(groups);
@@ -227,14 +245,33 @@ public final class Analyzer {
 
     // ---- buildings ------------------------------------------------------------
 
-    @SuppressWarnings("unchecked")
     private void indexBuildings(Envelope extent) {
+        buildingIndex = new STRtree();
+        indexFootprints(target, extent, false, buildingIndex);
+        buildingIndex.build();
+        for (Cell cell : cells) {
+            Collections.sort(cell.getBuildings());
+        }
+    }
+
+    private void indexHints(Envelope extent) {
+        hintIndex = new STRtree();
+        if (hints != null) {
+            indexFootprints(hints, extent, true, hintIndex);
+        }
+        hintIndex.build();
+        for (Cell cell : cells) {
+            Collections.sort(cell.getHintBuildings());
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    private void indexFootprints(DataSet ds, Envelope extent, boolean asHint, STRtree index) {
         Envelope search = new Envelope(extent);
         search.expandBy(settings.matchDistanceMeters + 200);
-        buildingIndex = new STRtree();
         List<OsmPrimitive> prims = new ArrayList<>();
-        prims.addAll(target.getWays());
-        prims.addAll(target.getRelations());
+        prims.addAll(ds.getWays());
+        prims.addAll(ds.getRelations());
         for (OsmPrimitive prim : prims) {
             if (!prim.isUsable() || !prim.hasKey("building") || "no".equals(prim.get("building"))) {
                 continue;
@@ -246,8 +283,8 @@ public final class Analyzer {
             if (g == null || g.isEmpty() || g.getArea() < 1 || !g.getEnvelopeInternal().intersects(search)) {
                 continue;
             }
-            BuildingCandidate b = new BuildingCandidate(prim, g, settings.weightFor(prim));
-            buildingIndex.insert(g.getEnvelopeInternal(), b);
+            BuildingCandidate b = new BuildingCandidate(prim, g, settings.weightFor(prim), asHint);
+            index.insert(g.getEnvelopeInternal(), b);
             for (Cell cell : (List<Cell>) cellIndex.query(g.getEnvelopeInternal())) {
                 if (!cell.getPrepared().intersects(g)) {
                     continue;
@@ -266,21 +303,17 @@ public final class Analyzer {
                 if (share >= settings.minShareInCell || areaIn >= 20) {
                     CellBuilding cb = new CellBuilding(b, cell, areaIn);
                     cb.setScore(areaIn * b.getTagFactor());
-                    cell.getBuildings().add(cb);
+                    (asHint ? cell.getHintBuildings() : cell.getBuildings()).add(cb);
                 }
             }
-        }
-        buildingIndex.build();
-        for (Cell cell : cells) {
-            Collections.sort(cell.getBuildings());
         }
     }
 
     /** Buildings whose footprint contains the point, whether or not they made the cell's list. */
     @SuppressWarnings("unchecked")
-    private List<BuildingCandidate> buildingsContaining(Point p) {
+    private List<BuildingCandidate> buildingsContaining(Point p, STRtree index) {
         List<BuildingCandidate> out = new ArrayList<>();
-        for (BuildingCandidate b : (List<BuildingCandidate>) buildingIndex.query(p.getEnvelopeInternal())) {
+        for (BuildingCandidate b : (List<BuildingCandidate>) index.query(p.getEnvelopeInternal())) {
             if (b.getGeometry().contains(p)) {
                 out.add(b);
             }
@@ -328,6 +361,8 @@ public final class Analyzer {
     private List<Proposal> bucket(List<AddressGroup> groups) {
         List<Proposal> proposals = new ArrayList<>();
         Map<BuildingCandidate, List<Assignment>> byBuilding = new LinkedHashMap<>();
+        Map<BuildingCandidate, List<Assignment>> hinted = new LinkedHashMap<>();
+        hintedReason.clear();
 
         for (AddressGroup g : groups) {
             if (g.getCell() == null) {
@@ -355,6 +390,14 @@ public final class Analyzer {
                 continue;
             }
             Assignment a = rank(g, cell);
+            if (hints != null) {
+                Assignment h = rankHints(g, cell);
+                if (!h.ranked.isEmpty() && preferHint(a, h)) {
+                    hinted.computeIfAbsent(h.ranked.get(0).getBuilding(), x -> new ArrayList<>()).add(h);
+                    hintedReason.put(h, a.ranked.isEmpty() ? null : a.ranked.get(0).getBuilding());
+                    continue;
+                }
+            }
             if (a.ranked.isEmpty()) {
                 proposals.add(simple(Bucket.NO_BUILDING, g, 0.9, cell.isSynthetic()
                         ? String.format(Locale.ROOT, "No building within %.0f m", settings.matchDistanceMeters)
@@ -376,16 +419,86 @@ public final class Analyzer {
         for (Map.Entry<BuildingCandidate, List<Assignment>> e : byBuilding.entrySet()) {
             proposals.add(buildingProposal(e.getKey(), e.getValue()));
         }
+        for (Map.Entry<BuildingCandidate, List<Assignment>> e : hinted.entrySet()) {
+            proposals.add(hintProposal(e.getKey(), e.getValue()));
+        }
         return proposals;
     }
 
-    /** Rank the buildings in a cell for one address group. */
+    /**
+     * A hint footprint beats the OSM candidates when OSM has nothing, or when OSM only
+     * offers an outbuilding and the hint shows something much bigger where the house
+     * should be (a mapped shed, an unmapped house).
+     */
+    private boolean preferHint(Assignment osm, Assignment hint) {
+        if (osm.ranked.isEmpty()) {
+            return true;
+        }
+        BuildingCandidate osmPrimary = osm.ranked.get(0).getBuilding();
+        double osmScore = osm.scores.get(0);
+        double hintScore = hint.scores.get(0);
+        return osmPrimary.getTagFactor() < 1.0 && hintScore > osmScore * settings.hintOverOutbuildingRatio;
+    }
+
+    private Proposal hintProposal(BuildingCandidate footprint, List<Assignment> assignments) {
+        List<AddressGroup> groups = new ArrayList<>();
+        Set<Cell> cellsHit = new HashSet<>();
+        double worstRatio = 0;
+        for (Assignment a : assignments) {
+            groups.add(a.group);
+            cellsHit.add(a.cell);
+            worstRatio = Math.max(worstRatio, a.ratio);
+        }
+        Assignment first = assignments.get(0);
+        List<String> reasons = new ArrayList<>();
+        BuildingCandidate osmShadowed = hintedReason.get(first);
+        if (osmShadowed != null) {
+            reasons.add(String.format(Locale.ROOT, "OSM only has building=%s (%.0f m\u00b2) here; hint footprint is %.0f m\u00b2",
+                    osmShadowed.getBuildingValue(), osmShadowed.getArea(), footprint.getArea()));
+        } else {
+            reasons.add(String.format(Locale.ROOT, "No OSM building; hint footprint of %.0f m\u00b2 in %s", footprint.getArea(),
+                    first.cell.isSynthetic() ? "cell" : "parcel " + first.cell.getId()));
+        }
+        if (first.ranked.size() > 1) {
+            reasons.add(String.format(Locale.ROOT, "Largest of %d hint footprints; runner-up scores %.0f%%", first.ranked.size(), worstRatio * 100));
+        }
+        if (groups.size() > 1) {
+            reasons.add(groups.size() + " addresses on this footprint; each stays a node");
+        }
+        double confidence = Math.min(0.8, 1.0 - 0.5 * worstRatio);
+        Bucket bucket = Bucket.HINTED_POSITION;
+        if (worstRatio >= settings.ambiguityRatio
+                || (groups.size() > 1 && worstRatio >= settings.multiAddressAmbiguityRatio)) {
+            // Same rule as for OSM buildings: several addresses and several footprints at one
+            // point cannot be sorted out automatically.
+            bucket = Bucket.AMBIGUOUS_BUILDING;
+            if (groups.size() > 1) {
+                reasons.add(groups.size() + " addresses share this cell with " + first.ranked.size() + " hint footprints");
+            }
+            confidence = Math.min(confidence, 0.4);
+        }
+        if (cellsHit.size() > 1) {
+            reasons.add("Footprint covers " + cellsHit.size() + " addressed cells");
+        }
+        return new Proposal(bucket, groups, footprint, first.ranked, clamp(confidence), reasons, null, null, first.cell);
+    }
+
+    /** Rank the OSM buildings in a cell for one address group. */
     private Assignment rank(AddressGroup g, Cell cell) {
+        return rank(g, cell, cell.getBuildings(), buildingIndex);
+    }
+
+    /** Rank the hint footprints in a cell for one address group. */
+    private Assignment rankHints(AddressGroup g, Cell cell) {
+        return rank(g, cell, cell.getHintBuildings(), hintIndex);
+    }
+
+    private Assignment rank(AddressGroup g, Cell cell, List<CellBuilding> cellCandidates, STRtree index) {
         Point p = OsmGeometry.factory().createPoint(proj.toXY(g.getPosition()));
         List<CellBuilding> ranked = new ArrayList<>();
         List<Double> scores = new ArrayList<>();
-        List<BuildingCandidate> containing = buildingsContaining(p);
-        List<CellBuilding> candidates = new ArrayList<>(cell.getBuildings());
+        List<BuildingCandidate> containing = buildingsContaining(p, index);
+        List<CellBuilding> candidates = new ArrayList<>(cellCandidates);
         for (BuildingCandidate b : containing) {
             if (candidates.stream().noneMatch(cb -> cb.getBuilding() == b)) {
                 // The point is inside this building even though little of it is in the cell.

@@ -17,6 +17,7 @@ public final class Cell {
     private final boolean synthetic;
     private final OsmPrimitive sourcePrimitive;
     private final List<CellBuilding> buildings = new ArrayList<>();
+    private final List<CellBuilding> hintBuildings = new ArrayList<>();
     private final List<AddressGroup> addresses = new ArrayList<>();
     private final List<ExistingAddress> existing = new ArrayList<>();
 
@@ -53,6 +54,11 @@ public final class Cell {
     /** Buildings overlapping this cell, sorted best first once scored. */
     public List<CellBuilding> getBuildings() {
         return buildings;
+    }
+
+    /** Footprints from the hint layer overlapping this cell, sorted best first once scored. */
+    public List<CellBuilding> getHintBuildings() {
+        return hintBuildings;
     }
 
     public List<AddressGroup> getAddresses() {

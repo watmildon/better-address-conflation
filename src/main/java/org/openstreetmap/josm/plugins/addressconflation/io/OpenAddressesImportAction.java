@@ -59,9 +59,12 @@ public class OpenAddressesImportAction extends JosmAction {
             protected void done() {
                 try {
                     DataSet ds = get();
-                    OpenAddressesReader.Layer kind = OpenAddressesReader.isParcelDataSet(ds)
-                            ? OpenAddressesReader.Layer.PARCELS : OpenAddressesReader.Layer.ADDRESSES;
-                    String name = (kind == OpenAddressesReader.Layer.PARCELS ? tr("OA parcels: {0}", file.getName()) : tr("OA addresses: {0}", file.getName()));
+                    OpenAddressesReader.Layer kind = OpenAddressesReader.isParcelDataSet(ds) ? OpenAddressesReader.Layer.PARCELS
+                            : ds.getNodes().stream().anyMatch(n -> n.hasKey("addr:housenumber")) ? OpenAddressesReader.Layer.ADDRESSES
+                            : OpenAddressesReader.Layer.BUILDINGS;
+                    String name = kind == OpenAddressesReader.Layer.PARCELS ? tr("OA parcels: {0}", file.getName())
+                            : kind == OpenAddressesReader.Layer.BUILDINGS ? tr("OA buildings (hints): {0}", file.getName())
+                            : tr("OA addresses: {0}", file.getName());
                     MainApplication.getLayerManager().addLayer(new OpenAddressesLayer(ds, name, file, kind));
                 } catch (InterruptedException ex) {
                     Thread.currentThread().interrupt();

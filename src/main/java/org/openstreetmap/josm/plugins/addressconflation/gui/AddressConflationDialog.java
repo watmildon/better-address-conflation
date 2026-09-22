@@ -90,6 +90,8 @@ public class AddressConflationDialog extends ToggleDialog implements LayerChange
 
     private final JComboBox<OsmDataLayer> addressLayerBox = new JComboBox<>();
     private final JComboBox<Object> cellSourceBox = new JComboBox<>();
+    private final JComboBox<Object> hintBox = new JComboBox<>();
+    private static final String NO_HINTS = "nohints";
     private final JLabel summary = new JLabel(" ");
     private final JButton shiftButton = new JButton();
     private final JCheckBox overlayBox = new JCheckBox(tr("Overlay"), true);
@@ -174,14 +176,22 @@ public class AddressConflationDialog extends ToggleDialog implements LayerChange
         top.add(cellSourceBox, gc);
         gc.gridx = 0;
         gc.gridy = 2;
+        gc.weightx = 0;
+        top.add(new JLabel(tr("Hints:")), gc);
+        gc.gridx = 1;
+        gc.weightx = 1;
+        hintBox.setToolTipText(tr("Building footprints used for position only (MapWithAI, county or Microsoft footprints). Never edited."));
+        top.add(hintBox, gc);
+        gc.gridx = 0;
+        gc.gridy = 3;
         gc.gridwidth = 2;
         JPanel options = new JPanel(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 4, 0));
         options.add(overlayBox);
         options.add(roadClipBox);
         top.add(options, gc);
-        gc.gridy = 3;
-        top.add(summary, gc);
         gc.gridy = 4;
+        top.add(summary, gc);
+        gc.gridy = 5;
         shiftButton.setVisible(false);
         shiftButton.addActionListener(e -> shiftAndRerun());
         top.add(shiftButton, gc);
@@ -192,12 +202,15 @@ public class AddressConflationDialog extends ToggleDialog implements LayerChange
         DefaultListCellRenderer layerRenderer = new DefaultListCellRenderer() {
             @Override
             public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-                Object v = value instanceof Layer ? ((Layer) value).getName() : VORONOI.equals(value) ? tr("Voronoi cells (no parcel layer)") : value;
+                Object v = value instanceof Layer ? ((Layer) value).getName()
+                        : VORONOI.equals(value) ? tr("Voronoi cells (no parcel layer)")
+                        : NO_HINTS.equals(value) ? tr("None") : value;
                 return super.getListCellRendererComponent(list, v, index, isSelected, cellHasFocus);
             }
         };
         addressLayerBox.setRenderer(layerRenderer);
         cellSourceBox.setRenderer(layerRenderer);
+        hintBox.setRenderer(layerRenderer);
 
         tree.setRootVisible(false);
         tree.setShowsRootHandles(true);
@@ -228,13 +241,27 @@ public class AddressConflationDialog extends ToggleDialog implements LayerChange
     private void refreshLayerBoxes() {
         Object selectedAddr = addressLayerBox.getSelectedItem();
         Object selectedCell = cellSourceBox.getSelectedItem();
+        Object selectedHint = hintBox.getSelectedItem();
         addressLayerBox.removeAllItems();
         cellSourceBox.removeAllItems();
+        hintBox.removeAllItems();
         cellSourceBox.addItem(VORONOI);
+        hintBox.addItem(NO_HINTS);
         List<OsmDataLayer> layers = MainApplication.getLayerManager().getLayersOfType(OsmDataLayer.class);
         for (OsmDataLayer l : layers) {
             addressLayerBox.addItem(l);
             cellSourceBox.addItem(l);
+            hintBox.addItem(l);
+        }
+        if (selectedHint != null && (NO_HINTS.equals(selectedHint) || layers.contains(selectedHint))) {
+            hintBox.setSelectedItem(selectedHint);
+        } else {
+            OsmDataLayer edit = MainApplication.getLayerManager().getEditLayer();
+            OsmDataLayer hint = layers.stream().filter(l -> l != edit).filter(l -> {
+                String n = l.getName().toLowerCase();
+                return n.contains("mapwithai") || n.contains("building") || n.contains("footprint");
+            }).findFirst().orElse(null);
+            hintBox.setSelectedItem(hint != null ? hint : NO_HINTS);
         }
         if (selectedAddr != null && layers.contains(selectedAddr)) {
             addressLayerBox.setSelectedItem(selectedAddr);
@@ -422,6 +449,8 @@ public class AddressConflationDialog extends ToggleDialog implements LayerChange
         analyzeAction.setEnabled(false);
         DataSet src = addr.getDataSet();
         DataSet tgt = edit.getDataSet();
+        Object hintChoice = hintBox.getSelectedItem();
+        DataSet hintDs = hintChoice instanceof OsmDataLayer && hintChoice != edit ? ((OsmDataLayer) hintChoice).getDataSet() : null;
         SwingWorker<AnalysisResult, Void> worker = new SwingWorker<AnalysisResult, Void>() {
             @Override
             protected AnalysisResult doInBackground() {
@@ -431,7 +460,7 @@ public class AddressConflationDialog extends ToggleDialog implements LayerChange
                         tgt.getReadLock().lock();
                     }
                     try {
-                        return Analyzer.analyze(src, tgt, cellSource, settings);
+                        return Analyzer.analyze(src, tgt, hintDs, cellSource, settings);
                     } finally {
                         if (src != tgt) {
                             tgt.getReadLock().unlock();
@@ -680,7 +709,7 @@ public class AddressConflationDialog extends ToggleDialog implements LayerChange
                 Proposal p = (Proposal) o;
                 StringBuilder sb = new StringBuilder(p.describe());
                 if (p.getTarget() != null) {
-                    sb.append(" → building=").append(Objects.toString(p.getTarget().getBuildingValue(), "?"))
+                    sb.append(p.getTarget().isHint() ? " → hint " : " → building=").append(Objects.toString(p.getTarget().getBuildingValue(), "?"))
                       .append(" (").append(Math.round(p.getTarget().getArea())).append(" m²)");
                 }
                 sb.append("  ").append(Math.round(p.getConfidence() * 100)).append('%');

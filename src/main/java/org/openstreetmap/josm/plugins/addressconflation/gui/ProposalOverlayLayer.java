@@ -57,6 +57,7 @@ public class ProposalOverlayLayer extends Layer {
         COLORS.put(Bucket.CLEAN, new Color(0, 155, 97));
         COLORS.put(Bucket.MULTI_ADDRESS_BUILDING, new Color(58, 123, 213));
         COLORS.put(Bucket.NO_BUILDING, new Color(130, 130, 130));
+        COLORS.put(Bucket.HINTED_POSITION, new Color(0, 150, 160));
         COLORS.put(Bucket.BUILDING_SPANS_CELLS, new Color(140, 80, 200));
         COLORS.put(Bucket.AMBIGUOUS_BUILDING, new Color(227, 116, 56));
         COLORS.put(Bucket.EXISTING_ADDRESS, new Color(200, 40, 40));
@@ -170,6 +171,15 @@ public class ProposalOverlayLayer extends Layer {
         if (targetPt != null) {
             g.setColor(color);
             g.drawOval(targetPt.x - 5, targetPt.y - 5, 10, 10);
+            if (p.getTarget().isHint()) {
+                // hint footprints are invisible otherwise: outline them
+                Geometry hg = p.getTarget().getGeometry();
+                for (int i = 0; i < hg.getNumGeometries(); i++) {
+                    if (hg.getGeometryN(i) instanceof Polygon) {
+                        drawRing(g, mv, proj, ((Polygon) hg.getGeometryN(i)).getExteriorRing().getCoordinates());
+                    }
+                }
+            }
         }
     }
 

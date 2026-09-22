@@ -10,6 +10,7 @@ import static org.openstreetmap.josm.tools.I18n.tr;
 public enum Bucket {
     CLEAN("Clean", "One address, one clear primary building, nothing in the way. Safe to apply in bulk.", true),
     MULTI_ADDRESS_BUILDING("Multi-address building", "Several addresses land on one building. Each stays its own node, moved inside the building.", true),
+    HINTED_POSITION("Placed by hint", "No usable OSM building, but a footprint in the hint layer shows where the building is. The node is placed on it; the footprint is not imported.", true),
     NO_BUILDING("No building", "No building in the address's cell. The node is copied as-is.", true),
     BUILDING_SPANS_CELLS("Building spans parcels", "One building covers several addressed parcels (townhouse row mapped as one outline). Nodes go inside the building.", true),
     AMBIGUOUS_BUILDING("Ambiguous building", "The runner-up building is close in size to the primary. Pick one.", false),

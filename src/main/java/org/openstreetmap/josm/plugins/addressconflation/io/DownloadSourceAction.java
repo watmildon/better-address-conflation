@@ -74,6 +74,7 @@ public class DownloadSourceAction extends JosmAction {
         }
         JCheckBox addresses = new JCheckBox(tr("Addresses"), true);
         JCheckBox parcels = new JCheckBox(tr("Parcels (OpenAddresses sources only)"), true);
+        JCheckBox buildings = new JCheckBox(tr("Building footprints, as hints"), true);
 
         JPanel panel = new JPanel(new GridBagLayout());
         GridBagConstraints gc = new GridBagConstraints();
@@ -92,6 +93,10 @@ public class DownloadSourceAction extends JosmAction {
         panel.add(addresses, gc);
         gc.gridx = 1;
         panel.add(parcels, gc);
+        gc.gridx = 0;
+        gc.gridy++;
+        gc.gridwidth = 2;
+        panel.add(buildings, gc);
 
         ExtendedDialog dlg = new ExtendedDialog(MainApplication.getMainFrame(), tr("Download addresses/parcels for view"),
                 tr("Download"), tr("Cancel"));
@@ -113,7 +118,7 @@ public class DownloadSourceAction extends JosmAction {
             }
             Config.getPref().putList(PREF_RECENT, recent);
         }
-        MainApplication.worker.submit(new DownloadTask(ref, bounds, addresses.isSelected(), parcels.isSelected()));
+        MainApplication.worker.submit(new DownloadTask(ref, bounds, addresses.isSelected(), parcels.isSelected(), buildings.isSelected()));
     }
 
     /** Resolves the source reference, downloads each wanted layer, adds or merges layers. */
@@ -122,16 +127,18 @@ public class DownloadSourceAction extends JosmAction {
         private final Bounds bounds;
         private final boolean wantAddresses;
         private final boolean wantParcels;
+        private final boolean wantBuildings;
         private final List<OpenAddressesLayer> newLayers = new ArrayList<>();
         private final List<String> messages = new ArrayList<>();
         private boolean cancelled;
 
-        DownloadTask(String ref, Bounds bounds, boolean wantAddresses, boolean wantParcels) {
+        DownloadTask(String ref, Bounds bounds, boolean wantAddresses, boolean wantParcels, boolean wantBuildings) {
             super(tr("Downloading addresses"));
             this.ref = ref;
             this.bounds = bounds;
             this.wantAddresses = wantAddresses;
             this.wantParcels = wantParcels;
+            this.wantBuildings = wantBuildings;
         }
 
         @Override
@@ -146,9 +153,9 @@ public class DownloadSourceAction extends JosmAction {
             }
             sources.removeIf(s -> (s.getKind() == EsriFeatureSource.Kind.ADDRESSES && !wantAddresses)
                     || (s.getKind() == EsriFeatureSource.Kind.PARCELS && !wantParcels)
-                    || s.getKind() == EsriFeatureSource.Kind.BUILDINGS);
+                    || (s.getKind() == EsriFeatureSource.Kind.BUILDINGS && !wantBuildings));
             if (sources.isEmpty()) {
-                messages.add(tr("{0} has no ESRI address or parcel layer that can be downloaded.", ref));
+                messages.add(tr("{0} has no ESRI address, parcel or building layer that can be downloaded.", ref));
                 return;
             }
             for (EsriFeatureSource src : sources) {
@@ -158,7 +165,8 @@ public class DownloadSourceAction extends JosmAction {
                 pm.indeterminateSubTask(tr("Downloading {0}", src.getName()));
                 DataSet ds = EsriFeatureClient.download(src, bounds, pm);
                 int n = src.getKind() == EsriFeatureSource.Kind.ADDRESSES ? ds.getNodes().size() : ds.getWays().size() + ds.getRelations().size();
-                OpenAddressesReader.Layer kind = src.getKind() == EsriFeatureSource.Kind.PARCELS ? OpenAddressesReader.Layer.PARCELS : OpenAddressesReader.Layer.ADDRESSES;
+                OpenAddressesReader.Layer kind = src.getKind() == EsriFeatureSource.Kind.PARCELS ? OpenAddressesReader.Layer.PARCELS
+                        : src.getKind() == EsriFeatureSource.Kind.BUILDINGS ? OpenAddressesReader.Layer.BUILDINGS : OpenAddressesReader.Layer.ADDRESSES;
                 newLayers.add(new OpenAddressesLayer(ds, src.getName(), null, kind));
                 messages.add(tr("{0}: {1} features", src.getName(), n));
             }

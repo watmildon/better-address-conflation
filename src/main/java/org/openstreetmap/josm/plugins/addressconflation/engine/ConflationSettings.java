@@ -40,6 +40,12 @@ public final class ConflationSettings {
      */
     public double multiAddressAmbiguityRatio = 0.25;
 
+    /**
+     * When OSM only offers an outbuilding, a hint footprint scoring more than this many
+     * times the outbuilding's score takes the address instead.
+     */
+    public double hintOverOutbuildingRatio = 3.0;
+
     /** Score multiplier for a building whose footprint contains the address point. */
     public double containsFactor = 4.0;
 

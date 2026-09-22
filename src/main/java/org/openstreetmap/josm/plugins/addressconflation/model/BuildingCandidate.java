@@ -15,12 +15,22 @@ public final class BuildingCandidate {
     private final double area;
     private final double tagFactor;
     private final Map<String, String> addrTags;
+    private final boolean hint;
 
     public BuildingCandidate(OsmPrimitive primitive, Geometry geometry, double tagFactor) {
+        this(primitive, geometry, tagFactor, false);
+    }
+
+    /**
+     * @param hint true when the footprint comes from a hint layer (MapWithAI, county or
+     *             Microsoft footprints) that is read for position only and never edited
+     */
+    public BuildingCandidate(OsmPrimitive primitive, Geometry geometry, double tagFactor, boolean hint) {
         this.primitive = primitive;
         this.geometry = geometry;
         this.area = geometry.getArea();
         this.tagFactor = tagFactor;
+        this.hint = hint;
         this.addrTags = new TreeMap<>(primitive.getKeys().entrySet().stream()
                 .filter(e -> e.getKey().startsWith("addr:"))
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)));
@@ -56,9 +66,14 @@ public final class BuildingCandidate {
         return primitive.get("building");
     }
 
+    /** True when this footprint is a hint, not an OSM building to tag. */
+    public boolean isHint() {
+        return hint;
+    }
+
     @Override
     public String toString() {
-        return "Building[" + primitive.getType() + " " + primitive.getUniqueId() + " " + getBuildingValue()
+        return (hint ? "Hint[" : "Building[") + primitive.getType() + " " + primitive.getUniqueId() + " " + getBuildingValue()
                 + " " + Math.round(area) + "m2]";
     }
 }

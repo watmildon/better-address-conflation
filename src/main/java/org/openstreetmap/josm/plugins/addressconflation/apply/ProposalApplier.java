@@ -16,9 +16,11 @@ import org.openstreetmap.josm.command.AddCommand;
 import org.openstreetmap.josm.command.ChangePropertyCommand;
 import org.openstreetmap.josm.command.Command;
 import org.openstreetmap.josm.command.DeleteCommand;
+import org.openstreetmap.josm.command.MoveCommand;
 import org.openstreetmap.josm.command.SequenceCommand;
 import org.openstreetmap.josm.data.osm.DataSet;
 import org.openstreetmap.josm.data.osm.Node;
+import org.openstreetmap.josm.data.projection.ProjectionRegistry;
 import org.openstreetmap.josm.plugins.addressconflation.engine.ConflationSettings;
 import org.openstreetmap.josm.plugins.addressconflation.engine.LocalProjection;
 import org.openstreetmap.josm.plugins.addressconflation.engine.OsmGeometry;
@@ -66,6 +68,7 @@ public final class ProposalApplier {
         case CLEAN:
         case MULTI_ADDRESS_BUILDING:
         case NO_BUILDING:
+        case HINTED_POSITION:
         case BUILDING_SPANS_CELLS:
         case AMBIGUOUS_BUILDING:
             return true;
@@ -93,28 +96,48 @@ public final class ProposalApplier {
         List<Command> targetCmds = new ArrayList<>();
         List<Node> toDelete = new ArrayList<>();
         Bucket bucket = p.getBucket();
+        boolean sameLayer = sourceDs == targetDs;
+        boolean hinted = p.getTarget() != null && p.getTarget().isHint();
 
         if (bucket == Bucket.EXISTING_ADDRESS) {
             // Identical address already mapped: the source node is redundant.
             toDelete.addAll(p.getSourceNodes());
         } else if (bucket == Bucket.NO_BUILDING) {
             for (AddressGroup g : p.getAddresses()) {
-                targetCmds.add(new AddCommand(targetDs, copyNode(g, g.getPrimary().getCoor(), settings)));
-                toDelete.addAll(g.getAllNodes());
+                if (sameLayer) {
+                    // The node already lives in the edit layer at the right place; nothing to move.
+                    toDelete.addAll(g.getDuplicates());
+                } else {
+                    targetCmds.add(new AddCommand(targetDs, copyNode(g, g.getPrimary().getCoor(), settings)));
+                    toDelete.addAll(g.getAllNodes());
+                }
             }
-        } else if (p.getAddresses().size() == 1 && bucket != Bucket.BUILDING_SPANS_CELLS) {
+        } else if (p.getAddresses().size() == 1 && bucket != Bucket.BUILDING_SPANS_CELLS && !hinted) {
             AddressGroup g = p.getAddresses().get(0);
             Map<String, String> tags = copyTags(g, settings);
             targetCmds.add(new ChangePropertyCommand(Collections.singleton(p.getTarget().getPrimitive()), tags));
             toDelete.addAll(g.getAllNodes());
         } else {
+            // Several addresses on one building, a building spanning parcels, or a hinted
+            // footprint: every address becomes (or stays) a node inside the footprint.
             Geometry building = p.getTarget().getGeometry();
             List<Coordinate> placed = new ArrayList<>();
             for (AddressGroup g : p.getAddresses()) {
                 Coordinate c = placeInside(proj.toXY(g.getPosition()), building, placed);
                 placed.add(c);
-                targetCmds.add(new AddCommand(targetDs, copyNode(g, proj.toLatLon(c), settings)));
-                toDelete.addAll(g.getAllNodes());
+                if (sameLayer) {
+                    // Cleaning up existing nodes: move them, keep their history.
+                    Node n = g.getPrimary();
+                    org.openstreetmap.josm.data.coor.LatLon to = proj.toLatLon(c);
+                    if (n.getCoor().greatCircleDistance(to) > 0.05) {
+                        targetCmds.add(new MoveCommand(Collections.singleton(n), n.getEastNorth(),
+                                ProjectionRegistry.getProjection().latlon2eastNorth(to)));
+                    }
+                    toDelete.addAll(g.getDuplicates());
+                } else {
+                    targetCmds.add(new AddCommand(targetDs, copyNode(g, proj.toLatLon(c), settings)));
+                    toDelete.addAll(g.getAllNodes());
+                }
             }
         }
 
