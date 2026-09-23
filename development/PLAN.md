@@ -64,7 +64,9 @@ non-address.
     OA already has parcel layers for many US counties (Maricopa, Glendale, ...) built from the
     county ESRI services, so this is the least-effort path for mappers.
   * **Synthetic cells**: Voronoi tessellation of the address nodes (JTS
-    `VoronoiDiagramBuilder`), clipped to the address layer's bounds. Phase 3 adds
+    `VoronoiDiagramBuilder`), clipped to the address layer's bounds, then each cell trimmed
+    to a circle of 2x the local address spacing (median nearest-neighbour distance over the
+    ~10 nearest addresses) so edge and gap cells stay lot-sized. Phase 3 adds
     **road clipping**: cut cells along `highway=*` centerlines (parcels essentially never cross
     a road), then along `railway`/`waterway`/`landuse` edges. multipoly-gone already has
     "break polygon along features" logic that can be lifted.
@@ -92,13 +94,26 @@ addresses ──▶ dedupe ──▶ assign to cell ──▶ rank buildings in 
    tag factor: `garage|shed|carport|roof|garages|outbuilding|greenhouse|barn` × 0.1;
    `house|detached|residential|apartments|commercial|retail|yes` × 1.0; buildings already
    holding a *different* address × 0.2; a building whose footprint **contains the address
-   point** × 4 (county points for condos and townhouses sit on the unit). Primary = top score.
+   point** × 4 (county points for condos and townhouses sit on the unit), but only for real
+   buildings, not roofs or garages. A POI tag (`amenity`, `shop`, `office`, ...) cancels the
+   outbuilding penalty: a gas-station canopy tagged `building=roof` + `amenity=fuel` is the
+   feature that carries the address. Primary = top score.
    Confidence drops when the runner-up is within 25 % of the primary's score (duplex mapped as
    two buildings, or a genuinely big shed).
 5. **Bucket** each address (or unit group) — see 3.3.
 6. **Emit proposals** — every proposal carries: address node(s), target primitive(s), bucket,
    confidence (0–1), and a human-readable reason list ("largest of 3 buildings in parcel",
    "runner-up is 92 % of primary area", "NAD point is 38 m from building centroid").
+
+### 3.2a Hints
+
+A third, optional input: a layer of building footprints that is read for position only and
+never edited (the MapWithAI layer, county footprints, Microsoft footprints via an
+OpenAddresses `buildings` layer). Hint footprints are indexed like OSM buildings. When a cell
+has no usable OSM building, or OSM offers only an outbuilding while a hint footprint scores
+more than 3x it, the address goes to the **Placed by hint** bucket: the node is placed on the
+hinted footprint, nothing is imported. With the edit layer as its own address source this is
+a mass-cleanup tool for badly placed existing nodes, which are moved rather than recreated.
 
 ### 3.3 Buckets
 
@@ -107,6 +122,7 @@ addresses ──▶ dedupe ──▶ assign to cell ──▶ rank buildings in 
 | **Clean**                  | 1 address, primary building clear, no existing addr       | Tag building, delete node. *Apply-all safe.*               |
 | **Multi-address building** | N addresses/units in cell, 1 primary building             | Keep every address as its own node, moved inside the building. Never merged into `12;14`, never interpolated. |
 | **Ambiguous building**     | Runner-up building close in score, or building straddles cells | Show candidates; user picks; "next best" hotkey            |
+| **Placed by hint**         | No usable OSM building, but a hint footprint is there     | Node placed on the hinted footprint; footprint not imported. *Apply-all safe.* |
 | **No building**            | Cell has no building                                      | Keep node in place (default) / skip / shortcut to buildings_tools |
 | **Building spans parcels** | One building assigned to several addressed cells (townhouse row mapped as one outline) | Keep nodes inside building; suggest split                  |
 | **Existing address**       | Cell already has addr:* on building/node/POI              | Sub-buckets: *identical* (skip, or fill missing city/postcode), *unit-only diff*, *street diff after normalization*, *housenumber diff*. Never auto-applied. |
@@ -180,11 +196,33 @@ Copy the conventions from TIGER-ROAR / multipoly-gone verbatim:
 
 ## 7. Phases
 
-Status (2026-09-21): phases 0 and 1 are done; phase 2 has the dialog and apply path but no
-overlay layer yet. Engine scores on the Glendale test bed: 100 % (centroid points, Voronoi),
+Status (2026-09-22): phases 0 and 1 are done; phase 2 is code-complete (dialog, apply path,
+overlay layer, undo awareness) but untested by hand; phase 3's road-clipped Voronoi and shift
+detection are done and tested; hint layers (section 3.2a) are done: with every OSM building
+removed from the Glendale bed and the city's footprints as hints, 99 % of hinted nodes land
+inside the building that really carries the address, and same-layer cleanup moves existing
+nodes instead of recreating them; phase 4's fetchers are done (a generic ESRI FeatureServer client with the
+NAD as a preset, and OpenAddresses source definitions resolved by id so a county's own
+address and parcel services download for the current view; `io/EsriFeatureClient`,
+`io/OpenAddressesSourceReader`, `io/DownloadSourceAction`). Engine scores on the Glendale test bed: 100 % (centroid points, Voronoi),
 99.8 % (centroid points, parcels), 99.6 % with 190 existing addresses detected (overlap
-variant), 80 % on parcel-centroid points where the 206-unit complex sets the ceiling.
-Two lessons baked in: a building whose footprint contains the address point gets a 4x score
+variant), 99.8 % on the real Maricopa address points (which turn out to be rooftop points),
+80 % on synthetic parcel-centroid points where the 206-unit complex sets the ceiling; outside
+that complex the parcel-centroid case misses 2 of 839, both in parcels holding several
+buildings and several addresses at one point, which now land in the Ambiguous bucket.
+A second bed, `test-data/colonie-ny/`, holds real parcel-centroid addresses (NYS tax parcel
+centroids, 36 % inside a building) with 313 sheds and garages; the engine scores 98.8 % there
+with parcels and 97.4 % with Voronoi. A survey of nine county feeds behind documented US
+imports (see `test-data/README.md`) found most are rooftop points; parcel-centroid data
+comes from assessor parcel layers and statewide parcel-centroid products. A third, rural bed
+(`test-data/owyhee-grandview/`, Owyhee County ID: a parcel-centroid import partly merged by
+hand, buildings tagged only `yes`/`detached`, big parcels) scores 100 % on centroid points and
+93.9 % on parcel-centroid points with parcels, and drove two rules: `yes` is demoted beside an
+explicit building value unless the point is inside it, and matches further than 100 m go to
+review. Its 42 real unmerged nodes run through the cleanup path with Microsoft footprints as
+hints: 5 merged, 10 moved onto footprints, 16 no-building, 7 review, 3 existing-address.
+Three lessons baked in: the containment boost applies only to real buildings, not to roofs
+or garages (a parcel centroid under a gas-station canopy must not hand the canopy the address); a building whose footprint contains the address point gets a 4x score
 boost (without it, condo and townhouse units all collapse onto the largest outline), and JOSM
 renumbers negative ids when a second file is loaded in the same JVM, so the test bed carries a
 `testbed:source` tag rather than relying on ids.
@@ -209,13 +247,16 @@ County, where parcels are open data and there's a Redmond import repo to borrow 
 Measure: how many addresses per minute vs the Conflation plugin, and how many post-apply
 corrections were needed.
 
-**Phase 3 — Quality.** Road-clipped Voronoi, dataset shift detection, existing-address
-normalization sub-buckets, building-spans-parcels handling, validator tests. Tune the
-outbuilding weights against real data.
+**Phase 3 — Quality.** Done: road-clipped Voronoi (proven on a synthetic case; on grid
+suburbs it changes nothing because the Voronoi boundary between houses facing each other
+already runs down the street), dataset shift detection with a one-click move-and-rerun,
+existing-address sub-buckets, building-spans-parcels handling, roof/canopy factor 0.02 and
+POI-tag override. Remaining: validator tests, tuning against more counties. Performance:
+24k buildings and 18k addresses analyze in about 1 s (Voronoi or parcels), 1.7 s road-clipped.
 
-**Phase 4 — Convenience and release.** Optional NAD fetch (copy `NadClient`), optional generic
-ESRI FeatureServer parcel fetch (most counties expose one), JOSM plugin-list submission, wiki
-page, diary post. Docs get the `$(cat ~/.overpassurl)` treatment for any Overpass examples.
+**Phase 4 — Convenience and release.** Done: NAD fetch and generic ESRI FeatureServer fetch
+driven by OpenAddresses source definitions (addresses and parcels). Remaining: JOSM
+plugin-list submission, wiki page, diary post. Docs get the `$(cat ~/.overpassurl)` treatment for any Overpass examples.
 
 ## 8. Open questions (defaults chosen; change if you disagree)
 
