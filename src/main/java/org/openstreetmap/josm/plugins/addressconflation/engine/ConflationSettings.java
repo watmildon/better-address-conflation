@@ -24,6 +24,17 @@ public final class ConflationSettings {
      */
     public double matchDistanceMeters = 30.0;
 
+    /**
+     * Voronoi mode: each cell is trimmed to a circle around its address point whose radius
+     * is this many times the local address spacing (median nearest-neighbour distance among
+     * the nearby addresses). Keeps cells on the edge of a cluster, or beside a gap in it,
+     * from reaching buildings far beyond a typical lot. 0 turns trimming off.
+     */
+    public double voronoiReachFactor = 2.0;
+
+    /** Voronoi mode: the trimming circle is never smaller than this. Metres. */
+    public double voronoiMinReachMeters = 15.0;
+
     /** runner-up score / primary score at or above this is "ambiguous". */
     public double ambiguityRatio = 0.75;
 

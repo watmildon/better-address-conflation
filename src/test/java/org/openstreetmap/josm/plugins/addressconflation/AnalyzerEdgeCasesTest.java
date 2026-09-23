@@ -42,6 +42,39 @@ class AnalyzerEdgeCasesTest {
         return Analyzer.analyze(source, target, new ParcelCellSource(parcels, "p"), s);
     }
 
+    /**
+     * The last address of a row has no neighbour on its outer side, so its raw Voronoi
+     * cell runs far past the row. With a wide match distance a big unaddressed warehouse
+     * out there outscored the house next to the point.
+     */
+    @Test
+    void edgeCellDoesNotReachPastTypicalLot() {
+        DataSet target = new DataSet();
+        DataSet source = new DataSet();
+        Way lastHouse = null;
+        for (int i = 0; i < 5; i++) {
+            lastHouse = Fixtures.rect(target, i * 20, 12, 10, 10, "building=house");
+            Fixtures.node(source, i * 20, 0, Fixtures.addr(Integer.toString(100 + i * 2), "Main Street"));
+        }
+        Way warehouse = Fixtures.rect(target, 150, 12, 40, 30, "building=yes");
+        ConflationSettings wide = new ConflationSettings();
+        wide.matchDistanceMeters = 120;
+
+        wide.voronoiReachFactor = 0;
+        assertSame(warehouse, targetOf(Analyzer.analyze(source, target, new VoronoiCellSource(), wide), "108"),
+                "without trimming the fixture should show the problem");
+
+        wide.voronoiReachFactor = new ConflationSettings().voronoiReachFactor;
+        assertSame(lastHouse, targetOf(Analyzer.analyze(source, target, new VoronoiCellSource(), wide), "108"));
+    }
+
+    private static Object targetOf(AnalysisResult r, String housenumber) {
+        return r.getProposals().stream()
+                .filter(p -> p.getAddresses().stream().anyMatch(g -> housenumber.equals(g.getTags().get("addr:housenumber"))))
+                .map(p -> p.getTarget() == null ? null : p.getTarget().getPrimitive())
+                .findFirst().orElse(null);
+    }
+
     @Test
     void houseBeatsGarageAtParcelCentroid() {
         DataSet target = new DataSet();
