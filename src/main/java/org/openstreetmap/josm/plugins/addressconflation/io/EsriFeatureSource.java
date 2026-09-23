@@ -2,9 +2,12 @@
 package org.openstreetmap.josm.plugins.addressconflation.io;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import jakarta.json.Json;
@@ -20,6 +23,7 @@ import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.LinearRing;
 import org.locationtech.jts.geom.Point;
 import org.locationtech.jts.geom.Polygon;
+import org.openstreetmap.josm.tools.Logging;
 
 /**
  * An ArcGIS FeatureServer/MapServer layer plus the OpenAddresses-style
@@ -75,6 +79,36 @@ public final class EsriFeatureSource {
         Map<String, List<String>> c = new LinkedHashMap<>();
         c.put("id", Collections.singletonList("OBJECTID"));
         return new EsriFeatureSource("Microsoft building footprints", MS_BUILDINGS_URL, Kind.BUILDINGS, c, null, false);
+    }
+
+    /**
+     * This source with its conform field names matched, ignoring case, to the fields the
+     * service actually has. Hosted ArcGIS Enterprise layers are case-sensitive, and
+     * OpenAddresses definitions do not always match the service's spelling (Indiana's
+     * statewide parcels list STATE_PARCEL_ID; the service has state_parcel_id). Fields the
+     * service does not have are dropped so the query does not fail outright.
+     */
+    public EsriFeatureSource withServiceFields(Collection<String> serviceFields) {
+        Map<String, String> byLower = new HashMap<>();
+        for (String f : serviceFields) {
+            byLower.putIfAbsent(f.toLowerCase(Locale.ROOT), f);
+        }
+        Map<String, List<String>> fixed = new LinkedHashMap<>();
+        for (Map.Entry<String, List<String>> e : conform.entrySet()) {
+            List<String> fields = new ArrayList<>();
+            for (String f : e.getValue()) {
+                String actual = byLower.get(f.toLowerCase(Locale.ROOT));
+                if (actual != null) {
+                    fields.add(actual);
+                } else {
+                    Logging.info(name + ": field " + f + " is not in the service, ignored");
+                }
+            }
+            if (!fields.isEmpty()) {
+                fixed.put(e.getKey(), fields);
+            }
+        }
+        return new EsriFeatureSource(name, url, kind, fixed, where, expandStreets);
     }
 
     public String getName() {

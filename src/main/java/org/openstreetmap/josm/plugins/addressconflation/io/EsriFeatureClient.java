@@ -53,6 +53,7 @@ public final class EsriFeatureClient {
 
     /** Fetch and convert. */
     public static DataSet download(EsriFeatureSource source, Bounds bounds, ProgressMonitor monitor) throws IOException {
+        source = matchServiceFields(source);
         List<JsonObject> features = fetchRaw(source, bounds, monitor);
         List<JsonObject> oa = new ArrayList<>(features.size());
         for (JsonObject f : features) {
@@ -75,6 +76,29 @@ public final class EsriFeatureClient {
         return OpenAddressesReader.fromFeatures(oa, layer, source.isExpandStreets());
     }
 
+    /** The source with its field names matched to the service's; unchanged if the service will not say. */
+    static EsriFeatureSource matchServiceFields(EsriFeatureSource source) {
+        if (source.getConform().isEmpty()) {
+            return source;
+        }
+        try {
+            JsonObject info = get(source.getUrl().replaceAll("/+$", "") + "?f=json");
+            JsonArray fields = info.containsKey("fields") && info.get("fields").getValueType() == JsonValue.ValueType.ARRAY
+                    ? info.getJsonArray("fields") : null;
+            if (fields == null || fields.isEmpty()) {
+                return source;
+            }
+            List<String> names = new ArrayList<>();
+            for (JsonValue f : fields) {
+                names.add(f.asJsonObject().getString("name", ""));
+            }
+            return source.withServiceFields(names);
+        } catch (IOException | ClassCastException e) {
+            Logging.info("Could not read the field list of " + source.getName() + ": " + e.getMessage());
+            return source;
+        }
+    }
+
     /** Raw ESRI GeoJSON features for the bounds. */
     public static List<JsonObject> fetchRaw(EsriFeatureSource source, Bounds bounds, ProgressMonitor monitor) throws IOException {
         List<JsonObject> all = new ArrayList<>();
@@ -94,7 +118,7 @@ public final class EsriFeatureClient {
             }
             JsonArray feats = page.getJsonArray("features");
             if (feats == null) {
-                throw new IOException(tr("Unexpected response from {0}", source.getUrl()));
+                throw new IOException(tr("the server sent something other than features"));
             }
             for (JsonValue v : feats) {
                 all.add(v.asJsonObject());
@@ -148,7 +172,10 @@ public final class EsriFeatureClient {
                 .connect();
         try {
             if (resp.getResponseCode() != 200) {
-                throw new IOException(tr("HTTP {0} from {1}", resp.getResponseCode(), url));
+                String reason = serverMessage(resp.fetchContent());
+                Logging.warn("ESRI query failed with HTTP " + resp.getResponseCode() + ": " + url);
+                throw new IOException(reason == null ? tr("server error (HTTP {0})", resp.getResponseCode())
+                        : tr("server error (HTTP {0}): {1}", resp.getResponseCode(), reason));
             }
             String body = resp.fetchContent();
             try (JsonReader reader = Json.createReader(new StringReader(body))) {
@@ -159,6 +186,36 @@ public final class EsriFeatureClient {
         } finally {
             resp.disconnect();
         }
+    }
+
+    /** Longest server message we pass on to the user. */
+    private static final int MAX_REASON = 160;
+
+    /**
+     * The human part of an ArcGIS error body: the JSON error message, or the HTML page
+     * title ArcGIS Enterprise sends for GeoJSON requests. Null when there is none.
+     */
+    static String serverMessage(String body) {
+        if (body == null || body.isEmpty()) {
+            return null;
+        }
+        String msg = null;
+        try (JsonReader reader = Json.createReader(new StringReader(body))) {
+            JsonObject o = reader.readObject();
+            if (o.containsKey("error") && o.get("error").getValueType() == JsonValue.ValueType.OBJECT) {
+                msg = o.getJsonObject("error").getString("message", null);
+            }
+        } catch (JsonException | IllegalStateException e) {
+            java.util.regex.Matcher m = java.util.regex.Pattern.compile("(?is)<title>\\s*(.*?)\\s*</title>").matcher(body);
+            if (m.find()) {
+                msg = m.group(1).replaceFirst("^(?i)error:\\s*", "");
+            }
+        }
+        if (msg == null || msg.trim().isEmpty()) {
+            return null;
+        }
+        msg = msg.replaceAll("\\s+", " ").trim();
+        return msg.length() > MAX_REASON ? msg.substring(0, MAX_REASON) + "..." : msg;
     }
 
     /** Convert an Esri JSON feature set (points and polygons) to GeoJSON shape. */

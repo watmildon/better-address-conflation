@@ -1,0 +1,116 @@
+[
+ {
+  "id": 4127,
+  "fabric": false,
+  "source": "us/az/city_of_glendale",
+  "updated": "2026-09-18T14:39:12.997Z",
+  "layer": "parcels",
+  "name": "city",
+  "job": 915866,
+  "latest_job": 915866,
+  "output": {
+   "cache": false,
+   "output": true,
+   "pmtiles": true,
+   "preview": true,
+   "validated": false
+  },
+  "size": 6087607,
+  "map": 179
+ },
+ {
+  "id": 4128,
+  "fabric": false,
+  "source": "us/az/maricopa",
+  "updated": "2026-09-18T17:44:46.681Z",
+  "layer": "parcels",
+  "name": "county",
+  "job": 915853,
+  "latest_job": 915853,
+  "output": {
+   "cache": false,
+   "output": true,
+   "pmtiles": true,
+   "preview": true,
+   "validated": false
+  },
+  "size": 135312977,
+  "map": 13466
+ },
+ {
+  "id": 3914,
+  "fabric": false,
+  "source": "us/az/statewide",
+  "updated": "2026-09-18T18:08:02.386Z",
+  "layer": "parcels",
+  "name": "state",
+  "job": 915842,
+  "latest_job": 915842,
+  "output": {
+   "cache": false,
+   "output": true,
+   "pmtiles": true,
+   "preview": true,
+   "validated": false
+  },
+  "size": 324260685,
+  "map": 10101
+ },
+ {
+  "id": 2782,
+  "fabric": false,
+  "source": "us/ca/los_angeles",
+  "updated": "2026-09-11T18:45:54.006Z",
+  "layer": "parcels",
+  "name": "county",
+  "job": 910482,
+  "latest_job": 915676,
+  "output": {
+   "cache": false,
+   "output": true,
+   "pmtiles": true,
+   "preview": true,
+   "validated": false
+  },
+  "size": 147458602,
+  "map": 13765
+ },
+ {
+  "id": 2726,
+  "fabric": false,
+  "source": "us/id/ada",
+  "updated": "2026-09-18T13:55:36.394Z",
+  "layer": "parcels",
+  "name": "county",
+  "job": 914908,
+  "latest_job": 914908,
+  "output": {
+   "cache": false,
+   "output": true,
+   "pmtiles": true,
+   "preview": true,
+   "validated": false
+  },
+  "size": 17669368,
+  "map": 16103
+ },
+ {
+  "id": 3784,
+  "fabric": false,
+  "source": "us/id/statewide",
+  "updated": "2026-09-18T15:08:51.838Z",
+  "layer": "parcels",
+  "name": "state",
+  "job": 914864,
+  "latest_job": 914864,
+  "output": {
+   "cache": false,
+   "output": true,
+   "pmtiles": true,
+   "preview": true,
+   "validated": false
+  },
+  "size": 115328254,
+  "map": 10084
+ }
+]
