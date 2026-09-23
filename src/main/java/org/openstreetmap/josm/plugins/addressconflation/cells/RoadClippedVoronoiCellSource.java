@@ -34,11 +34,10 @@ import org.openstreetmap.josm.tools.Logging;
  * inside or between lots.
  */
 public class RoadClippedVoronoiCellSource extends VoronoiCellSource {
-    /** highway=* values that separate parcels. */
+    /** highway=* values that separate parcels. Railways are matched on the railway key instead. */
     public static final Set<String> DIVIDING_HIGHWAYS = new HashSet<>(Arrays.asList(
             "motorway", "trunk", "primary", "secondary", "tertiary", "unclassified", "residential",
-            "living_street", "motorway_link", "trunk_link", "primary_link", "secondary_link", "tertiary_link",
-            "railway"));
+            "living_street", "motorway_link", "trunk_link", "primary_link", "secondary_link", "tertiary_link"));
 
     private final DataSet roads;
 
@@ -119,13 +118,22 @@ public class RoadClippedVoronoiCellSource extends VoronoiCellSource {
             return cell;
         }
         try {
+            // Node the whole road lines against the cell boundary. Clipping the roads to the
+            // cell first leaves their cut ends only approximately on the boundary, the noder
+            // misses the touch, and the polygonizer sees dangles instead of a cut.
             Geometry lines = cell.getBoundary();
             for (LineString ls : hits) {
-                lines = lines.union(ls.intersection(cell));
+                lines = lines.union(ls);
             }
             Polygonizer polygonizer = new Polygonizer();
             polygonizer.add(lines);
-            Collection<Polygon> pieces = polygonizer.getPolygons();
+            List<Polygon> pieces = new ArrayList<>();
+            for (Polygon piece : (Collection<Polygon>) polygonizer.getPolygons()) {
+                // Roads can close rings outside the cell (a loop, a block); those are not cell pieces.
+                if (cell.covers(piece.getInteriorPoint())) {
+                    pieces.add(piece);
+                }
+            }
             if (pieces.size() <= 1) {
                 return cell;
             }
