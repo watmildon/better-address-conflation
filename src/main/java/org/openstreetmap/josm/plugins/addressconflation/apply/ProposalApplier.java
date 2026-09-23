@@ -26,6 +26,7 @@ import org.openstreetmap.josm.plugins.addressconflation.engine.LocalProjection;
 import org.openstreetmap.josm.plugins.addressconflation.engine.OsmGeometry;
 import org.openstreetmap.josm.plugins.addressconflation.model.AddressGroup;
 import org.openstreetmap.josm.plugins.addressconflation.model.Bucket;
+import org.openstreetmap.josm.plugins.addressconflation.model.BuildingCandidate;
 import org.openstreetmap.josm.plugins.addressconflation.model.ExistingKind;
 import org.openstreetmap.josm.plugins.addressconflation.model.Proposal;
 
@@ -90,14 +91,30 @@ public final class ProposalApplier {
      * @return commands, or null when the proposal is not applicable
      */
     public static Applied build(Proposal p, DataSet targetDs, DataSet sourceDs, LocalProjection proj, ConflationSettings settings) {
+        return build(p, null, targetDs, sourceDs, proj, settings);
+    }
+
+    /**
+     * Build commands for a proposal, sending it to a building the mapper picked instead of
+     * the proposal's own target.
+     *
+     * @param pick one of the proposal's candidates, or null to use its target; a proposal
+     *             that {@link Proposal#requiresPick() requires a pick} gives null without one
+     */
+    public static Applied build(Proposal p, BuildingCandidate pick, DataSet targetDs, DataSet sourceDs, LocalProjection proj,
+            ConflationSettings settings) {
         if (!isApplicable(p)) {
+            return null;
+        }
+        BuildingCandidate target = pick != null ? pick : p.getTarget();
+        if (target == null && p.requiresPick()) {
             return null;
         }
         List<Command> targetCmds = new ArrayList<>();
         List<Node> toDelete = new ArrayList<>();
         Bucket bucket = p.getBucket();
         boolean sameLayer = sourceDs == targetDs;
-        boolean hinted = p.getTarget() != null && p.getTarget().isHint();
+        boolean hinted = target != null && target.isHint();
 
         if (bucket == Bucket.EXISTING_ADDRESS) {
             // Identical address already mapped: the source node is redundant.
@@ -115,12 +132,12 @@ public final class ProposalApplier {
         } else if (p.getAddresses().size() == 1 && bucket != Bucket.BUILDING_SPANS_CELLS && !hinted) {
             AddressGroup g = p.getAddresses().get(0);
             Map<String, String> tags = copyTags(g, settings);
-            targetCmds.add(new ChangePropertyCommand(Collections.singleton(p.getTarget().getPrimitive()), tags));
+            targetCmds.add(new ChangePropertyCommand(Collections.singleton(target.getPrimitive()), tags));
             toDelete.addAll(g.getAllNodes());
         } else {
             // Several addresses on one building, a building spanning parcels, or a hinted
             // footprint: every address becomes (or stays) a node inside the footprint.
-            Geometry building = p.getTarget().getGeometry();
+            Geometry building = target.getGeometry();
             List<Coordinate> placed = new ArrayList<>();
             for (AddressGroup g : p.getAddresses()) {
                 Coordinate c = placeInside(proj.toXY(g.getPosition()), building, placed);

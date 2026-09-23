@@ -2,6 +2,7 @@
 package org.openstreetmap.josm.plugins.addressconflation.engine;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
@@ -127,6 +128,7 @@ public final class Analyzer {
 
         List<AddressGroup> groups = groupAddresses(sourceNodes);
         indexBuildings(extent);
+        indexBuildingNodes(extent);
         indexHints(extent);
         indexExisting(new HashSet<>(sourceNodes));
 
@@ -147,6 +149,11 @@ public final class Analyzer {
             }
             if (source == target && n.getReferrers().stream().anyMatch(Way.class::isInstance)) {
                 continue; // an address vertex of a building outline is not a source point
+            }
+            if (source == target && !ConflationSettings.isPlainAddressNode(n)) {
+                // A shop, a building node, a named place: a feature with an address, not a
+                // loose address to fold into a building. It stays, and counts as existing.
+                continue;
             }
             nodes.add(n);
         }
@@ -244,6 +251,54 @@ public final class Analyzer {
     }
 
     // ---- buildings ------------------------------------------------------------
+
+    /** Radius of the stand-in footprint of a building mapped as a node, in metres. */
+    static final double BUILDING_NODE_RADIUS = 6.0;
+
+    /**
+     * Unaddressed building=* nodes: some mappers mark a building's presence with a node.
+     * They only become targets where a cell has no outline (see {@link #bucket}).
+     */
+    private void indexBuildingNodes(Envelope extent) {
+        Envelope search = new Envelope(extent);
+        search.expandBy(settings.matchDistanceMeters + 200);
+        for (Node n : target.getNodes()) {
+            if (!n.isUsable() || n.getCoor() == null || !n.hasKey("building") || "no".equals(n.get("building"))
+                    || n.hasKey(HOUSENUMBER) || n.getReferrers().stream().anyMatch(Way.class::isInstance)) {
+                continue;
+            }
+            Coordinate c = proj.toXY(n.getCoor());
+            if (!search.contains(c)) {
+                continue;
+            }
+            Point p = OsmGeometry.factory().createPoint(c);
+            for (Cell cell : (List<Cell>) cellIndex.query(new Envelope(c))) {
+                if (cell.getPrepared().intersects(p)) {
+                    cell.getBuildingNodes().add(n);
+                }
+            }
+        }
+    }
+
+    /** Building nodes an address in this cell could go to. */
+    private List<Node> buildingNodesFor(AddressGroup g, Cell cell) {
+        if (!cell.isSynthetic()) {
+            return cell.getBuildingNodes();
+        }
+        Coordinate at = proj.toXY(g.getPosition());
+        List<Node> out = new ArrayList<>();
+        for (Node n : cell.getBuildingNodes()) {
+            if (proj.toXY(n.getCoor()).distance(at) <= settings.matchDistanceMeters) {
+                out.add(n);
+            }
+        }
+        return out;
+    }
+
+    private BuildingCandidate nodeCandidate(Node n) {
+        Geometry circle = OsmGeometry.factory().createPoint(proj.toXY(n.getCoor())).buffer(BUILDING_NODE_RADIUS, 4);
+        return new BuildingCandidate(n, circle, settings.weightFor(n));
+    }
 
     private void indexBuildings(Envelope extent) {
         buildingIndex = new STRtree();
@@ -362,6 +417,7 @@ public final class Analyzer {
         List<Proposal> proposals = new ArrayList<>();
         Map<BuildingCandidate, List<Assignment>> byBuilding = new LinkedHashMap<>();
         Map<BuildingCandidate, List<Assignment>> hinted = new LinkedHashMap<>();
+        Map<Cell, List<AddressGroup>> onNodes = new LinkedHashMap<>();
         hintedReason.clear();
 
         for (AddressGroup g : groups) {
@@ -390,6 +446,11 @@ public final class Analyzer {
                 continue;
             }
             Assignment a = rank(g, cell);
+            if (a.ranked.isEmpty() && !buildingNodesFor(g, cell).isEmpty()) {
+                // No outline, but a mapper marked the building with a node: that beats a hint.
+                onNodes.computeIfAbsent(cell, x -> new ArrayList<>()).add(g);
+                continue;
+            }
             if (hints != null) {
                 Assignment h = rankHints(g, cell);
                 if (!h.ranked.isEmpty() && preferHint(a, h)) {
@@ -422,7 +483,53 @@ public final class Analyzer {
         for (Map.Entry<BuildingCandidate, List<Assignment>> e : hinted.entrySet()) {
             proposals.add(hintProposal(e.getKey(), e.getValue()));
         }
+        for (Map.Entry<Cell, List<AddressGroup>> e : onNodes.entrySet()) {
+            proposals.addAll(buildingNodeProposals(e.getKey(), e.getValue()));
+        }
         return proposals;
+    }
+
+    /**
+     * Addresses in a cell whose only buildings are mapped as nodes. One node: the address
+     * goes on it (several addresses become nodes beside it). Several nodes: the mapper picks;
+     * the closest node is often the neighbour's house, so there is no default.
+     */
+    private List<Proposal> buildingNodeProposals(Cell cell, List<AddressGroup> groups) {
+        List<Proposal> out = new ArrayList<>();
+        java.util.Set<Node> all = new java.util.LinkedHashSet<>();
+        for (AddressGroup g : groups) {
+            all.addAll(buildingNodesFor(g, cell));
+        }
+        String where = cell.isSynthetic() ? "near the address" : "in parcel " + cell.getId();
+        if (all.size() == 1) {
+            Node n = all.iterator().next();
+            BuildingCandidate b = nodeCandidate(n);
+            List<CellBuilding> cands = Collections.singletonList(new CellBuilding(b, cell, b.getArea()));
+            String what = "building=" + n.get("building");
+            if (groups.size() == 1) {
+                out.add(new Proposal(Bucket.CLEAN, groups, b, cands, 0.85,
+                        Collections.singletonList("Only building " + where + " is mapped as a node (" + what + "); the address goes on it"),
+                        null, null, cell));
+            } else {
+                out.add(new Proposal(Bucket.MULTI_ADDRESS_BUILDING, groups, b, cands, 0.7,
+                        Arrays.asList("Only building " + where + " is mapped as a node (" + what + ")",
+                                groups.size() + " addresses: each stays its own node beside it"),
+                        null, null, cell));
+            }
+            return out;
+        }
+        for (AddressGroup g : groups) {
+            List<CellBuilding> cands = new ArrayList<>();
+            for (Node n : buildingNodesFor(g, cell)) {
+                BuildingCandidate b = nodeCandidate(n);
+                cands.add(new CellBuilding(b, cell, b.getArea()));
+            }
+            out.add(new Proposal(Bucket.AMBIGUOUS_BUILDING, Collections.singletonList(g), null, cands, 0.3,
+                    Arrays.asList(cands.size() + " buildings " + where + " are mapped as nodes and none as an outline",
+                            "Select the right building node on the map, then Apply"),
+                    null, null, cell));
+        }
+        return out;
     }
 
     /**

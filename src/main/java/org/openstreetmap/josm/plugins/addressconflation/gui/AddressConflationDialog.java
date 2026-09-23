@@ -14,6 +14,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.HashMap;
@@ -72,6 +73,8 @@ import org.openstreetmap.josm.plugins.addressconflation.engine.ShiftEstimator;
 import org.openstreetmap.josm.plugins.addressconflation.io.DownloadSourceAction;
 import org.openstreetmap.josm.plugins.addressconflation.model.AnalysisResult;
 import org.openstreetmap.josm.plugins.addressconflation.model.Bucket;
+import org.openstreetmap.josm.plugins.addressconflation.model.BuildingCandidate;
+import org.openstreetmap.josm.plugins.addressconflation.model.CellBuilding;
 import org.openstreetmap.josm.plugins.addressconflation.model.Proposal;
 import org.openstreetmap.josm.tools.ImageProvider;
 import org.openstreetmap.josm.tools.Logging;
@@ -573,11 +576,17 @@ public class AddressConflationDialog extends ToggleDialog implements LayerChange
             return;
         }
         int done = 0;
+        int needPick = 0;
         for (Proposal p : proposals) {
             if (applied.contains(p)) {
                 continue;
             }
-            Applied a = ProposalApplier.build(p, targetLayer.getDataSet(), sourceLayer.getDataSet(), result.getProjection(), settings);
+            BuildingCandidate pick = pickedCandidate(p);
+            if (p.requiresPick() && pick == null) {
+                needPick++;
+                continue;
+            }
+            Applied a = ProposalApplier.build(p, pick, targetLayer.getDataSet(), sourceLayer.getDataSet(), result.getProjection(), settings);
             if (a == null || a.isEmpty()) {
                 continue;
             }
@@ -594,13 +603,43 @@ public class AddressConflationDialog extends ToggleDialog implements LayerChange
             }
             done++;
         }
-        summary.setText(tr("Applied {0} proposals", done));
+        summary.setText(needPick == 0 ? tr("Applied {0} proposals", done)
+                : tr("Applied {0} proposals; {1} need a building picked: select one of the highlighted buildings on the map, then Apply",
+                        done, needPick));
         if (done > 0) {
             targetLayer.invalidate();
             if (sourceLayer != targetLayer) {
                 sourceLayer.invalidate();
             }
         }
+    }
+
+    /**
+     * The candidate the mapper picked: exactly one of the proposal's buildings selected in the
+     * edit layer. Selecting a row selects all of them, so this only kicks in after the mapper
+     * narrows the selection on the map.
+     */
+    private BuildingCandidate pickedCandidate(Proposal p) {
+        if (targetLayer == null || p.getCandidates().isEmpty()) {
+            return null;
+        }
+        Collection<OsmPrimitive> selected = targetLayer.getDataSet().getSelected();
+        BuildingCandidate found = null;
+        for (CellBuilding c : p.getCandidates()) {
+            BuildingCandidate b = c.getBuilding();
+            if (!b.isHint() && selected.contains(b.getPrimitive())) {
+                if (found != null) {
+                    return null;
+                }
+                found = b;
+            }
+        }
+        if (found == null) {
+            return null;
+        }
+        // the only candidate selected, but other things selected too: not a clear pick
+        long otherBuildings = selected.stream().filter(o -> o.hasKey("building")).count();
+        return otherBuildings == 1 ? found : null;
     }
 
     private void removeFromTree(Proposal p) {
@@ -635,9 +674,13 @@ public class AddressConflationDialog extends ToggleDialog implements LayerChange
             } else if (o instanceof Proposal) {
                 Proposal p = (Proposal) o;
                 StringBuilder sb = new StringBuilder(p.describe());
-                if (p.getTarget() != null) {
+                if (p.getTarget() != null && p.getTarget().isNode()) {
+                    sb.append(" → building node ").append(Objects.toString(p.getTarget().getBuildingValue(), "?"));
+                } else if (p.getTarget() != null) {
                     sb.append(p.getTarget().isHint() ? " → hint " : " → building=").append(Objects.toString(p.getTarget().getBuildingValue(), "?"))
                       .append(" (").append(Math.round(p.getTarget().getArea())).append(" m²)");
+                } else if (p.requiresPick()) {
+                    sb.append(" → pick one of ").append(p.getCandidates().size()).append(" buildings");
                 }
                 sb.append("  ").append(Math.round(p.getConfidence() * 100)).append('%');
                 setText(sb.toString());

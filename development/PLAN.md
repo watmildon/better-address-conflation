@@ -114,6 +114,24 @@ has no usable OSM building, or OSM offers only an outbuilding while a hint footp
 more than 3x it, the address goes to the **Placed by hint** bucket: the node is placed on the
 hinted footprint, nothing is imported. With the edit layer as its own address source this is
 a mass-cleanup tool for badly placed existing nodes, which are moved rather than recreated.
+In that mode only plain address nodes (`addr:*` plus bookkeeping keys such as `source`,
+`note`, `check_date`) are sources. A node that also carries `building`, a POI key or `name` is
+a feature: it is left alone and counts as an existing address.
+
+### 3.2b Buildings mapped as nodes
+
+Some mappers mark a building with a single `building=*` node. Unaddressed building nodes are
+indexed per cell (in Voronoi cells, within the match distance of the address) and only used
+where the cell has no outline; an outline always wins, and a building node beats a hint
+footprint.
+
+* One building node, one address: **Clean**, the address tags go on the node.
+* One building node, several addresses: **Multi-address building**, each address stays its
+  own node, placed within 6 m of the building node.
+* Several building nodes: **Ambiguous building** with no default target, one proposal per
+  address. Closest-wins is wrong here (the nearest node is often the garage or the
+  neighbour), so the mapper picks: selecting the row highlights every candidate, the mapper
+  selects one on the map, and Apply uses it. The same pick works for ambiguous outlines.
 
 ### 3.3 Buckets
 

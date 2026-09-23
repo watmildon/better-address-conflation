@@ -7,6 +7,7 @@ import java.util.List;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.prep.PreparedGeometry;
 import org.locationtech.jts.geom.prep.PreparedGeometryFactory;
+import org.openstreetmap.josm.data.osm.Node;
 import org.openstreetmap.josm.data.osm.OsmPrimitive;
 
 /** A parcel, or a synthetic Voronoi cell standing in for one. */
@@ -20,6 +21,7 @@ public final class Cell {
     private final List<CellBuilding> hintBuildings = new ArrayList<>();
     private final List<AddressGroup> addresses = new ArrayList<>();
     private final List<ExistingAddress> existing = new ArrayList<>();
+    private final List<Node> buildingNodes = new ArrayList<>();
 
     public Cell(String id, Geometry geometry, boolean synthetic, OsmPrimitive sourcePrimitive) {
         this.id = id;
@@ -63,6 +65,11 @@ public final class Cell {
 
     public List<AddressGroup> getAddresses() {
         return addresses;
+    }
+
+    /** Unaddressed buildings mapped as a single node (building=* on a node) in this cell. */
+    public List<Node> getBuildingNodes() {
+        return buildingNodes;
     }
 
     /** Addresses already in the edit layer whose representative point is in this cell. */

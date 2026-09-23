@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.openstreetmap.josm.data.osm.OsmPrimitive;
+
 /**
  * Tunables for one analysis run. Plain data so the engine can be tested
  * without JOSM preferences; the GUI copies preference values into this.
@@ -141,6 +143,34 @@ public final class ConflationSettings {
             "amenity=shelter", "amenity=bench", "amenity=waste_basket", "amenity=waste_disposal", "amenity=recycling",
             "amenity=fountain", "amenity=grave_yard", "amenity=loading_dock", "leisure=picnic_table", "leisure=pitch",
             "leisure=swimming_pool", "leisure=playground", "public_transport=platform");
+
+    /** Keys a bare address node may carry besides addr:* and still be only an address. */
+    public static final List<String> ADDRESS_NODE_META_KEYS = Collections.unmodifiableList(Arrays.asList(
+            "source", "note", "fixme", "FIXME", "check_date", "created_by", "survey:date", "import_uuid"));
+
+    /**
+     * True for a node that is nothing but an address: addr:* plus bookkeeping keys. A node
+     * that also says building=*, amenity=*, name=... is a feature, and folding its address
+     * into a building outline and deleting it would throw those tags away.
+     */
+    public static boolean isPlainAddressNode(OsmPrimitive p) {
+        for (String k : p.keySet()) {
+            if (k.startsWith("addr:")) {
+                continue;
+            }
+            boolean meta = false;
+            for (String m : ADDRESS_NODE_META_KEYS) {
+                if (k.equals(m) || k.startsWith(m + ":")) {
+                    meta = true;
+                    break;
+                }
+            }
+            if (!meta) {
+                return false;
+            }
+        }
+        return true;
+    }
 
     public boolean shouldCopyKey(String key) {
         for (String p : copyKeyPrefixes) {

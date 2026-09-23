@@ -52,6 +52,11 @@ public final class Proposal {
         return candidates;
     }
 
+    /** True when there is no default building: the mapper has to pick one of the candidates. */
+    public boolean requiresPick() {
+        return target == null && !candidates.isEmpty() && bucket == Bucket.AMBIGUOUS_BUILDING;
+    }
+
     public double getConfidence() {
         return confidence;
     }
@@ -86,6 +91,14 @@ public final class Proposal {
         List<OsmPrimitive> prims = new ArrayList<>(getSourceNodes());
         if (target != null) {
             prims.add(target.getPrimitive());
+        }
+        if (bucket == Bucket.AMBIGUOUS_BUILDING) {
+            // show the alternatives so the mapper can pick one on the map
+            for (CellBuilding c : candidates) {
+                if (!c.getBuilding().isHint() && !prims.contains(c.getBuilding().getPrimitive())) {
+                    prims.add(c.getBuilding().getPrimitive());
+                }
+            }
         }
         for (ExistingAddress e : existing) {
             prims.add(e.getPrimitive());

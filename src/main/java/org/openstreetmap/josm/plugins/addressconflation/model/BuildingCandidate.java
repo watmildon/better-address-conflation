@@ -66,6 +66,11 @@ public final class BuildingCandidate {
         return primitive.get("building");
     }
 
+    /** True for a building mapped as a node; its geometry is a small circle around it. */
+    public boolean isNode() {
+        return primitive instanceof org.openstreetmap.josm.data.osm.Node;
+    }
+
     /** True when this footprint is a hint, not an OSM building to tag. */
     public boolean isHint() {
         return hint;
