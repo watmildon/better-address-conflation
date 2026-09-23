@@ -45,4 +45,55 @@ class EsriServiceQuirksTest {
         String longMsg = EsriFeatureClient.serverMessage("{\"error\":{\"message\":\"" + "x".repeat(1000) + "\"}}");
         assertTrue(longMsg.length() < 200, "trimmed: " + longMsg.length());
     }
+
+    @Test
+    void qualifiedFieldNamesMatchOnTheirLastPart() {
+        Map<String, List<String>> conform = new LinkedHashMap<>();
+        conform.put("pid", List.of("SDE_GISA.Parcel_Boundary.APN"));
+        EsriFeatureSource carsonCity = new EsriFeatureSource("nv", "https://example.org/FeatureServer/0", EsriFeatureSource.Kind.PARCELS,
+                conform, null, false);
+        assertEquals("APN", carsonCity.withServiceFields(List.of("OBJECTID", "APN", "APN_NUM")).outFields());
+
+        conform.put("pid", List.of("Huntington.DBO.Parcels.APN"));
+        EsriFeatureSource huntington = new EsriFeatureSource("ca", "https://example.org/FeatureServer/0", EsriFeatureSource.Kind.PARCELS,
+                conform, null, false);
+        assertEquals("DATA.Parcels.APN", huntington.withServiceFields(List.of("DATA.Parcels.OBJECTID", "DATA.Parcels.APN")).outFields());
+        // two candidates: no guessing
+        assertEquals("*", huntington.withServiceFields(List.of("DATA.Parcels.APN", "DATA.Other.APN")).outFields());
+    }
+
+    @Test
+    void errorTextFromEveryArcGisShape() {
+        assertEquals("The requested layer (layerId: 0) was not found.", EsriFeatureClient.errorText(json(
+                "{\"error\":{\"code\":400,\"message\":\"\",\"details\":[\"The requested layer (layerId: 0) was not found.\"]}}")));
+        assertEquals("Could not access any server machines.", EsriFeatureClient.errorText(json(
+                "{\"status\":\"error\",\"messages\":[\"Could not access any server machines.\"]}")));
+        assertNull(EsriFeatureClient.errorText(json("{\"features\":[]}")));
+    }
+
+    @Test
+    void pointLayersAreNotParcels() {
+        // us/wa/clark and us/pa/susquehanna list address-point layers as their parcels.
+        EsriFeatureSource parcels = new EsriFeatureSource("wa", "https://example.org/FeatureServer/0", EsriFeatureSource.Kind.PARCELS,
+                Map.of(), null, false);
+        java.io.IOException e = org.junit.jupiter.api.Assertions.assertThrows(java.io.IOException.class,
+                () -> EsriFeatureClient.checkGeometry(parcels, "esriGeometryPoint"));
+        assertEquals("this layer holds points, not parcel outlines", e.getMessage());
+        org.junit.jupiter.api.Assertions.assertDoesNotThrow(() -> EsriFeatureClient.checkGeometry(parcels, "esriGeometryPolygon"));
+        org.junit.jupiter.api.Assertions.assertDoesNotThrow(() -> EsriFeatureClient.checkGeometry(EsriFeatureSource.nad(), "esriGeometryPoint"));
+    }
+
+    @Test
+    void networkFailuresInPlainWords() {
+        assertEquals("the server's security certificate could not be verified",
+                EsriFeatureClient.describe(new java.io.IOException(new javax.net.ssl.SSLHandshakeException("PKIX path building failed"))));
+        assertEquals("server gis.example.org not found", EsriFeatureClient.describe(new java.net.UnknownHostException("gis.example.org")));
+        assertEquals("the server did not answer in time", EsriFeatureClient.describe(new java.net.SocketTimeoutException("Read timed out")));
+    }
+
+    private static jakarta.json.JsonObject json(String s) {
+        try (jakarta.json.JsonReader r = jakarta.json.Json.createReader(new java.io.StringReader(s))) {
+            return r.readObject();
+        }
+    }
 }

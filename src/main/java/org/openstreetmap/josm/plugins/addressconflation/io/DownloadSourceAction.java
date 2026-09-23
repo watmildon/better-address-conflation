@@ -249,7 +249,7 @@ public class DownloadSourceAction extends JosmAction {
                 } catch (IOException e) {
                     // One county server being down must not cost the user the other layers.
                     Logging.warn(e);
-                    failures.add(tr("{0}: {1}", src.getName(), e.getMessage()));
+                    failures.add(tr("{0}: {1}", src.getName(), EsriFeatureClient.describe(e)));
                     continue;
                 }
                 int n = src.getKind() == EsriFeatureSource.Kind.ADDRESSES ? ds.getNodes().size() : ds.getWays().size() + ds.getRelations().size();

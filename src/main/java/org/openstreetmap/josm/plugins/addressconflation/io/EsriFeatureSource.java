@@ -98,6 +98,12 @@ public final class EsriFeatureSource {
             List<String> fields = new ArrayList<>();
             for (String f : e.getValue()) {
                 String actual = byLower.get(f.toLowerCase(Locale.ROOT));
+                if (actual == null) {
+                    // Qualified names drift with the database behind the service:
+                    // SDE_GISA.Parcel_Boundary.APN in the definition, APN in the service, or
+                    // the other way round. Match on the last part when that is unambiguous.
+                    actual = uniqueBySuffix(f, serviceFields);
+                }
                 if (actual != null) {
                     fields.add(actual);
                 } else {
@@ -109,6 +115,25 @@ public final class EsriFeatureSource {
             }
         }
         return new EsriFeatureSource(name, url, kind, fixed, where, expandStreets);
+    }
+
+    private static String uniqueBySuffix(String wanted, Collection<String> serviceFields) {
+        String tail = lastPart(wanted);
+        String found = null;
+        for (String f : serviceFields) {
+            if (lastPart(f).equalsIgnoreCase(tail)) {
+                if (found != null) {
+                    return null;
+                }
+                found = f;
+            }
+        }
+        return found;
+    }
+
+    private static String lastPart(String field) {
+        int dot = field.lastIndexOf('.');
+        return dot < 0 ? field : field.substring(dot + 1);
     }
 
     public String getName() {
@@ -234,6 +259,9 @@ public final class EsriFeatureSource {
         Point best = null;
         double bestArea = -1;
         for (JsonArray poly : polys) {
+            if (poly.isEmpty()) {
+                continue;
+            }
             JsonArray ring = poly.getJsonArray(0);
             if (ring.size() < 4) {
                 continue;

@@ -165,7 +165,7 @@ public final class OpenAddressesReader {
         Map<String, String> tags = tagsFor(props);
         String type = geometry.getString("type", "");
         JsonArray coords = geometry.getJsonArray("coordinates");
-        if (coords == null) {
+        if (coords == null || coords.isEmpty()) {
             skipped++;
             return;
         }

@@ -17,6 +17,7 @@ import jakarta.json.JsonArray;
 import jakarta.json.JsonException;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonReader;
+import jakarta.json.JsonString;
 import jakarta.json.JsonValue;
 
 import org.openstreetmap.josm.data.Bounds;
@@ -54,7 +55,12 @@ public final class EsriFeatureClient {
     /** Fetch and convert. */
     public static DataSet download(EsriFeatureSource source, Bounds bounds, ProgressMonitor monitor) throws IOException {
         source = matchServiceFields(source);
-        List<JsonObject> features = fetchRaw(source, bounds, monitor);
+        List<JsonObject> features;
+        try {
+            features = fetchRaw(source, bounds, monitor);
+        } catch (IOException e) {
+            throw new IOException(describe(e), e);
+        }
         List<JsonObject> oa = new ArrayList<>(features.size());
         for (JsonObject f : features) {
             JsonObject o = source.toOaFeature(f);
@@ -76,26 +82,39 @@ public final class EsriFeatureClient {
         return OpenAddressesReader.fromFeatures(oa, layer, source.isExpandStreets());
     }
 
-    /** The source with its field names matched to the service's; unchanged if the service will not say. */
-    static EsriFeatureSource matchServiceFields(EsriFeatureSource source) {
-        if (source.getConform().isEmpty()) {
+    /**
+     * The source with its field names matched to the service's; unchanged if the service will
+     * not describe itself. Fails when the layer cannot be what the source claims: some
+     * OpenAddresses "parcel" sources point at address-point layers.
+     */
+    static EsriFeatureSource matchServiceFields(EsriFeatureSource source) throws IOException {
+        JsonObject info;
+        try {
+            info = get(source.getUrl().replaceAll("/+$", "") + "?f=json");
+        } catch (IOException e) {
+            Logging.info("Could not read the layer description of " + source.getName() + ": " + e.getMessage());
             return source;
         }
-        try {
-            JsonObject info = get(source.getUrl().replaceAll("/+$", "") + "?f=json");
-            JsonArray fields = info.containsKey("fields") && info.get("fields").getValueType() == JsonValue.ValueType.ARRAY
-                    ? info.getJsonArray("fields") : null;
-            if (fields == null || fields.isEmpty()) {
-                return source;
-            }
-            List<String> names = new ArrayList<>();
-            for (JsonValue f : fields) {
+        checkGeometry(source, info.getString("geometryType", ""));
+        JsonArray fields = info.containsKey("fields") && info.get("fields").getValueType() == JsonValue.ValueType.ARRAY
+                ? info.getJsonArray("fields") : null;
+        if (source.getConform().isEmpty() || fields == null || fields.isEmpty()) {
+            return source;
+        }
+        List<String> names = new ArrayList<>();
+        for (JsonValue f : fields) {
+            if (f.getValueType() == JsonValue.ValueType.OBJECT) {
                 names.add(f.asJsonObject().getString("name", ""));
             }
-            return source.withServiceFields(names);
-        } catch (IOException | ClassCastException e) {
-            Logging.info("Could not read the field list of " + source.getName() + ": " + e.getMessage());
-            return source;
+        }
+        return source.withServiceFields(names);
+    }
+
+    static void checkGeometry(EsriFeatureSource source, String esriGeometryType) throws IOException {
+        boolean points = "esriGeometryPoint".equals(esriGeometryType) || "esriGeometryMultipoint".equals(esriGeometryType);
+        if (points && source.getKind() != EsriFeatureSource.Kind.ADDRESSES) {
+            throw new IOException(tr("this layer holds points, not {0} outlines", source.getKind() == EsriFeatureSource.Kind.PARCELS
+                    ? tr("parcel") : tr("building")));
         }
     }
 
@@ -103,6 +122,11 @@ public final class EsriFeatureClient {
     public static List<JsonObject> fetchRaw(EsriFeatureSource source, Bounds bounds, ProgressMonitor monitor) throws IOException {
         List<JsonObject> all = new ArrayList<>();
         int offset = 0;
+        // Start with GeoJSON; older servers only speak Esri JSON, and when anything goes wrong
+        // Esri JSON also carries the clearer error ("Service ... not started", "Token Required").
+        String format = "geojson";
+        // Some servers refuse resultOffset/resultRecordCount outright.
+        boolean paging = true;
         while (true) {
             if (monitor != null) {
                 if (monitor.isCanceled()) {
@@ -110,11 +134,19 @@ public final class EsriFeatureClient {
                 }
                 monitor.setCustomText(tr("{0}: {1} features so far", source.getName(), all.size()));
             }
-            String url = queryUrl(source, bounds, offset, "geojson");
-            JsonObject page = get(url);
-            if (page.containsKey("error")) {
-                // Older MapServers do not speak GeoJSON; fall back to the Esri JSON format.
-                page = toGeoJson(get(queryUrl(source, bounds, offset, "json")));
+            JsonObject page;
+            try {
+                page = queryPage(source, bounds, offset, format, paging);
+            } catch (IOException e) {
+                if (paging && offset == 0 && String.valueOf(e.getMessage()).toLowerCase(Locale.ROOT).contains("pagination")) {
+                    paging = false;
+                    continue;
+                }
+                if ("geojson".equals(format)) {
+                    format = "json";
+                    continue;
+                }
+                throw e;
             }
             JsonArray feats = page.getJsonArray("features");
             if (feats == null) {
@@ -124,6 +156,12 @@ public final class EsriFeatureClient {
                 all.add(v.asJsonObject());
             }
             boolean exceeded = exceeded(page);
+            if (!paging) {
+                if (exceeded) {
+                    Logging.warn(source.getName() + " cannot page; only the first " + feats.size() + " features were downloaded");
+                }
+                break;
+            }
             if (feats.size() < PAGE && !exceeded || feats.isEmpty()) {
                 break;
             }
@@ -145,14 +183,30 @@ public final class EsriFeatureClient {
         return page.getBoolean("exceededTransferLimit", false);
     }
 
+    /** One query page as GeoJSON, whatever format was asked for; service errors become exceptions. */
+    private static JsonObject queryPage(EsriFeatureSource source, Bounds b, int offset, String format, boolean paging) throws IOException {
+        JsonObject page = get(queryUrl(source, b, offset, format, paging));
+        String error = errorText(page);
+        if (error != null) {
+            throw new IOException(tr("service error: {0}", error));
+        }
+        return "json".equals(format) ? toGeoJson(page) : page;
+    }
+
     static String queryUrl(EsriFeatureSource source, Bounds b, int offset, String format) {
+        return queryUrl(source, b, offset, format, true);
+    }
+
+    static String queryUrl(EsriFeatureSource source, Bounds b, int offset, String format, boolean paging) {
         StringBuilder sb = new StringBuilder(source.getUrl().replaceAll("/+$", "")).append("/query?");
         sb.append("f=").append(format);
         sb.append("&geometry=").append(enc(String.format(Locale.ROOT, "%f,%f,%f,%f", b.getMinLon(), b.getMinLat(), b.getMaxLon(), b.getMaxLat())));
         sb.append("&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects");
         sb.append("&outFields=").append(enc(source.outFields()));
         sb.append("&outSR=4326&returnGeometry=true");
-        sb.append("&resultOffset=").append(offset).append("&resultRecordCount=").append(PAGE);
+        if (paging) {
+            sb.append("&resultOffset=").append(offset).append("&resultRecordCount=").append(PAGE);
+        }
         if (source.getWhere() != null && !source.getWhere().isEmpty()) {
             sb.append("&where=").append(enc(source.getWhere()));
         }
@@ -181,7 +235,10 @@ public final class EsriFeatureClient {
             try (JsonReader reader = Json.createReader(new StringReader(body))) {
                 return reader.readObject();
             } catch (JsonException e) {
-                throw new IOException(tr("Not JSON: {0}", body.length() > 120 ? body.substring(0, 120) : body), e);
+                // Typically an ArcGIS or proxy error page served with HTTP 200.
+                String title = serverMessage(body);
+                throw new IOException(title != null ? tr("the server sent a web page instead of data: {0}", title)
+                        : tr("the server sent a web page instead of data"), e);
             }
         } finally {
             resp.disconnect();
@@ -201,10 +258,7 @@ public final class EsriFeatureClient {
         }
         String msg = null;
         try (JsonReader reader = Json.createReader(new StringReader(body))) {
-            JsonObject o = reader.readObject();
-            if (o.containsKey("error") && o.get("error").getValueType() == JsonValue.ValueType.OBJECT) {
-                msg = o.getJsonObject("error").getString("message", null);
-            }
+            msg = errorText(reader.readObject());
         } catch (JsonException | IllegalStateException e) {
             java.util.regex.Matcher m = java.util.regex.Pattern.compile("(?is)<title>\\s*(.*?)\\s*</title>").matcher(body);
             if (m.find()) {
@@ -218,11 +272,72 @@ public final class EsriFeatureClient {
         return msg.length() > MAX_REASON ? msg.substring(0, MAX_REASON) + "..." : msg;
     }
 
+    /**
+     * The error a JSON response reports, or null: ArcGIS's {"error": {"message", "details"}}
+     * (message is often empty with the reason in details) or the older
+     * {"status": "error", "messages": [...]}.
+     */
+    static String errorText(JsonObject o) {
+        List<String> parts = new ArrayList<>();
+        if (o.containsKey("error") && o.get("error").getValueType() == JsonValue.ValueType.OBJECT) {
+            JsonObject err = o.getJsonObject("error");
+            String m = err.getString("message", "");
+            if (!m.trim().isEmpty()) {
+                parts.add(m.trim());
+            }
+            if (parts.isEmpty() && err.containsKey("details") && err.get("details").getValueType() == JsonValue.ValueType.ARRAY) {
+                for (JsonValue d : err.getJsonArray("details")) {
+                    if (d instanceof JsonString && !((JsonString) d).getString().trim().isEmpty()) {
+                        parts.add(((JsonString) d).getString().trim());
+                    }
+                }
+            }
+            if (parts.isEmpty()) {
+                parts.add(tr("error code {0}", err.containsKey("code") ? err.get("code").toString() : "?"));
+            }
+        } else if ("error".equals(o.getString("status", null)) && o.containsKey("messages")
+                && o.get("messages").getValueType() == JsonValue.ValueType.ARRAY) {
+            for (JsonValue d : o.getJsonArray("messages")) {
+                if (d instanceof JsonString) {
+                    parts.add(((JsonString) d).getString().trim());
+                }
+            }
+            if (parts.isEmpty()) {
+                parts.add(tr("unknown error"));
+            }
+        }
+        if (parts.isEmpty()) {
+            return null;
+        }
+        String msg = String.join(" ", parts).replaceAll("\\s+", " ");
+        return msg.length() > MAX_REASON ? msg.substring(0, MAX_REASON) + "..." : msg;
+    }
+
+    /** A network failure in words a mapper can act on. */
+    public static String describe(IOException e) {
+        for (Throwable t = e; t != null; t = t.getCause()) {
+            if (t instanceof javax.net.ssl.SSLException || t instanceof java.security.cert.CertificateException) {
+                return tr("the server''s security certificate could not be verified");
+            }
+            if (t instanceof java.net.UnknownHostException) {
+                return tr("server {0} not found", t.getMessage());
+            }
+            if (t instanceof java.net.SocketTimeoutException) {
+                return tr("the server did not answer in time");
+            }
+            if (t instanceof java.net.ConnectException || t instanceof java.net.NoRouteToHostException) {
+                return tr("could not connect to the server");
+            }
+        }
+        String m = e.getMessage();
+        return m == null || m.isEmpty() ? e.getClass().getSimpleName() : m;
+    }
+
     /** Convert an Esri JSON feature set (points and polygons) to GeoJSON shape. */
     static JsonObject toGeoJson(JsonObject esri) throws IOException {
-        if (esri.containsKey("error")) {
-            JsonObject err = esri.getJsonObject("error");
-            throw new IOException(tr("Service error: {0}", err.getString("message", err.toString())));
+        String error = errorText(esri);
+        if (error != null) {
+            throw new IOException(tr("service error: {0}", error));
         }
         var features = Json.createArrayBuilder();
         JsonArray in = esri.getJsonArray("features");
@@ -238,6 +353,9 @@ public final class EsriFeatureClient {
                 } else if (g.containsKey("rings")) {
                     geom.add("type", "Polygon").add("coordinates", g.getJsonArray("rings"));
                 } else if (g.containsKey("paths")) {
+                    if (g.getJsonArray("paths").isEmpty()) {
+                        continue;
+                    }
                     geom.add("type", "LineString").add("coordinates", g.getJsonArray("paths").getJsonArray(0));
                 } else {
                     continue;
