@@ -28,13 +28,13 @@ public class AddressConflationPreferences extends DefaultTabPreferenceSetting {
     public static final String PREF_AMBIGUITY_RATIO = "addressconflation.ambiguityRatio";
     public static final String PREF_OUTBUILDINGS = "addressconflation.outbuildings";
     public static final String PREF_DELETE_SOURCE = "addressconflation.deleteSourceNodes";
+    /** Used by the OpenAddresses paths, which have no UI yet; so no checkbox either. */
     public static final String PREF_EXPAND_STREETS = "addressconflation.oa.expandStreets";
 
     private final JSpinner matchDistance = new JSpinner(new SpinnerNumberModel(30, 1, 1000, 5));
     private final JSpinner ambiguityRatio = new JSpinner(new SpinnerNumberModel(0.75, 0.1, 1.0, 0.05));
     private final JTextField outbuildings = new JTextField(40);
     private final JCheckBox deleteSource = new JCheckBox(tr("Delete address nodes from the address layer after applying"));
-    private final JCheckBox expandStreets = new JCheckBox(tr("Expand street abbreviations when loading OpenAddresses files (N 56TH DR → North 56th Drive)"));
 
     public AddressConflationPreferences() {
         super("address-conflation", tr("Address Conflation"), tr("Settings for matching address points to buildings"));
@@ -89,17 +89,19 @@ public class AddressConflationPreferences extends DefaultTabPreferenceSetting {
         gc.gridwidth = 3;
         panel.add(deleteSource, gc);
         gc.gridy++;
-        panel.add(expandStreets, gc);
-        gc.gridy++;
         gc.weighty = 1;
         panel.add(new JPanel(), gc);
+
+        matchDistance.setToolTipText(tr("Addresses farther than this from their parcel or any building are left unmatched. Raise it in spread-out rural areas."));
+        ambiguityRatio.setToolTipText(tr("When the second-best building scores at least this fraction of the best, the address goes to review instead of being matched."));
+        outbuildings.setToolTipText(tr("building=* values ranked low as address targets (garages, sheds...). Separate with commas."));
+        deleteSource.setToolTipText(tr("After applying, delete the matched node from the address layer so it is not applied twice"));
 
         ConflationSettings s = fromPreferences();
         matchDistance.setValue((int) Math.round(s.matchDistanceMeters));
         ambiguityRatio.setValue(s.ambiguityRatio);
         outbuildings.setText(String.join(", ", Config.getPref().getList(PREF_OUTBUILDINGS, ConflationSettings.DEFAULT_OUTBUILDINGS)));
         deleteSource.setSelected(s.deleteSourceNodes);
-        expandStreets.setSelected(isExpandStreets());
         createPreferenceTabWithScrollPane(gui, panel);
     }
 
@@ -111,7 +113,6 @@ public class AddressConflationPreferences extends DefaultTabPreferenceSetting {
                 .filter(x -> !x.isEmpty()).collect(Collectors.toList());
         Config.getPref().putList(PREF_OUTBUILDINGS, ob);
         Config.getPref().putBoolean(PREF_DELETE_SOURCE, deleteSource.isSelected());
-        Config.getPref().putBoolean(PREF_EXPAND_STREETS, expandStreets.isSelected());
         return false;
     }
 }

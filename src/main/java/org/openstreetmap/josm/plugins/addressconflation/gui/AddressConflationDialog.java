@@ -22,17 +22,15 @@ import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 
 import javax.swing.AbstractAction;
-import javax.swing.DefaultListCellRenderer;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
 import javax.swing.SwingWorker;
+import javax.swing.ToolTipManager;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
@@ -56,7 +54,6 @@ import org.openstreetmap.josm.data.osm.OsmPrimitive;
 import org.openstreetmap.josm.gui.MainApplication;
 import org.openstreetmap.josm.gui.SideButton;
 import org.openstreetmap.josm.gui.dialogs.ToggleDialog;
-import org.openstreetmap.josm.gui.layer.Layer;
 import org.openstreetmap.josm.gui.layer.LayerManager.LayerAddEvent;
 import org.openstreetmap.josm.gui.layer.LayerManager.LayerChangeListener;
 import org.openstreetmap.josm.gui.layer.LayerManager.LayerOrderChangeEvent;
@@ -81,21 +78,14 @@ import org.openstreetmap.josm.tools.Logging;
 import org.openstreetmap.josm.tools.Shortcut;
 
 /**
- * Side panel: pick the address layer and the parcel layer (or Voronoi), run
- * the analysis, review proposals grouped by bucket, apply them.
+ * Side panel: download source data, run the analysis (layers are picked in
+ * {@link AnalysisSetupDialog}), review proposals grouped by bucket, apply them.
  */
 public class AddressConflationDialog extends ToggleDialog implements LayerChangeListener, CommandQueuePreciseListener {
 
-    private static final String VORONOI = "voronoi";
-
-    private final JComboBox<OsmDataLayer> addressLayerBox = new JComboBox<>();
-    private final JComboBox<Object> cellSourceBox = new JComboBox<>();
-    private final JComboBox<Object> hintBox = new JComboBox<>();
-    private static final String NO_HINTS = "nohints";
     private final JLabel summary = new JLabel(" ");
     private final JButton shiftButton = new JButton();
     private final JCheckBox overlayBox = new JCheckBox(tr("Overlay"), true);
-    private final JCheckBox roadClipBox = new JCheckBox(tr("Clip Voronoi by roads"), true);
     private ProposalOverlayLayer overlay;
     /** Commands we issued, so undo can bring the proposal back. */
     private final Map<Command, Proposal> commandProposals = new HashMap<>();
@@ -113,6 +103,8 @@ public class AddressConflationDialog extends ToggleDialog implements LayerChange
     private OsmDataLayer targetLayer;
     private OsmDataLayer sourceLayer;
     private ConflationSettings settings;
+    /** Layers and options of the last run, reused by shift-and-rerun. */
+    private AnalysisSetupDialog.Choice lastChoice;
     private boolean updatingSelection;
 
     public AddressConflationDialog() {
@@ -120,7 +112,7 @@ public class AddressConflationDialog extends ToggleDialog implements LayerChange
                 Shortcut.registerShortcut("subwindow:addressconflation", tr("Windows: {0}", tr("Address Conflation")),
                         KeyEvent.VK_A, Shortcut.ALT_CTRL_SHIFT), 250);
 
-        analyzeAction = new AbstractAction(tr("Analyze")) {
+        analyzeAction = new AbstractAction(tr("Analyze...")) {
             @Override
             public void actionPerformed(ActionEvent e) {
                 analyze();
@@ -144,13 +136,16 @@ public class AddressConflationDialog extends ToggleDialog implements LayerChange
                 zoomToSelected();
             }
         };
-        analyzeAction.putValue(javax.swing.Action.SHORT_DESCRIPTION, tr("Match the address layer against buildings in the edit layer"));
-        applyAction.putValue(javax.swing.Action.SHORT_DESCRIPTION, tr("Apply the selected proposals"));
-        applyBucketAction.putValue(javax.swing.Action.SHORT_DESCRIPTION, tr("Apply every proposal in the selected bucket"));
-        zoomAction.putValue(javax.swing.Action.SHORT_DESCRIPTION, tr("Zoom to the selected proposal"));
-        new ImageProvider("dialogs", "address-conflation").getResource().attachImageIcon(analyzeAction, true);
-        new ImageProvider("dialogs", "address-conflation").getResource().attachImageIcon(applyAction, true);
-        new ImageProvider("dialogs", "address-conflation").getResource().attachImageIcon(applyBucketAction, true);
+        analyzeAction.putValue(javax.swing.Action.SHORT_DESCRIPTION,
+                tr("Choose the address, parcel and hint layers, then match addresses against buildings in the active layer"));
+        applyAction.putValue(javax.swing.Action.SHORT_DESCRIPTION,
+                tr("Apply the selected proposals to the active layer (undoable). Select rows in the list first."));
+        applyBucketAction.putValue(javax.swing.Action.SHORT_DESCRIPTION,
+                tr("Apply every remaining proposal in the selected bucket. Only buckets that are safe to apply in bulk allow this."));
+        zoomAction.putValue(javax.swing.Action.SHORT_DESCRIPTION, tr("Zoom the map to the selected proposals (or double-click a row)"));
+        new ImageProvider("dialogs", "search").getResource().attachImageIcon(analyzeAction, true);
+        new ImageProvider("apply").getResource().attachImageIcon(applyAction, true);
+        new ImageProvider("misc", "check_large").getResource().attachImageIcon(applyBucketAction, true);
         new ImageProvider("dialogs/autoscale", "selection").getResource().attachImageIcon(zoomAction, true);
         applyAction.setEnabled(false);
         applyBucketAction.setEnabled(false);
@@ -163,58 +158,23 @@ public class AddressConflationDialog extends ToggleDialog implements LayerChange
         gc.fill = GridBagConstraints.HORIZONTAL;
         gc.gridx = 0;
         gc.gridy = 0;
-        top.add(new JLabel(tr("Addresses:")), gc);
-        gc.gridx = 1;
         gc.weightx = 1;
-        top.add(addressLayerBox, gc);
-        gc.gridx = 0;
+        top.add(overlayBox, gc);
         gc.gridy = 1;
-        gc.weightx = 0;
-        top.add(new JLabel(tr("Parcels:")), gc);
-        gc.gridx = 1;
-        gc.weightx = 1;
-        top.add(cellSourceBox, gc);
-        gc.gridx = 0;
-        gc.gridy = 2;
-        gc.weightx = 0;
-        top.add(new JLabel(tr("Hints:")), gc);
-        gc.gridx = 1;
-        gc.weightx = 1;
-        hintBox.setToolTipText(tr("Building footprints used for position only (MapWithAI, county or Microsoft footprints). Never edited."));
-        top.add(hintBox, gc);
-        gc.gridx = 0;
-        gc.gridy = 3;
-        gc.gridwidth = 2;
-        JPanel options = new JPanel(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 4, 0));
-        options.add(overlayBox);
-        options.add(roadClipBox);
-        top.add(options, gc);
-        gc.gridy = 4;
         top.add(summary, gc);
-        gc.gridy = 5;
+        gc.gridy = 2;
         shiftButton.setVisible(false);
         shiftButton.addActionListener(e -> shiftAndRerun());
         top.add(shiftButton, gc);
-        overlayBox.setToolTipText(tr("Draw cells and address-to-building links on the map"));
+        overlayBox.setToolTipText(tr("Show an overlay layer with the parcel or Voronoi cells and a line from each address to its building, coloured by bucket"));
+        summary.setToolTipText(tr("Result of the last analysis: address points read, exact duplicates dropped, cells built, proposals made"));
         overlayBox.addActionListener(e -> updateOverlayVisibility());
-        roadClipBox.setToolTipText(tr("With no parcel layer, cut Voronoi cells along streets so a cell never reaches the house across the road"));
-
-        DefaultListCellRenderer layerRenderer = new DefaultListCellRenderer() {
-            @Override
-            public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-                Object v = value instanceof Layer ? ((Layer) value).getName()
-                        : VORONOI.equals(value) ? tr("Voronoi cells (no parcel layer)")
-                        : NO_HINTS.equals(value) ? tr("None") : value;
-                return super.getListCellRendererComponent(list, v, index, isSelected, cellHasFocus);
-            }
-        };
-        addressLayerBox.setRenderer(layerRenderer);
-        cellSourceBox.setRenderer(layerRenderer);
-        hintBox.setRenderer(layerRenderer);
 
         tree.setRootVisible(false);
         tree.setShowsRootHandles(true);
         tree.setCellRenderer(new ProposalRenderer());
+        // JTree shows renderer tooltips (bucket descriptions, match reasons) only once registered.
+        ToolTipManager.sharedInstance().registerComponent(tree);
         tree.addTreeSelectionListener(e -> onTreeSelection());
         tree.addMouseListener(new MouseAdapter() {
             @Override
@@ -233,58 +193,13 @@ public class AddressConflationDialog extends ToggleDialog implements LayerChange
 
         MainApplication.getLayerManager().addLayerChangeListener(this);
         UndoRedoHandler.getInstance().addCommandQueuePreciseListener(this);
-        refreshLayerBoxes();
     }
 
     // ---- layers -----------------------------------------------------------------
 
-    private void refreshLayerBoxes() {
-        Object selectedAddr = addressLayerBox.getSelectedItem();
-        Object selectedCell = cellSourceBox.getSelectedItem();
-        Object selectedHint = hintBox.getSelectedItem();
-        addressLayerBox.removeAllItems();
-        cellSourceBox.removeAllItems();
-        hintBox.removeAllItems();
-        cellSourceBox.addItem(VORONOI);
-        hintBox.addItem(NO_HINTS);
-        List<OsmDataLayer> layers = MainApplication.getLayerManager().getLayersOfType(OsmDataLayer.class);
-        for (OsmDataLayer l : layers) {
-            addressLayerBox.addItem(l);
-            cellSourceBox.addItem(l);
-            hintBox.addItem(l);
-        }
-        if (selectedHint != null && (NO_HINTS.equals(selectedHint) || layers.contains(selectedHint))) {
-            hintBox.setSelectedItem(selectedHint);
-        } else {
-            OsmDataLayer edit = MainApplication.getLayerManager().getEditLayer();
-            OsmDataLayer hint = layers.stream().filter(l -> l != edit).filter(l -> {
-                String n = l.getName().toLowerCase();
-                return n.contains("mapwithai") || n.contains("building") || n.contains("footprint");
-            }).findFirst().orElse(null);
-            hintBox.setSelectedItem(hint != null ? hint : NO_HINTS);
-        }
-        if (selectedAddr != null && layers.contains(selectedAddr)) {
-            addressLayerBox.setSelectedItem(selectedAddr);
-        } else {
-            // Guess: a non-edit layer whose name smells like addresses, else the first non-edit layer.
-            OsmDataLayer edit = MainApplication.getLayerManager().getEditLayer();
-            OsmDataLayer guess = layers.stream().filter(l -> l != edit && l.getName().toLowerCase().contains("addr")).findFirst()
-                    .orElse(layers.stream().filter(l -> l != edit).findFirst().orElse(null));
-            if (guess != null) {
-                addressLayerBox.setSelectedItem(guess);
-            }
-        }
-        if (selectedCell != null && (VORONOI.equals(selectedCell) || layers.contains(selectedCell))) {
-            cellSourceBox.setSelectedItem(selectedCell);
-        } else {
-            OsmDataLayer parcels = layers.stream().filter(l -> l.getName().toLowerCase().contains("parcel")).findFirst().orElse(null);
-            cellSourceBox.setSelectedItem(parcels != null ? parcels : VORONOI);
-        }
-    }
-
     @Override
     public void layerAdded(LayerAddEvent e) {
-        refreshLayerBoxes();
+        // layers are picked when Analyze opens its popup
     }
 
     @Override
@@ -292,7 +207,9 @@ public class AddressConflationDialog extends ToggleDialog implements LayerChange
         if (e.getRemovedLayer() == targetLayer || e.getRemovedLayer() == sourceLayer) {
             clearResult();
         }
-        refreshLayerBoxes();
+        if (lastChoice != null && lastChoice.uses(e.getRemovedLayer())) {
+            lastChoice = null;
+        }
     }
 
     @Override
@@ -400,7 +317,7 @@ public class AddressConflationDialog extends ToggleDialog implements LayerChange
     // ---- shift -----------------------------------------------------------------------
 
     private void shiftAndRerun() {
-        if (result == null || result.getShift() == null || sourceLayer == null) {
+        if (result == null || result.getShift() == null || sourceLayer == null || lastChoice == null) {
             return;
         }
         ShiftEstimator.Shift shift = result.getShift();
@@ -419,25 +336,35 @@ public class AddressConflationDialog extends ToggleDialog implements LayerChange
         }
         UndoRedoHandler.getInstance().add(new MoveCommand(nodes, b.east() - a.east(), b.north() - a.north()));
         sourceLayer.invalidate();
-        analyze();
+        run(lastChoice);
     }
 
     // ---- analysis ----------------------------------------------------------------
 
     private void analyze() {
         OsmDataLayer edit = MainApplication.getLayerManager().getEditLayer();
-        OsmDataLayer addr = (OsmDataLayer) addressLayerBox.getSelectedItem();
-        Object cellChoice = cellSourceBox.getSelectedItem();
-        if (edit == null || addr == null) {
-            JOptionPane.showMessageDialog(MainApplication.getMainFrame(), tr("Need an active edit layer with buildings and an address layer."),
+        if (edit == null) {
+            JOptionPane.showMessageDialog(MainApplication.getMainFrame(), tr("Need an active edit layer with buildings."),
                     tr("Address Conflation"), JOptionPane.WARNING_MESSAGE);
             return;
         }
+        AnalysisSetupDialog.Choice choice = AnalysisSetupDialog.show(edit);
+        if (choice != null) {
+            lastChoice = choice;
+            run(choice);
+        }
+    }
+
+    private void run(AnalysisSetupDialog.Choice choice) {
+        OsmDataLayer edit = MainApplication.getLayerManager().getEditLayer();
+        OsmDataLayer addr = choice.addressLayer;
+        if (edit == null) {
+            return;
+        }
         CellSource cellSource;
-        if (cellChoice instanceof OsmDataLayer) {
-            OsmDataLayer parcels = (OsmDataLayer) cellChoice;
-            cellSource = new ParcelCellSource(parcels.getDataSet(), parcels.getName());
-        } else if (roadClipBox.isSelected()) {
+        if (choice.parcelLayer != null) {
+            cellSource = new ParcelCellSource(choice.parcelLayer.getDataSet(), choice.parcelLayer.getName());
+        } else if (choice.roadClip) {
             cellSource = new RoadClippedVoronoiCellSource(edit.getDataSet());
         } else {
             cellSource = new VoronoiCellSource();
@@ -449,8 +376,7 @@ public class AddressConflationDialog extends ToggleDialog implements LayerChange
         analyzeAction.setEnabled(false);
         DataSet src = addr.getDataSet();
         DataSet tgt = edit.getDataSet();
-        Object hintChoice = hintBox.getSelectedItem();
-        DataSet hintDs = hintChoice instanceof OsmDataLayer && hintChoice != edit ? ((OsmDataLayer) hintChoice).getDataSet() : null;
+        DataSet hintDs = choice.hintLayer != null && choice.hintLayer != edit ? choice.hintLayer.getDataSet() : null;
         SwingWorker<AnalysisResult, Void> worker = new SwingWorker<AnalysisResult, Void>() {
             @Override
             protected AnalysisResult doInBackground() {
@@ -514,7 +440,8 @@ public class AddressConflationDialog extends ToggleDialog implements LayerChange
         ShiftEstimator.Shift shift = r.getShift();
         if (shift != null && shift.isSignificant()) {
             shiftButton.setText(tr("Points look shifted by {0} m: move the address layer and re-run", Math.round(shift.getDistance())));
-            shiftButton.setToolTipText(shift.toString());
+            shiftButton.setToolTipText(tr("<html>Most address points sit the same distance and direction off their buildings ({0}).<br>"
+                    + "Moves every address node in the address layer by that offset (undoable) and re-runs the analysis.</html>", shift));
             shiftButton.setVisible(true);
         } else {
             shiftButton.setVisible(false);

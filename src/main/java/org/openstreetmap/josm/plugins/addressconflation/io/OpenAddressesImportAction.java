@@ -22,12 +22,16 @@ import org.openstreetmap.josm.plugins.addressconflation.gui.AddressConflationPre
 import org.openstreetmap.josm.spi.preferences.Config;
 import org.openstreetmap.josm.tools.Logging;
 
-/** File menu action: load an OpenAddresses addresses/parcels/buildings file as a layer. */
+/**
+ * Load an OpenAddresses addresses/parcels/buildings file as a layer. Dormant:
+ * not registered in any menu or panel until the OpenAddresses workflow is
+ * brought back into the UI.
+ */
 public class OpenAddressesImportAction extends JosmAction {
     private static final String PREF_LAST_DIR = "addressconflation.oa.lastdir";
 
     public OpenAddressesImportAction() {
-        super(tr("Open OpenAddresses file..."), "address-conflation", tr("Load an OpenAddresses addresses or parcels file (line-delimited GeoJSON) as a layer"),
+        super(tr("Open OpenAddresses file..."), "dialogs/address-conflation", tr("Load an OpenAddresses addresses or parcels file (line-delimited GeoJSON) as a layer"),
                 null, true, "addressconflation/openaddresses", false);
     }
 

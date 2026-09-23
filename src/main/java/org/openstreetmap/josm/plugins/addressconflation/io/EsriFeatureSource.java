@@ -36,6 +36,10 @@ public final class EsriFeatureSource {
     public static final String NAD_URL =
             "https://services6.arcgis.com/Do88DoK2xjTUCXd1/arcgis/rest/services/USA_NAD_Addresses/FeatureServer/0";
 
+    /** Microsoft's US Building Footprints, hosted by Esri. */
+    public static final String MS_BUILDINGS_URL =
+            "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/MSBFP2/FeatureServer/0";
+
     private static final GeometryFactory GF = new GeometryFactory();
 
     private final String name;
@@ -64,6 +68,13 @@ public final class EsriFeatureSource {
         c.put("region", Collections.singletonList("addr_state"));
         c.put("postcode", Collections.singletonList("addr_postcode"));
         return new EsriFeatureSource("National Address Database", NAD_URL, Kind.ADDRESSES, c, null, false);
+    }
+
+    /** Microsoft building footprints, for use as placement hints. */
+    public static EsriFeatureSource microsoftBuildings() {
+        Map<String, List<String>> c = new LinkedHashMap<>();
+        c.put("id", Collections.singletonList("OBJECTID"));
+        return new EsriFeatureSource("Microsoft building footprints", MS_BUILDINGS_URL, Kind.BUILDINGS, c, null, false);
     }
 
     public String getName() {

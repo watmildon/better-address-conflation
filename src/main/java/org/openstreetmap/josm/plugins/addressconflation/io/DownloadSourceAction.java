@@ -9,11 +9,11 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.EnumSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -32,19 +32,20 @@ import org.openstreetmap.josm.tools.Logging;
 import org.xml.sax.SAXException;
 
 /**
- * Download address points (and parcels) for the current map view from the
- * National Address Database or from any OpenAddresses source whose layers are
- * ESRI services. Results land in non-uploadable layers the conflation panel
- * picks up automatically.
+ * Download National Address Database points and Microsoft building footprints
+ * (as placement hints) for the current map view. Results land in
+ * non-uploadable layers the analysis popup picks by default.
+ *
+ * {@link DownloadTask} can also download the layers of an OpenAddresses source
+ * (by id, URL or file). That path has no UI yet.
  */
 public class DownloadSourceAction extends JosmAction {
-    public static final String NAD_CHOICE = "National Address Database (NAD)";
-    private static final String PREF_RECENT = "addressconflation.download.recentSources";
-    private static final int MAX_RECENT = 10;
+    private static final String PREF_NAD = "addressconflation.download.nad";
+    private static final String PREF_MS_BUILDINGS = "addressconflation.download.msBuildings";
 
     public DownloadSourceAction() {
-        super(tr("Download addresses/parcels for view..."), "address-conflation",
-                tr("Download NAD address points, or an OpenAddresses source's addresses and parcels, for the current view"),
+        super(tr("Download..."), "download_in_view",
+                tr("Download NAD address points and Microsoft building footprints for the current view"),
                 null, true, "addressconflation/download", false);
     }
 
@@ -65,98 +66,90 @@ public class DownloadSourceAction extends JosmAction {
             return;
         }
 
-        List<String> recent = new ArrayList<>(Config.getPref().getList(PREF_RECENT));
-        JComboBox<String> sourceBox = new JComboBox<>();
-        sourceBox.setEditable(true);
-        sourceBox.addItem(NAD_CHOICE);
-        for (String r : recent) {
-            sourceBox.addItem(r);
-        }
-        JCheckBox addresses = new JCheckBox(tr("Addresses"), true);
-        JCheckBox parcels = new JCheckBox(tr("Parcels (OpenAddresses sources only)"), true);
-        JCheckBox buildings = new JCheckBox(tr("Building footprints, as hints"), true);
+        JCheckBox nad = new JCheckBox(tr("Address points from the National Address Database (NAD)"),
+                Config.getPref().getBoolean(PREF_NAD, true));
+        JCheckBox msBuildings = new JCheckBox(tr("Microsoft building footprints, as placement hints"),
+                Config.getPref().getBoolean(PREF_MS_BUILDINGS, true));
+        nad.setToolTipText(tr("US address points for the current view, from Esri''s copy of the National Address Database"));
+        msBuildings.setToolTipText(tr("Used only to position addresses where OSM has no building. Never imported."));
 
         JPanel panel = new JPanel(new GridBagLayout());
         GridBagConstraints gc = new GridBagConstraints();
         gc.insets = new Insets(3, 3, 3, 3);
         gc.anchor = GridBagConstraints.WEST;
-        gc.fill = GridBagConstraints.HORIZONTAL;
         gc.gridx = 0;
         gc.gridy = 0;
-        gc.gridwidth = 2;
-        panel.add(new JLabel(tr("Source: NAD, an OpenAddresses source id such as us/az/maricopa, a URL, or a local source file")), gc);
+        panel.add(nad, gc);
         gc.gridy++;
-        gc.weightx = 1;
-        panel.add(sourceBox, gc);
-        gc.gridy++;
-        gc.gridwidth = 1;
-        panel.add(addresses, gc);
-        gc.gridx = 1;
-        panel.add(parcels, gc);
-        gc.gridx = 0;
-        gc.gridy++;
-        gc.gridwidth = 2;
-        panel.add(buildings, gc);
+        panel.add(msBuildings, gc);
 
-        ExtendedDialog dlg = new ExtendedDialog(MainApplication.getMainFrame(), tr("Download addresses/parcels for view"),
+        ExtendedDialog dlg = new ExtendedDialog(MainApplication.getMainFrame(), tr("Download for current view"),
                 tr("Download"), tr("Cancel"));
-        dlg.setContent(panel);
+        dlg.setContent(panel, false);
         dlg.setButtonIcons("download", "cancel");
         if (dlg.showDialog().getValue() != 1) {
             return;
         }
-        Object choice = sourceBox.getEditor().getItem();
-        String ref = choice == null ? "" : choice.toString().trim();
-        if (ref.isEmpty()) {
-            return;
+        Config.getPref().putBoolean(PREF_NAD, nad.isSelected());
+        Config.getPref().putBoolean(PREF_MS_BUILDINGS, msBuildings.isSelected());
+        List<EsriFeatureSource> sources = new ArrayList<>();
+        if (nad.isSelected()) {
+            sources.add(EsriFeatureSource.nad());
         }
-        if (!NAD_CHOICE.equals(ref)) {
-            recent.remove(ref);
-            recent.add(0, ref);
-            while (recent.size() > MAX_RECENT) {
-                recent.remove(recent.size() - 1);
-            }
-            Config.getPref().putList(PREF_RECENT, recent);
+        if (msBuildings.isSelected()) {
+            sources.add(EsriFeatureSource.microsoftBuildings());
         }
-        MainApplication.worker.submit(new DownloadTask(ref, bounds, addresses.isSelected(), parcels.isSelected(), buildings.isSelected()));
+        if (!sources.isEmpty()) {
+            MainApplication.worker.submit(new DownloadTask(sources, bounds));
+        }
     }
 
-    /** Resolves the source reference, downloads each wanted layer, adds or merges layers. */
-    static final class DownloadTask extends PleaseWaitRunnable {
-        private final String ref;
+    /** Downloads each source and adds or merges its layer. */
+    public static final class DownloadTask extends PleaseWaitRunnable {
+        private final List<EsriFeatureSource> sources;
+        /** OpenAddresses source to resolve in the background, or null. */
+        private final String oaRef;
+        private final Set<EsriFeatureSource.Kind> oaKinds;
         private final Bounds bounds;
-        private final boolean wantAddresses;
-        private final boolean wantParcels;
-        private final boolean wantBuildings;
         private final List<OpenAddressesLayer> newLayers = new ArrayList<>();
         private final List<String> messages = new ArrayList<>();
         private boolean cancelled;
 
-        DownloadTask(String ref, Bounds bounds, boolean wantAddresses, boolean wantParcels, boolean wantBuildings) {
-            super(tr("Downloading addresses"));
-            this.ref = ref;
+        DownloadTask(List<EsriFeatureSource> sources, Bounds bounds) {
+            super(tr("Downloading"));
+            this.sources = new ArrayList<>(sources);
+            this.oaRef = null;
+            this.oaKinds = EnumSet.noneOf(EsriFeatureSource.Kind.class);
             this.bounds = bounds;
-            this.wantAddresses = wantAddresses;
-            this.wantParcels = wantParcels;
-            this.wantBuildings = wantBuildings;
+        }
+
+        /**
+         * Download the wanted layers of an OpenAddresses source: an id such as
+         * us/az/maricopa, a URL, or a local source file.
+         */
+        public DownloadTask(String oaRef, Set<EsriFeatureSource.Kind> kinds, Bounds bounds) {
+            super(tr("Downloading {0}", oaRef));
+            this.sources = new ArrayList<>();
+            this.oaRef = oaRef;
+            this.oaKinds = EnumSet.copyOf(kinds);
+            this.bounds = bounds;
         }
 
         @Override
         protected void realRun() throws SAXException, IOException, OsmTransferException {
             ProgressMonitor pm = getProgressMonitor();
-            pm.indeterminateSubTask(tr("Resolving source {0}", ref));
-            List<EsriFeatureSource> sources = new ArrayList<>();
-            if (NAD_CHOICE.equals(ref)) {
-                sources.add(EsriFeatureSource.nad());
-            } else {
-                sources.addAll(OpenAddressesSourceReader.load(OpenAddressesSourceReader.resolve(ref), AddressConflationPreferences.isExpandStreets()));
-            }
-            sources.removeIf(s -> (s.getKind() == EsriFeatureSource.Kind.ADDRESSES && !wantAddresses)
-                    || (s.getKind() == EsriFeatureSource.Kind.PARCELS && !wantParcels)
-                    || (s.getKind() == EsriFeatureSource.Kind.BUILDINGS && !wantBuildings));
-            if (sources.isEmpty()) {
-                messages.add(tr("{0} has no ESRI address, parcel or building layer that can be downloaded.", ref));
-                return;
+            if (oaRef != null) {
+                pm.indeterminateSubTask(tr("Resolving source {0}", oaRef));
+                for (EsriFeatureSource s : OpenAddressesSourceReader.load(OpenAddressesSourceReader.resolve(oaRef),
+                        AddressConflationPreferences.isExpandStreets())) {
+                    if (oaKinds.contains(s.getKind())) {
+                        sources.add(s);
+                    }
+                }
+                if (sources.isEmpty()) {
+                    messages.add(tr("{0} has no ESRI address, parcel or building layer that can be downloaded.", oaRef));
+                    return;
+                }
             }
             for (EsriFeatureSource src : sources) {
                 if (cancelled) {
@@ -174,6 +167,8 @@ public class DownloadSourceAction extends JosmAction {
 
         @Override
         protected void finish() {
+            // Adding a data layer makes it active; keep the OSM layer the user was editing.
+            Layer active = MainApplication.getLayerManager().getActiveLayer();
             for (OpenAddressesLayer l : newLayers) {
                 OpenAddressesLayer existing = null;
                 for (Layer layer : MainApplication.getLayerManager().getLayers()) {
@@ -188,6 +183,9 @@ public class DownloadSourceAction extends JosmAction {
                 } else {
                     MainApplication.getLayerManager().addLayer(l);
                 }
+            }
+            if (active != null && MainApplication.getLayerManager().containsLayer(active)) {
+                MainApplication.getLayerManager().setActiveLayer(active);
             }
             if (!messages.isEmpty()) {
                 Logging.info(String.join("; ", messages));

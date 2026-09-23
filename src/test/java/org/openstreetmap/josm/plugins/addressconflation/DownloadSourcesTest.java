@@ -112,6 +112,20 @@ class DownloadSourcesTest {
     }
 
     @Test
+    void convertsMicrosoftFootprints() {
+        EsriFeatureSource ms = EsriFeatureSource.microsoftBuildings();
+        assertEquals(EsriFeatureSource.Kind.BUILDINGS, ms.getKind());
+        JsonObject feature = parse("{\"type\":\"Feature\",\"properties\":{\"OBJECTID\":42,\"StateAbbrev\":\"ID\"},"
+                + "\"geometry\":{\"type\":\"Polygon\",\"coordinates\":[[[-116.1,43.0],[-116.0999,43.0],[-116.0999,43.0001],[-116.1,43.0001],[-116.1,43.0]]]}}");
+        JsonObject oa = ms.toOaFeature(feature);
+        assertNotNull(oa);
+        assertEquals("42", oa.getJsonObject("properties").getString("id"));
+        DataSet ds = OpenAddressesReader.fromFeatures(List.of(oa), OpenAddressesReader.Layer.BUILDINGS, false);
+        assertEquals(1, ds.getWays().size());
+        assertNotNull(ds.getWays().iterator().next().get("building"));
+    }
+
+    @Test
     void areaGuard() {
         assertNull(EsriFeatureClient.areaProblem(new Bounds(33.56, -112.18, 33.57, -112.17)));
         assertNotNull(EsriFeatureClient.areaProblem(new Bounds(33.0, -113.0, 34.0, -112.0)));
