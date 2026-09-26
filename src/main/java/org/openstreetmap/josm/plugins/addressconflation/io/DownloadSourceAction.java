@@ -3,6 +3,7 @@ package org.openstreetmap.josm.plugins.addressconflation.io;
 
 import static org.openstreetmap.josm.tools.I18n.tr;
 
+import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -15,9 +16,11 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
@@ -33,8 +36,13 @@ import org.openstreetmap.josm.gui.layer.Layer;
 import org.openstreetmap.josm.gui.progress.ProgressMonitor;
 import org.openstreetmap.josm.io.OsmTransferException;
 import org.openstreetmap.josm.plugins.addressconflation.gui.AddressConflationPreferences;
+import org.openstreetmap.josm.plugins.addressconflation.license.LicenseAssessment;
+import org.openstreetmap.josm.plugins.addressconflation.license.LicenseBadge;
+import org.openstreetmap.josm.plugins.addressconflation.license.LicenseStatus;
+import org.openstreetmap.josm.plugins.addressconflation.license.Licensing;
 import org.openstreetmap.josm.spi.preferences.Config;
 import org.openstreetmap.josm.tools.Logging;
+import org.openstreetmap.josm.tools.Utils;
 import org.xml.sax.SAXException;
 
 /**
@@ -88,8 +96,14 @@ public class DownloadSourceAction extends JosmAction {
         gc.gridx = 0;
         gc.gridy = 0;
         panel.add(nad, gc);
+        gc.gridx = 1;
+        panel.add(new LicenseBadge(Licensing.NAD), gc);
+        gc.gridx = 0;
         gc.gridy++;
         panel.add(msBuildings, gc);
+        gc.gridx = 1;
+        panel.add(new LicenseBadge(Licensing.MICROSOFT_BUILDINGS), gc);
+        gc.gridx = 0;
 
         // Parcels: offered once OpenAddresses has been asked what covers the view.
         JCheckBox parcels = new JCheckBox(tr("Parcels from"), false);
@@ -100,8 +114,24 @@ public class DownloadSourceAction extends JosmAction {
         parcelSource.setToolTipText(tr("Parcel sources OpenAddresses lists for this area, most local first. "
                 + "Only ESRI services can be downloaded for just the view."));
         JLabel parcelStatus = new JLabel(tr("Looking up parcel sources for this area..."));
+        LicenseBadge parcelLicense = new LicenseBadge(null);
+        parcelSource.setRenderer(new DefaultListCellRenderer() {
+            @Override
+            public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+                super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+                LicenseAssessment a = value instanceof ParcelSourceFinder.Offer ? ((ParcelSourceFinder.Offer) value).getLicense() : null;
+                // Badges in the open list only: the closed box has the badge beside it already.
+                if (a != null && index >= 0) {
+                    setText("<html>" + Utils.escapeReservedCharactersHTML(value.toString()) + " &nbsp; " + LicenseBadge.inline(a) + "</html>");
+                }
+                // The renderer is reused for every row, so always reset the tooltip.
+                setToolTipText(a == null ? null : a.toolTipHtml());
+                return this;
+            }
+        });
         parcelSource.addActionListener(ev -> {
             ParcelSourceFinder.Offer o = (ParcelSourceFinder.Offer) parcelSource.getSelectedItem();
+            parcelLicense.setAssessment(o == null ? null : o.getLicense());
             boolean ok = o != null && o.getEsriSource() != null;
             parcels.setEnabled(ok);
             if (!ok) {
@@ -115,10 +145,17 @@ public class DownloadSourceAction extends JosmAction {
         rc.weightx = 1;
         rc.fill = GridBagConstraints.HORIZONTAL;
         parcelRow.add(parcelSource, rc);
+        gc.gridx = 0;
         gc.gridy++;
         gc.fill = GridBagConstraints.HORIZONTAL;
         panel.add(parcelRow, gc);
+        gc.gridx = 1;
+        gc.fill = GridBagConstraints.NONE;
+        panel.add(parcelLicense, gc);
+        gc.gridx = 0;
         gc.gridy++;
+        gc.gridwidth = 2;
+        gc.fill = GridBagConstraints.HORIZONTAL;
         panel.add(parcelStatus, gc);
         SwingWorker<List<ParcelSourceFinder.Offer>, Void> lookup = new SwingWorker<List<ParcelSourceFinder.Offer>, Void>() {
             @Override
@@ -148,7 +185,11 @@ public class DownloadSourceAction extends JosmAction {
                 }
                 offers.forEach(parcelSource::addItem);
                 parcelSource.setEnabled(true);
-                ParcelSourceFinder.Offer first = offers.stream().filter(o -> o.getEsriSource() != null).findFirst().orElse(offers.get(0));
+                // Most local first, but prefer a source whose licence is known to fit OSM.
+                ParcelSourceFinder.Offer first = offers.stream()
+                        .filter(o -> o.getEsriSource() != null && o.getLicense() != null && o.getLicense().getStatus() == LicenseStatus.COMPATIBLE)
+                        .findFirst()
+                        .orElse(offers.stream().filter(o -> o.getEsriSource() != null).findFirst().orElse(offers.get(0)));
                 parcelSource.setSelectedItem(first);
                 parcels.setSelected(parcels.isEnabled() && Config.getPref().getBoolean(PREF_PARCELS, true));
                 parcelStatus.setText(tr("From the OpenAddresses coverage map; a source may still have gaps."));
@@ -255,7 +296,7 @@ public class DownloadSourceAction extends JosmAction {
                 int n = src.getKind() == EsriFeatureSource.Kind.ADDRESSES ? ds.getNodes().size() : ds.getWays().size() + ds.getRelations().size();
                 OpenAddressesReader.Layer kind = src.getKind() == EsriFeatureSource.Kind.PARCELS ? OpenAddressesReader.Layer.PARCELS
                         : src.getKind() == EsriFeatureSource.Kind.BUILDINGS ? OpenAddressesReader.Layer.BUILDINGS : OpenAddressesReader.Layer.ADDRESSES;
-                newLayers.add(new OpenAddressesLayer(ds, src.getName(), null, kind));
+                newLayers.add(new OpenAddressesLayer(ds, src.getName(), null, kind, src.getLicense()));
                 messages.add(tr("{0}: {1} features", src.getName(), n));
             }
         }

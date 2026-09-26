@@ -23,6 +23,8 @@ import org.locationtech.jts.geom.LinearRing;
 import org.locationtech.jts.geom.Point;
 import org.locationtech.jts.geom.Polygon;
 import org.openstreetmap.josm.plugins.addressconflation.JsonSupport;
+import org.openstreetmap.josm.plugins.addressconflation.license.LicenseAssessment;
+import org.openstreetmap.josm.plugins.addressconflation.license.Licensing;
 import org.openstreetmap.josm.tools.Logging;
 
 /**
@@ -52,14 +54,49 @@ public final class EsriFeatureSource {
     private final Map<String, List<String>> conform;
     private final String where;
     private final boolean expandStreets;
+    /** The {@code license} value of the source definition's layer entry, or null. */
+    private final JsonValue declaredLicense;
+    /** The licence verdict for this source, or null when nobody assessed it. */
+    private final LicenseAssessment license;
 
     public EsriFeatureSource(String name, String url, Kind kind, Map<String, List<String>> conform, String where, boolean expandStreets) {
+        this(name, url, kind, conform, where, expandStreets, null, null);
+    }
+
+    private EsriFeatureSource(String name, String url, Kind kind, Map<String, List<String>> conform, String where, boolean expandStreets,
+            JsonValue declaredLicense, LicenseAssessment license) {
         this.name = name;
         this.url = url;
         this.kind = kind;
         this.conform = Collections.unmodifiableMap(new LinkedHashMap<>(conform));
         this.where = where;
         this.expandStreets = expandStreets;
+        this.declaredLicense = declaredLicense;
+        this.license = license;
+    }
+
+    /** This source with the licence its definition declares. */
+    public EsriFeatureSource withDeclaredLicense(JsonValue declared) {
+        return new EsriFeatureSource(name, url, kind, conform, where, expandStreets, declared, license);
+    }
+
+    /** This source with a licence verdict attached. */
+    public EsriFeatureSource withLicense(LicenseAssessment assessment) {
+        return new EsriFeatureSource(name, url, kind, conform, where, expandStreets, declaredLicense, assessment);
+    }
+
+    /** This source under another display name (the layer name after download). */
+    public EsriFeatureSource withName(String newName) {
+        return new EsriFeatureSource(newName, url, kind, conform, where, expandStreets, declaredLicense, license);
+    }
+
+    public JsonValue getDeclaredLicense() {
+        return declaredLicense;
+    }
+
+    /** The licence verdict, or null when the source was not assessed. */
+    public LicenseAssessment getLicense() {
+        return license;
     }
 
     /** The National Address Database as processed by Esri (streets already expanded). */
@@ -71,14 +108,15 @@ public final class EsriFeatureSource {
         c.put("city", Collections.singletonList("addr_city"));
         c.put("region", Collections.singletonList("addr_state"));
         c.put("postcode", Collections.singletonList("addr_postcode"));
-        return new EsriFeatureSource("National Address Database", NAD_URL, Kind.ADDRESSES, c, null, false);
+        return new EsriFeatureSource("National Address Database", NAD_URL, Kind.ADDRESSES, c, null, false).withLicense(Licensing.NAD);
     }
 
     /** Microsoft building footprints, for use as placement hints. */
     public static EsriFeatureSource microsoftBuildings() {
         Map<String, List<String>> c = new LinkedHashMap<>();
         c.put("id", Collections.singletonList("OBJECTID"));
-        return new EsriFeatureSource("Microsoft building footprints", MS_BUILDINGS_URL, Kind.BUILDINGS, c, null, false);
+        return new EsriFeatureSource("Microsoft building footprints", MS_BUILDINGS_URL, Kind.BUILDINGS, c, null, false)
+                .withLicense(Licensing.MICROSOFT_BUILDINGS);
     }
 
     /**
@@ -114,7 +152,7 @@ public final class EsriFeatureSource {
                 fixed.put(e.getKey(), fields);
             }
         }
-        return new EsriFeatureSource(name, url, kind, fixed, where, expandStreets);
+        return new EsriFeatureSource(name, url, kind, fixed, where, expandStreets, declaredLicense, license);
     }
 
     private static String uniqueBySuffix(String wanted, Collection<String> serviceFields) {

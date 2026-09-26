@@ -137,7 +137,9 @@ public final class OpenAddressesSourceReader {
                     continue;
                 }
                 String name = base + " " + layer.getKey() + (entry.containsKey("name") ? " (" + entry.getString("name") + ")" : "");
-                out.add(new EsriFeatureSource(name, entry.getString("data"), kind, conform, entry.getString("_where", null), expandStreets));
+                JsonValue license = entry.containsKey("license") ? entry.get("license") : root.get("license");
+                out.add(new EsriFeatureSource(name, entry.getString("data"), kind, conform, entry.getString("_where", null), expandStreets)
+                        .withDeclaredLicense(license));
             }
         }
         return out;

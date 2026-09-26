@@ -180,6 +180,29 @@ everything through `SequenceCommand` so undo works.
 Applying writes into the **edit layer only**. Source nodes are deleted from the source layer
 if the pref says so (for a MapWithAI layer this keeps its own dedupe logic happy).
 
+### 4.1 Licences
+
+Every downloaded source carries a licence verdict (`license/`): *Compatible*, *Needs
+waiver*, *Not compatible*, *Check terms* or *Unknown*, following the OSMF Licensing Working
+Group guidance (research in `research/license-compatibility.md`). The plugin informs and
+never blocks: a mapper may hold a permission it does not know about.
+
+* **Where it comes from**, in order: a recorded permission for that source, layer and
+  server (`data/license-clearances.json`, seeded from the OSM Contributors page); a state
+  law that voids local licences (California, Maryland); the licence the OpenAddresses
+  definition declares (`DeclaredLicenses`); a state law that only fills a gap (Wisconsin
+  parcels). NAD (public domain) and Microsoft footprints (ODbL) are fixed.
+* **Where it shows**: a badge (coloured dot plus word, details on hover) beside the NAD,
+  Microsoft and parcel rows of the Download dialog and in each parcel offer; in the Analyze
+  popup's layer lists; and in each downloaded layer's tooltip in the layer list. Among
+  parcel offers, the default is the most local *compatible* one.
+* **Permissions are tied to servers**: an entry names the hosts (or ArcGIS Online
+  organizations) its source read from when the permission was recorded, so a source that
+  moves elsewhere falls back to its declared licence.
+* **Not yet**: suggesting `source=*` changeset tags for the sources used; badges for
+  non-ESRI offers; Esri's waiver list (it has no parcel datasets, so it matters only once
+  OpenAddresses address layers are offered).
+
 ## 5. Architecture
 
 ```

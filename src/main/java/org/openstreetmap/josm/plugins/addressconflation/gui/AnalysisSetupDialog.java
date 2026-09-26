@@ -23,7 +23,10 @@ import org.openstreetmap.josm.gui.layer.Layer;
 import org.openstreetmap.josm.gui.layer.OsmDataLayer;
 import org.openstreetmap.josm.plugins.addressconflation.io.OpenAddressesLayer;
 import org.openstreetmap.josm.plugins.addressconflation.io.OpenAddressesReader;
+import org.openstreetmap.josm.plugins.addressconflation.license.LicenseAssessment;
+import org.openstreetmap.josm.plugins.addressconflation.license.LicenseBadge;
 import org.openstreetmap.josm.spi.preferences.Config;
+import org.openstreetmap.josm.tools.Utils;
 
 /**
  * Popup shown by Analyze: pick the address, parcel and hint layers and the
@@ -85,7 +88,16 @@ public final class AnalysisSetupDialog {
                 Object v = value instanceof Layer ? ((Layer) value).getName()
                         : VORONOI.equals(value) ? tr("Voronoi cells (no parcel layer)")
                         : NO_HINTS.equals(value) ? tr("None") : value;
-                return super.getListCellRendererComponent(list, v, index, isSelected, cellHasFocus);
+                super.getListCellRendererComponent(list, v, index, isSelected, cellHasFocus);
+                LicenseAssessment license = value instanceof OpenAddressesLayer ? ((OpenAddressesLayer) value).getLicense() : null;
+                if (license != null) {
+                    // The licence of each downloaded source, so the choice is an informed one.
+                    setText("<html>" + Utils.escapeReservedCharactersHTML(String.valueOf(v)) + " &nbsp; " + LicenseBadge.inline(license) + "</html>");
+                    setToolTipText(license.toolTipHtml());
+                } else {
+                    setToolTipText(null);
+                }
+                return this;
             }
         };
         addressBox.setRenderer(renderer);

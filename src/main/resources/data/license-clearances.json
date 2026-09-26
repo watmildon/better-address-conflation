@@ -1,0 +1,73 @@
+{
+  "comment": "Sources documented as usable in OpenStreetMap even where OpenAddresses declares no licence. Checked before the declared licence. Sources: https://wiki.openstreetmap.org/wiki/Contributors (US section). See research/license-compatibility.md.",
+  "updated": "2026-09-26",
+  "stateLaw": [
+    {
+      "state": "ca",
+      "layers": ["addresses", "parcels", "buildings"],
+      "overridesDeclared": true,
+      "basis": "California law: government GIS data carry no licence (Public Records Act, upheld by the California Supreme Court)",
+      "url": "https://wiki.openstreetmap.org/wiki/Contributors#California"
+    },
+    {
+      "state": "md",
+      "layers": ["addresses", "parcels", "buildings"],
+      "overridesDeclared": true,
+      "basis": "Maryland law (Senate Bill 94, 2015): no licence may be required for state or local government GIS data",
+      "url": "https://wiki.openstreetmap.org/wiki/Contributors#Maryland_State_Government"
+    },
+    {
+      "state": "wi",
+      "layers": ["parcels"],
+      "overridesDeclared": false,
+      "basis": "Wisconsin public records law: parcel data are public domain and usable in OSM",
+      "url": "https://wiki.openstreetmap.org/wiki/Contributors#Statewide_Parcel_Database"
+    }
+  ],
+  "sources": [
+    {"source": "us/az/pima", "layers": ["addresses", "parcels", "buildings"], "urls": ["gisdata.pima.gov"],
+     "basis": "Pima County GIS (2025): open data layers have no use restrictions", "url": "https://wiki.openstreetmap.org/wiki/Contributors#Pima_County_GIS"},
+    {"source": "us/ct/statewide", "layers": ["addresses"], "urls": ["data.ct.gov"],
+     "basis": "State of Connecticut address points released under CC0 (2020)", "url": "https://wiki.openstreetmap.org/wiki/Contributors#Connecticut"},
+    {"source": "us/in/statewide", "layers": ["addresses"], "urls": ["gisdata.in.gov"],
+     "basis": "IndianaMap address points: citation requested, not required", "url": "https://wiki.openstreetmap.org/wiki/Contributors#IndianaMap,_Address_points"},
+    {"source": "us/ky/statewide", "layers": ["addresses", "parcels", "buildings"], "urls": ["services3.arcgis.com/ghsx9ckghmvyyjbu/"],
+     "basis": "KyGovMaps Open Data Portal: public domain", "url": "https://wiki.openstreetmap.org/wiki/Contributors#KYGeoNet"},
+    {"source": "us/me/statewide", "layers": ["addresses"], "urls": ["services1.arcgis.com/rbmx0mrvofntdlzd/"],
+     "basis": "Maine E911 addresses (imported 2020)", "url": "https://wiki.openstreetmap.org/wiki/Contributors#Maine"},
+    {"source": "us/dc/statewide", "layers": ["addresses", "parcels", "buildings"], "urls": ["opendata.dc.gov", "maps2.dcgis.dc.gov"],
+     "basis": "District of Columbia OCTO data catalog", "url": "https://wiki.openstreetmap.org/wiki/Contributors#District_of_Columbia_OCTO"},
+    {"source": "us/nj/morris", "layers": ["addresses", "parcels", "buildings"], "urls": ["morrisgisapps.co.morris.nj.us"],
+     "basis": "Morris County GIS (2020): data can be uploaded to OpenStreetMap, credit asked", "url": "https://wiki.openstreetmap.org/wiki/Contributors#Morris_County_GIS"},
+    {"source": "us/ny/westchester", "layers": ["addresses", "parcels", "buildings"], "urls": ["giswww.westchestergov.com"],
+     "basis": "Westchester County GIS (2020): data can be uploaded to OpenStreetMap, credit asked", "url": "https://wiki.openstreetmap.org/wiki/Contributors#Westchester_County_GIS"},
+    {"source": "us/oh/hamilton", "layers": ["parcels", "buildings"], "urls": ["cagisonline.hamilton-co.org"],
+     "basis": "CAGIS building and parcel data (Hamilton County building import)", "url": "https://wiki.openstreetmap.org/wiki/Contributors#CAGIS"},
+    {"source": "us/oh/montgomery", "layers": ["addresses", "parcels", "buildings"], "urls": ["mcauditor.org"],
+     "basis": "Montgomery County GIS (2020): county GIS data can be imported", "url": "https://wiki.openstreetmap.org/wiki/Contributors#Montgomery_County_GIS"},
+    {"source": "us/or/lane", "layers": ["addresses", "parcels", "buildings"], "urls": ["lcmaps.lanecounty.org"],
+     "basis": "Lane County, listed with its disclaimer", "url": "https://wiki.openstreetmap.org/wiki/Contributors#Lane_County"},
+    {"source": "us/or/city_of_salem", "layers": ["addresses"], "urls": ["services.arcgis.com/kia6ys9kdgqzl7u3/"],
+     "basis": "City of Salem (2022): address points are public domain", "url": "https://wiki.openstreetmap.org/wiki/Contributors#Salem"},
+    {"source": "us/va/statewide", "layers": ["addresses", "parcels", "buildings"], "urls": ["gismaps.vdem.virginia.gov"],
+     "basis": "Virginia Geographic Information Network (VBMP data), credited", "url": "https://wiki.openstreetmap.org/wiki/Contributors#Virginia_Geographic_Information_Network"},
+    {"source": "us/va/prince_william", "layers": ["addresses", "parcels", "buildings"], "urls": ["gisweb.pwcgov.org", "gisweb.pwcva.gov"],
+     "basis": "Prince William County GIS (2020): public domain, no restrictions", "url": "https://wiki.openstreetmap.org/wiki/Contributors#Prince_William_County"},
+    {"source": "us/va/city_of_williamsburg", "layers": ["addresses", "parcels", "buildings"], "urls": ["maps2.timmons.com/arcgis/rest/services/wl_williamsburg/", "services1.arcgis.com/96dq0jxotjnw10pz/"],
+     "basis": "City of Williamsburg (2022): published data is public domain", "url": "https://wiki.openstreetmap.org/wiki/Contributors#City_of_Williamsburg"},
+    {"source": "us/wa/city_of_bellingham", "layers": ["addresses", "parcels", "buildings"], "urls": ["maps.cob.org"],
+     "basis": "City of Bellingham (2013), disclaimer referenced", "url": "https://wiki.openstreetmap.org/wiki/Contributors#City_of_Bellingham,_Washington"},
+    {"source": "us/wa/city_of_bothell", "layers": ["addresses", "parcels", "buildings"], "urls": ["gisweb.bothellwa.gov"],
+     "basis": "City of Bothell (2018), disclaimer referenced", "url": "https://wiki.openstreetmap.org/wiki/Contributors#City_of_Bothell,_Washington"},
+    {"source": "us/wa/city_of_seattle", "layers": ["addresses", "parcels", "buildings"], "urls": ["services.arcgis.com/zoyb2t4b0uyuynyh/", "gisdata.seattle.gov"],
+     "basis": "City of Seattle (2012): credit on the Contributors page", "url": "https://wiki.openstreetmap.org/wiki/Contributors#City_of_Seattle,_Washington"},
+    {"source": "us/wa/clark", "layers": ["addresses", "parcels", "buildings"], "urls": ["services2.arcgis.com/ylxwjfbdcpbzp16d/"],
+     "basis": "Clark County GIS (2021): GIS data may be used for editing OSM", "url": "https://wiki.openstreetmap.org/wiki/Contributors#Clark_County,_Washington"},
+    {"source": "us/wa/king", "layers": ["addresses", "parcels", "buildings"], "urls": ["gismaps.kingcounty.gov"],
+     "basis": "King County GIS (2012, reconfirmed 2026): datasets on King County GIS Open Data can be reused", "url": "https://wiki.openstreetmap.org/wiki/Contributors#King_County,_Washington"},
+    {"source": "us/wa/pierce", "layers": ["addresses", "parcels", "buildings"], "urls": ["services2.arcgis.com/1uvbaq5y1ubjupmd/"],
+     "basis": "Pierce County (2020): GIS data may be used for editing OSM", "url": "https://wiki.openstreetmap.org/wiki/Contributors#Pierce_County,_Washington"},
+    {"source": "us/wi/dane", "layers": ["addresses", "parcels", "buildings"], "urls": ["dcimapapps.countyofdane.com"],
+     "basis": "Dane County Land Information Office: open data portal datasets (confirm the map server carries the same data)", "url": "https://wiki.openstreetmap.org/wiki/Contributors#Dane_County_Open_Data_Portal"}
+  ]
+}

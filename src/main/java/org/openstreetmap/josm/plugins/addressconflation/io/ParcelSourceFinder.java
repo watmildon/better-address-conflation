@@ -24,6 +24,8 @@ import jakarta.json.JsonValue;
 
 import org.openstreetmap.josm.data.Bounds;
 import org.openstreetmap.josm.plugins.addressconflation.JsonSupport;
+import org.openstreetmap.josm.plugins.addressconflation.license.LicenseAssessment;
+import org.openstreetmap.josm.plugins.addressconflation.license.Licensing;
 import org.openstreetmap.josm.tools.HttpClient;
 import org.openstreetmap.josm.tools.Logging;
 
@@ -95,6 +97,11 @@ public final class ParcelSourceFinder {
             return esri;
         }
 
+        /** The licence verdict for the parcels, or null when the source cannot be downloaded. */
+        public LicenseAssessment getLicense() {
+            return esri == null ? null : esri.getLicense();
+        }
+
         /** Why the source cannot be downloaded, or null. */
         public String getProblem() {
             return problem;
@@ -149,8 +156,8 @@ public final class ParcelSourceFinder {
         }
         for (EsriFeatureSource s : layers) {
             if (s.getKind() == EsriFeatureSource.Kind.PARCELS) {
-                EsriFeatureSource named = new EsriFeatureSource(tr("Parcels {0}", d.source), s.getUrl(), s.getKind(),
-                        s.getConform(), s.getWhere(), s.isExpandStreets());
+                EsriFeatureSource named = s.withName(tr("Parcels {0}", d.source))
+                        .withLicense(Licensing.assess(d.source, "parcels", s.getUrl(), s.getDeclaredLicense()));
                 return new Offer(d.source, d.level, d.updated, named, null);
             }
         }
