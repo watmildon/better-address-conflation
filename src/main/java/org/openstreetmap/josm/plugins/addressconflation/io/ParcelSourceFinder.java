@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import jakarta.json.Json;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonException;
 import jakarta.json.JsonObject;
@@ -24,6 +23,7 @@ import jakarta.json.JsonReader;
 import jakarta.json.JsonValue;
 
 import org.openstreetmap.josm.data.Bounds;
+import org.openstreetmap.josm.plugins.addressconflation.JsonSupport;
 import org.openstreetmap.josm.tools.HttpClient;
 import org.openstreetmap.josm.tools.Logging;
 
@@ -228,7 +228,7 @@ public final class ParcelSourceFinder {
     /** Parcel datasets by coverage ("map") id. */
     static Map<Long, List<Dataset>> parseCatalog(String json) throws IOException {
         JsonArray arr;
-        try (JsonReader r = Json.createReader(new StringReader(json))) {
+        try (JsonReader r = JsonSupport.JSON.createReader(new StringReader(json))) {
             arr = r.readArray();
         } catch (JsonException | IllegalStateException e) {
             throw new IOException("Unexpected OpenAddresses dataset list: " + e.getMessage(), e);

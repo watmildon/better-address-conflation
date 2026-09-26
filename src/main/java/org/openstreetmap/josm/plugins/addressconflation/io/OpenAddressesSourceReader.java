@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import jakarta.json.Json;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonException;
 import jakarta.json.JsonObject;
@@ -22,6 +21,7 @@ import jakarta.json.JsonReader;
 import jakarta.json.JsonString;
 import jakarta.json.JsonValue;
 
+import org.openstreetmap.josm.plugins.addressconflation.JsonSupport;
 import org.openstreetmap.josm.tools.HttpClient;
 import org.openstreetmap.josm.tools.Logging;
 
@@ -78,7 +78,7 @@ public final class OpenAddressesSourceReader {
 
     public static List<EsriFeatureSource> parse(String json, boolean expandStreets) throws IOException {
         JsonObject root;
-        try (JsonReader reader = Json.createReader(new StringReader(json))) {
+        try (JsonReader reader = JsonSupport.JSON.createReader(new StringReader(json))) {
             root = reader.readObject();
         } catch (JsonException e) {
             throw new IOException("Not a valid OpenAddresses source: " + e.getMessage(), e);

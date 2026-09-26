@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import jakarta.json.Json;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonException;
 import jakarta.json.JsonObject;
@@ -23,6 +22,7 @@ import jakarta.json.JsonValue;
 import org.openstreetmap.josm.data.Bounds;
 import org.openstreetmap.josm.data.osm.DataSet;
 import org.openstreetmap.josm.gui.progress.ProgressMonitor;
+import org.openstreetmap.josm.plugins.addressconflation.JsonSupport;
 import org.openstreetmap.josm.tools.HttpClient;
 import org.openstreetmap.josm.tools.Logging;
 
@@ -232,7 +232,7 @@ public final class EsriFeatureClient {
                         : tr("server error (HTTP {0}): {1}", resp.getResponseCode(), reason));
             }
             String body = resp.fetchContent();
-            try (JsonReader reader = Json.createReader(new StringReader(body))) {
+            try (JsonReader reader = JsonSupport.JSON.createReader(new StringReader(body))) {
                 return reader.readObject();
             } catch (JsonException e) {
                 // Typically an ArcGIS or proxy error page served with HTTP 200.
@@ -257,7 +257,7 @@ public final class EsriFeatureClient {
             return null;
         }
         String msg = null;
-        try (JsonReader reader = Json.createReader(new StringReader(body))) {
+        try (JsonReader reader = JsonSupport.JSON.createReader(new StringReader(body))) {
             msg = errorText(reader.readObject());
         } catch (JsonException | IllegalStateException e) {
             java.util.regex.Matcher m = java.util.regex.Pattern.compile("(?is)<title>\\s*(.*?)\\s*</title>").matcher(body);
@@ -339,17 +339,17 @@ public final class EsriFeatureClient {
         if (error != null) {
             throw new IOException(tr("service error: {0}", error));
         }
-        var features = Json.createArrayBuilder();
+        var features = JsonSupport.JSON.createArrayBuilder();
         JsonArray in = esri.getJsonArray("features");
         if (in != null) {
             for (JsonValue v : in) {
                 JsonObject f = v.asJsonObject();
                 JsonObject g = f.containsKey("geometry") && f.get("geometry").getValueType() == JsonValue.ValueType.OBJECT ? f.getJsonObject("geometry") : null;
-                var geom = Json.createObjectBuilder();
+                var geom = JsonSupport.JSON.createObjectBuilder();
                 if (g == null) {
                     continue;
                 } else if (g.containsKey("x")) {
-                    geom.add("type", "Point").add("coordinates", Json.createArrayBuilder().add(g.getJsonNumber("x").doubleValue()).add(g.getJsonNumber("y").doubleValue()));
+                    geom.add("type", "Point").add("coordinates", JsonSupport.JSON.createArrayBuilder().add(g.getJsonNumber("x").doubleValue()).add(g.getJsonNumber("y").doubleValue()));
                 } else if (g.containsKey("rings")) {
                     geom.add("type", "Polygon").add("coordinates", g.getJsonArray("rings"));
                 } else if (g.containsKey("paths")) {
@@ -360,12 +360,12 @@ public final class EsriFeatureClient {
                 } else {
                     continue;
                 }
-                features.add(Json.createObjectBuilder().add("type", "Feature")
+                features.add(JsonSupport.JSON.createObjectBuilder().add("type", "Feature")
                         .add("properties", f.containsKey("attributes") ? f.getJsonObject("attributes") : JsonValue.EMPTY_JSON_OBJECT)
                         .add("geometry", geom));
             }
         }
-        var out = Json.createObjectBuilder().add("type", "FeatureCollection").add("features", features);
+        var out = JsonSupport.JSON.createObjectBuilder().add("type", "FeatureCollection").add("features", features);
         if (esri.containsKey("exceededTransferLimit")) {
             out.add("exceededTransferLimit", esri.getBoolean("exceededTransferLimit", false));
         }

@@ -2,6 +2,8 @@ build/
 .gradle/
 *.class
 *.jar
+# ./gradlew needs the wrapper jar in the repository
+!gradle/wrapper/gradle-wrapper.jar
 .idea/
 *.iml
 .DS_Store

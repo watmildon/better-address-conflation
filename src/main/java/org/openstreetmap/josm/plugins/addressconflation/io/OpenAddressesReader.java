@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import jakarta.json.Json;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonException;
 import jakarta.json.JsonObject;
@@ -29,6 +28,7 @@ import org.openstreetmap.josm.data.osm.OsmPrimitive;
 import org.openstreetmap.josm.data.osm.Relation;
 import org.openstreetmap.josm.data.osm.RelationMember;
 import org.openstreetmap.josm.data.osm.Way;
+import org.openstreetmap.josm.plugins.addressconflation.JsonSupport;
 import org.openstreetmap.josm.plugins.addressconflation.cells.ParcelCellSource;
 
 /**
@@ -49,7 +49,7 @@ public final class OpenAddressesReader {
     }
 
     /** Looking the provider up per call goes through ServiceLoader; do it once. */
-    private static final JsonReaderFactory READER_FACTORY = Json.createReaderFactory(null);
+    private static final JsonReaderFactory READER_FACTORY = JsonSupport.JSON.createReaderFactory(null);
 
     private final DataSet ds = new DataSet();
     private final Map<String, Node> nodeCache = new HashMap<>();

@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import jakarta.json.Json;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonArrayBuilder;
 import jakarta.json.JsonObject;
@@ -23,6 +22,7 @@ import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.LinearRing;
 import org.locationtech.jts.geom.Point;
 import org.locationtech.jts.geom.Polygon;
+import org.openstreetmap.josm.plugins.addressconflation.JsonSupport;
 import org.openstreetmap.josm.tools.Logging;
 
 /**
@@ -188,7 +188,7 @@ public final class EsriFeatureSource {
         JsonValue propsValue = feature.get("properties");
         JsonObject props = propsValue != null && propsValue.getValueType() == JsonValue.ValueType.OBJECT
                 ? propsValue.asJsonObject() : JsonValue.EMPTY_JSON_OBJECT;
-        JsonObjectBuilder out = Json.createObjectBuilder();
+        JsonObjectBuilder out = JsonSupport.JSON.createObjectBuilder();
         switch (kind) {
         case ADDRESSES:
             String number = value(props, "number");
@@ -215,7 +215,7 @@ public final class EsriFeatureSource {
             out.add("height", value(props, "height"));
             break;
         }
-        return Json.createObjectBuilder().add("type", "Feature").add("properties", out).add("geometry", geometry).build();
+        return JsonSupport.JSON.createObjectBuilder().add("type", "Feature").add("properties", out).add("geometry", geometry).build();
     }
 
     private String value(JsonObject props, String oaKey) {
@@ -296,8 +296,8 @@ public final class EsriFeatureSource {
         if (best == null) {
             return null;
         }
-        JsonArrayBuilder c = Json.createArrayBuilder().add(best.getX()).add(best.getY());
-        return Json.createObjectBuilder().add("type", "Point").add("coordinates", c).build();
+        JsonArrayBuilder c = JsonSupport.JSON.createArrayBuilder().add(best.getX()).add(best.getY());
+        return JsonSupport.JSON.createObjectBuilder().add("type", "Point").add("coordinates", c).build();
     }
 
     @Override
