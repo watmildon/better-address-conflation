@@ -7,3 +7,10 @@ build/
 .idea/
 *.iml
 .DS_Store
+# LLM / assistant files
+CLAUDE.md
+CLAUDE.local.md
+.claude/
+AGENTS.md
+.cursor/
+.aider*
