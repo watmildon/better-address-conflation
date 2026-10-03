@@ -7,6 +7,7 @@ import java.io.InputStream;
 import org.junit.jupiter.api.extension.BeforeAllCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.openstreetmap.josm.data.osm.DataSet;
+import org.openstreetmap.josm.data.preferences.JosmBaseDirectories;
 import org.openstreetmap.josm.data.projection.ProjectionRegistry;
 import org.openstreetmap.josm.data.projection.Projections;
 import org.openstreetmap.josm.io.IllegalDataException;
@@ -37,6 +38,9 @@ public class JosmTestSetup implements BeforeAllCallback {
             return;
         }
         Config.setPreferencesInstance(new MemoryPreferences());
+        // PlatformHookWindows resolves the user data dir through Config.getDirs()
+        // when ImageProvider searches for icons; Unix doesn't, so CI never noticed.
+        Config.setBaseDirectoriesProvider(JosmBaseDirectories.getInstance());
         ProjectionRegistry.setProjection(Projections.getProjectionByCode("EPSG:4326"));
         // JOSM's HttpClient needs the factory MainApplication normally installs.
         HttpClient.setFactory(Http1Client::new);
