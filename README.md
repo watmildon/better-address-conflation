@@ -148,9 +148,10 @@ row for the reasons behind the match.
 * By default the matched address node is deleted from the address layer, so nothing is applied
   twice.
 * Everything goes through JOSM's undo stack. Undoing an apply puts the row back in the list.
-* The **Overlay** checkbox shows a map layer with the parcel or Voronoi cells and a line from each
-  address to its building, coloured by bucket. Selected rows are highlighted in yellow. The
-  overlay is never saved or uploaded.
+* Each analysis adds a **Better Address Conflation overlay** layer showing the parcel or Voronoi
+  cells and a line from each address to its building, coloured by bucket. Selected rows are
+  highlighted in yellow. Show, hide or delete it in the Layers panel like any other layer; the
+  next analysis brings it back if deleted. It is never saved or uploaded.
 
 ## Validator
 

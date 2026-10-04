@@ -26,7 +26,6 @@ import java.util.concurrent.ExecutionException;
 
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -97,7 +96,6 @@ public class AddressConflationDialog extends ToggleDialog
 
     private final JLabel summary = new JLabel(" ");
     private final JButton shiftButton = new JButton();
-    private final JCheckBox overlayBox = new JCheckBox(tr("Overlay"), true);
     private ProposalOverlayLayer overlay;
     /** Commands we issued, so undo can bring the proposal back. */
     private final Map<Command, Proposal> commandProposals = new HashMap<>();
@@ -179,16 +177,12 @@ public class AddressConflationDialog extends ToggleDialog
         gc.gridx = 0;
         gc.gridy = 0;
         gc.weightx = 1;
-        top.add(overlayBox, gc);
-        gc.gridy = 1;
         top.add(summary, gc);
-        gc.gridy = 2;
+        gc.gridy = 1;
         shiftButton.setVisible(false);
         shiftButton.addActionListener(e -> shiftAndRerun());
         top.add(shiftButton, gc);
-        overlayBox.setToolTipText(tr("Show an overlay layer with the parcel or Voronoi cells and a line from each address to its building, coloured by bucket"));
         summary.setToolTipText(tr("Result of the last analysis: address points read, exact duplicates dropped, cells built, proposals made"));
-        overlayBox.addActionListener(e -> updateOverlayVisibility());
 
         tree.setRootVisible(false);
         tree.setShowsRootHandles(true);
@@ -231,6 +225,10 @@ public class AddressConflationDialog extends ToggleDialog
         if (lastChoice != null && lastChoice.uses(e.getRemovedLayer())) {
             lastChoice = null;
         }
+        if (e.getRemovedLayer() == overlay) {
+            // Deleted from the Layers panel: the next analysis brings it back.
+            overlay = null;
+        }
     }
 
     @Override
@@ -248,19 +246,6 @@ public class AddressConflationDialog extends ToggleDialog
     }
 
     // ---- overlay -----------------------------------------------------------------
-
-    private void updateOverlayVisibility() {
-        if (overlayBox.isSelected()) {
-            if (result != null) {
-                ensureOverlay().setResult(result);
-                for (Proposal p : applied) {
-                    overlay.hide(p);
-                }
-            }
-        } else {
-            removeOverlay();
-        }
-    }
 
     private ProposalOverlayLayer ensureOverlay() {
         if (overlay == null || !MainApplication.getLayerManager().containsLayer(overlay)) {
@@ -482,9 +467,8 @@ public class AddressConflationDialog extends ToggleDialog
         } else {
             shiftButton.setVisible(false);
         }
-        if (overlayBox.isSelected()) {
-            ensureOverlay().setResult(r);
-        }
+        // Shown and hidden from the Layers panel like any other layer.
+        ensureOverlay().setResult(r);
     }
 
     private void clearResult() {

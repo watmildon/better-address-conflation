@@ -69,7 +69,7 @@ public class ProposalOverlayLayer extends Layer {
     private final Set<Proposal> hidden = new HashSet<>();
 
     public ProposalOverlayLayer() {
-        super(tr("Address conflation overlay"));
+        super(tr("Better Address Conflation overlay"));
     }
 
     public void setResult(AnalysisResult result) {
