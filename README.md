@@ -159,8 +159,8 @@ row for the reasons behind the match.
 |---|---|---|
 | Clean | One address, one clear building. Also an address OSM already has, when nothing disagrees: the source may add keys such as `addr:postcode` or `addr:state` (case-only differences don't count). | An OSM building gets the `addr:*` tags. On a hint footprint, the address becomes a node at the centre of the footprint; the footprint is not imported. Already mapped: only the missing keys are added to the feature that has the address, and the source node is dropped. |
 | Multi-address building | Several addresses on one OSM building. | Each stays a node, moved inside the building. Never merged, never interpolated. |
-| No building | No building in the address's cell. | The node is copied as-is. |
 | Check, then apply | Probably right, but look first. A parcel line splits the building (see **Split building tolerance** below), one outline covers several addressed parcels (such as a townhouse row mapped as one building), or several addresses land on one hint footprint, which may really be several buildings. | Same as Clean or Multi-address building, one row at a time. Several addresses always stay separate nodes inside the building. |
+| No building | No building or hint footprint in the address's cell, so nothing confirms where it belongs: the building may be unmapped, or the point misplaced. Check the imagery. | The node is copied as-is, one row at a time. |
 | Ambiguous building | The runner-up building is close in size to the primary. | You pick (see below). |
 | Existing address | OSM already has a matching address, but something disagrees: a value differs (the row names the key, e.g. `addr:postcode`), `addr:unit` differs or is on one side only, the street is spelled differently or is another street, the building carries a different address, the address is on an outbuilding instead of the main building, or OSM has it on more than one feature. | Same housenumber, street and unit: the source node is dropped and OSM is left as it is. The others are for you to resolve by hand. |
 | Duplicate across cells | The same address appears in more than one cell. | Review only. |
@@ -178,16 +178,20 @@ row for the reasons behind the match.
   * Selecting part of what the current rows highlight keeps those rows, so you can narrow an
     ambiguous row down to one building and click **Apply**.
 * **Apply** applies the selected rows. **Apply bucket** applies every remaining row in the selected
-  bucket. Bulk apply is offered only for the first three buckets.
+  bucket. Bulk apply is offered only for the first two buckets.
 * **Ambiguous buildings**: select the row, then on the map select just the one building the address
   belongs to, and click **Apply**.
 * By default the matched address node is deleted from the address layer, so nothing is applied
   twice.
 * Everything goes through JOSM's undo stack. Undoing an apply puts the row back in the list.
 * Each analysis adds a **Better Address Conflation overlay** layer showing the parcel or Voronoi
-  cells and a line from each address to its building, coloured by bucket. Selected rows are
-  highlighted in yellow. Show, hide or delete it in the Layers panel like any other layer; the
-  next analysis brings it back if deleted. It is never saved or uploaded.
+  cells and a line from each address to its building. Lines are coloured by what you need to do:
+  green to apply, orange to look first (check, a lone address with no building, or pick a
+  building), blue to resolve by hand. The
+  bucket headings in the panel carry the same colours as a legend. The three colours stay
+  distinct for colour-blind mappers. Selected rows are highlighted in yellow. Show, hide or
+  delete the layer in the Layers panel like any other; the next analysis brings it back if
+  deleted. It is never saved or uploaded.
 
 ## Uploading
 

@@ -53,15 +53,31 @@ public class ProposalOverlayLayer extends Layer {
     /** Do not draw cells when the view is wider than this, in degrees. */
     private static final double CELL_MAX_VIEW_DEGREES = 0.03;
 
+    /*
+     * Colour says what the mapper has to do, not which bucket: on a map any two colours can
+     * sit side by side, and three is the most that stay apart for colour-blind mappers
+     * (validated all-pairs against JOSM's black background: worst deuteranopia OKLab
+     * difference 9.4, normal vision 20.9, all over 3:1 contrast). The panel names the bucket,
+     * and its bucket headings carry the same colours as a legend.
+     */
+    /** Apply, in bulk if you like: green. */
+    static final Color APPLY = new Color(0x199e70);
+    /** Look first, then apply or pick: orange. */
+    static final Color LOOK = new Color(0xd95926);
+    /** Resolve by hand: blue. */
+    static final Color BY_HAND = new Color(0x3987e5);
+    /** Casing around address dots, so they hold up on aerial imagery. */
+    private static final Color CASING = new Color(0, 0, 0, 200);
+
     static {
-        COLORS.put(Bucket.CLEAN, new Color(0, 155, 97));
-        COLORS.put(Bucket.MULTI_ADDRESS_BUILDING, new Color(58, 123, 213));
-        COLORS.put(Bucket.NO_BUILDING, new Color(130, 130, 130));
-        COLORS.put(Bucket.REVIEW, new Color(140, 80, 200));
-        COLORS.put(Bucket.AMBIGUOUS_BUILDING, new Color(227, 116, 56));
-        COLORS.put(Bucket.EXISTING_ADDRESS, new Color(200, 40, 40));
-        COLORS.put(Bucket.DUPLICATE, new Color(200, 40, 160));
-        COLORS.put(Bucket.OUTSIDE_CELLS, new Color(120, 20, 20));
+        COLORS.put(Bucket.CLEAN, APPLY);
+        COLORS.put(Bucket.MULTI_ADDRESS_BUILDING, APPLY);
+        COLORS.put(Bucket.REVIEW, LOOK);
+        COLORS.put(Bucket.NO_BUILDING, LOOK);
+        COLORS.put(Bucket.AMBIGUOUS_BUILDING, LOOK);
+        COLORS.put(Bucket.EXISTING_ADDRESS, BY_HAND);
+        COLORS.put(Bucket.DUPLICATE, BY_HAND);
+        COLORS.put(Bucket.OUTSIDE_CELLS, BY_HAND);
     }
 
     private AnalysisResult result;
@@ -166,6 +182,9 @@ public class ProposalOverlayLayer extends Layer {
                 g.drawLine(from.x, from.y, targetPt.x, targetPt.y);
             }
             g.fillOval(from.x - 4, from.y - 4, 8, 8);
+            g.setColor(CASING);
+            g.setStroke(CELL_STROKE);
+            g.drawOval(from.x - 5, from.y - 5, 10, 10);
         }
         if (targetPt != null) {
             g.setColor(color);

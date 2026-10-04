@@ -4,10 +4,14 @@ package org.openstreetmap.josm.plugins.addressconflation.gui;
 import static org.openstreetmap.josm.tools.I18n.tr;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -25,6 +29,7 @@ import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
 import javax.swing.AbstractAction;
+import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -767,6 +772,40 @@ public class AddressConflationDialog extends ToggleDialog
     // ---- rendering ----------------------------------------------------------------------
 
     private static final class ProposalRenderer extends DefaultTreeCellRenderer {
+        /** The overlay's colour for each bucket, shown on the bucket headings as its legend. */
+        private static final Map<Bucket, Icon> SWATCHES = new EnumMap<>(Bucket.class);
+
+        static {
+            for (Map.Entry<Bucket, Color> e : ProposalOverlayLayer.colors().entrySet()) {
+                SWATCHES.put(e.getKey(), swatch(e.getValue()));
+            }
+        }
+
+        private static Icon swatch(Color color) {
+            return new Icon() {
+                @Override
+                public void paintIcon(Component c, Graphics g, int x, int y) {
+                    Graphics2D g2 = (Graphics2D) g.create();
+                    g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                    g2.setColor(color);
+                    g2.fillOval(x + 1, y + 1, 10, 10);
+                    g2.setColor(new Color(0, 0, 0, 160));
+                    g2.drawOval(x + 1, y + 1, 10, 10);
+                    g2.dispose();
+                }
+
+                @Override
+                public int getIconWidth() {
+                    return 12;
+                }
+
+                @Override
+                public int getIconHeight() {
+                    return 12;
+                }
+            };
+        }
+
         @Override
         public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded, boolean leaf, int row, boolean hasFocus) {
             super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);
@@ -775,6 +814,7 @@ public class AddressConflationDialog extends ToggleDialog
                 Bucket b = (Bucket) o;
                 setText(b.getLabel() + " (" + ((DefaultMutableTreeNode) value).getChildCount() + ")");
                 setToolTipText(b.getDescription());
+                setIcon(SWATCHES.get(b));
             } else if (o instanceof Proposal) {
                 Proposal p = (Proposal) o;
                 StringBuilder sb = new StringBuilder(p.describe());

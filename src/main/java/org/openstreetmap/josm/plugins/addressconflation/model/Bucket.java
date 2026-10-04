@@ -11,8 +11,8 @@ import static org.openstreetmap.josm.tools.I18n.tr;
 public enum Bucket {
     CLEAN("Clean", "One address, one clear building. An OSM building gets the address tags; on a hint footprint the address becomes a node in its middle. Safe to apply in bulk.", true),
     MULTI_ADDRESS_BUILDING("Multi-address building", "Several addresses land on one OSM building. Each stays its own node, moved inside the building.", true),
-    NO_BUILDING("No building", "No building in the address's cell. The node is copied as-is.", true),
     REVIEW("Check, then apply", "Probably right, but look first: a parcel line splits the building, one outline covers several addressed parcels, or several addresses land on one hint footprint. Apply rows one at a time.", false),
+    NO_BUILDING("No building", "No building or hint footprint in the address's cell, so nothing confirms where the address belongs: the building may be unmapped or the point misplaced. Check the imagery; applying copies the node as-is. Apply rows one at a time.", false),
     AMBIGUOUS_BUILDING("Ambiguous building", "The runner-up building is close in size to the primary. Pick one.", false),
     EXISTING_ADDRESS("Existing address", "The cell already has an address that matches or conflicts.", false),
     DUPLICATE("Duplicate across cells", "The same address appears in more than one cell.", false),
