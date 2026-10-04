@@ -154,7 +154,7 @@ class BuildingNodeTest {
         DataSet source = new DataSet();
         Fixtures.node(source, 0, 0, Fixtures.addr("24", "Main Street"));
         AnalysisResult r = Analyzer.analyze(source, target, hints, new VoronoiCellSource(), new ConflationSettings());
-        assertTrue(in(r, Bucket.HINTED_POSITION).isEmpty());
+        assertTrue(r.getProposals().stream().noneMatch(p -> p.getTarget() != null && p.getTarget().isHint()), "no row uses the hint");
         assertSame(house, in(r, Bucket.CLEAN).get(0).getTarget().getPrimitive());
     }
 

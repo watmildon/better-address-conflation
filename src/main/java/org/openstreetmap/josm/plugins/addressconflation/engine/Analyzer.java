@@ -573,7 +573,7 @@ public final class Analyzer {
             reasons.add(groups.size() + " addresses on this footprint; each stays a node");
         }
         double confidence = Math.min(0.8, 1.0 - 0.5 * worstRatio);
-        Bucket bucket = Bucket.HINTED_POSITION;
+        Bucket bucket = Bucket.CLEAN;
         if (worstRatio >= settings.ambiguityRatio
                 || (groups.size() > 1 && worstRatio >= settings.multiAddressAmbiguityRatio)) {
             // Same rule as for OSM buildings: several addresses and several footprints at one
@@ -583,17 +583,67 @@ public final class Analyzer {
                 reasons.add(groups.size() + " addresses share this cell with " + first.ranked.size() + " hint footprints");
             }
             confidence = Math.min(confidence, 0.4);
+        } else if (groups.size() > 1) {
+            // A footprint is only a hint: several addresses on one may be several buildings
+            // the footprint merged, so a mapper looks before they become nodes.
+            bucket = Bucket.REVIEW;
+            confidence = Math.min(confidence, 0.6);
         }
         if (cellsHit.size() > 1) {
             reasons.add("Footprint covers " + cellsHit.size() + " addressed cells");
         }
         double far = farthest(footprint, groups);
-        if (far > settings.farMatchMeters && bucket == Bucket.HINTED_POSITION) {
+        if (far > settings.farMatchMeters && bucket != Bucket.AMBIGUOUS_BUILDING) {
             reasons.add(String.format(Locale.ROOT, "Footprint is %.0f m from the address point", far));
             bucket = Bucket.AMBIGUOUS_BUILDING;
             confidence = Math.min(confidence, 0.4);
         }
+        if (bucket == Bucket.CLEAN && splitByParcel(footprint, assignments, reasons)) {
+            bucket = Bucket.REVIEW;
+            confidence = Math.min(confidence, 0.6);
+        }
         return new Proposal(bucket, groups, footprint, first.ranked, clamp(confidence), reasons, null, null, first.cell);
+    }
+
+    /**
+     * Parcel mode: true, with a reason added, when more of the building lies outside an
+     * address's parcel than {@link ConflationSettings#splitTolerance} allows.
+     */
+    private boolean splitByParcel(BuildingCandidate building, List<Assignment> assignments, List<String> reasons) {
+        double minShare = 1;
+        Cell worst = null;
+        for (Assignment a : assignments) {
+            if (a.cell.isSynthetic()) {
+                // Voronoi edges do not follow lot lines; a building across one says nothing.
+                return false;
+            }
+            double share = shareIn(building, a.cell);
+            if (share < minShare) {
+                minShare = share;
+                worst = a.cell;
+            }
+        }
+        if (worst == null || minShare >= 1 - settings.splitTolerance) {
+            return false;
+        }
+        reasons.add(String.format(Locale.ROOT, "A parcel line splits the building: only %.0f%% of it is in parcel %s",
+                minShare * 100, worst.getId()));
+        return true;
+    }
+
+    /** Fraction of the building's footprint inside the cell, 0..1. */
+    private static double shareIn(BuildingCandidate building, Cell cell) {
+        Geometry g = building.getGeometry();
+        if (g.getArea() <= 0 || cell.getPrepared().covers(g)) {
+            return 1;
+        }
+        try {
+            return cell.getGeometry().intersection(g).getArea() / g.getArea();
+        } catch (TopologyException ex) {
+            // Broken parcel geometry: do not send the address to review over it.
+            Logging.trace(ex);
+            return 1;
+        }
     }
 
     /** Rank the OSM buildings in a cell for one address group. */
@@ -659,14 +709,12 @@ public final class Analyzer {
         double worstRatio = 0;
         boolean anySnapped = false;
         double maxDistance = 0;
-        double minShare = 1;
         for (Assignment a : assignments) {
             groups.add(a.group);
             cellsHit.add(a.cell);
             worstRatio = Math.max(worstRatio, a.ratio);
             anySnapped |= a.group.isSnappedToCell();
             maxDistance = Math.max(maxDistance, a.group.getDistanceToCell());
-            minShare = Math.min(minShare, a.ranked.get(0).getShare());
         }
         Assignment first = assignments.get(0);
         List<String> reasons = new ArrayList<>();
@@ -691,7 +739,7 @@ public final class Analyzer {
         double confidence = 1.0 - 0.5 * worstRatio - (anySnapped ? 0.1 : 0);
         Bucket bucket;
         if (cellsHit.size() > 1) {
-            bucket = Bucket.BUILDING_SPANS_CELLS;
+            bucket = Bucket.REVIEW;
             reasons.add("Building covers " + cellsHit.size() + " addressed cells");
             confidence = Math.min(confidence, 0.6);
         } else if (worstRatio >= settings.ambiguityRatio) {
@@ -714,15 +762,15 @@ public final class Analyzer {
         } else {
             bucket = Bucket.CLEAN;
         }
-        if (minShare < settings.spanningShare && bucket == Bucket.CLEAN) {
-            reasons.add(String.format(Locale.ROOT, "Only %.0f%% of the building is in this cell", minShare * 100));
-            confidence -= 0.2;
-        }
         double far = farthest(building, groups);
         if (far > settings.farMatchMeters && (bucket == Bucket.CLEAN || bucket == Bucket.MULTI_ADDRESS_BUILDING)) {
             reasons.add(String.format(Locale.ROOT, "Building is %.0f m from the address point", far));
             bucket = Bucket.AMBIGUOUS_BUILDING;
             confidence = Math.min(confidence, 0.4);
+        }
+        if ((bucket == Bucket.CLEAN || bucket == Bucket.MULTI_ADDRESS_BUILDING) && splitByParcel(building, assignments, reasons)) {
+            bucket = Bucket.REVIEW;
+            confidence = Math.min(confidence, 0.6);
         }
         return new Proposal(bucket, groups, building, first.ranked, clamp(confidence), reasons, null, null, cell);
     }

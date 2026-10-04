@@ -87,8 +87,12 @@ public final class ConflationSettings {
     /** Minimum fraction of a building inside a cell for it to count as a candidate there. */
     public double minShareInCell = 0.10;
 
-    /** Below this fraction of the building in the cell, a primary counts as spanning cells. */
-    public double spanningShare = 0.5;
+    /**
+     * Parcel mode: a building (OSM or hint) with more than this fraction of its footprint
+     * outside the address's parcel goes to review. The slack keeps thin slices, where the
+     * parcel and building layers are offset by a few metres, from flagging every house.
+     */
+    public double splitTolerance = 0.2;
 
     /** Delete the source nodes from the address layer after applying. */
     public boolean deleteSourceNodes = true;

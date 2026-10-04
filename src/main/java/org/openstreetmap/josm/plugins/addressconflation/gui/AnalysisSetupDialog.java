@@ -119,7 +119,7 @@ public final class AnalysisSetupDialog {
         gc.fill = GridBagConstraints.HORIZONTAL;
         JLabel buildings = new JLabel(edit.getName());
         buildings.setToolTipText(tr("The active layer: its buildings get the addresses. Make another layer active to change this."));
-        addRow(panel, gc, 0, tr("Buildings:"), buildings);
+        addRow(panel, gc, 0, tr("OSM Layer:"), buildings);
         addRow(panel, gc, 1, tr("Addresses:"), addressBox);
         addRow(panel, gc, 2, tr("Parcels:"), cellBox);
         addRow(panel, gc, 3, tr("Hints:"), hintBox);

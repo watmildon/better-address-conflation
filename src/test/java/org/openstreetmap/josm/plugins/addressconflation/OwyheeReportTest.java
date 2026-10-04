@@ -116,7 +116,7 @@ class OwyheeReportTest {
         int hinted = 0;
         int inside = 0;
         for (Proposal p : r.getProposals()) {
-            if (p.getBucket() != Bucket.HINTED_POSITION) {
+            if (p.getBucket() != Bucket.CLEAN || p.getTarget() == null || !p.getTarget().isHint()) {
                 continue;
             }
             Applied a = ProposalApplier.build(p, target, pc, r.getProjection(), s);

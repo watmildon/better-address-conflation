@@ -57,8 +57,7 @@ public class ProposalOverlayLayer extends Layer {
         COLORS.put(Bucket.CLEAN, new Color(0, 155, 97));
         COLORS.put(Bucket.MULTI_ADDRESS_BUILDING, new Color(58, 123, 213));
         COLORS.put(Bucket.NO_BUILDING, new Color(130, 130, 130));
-        COLORS.put(Bucket.HINTED_POSITION, new Color(0, 150, 160));
-        COLORS.put(Bucket.BUILDING_SPANS_CELLS, new Color(140, 80, 200));
+        COLORS.put(Bucket.REVIEW, new Color(140, 80, 200));
         COLORS.put(Bucket.AMBIGUOUS_BUILDING, new Color(227, 116, 56));
         COLORS.put(Bucket.EXISTING_ADDRESS, new Color(200, 40, 40));
         COLORS.put(Bucket.DUPLICATE, new Color(200, 40, 160));

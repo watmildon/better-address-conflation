@@ -168,7 +168,7 @@ class AnalyzerEdgeCasesTest {
         }
         Way row = Fixtures.rect(target, 10, 5, 28, 12, "building=terrace");
         AnalysisResult r = parcelsRun(source, target, parcels, new ConflationSettings());
-        Proposal p = only(r, Bucket.BUILDING_SPANS_CELLS);
+        Proposal p = only(r, Bucket.REVIEW);
         assertSame(row, p.getTarget().getPrimitive());
         assertEquals(3, p.getAddresses().size());
         Applied a = ProposalApplier.build(p, target, source, r.getProjection(), new ConflationSettings());

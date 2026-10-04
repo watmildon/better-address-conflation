@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
 import javax.swing.AbstractAction;
@@ -49,9 +50,11 @@ import org.openstreetmap.josm.data.UndoRedoHandler.CommandRedoneEvent;
 import org.openstreetmap.josm.data.UndoRedoHandler.CommandUndoneEvent;
 import org.openstreetmap.josm.data.coor.EastNorth;
 import org.openstreetmap.josm.data.projection.ProjectionRegistry;
+import org.openstreetmap.josm.data.osm.DataSelectionListener;
 import org.openstreetmap.josm.data.osm.DataSet;
 import org.openstreetmap.josm.data.osm.Node;
 import org.openstreetmap.josm.data.osm.OsmPrimitive;
+import org.openstreetmap.josm.data.osm.event.SelectionEventManager;
 import org.openstreetmap.josm.gui.MainApplication;
 import org.openstreetmap.josm.gui.SideButton;
 import org.openstreetmap.josm.gui.dialogs.ToggleDialog;
@@ -83,8 +86,10 @@ import org.openstreetmap.josm.tools.Shortcut;
 /**
  * Side panel: download source data, run the analysis (layers are picked in
  * {@link AnalysisSetupDialog}), review proposals grouped by bucket, apply them.
+ * Selecting address nodes, hint footprints or parcels on the map selects their rows.
  */
-public class AddressConflationDialog extends ToggleDialog implements LayerChangeListener, CommandQueuePreciseListener {
+public class AddressConflationDialog extends ToggleDialog
+        implements LayerChangeListener, CommandQueuePreciseListener, DataSelectionListener {
 
     private final JLabel summary = new JLabel(" ");
     private final JButton shiftButton = new JButton();
@@ -106,9 +111,16 @@ public class AddressConflationDialog extends ToggleDialog implements LayerChange
     private OsmDataLayer targetLayer;
     private OsmDataLayer sourceLayer;
     private ConflationSettings settings;
+    /** Hint and parcel data of the last run, or null; looked up when the mapper selects in them. */
+    private DataSet hintData;
+    private DataSet parcelData;
+    private ProposalIndex index;
     /** Layers and options of the last run, reused by shift-and-rerun. */
     private AnalysisSetupDialog.Choice lastChoice;
+    /** Set while the panel changes a map selection, so that change does not come back as a row selection. */
     private boolean updatingSelection;
+    /** While a map selection drives the list: the dataset the mapper is selecting in, left as it is. */
+    private DataSet syncingFrom;
 
     public AddressConflationDialog() {
         super(tr("Address Conflation"), "address-conflation", tr("Match address points to buildings"),
@@ -142,7 +154,8 @@ public class AddressConflationDialog extends ToggleDialog implements LayerChange
         analyzeAction.putValue(javax.swing.Action.SHORT_DESCRIPTION,
                 tr("Choose the address, parcel and hint layers, then match addresses against buildings in the active layer"));
         applyAction.putValue(javax.swing.Action.SHORT_DESCRIPTION,
-                tr("Apply the selected proposals to the active layer (undoable). Select rows in the list first."));
+                tr("Apply the selected proposals to the analyzed layer (undoable). Select rows in the list, "
+                        + "or select address nodes, hint footprints or parcels on the map."));
         applyBucketAction.putValue(javax.swing.Action.SHORT_DESCRIPTION,
                 tr("Apply every remaining proposal in the selected bucket. Only buckets that are safe to apply in bulk allow this."));
         zoomAction.putValue(javax.swing.Action.SHORT_DESCRIPTION, tr("Zoom the map to the selected proposals (or double-click a row)"));
@@ -196,6 +209,7 @@ public class AddressConflationDialog extends ToggleDialog implements LayerChange
 
         MainApplication.getLayerManager().addLayerChangeListener(this);
         UndoRedoHandler.getInstance().addCommandQueuePreciseListener(this);
+        SelectionEventManager.getInstance().addSelectionListenerForEdt(this);
     }
 
     // ---- layers -----------------------------------------------------------------
@@ -224,6 +238,7 @@ public class AddressConflationDialog extends ToggleDialog implements LayerChange
     public void destroy() {
         MainApplication.getLayerManager().removeLayerChangeListener(this);
         UndoRedoHandler.getInstance().removeCommandQueuePreciseListener(this);
+        SelectionEventManager.getInstance().removeSelectionListener(this);
         removeOverlay();
         super.destroy();
     }
@@ -380,6 +395,8 @@ public class AddressConflationDialog extends ToggleDialog implements LayerChange
         DataSet src = addr.getDataSet();
         DataSet tgt = edit.getDataSet();
         DataSet hintDs = choice.hintLayer != null && choice.hintLayer != edit ? choice.hintLayer.getDataSet() : null;
+        hintData = hintDs;
+        parcelData = choice.parcelLayer != null ? choice.parcelLayer.getDataSet() : null;
         SwingWorker<AnalysisResult, Void> worker = new SwingWorker<AnalysisResult, Void>() {
             @Override
             protected AnalysisResult doInBackground() {
@@ -418,6 +435,7 @@ public class AddressConflationDialog extends ToggleDialog implements LayerChange
 
     private void showResult(AnalysisResult r) {
         result = r;
+        index = new ProposalIndex(r.getProposals(), sourceLayer.getDataSet(), hintData, parcelData);
         applied.clear();
         commandProposals.clear();
         root.removeAllChildren();
@@ -456,6 +474,7 @@ public class AddressConflationDialog extends ToggleDialog implements LayerChange
 
     private void clearResult() {
         result = null;
+        index = null;
         applied.clear();
         commandProposals.clear();
         root.removeAllChildren();
@@ -498,9 +517,6 @@ public class AddressConflationDialog extends ToggleDialog implements LayerChange
     }
 
     private void onTreeSelection() {
-        if (updatingSelection) {
-            return;
-        }
         List<Proposal> sel = selectedProposals();
         Bucket b = selectedBucket();
         applyAction.setEnabled(sel.stream().anyMatch(ProposalApplier::isApplicable));
@@ -522,8 +538,11 @@ public class AddressConflationDialog extends ToggleDialog implements LayerChange
         }
         updatingSelection = true;
         try {
-            targetLayer.getDataSet().setSelected(targetPrims);
-            if (sourceLayer != null && sourceLayer != targetLayer) {
+            // Rows picked from the map: keep the mapper's own selection in the layer they are working in.
+            if (targetLayer.getDataSet() != syncingFrom) {
+                targetLayer.getDataSet().setSelected(targetPrims);
+            }
+            if (sourceLayer != null && sourceLayer != targetLayer && sourceLayer.getDataSet() != syncingFrom) {
                 sourceLayer.getDataSet().setSelected(sourcePrims);
             }
         } finally {
@@ -531,6 +550,40 @@ public class AddressConflationDialog extends ToggleDialog implements LayerChange
         }
         if (overlay != null) {
             overlay.setSelected(sel);
+        }
+    }
+
+    /** Address nodes, hint footprints or parcels selected on the map select their rows. */
+    @Override
+    public void selectionChanged(SelectionChangeEvent event) {
+        if (updatingSelection || index == null) {
+            return;
+        }
+        Set<Proposal> found = index.find(event.getSource(), event.getSelection());
+        if (found.isEmpty()) {
+            // Nothing of ours, such as a building picked for an ambiguous row: keep the rows as they are.
+            return;
+        }
+        List<TreePath> paths = new ArrayList<>();
+        for (int i = 0; i < root.getChildCount(); i++) {
+            DefaultMutableTreeNode bn = (DefaultMutableTreeNode) root.getChildAt(i);
+            for (int j = 0; j < bn.getChildCount(); j++) {
+                DefaultMutableTreeNode leaf = (DefaultMutableTreeNode) bn.getChildAt(j);
+                if (found.contains(leaf.getUserObject())) {
+                    paths.add(new TreePath(leaf.getPath()));
+                }
+            }
+        }
+        if (paths.isEmpty()) {
+            // already applied
+            return;
+        }
+        syncingFrom = event.getSource();
+        try {
+            tree.setSelectionPaths(paths.toArray(new TreePath[0]));
+            tree.scrollPathToVisible(paths.get(0));
+        } finally {
+            syncingFrom = null;
         }
     }
 

@@ -69,8 +69,7 @@ public final class ProposalApplier {
         case CLEAN:
         case MULTI_ADDRESS_BUILDING:
         case NO_BUILDING:
-        case HINTED_POSITION:
-        case BUILDING_SPANS_CELLS:
+        case REVIEW:
         case AMBIGUOUS_BUILDING:
             return true;
         case EXISTING_ADDRESS:
@@ -129,7 +128,7 @@ public final class ProposalApplier {
                     toDelete.addAll(g.getAllNodes());
                 }
             }
-        } else if (p.getAddresses().size() == 1 && bucket != Bucket.BUILDING_SPANS_CELLS && !hinted) {
+        } else if (p.getAddresses().size() == 1 && !hinted) {
             AddressGroup g = p.getAddresses().get(0);
             Map<String, String> tags = copyTags(g, settings);
             targetCmds.add(new ChangePropertyCommand(Collections.singleton(target.getPrimitive()), tags));
@@ -138,9 +137,12 @@ public final class ProposalApplier {
             // Several addresses on one building, a building spanning parcels, or a hinted
             // footprint: every address becomes (or stays) a node inside the footprint.
             Geometry building = target.getGeometry();
+            // One address on a hint footprint stands for the whole building: put it in the
+            // middle, even when the point already falls somewhere inside the footprint.
+            boolean toCenter = hinted && p.getAddresses().size() == 1;
             List<Coordinate> placed = new ArrayList<>();
             for (AddressGroup g : p.getAddresses()) {
-                Coordinate c = placeInside(proj.toXY(g.getPosition()), building, placed);
+                Coordinate c = toCenter ? center(building) : placeInside(proj.toXY(g.getPosition()), building, placed);
                 placed.add(c);
                 if (sameLayer) {
                     // Cleaning up existing nodes: move them, keep their history.
@@ -197,6 +199,15 @@ public final class ProposalApplier {
         Node n = new Node(at);
         n.setKeys(copyTags(g, settings));
         return n;
+    }
+
+    /** The footprint's centroid, or an interior point when the centroid falls outside (an L-shaped house). */
+    static Coordinate center(Geometry building) {
+        Point centroid = building.getCentroid();
+        if (!centroid.isEmpty() && building.contains(centroid)) {
+            return centroid.getCoordinate();
+        }
+        return building.getInteriorPoint().getCoordinate();
     }
 
     /**

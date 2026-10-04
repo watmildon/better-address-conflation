@@ -53,7 +53,7 @@ class HintLayerTest {
         Node addr = Fixtures.node(source, 0, -20, Fixtures.addr("12", "West Olive Avenue")); // badly placed, in the yard
         ConflationSettings s = new ConflationSettings();
         AnalysisResult r = Analyzer.analyze(source, target, hints, new ParcelCellSource(parcels, "p"), s);
-        Proposal p = only(r, Bucket.HINTED_POSITION);
+        Proposal p = only(r, Bucket.CLEAN);
         assertSame(footprint, p.getTarget().getPrimitive());
         assertTrue(p.getTarget().isHint());
         Applied a = ProposalApplier.build(p, target, source, r.getProjection(), s);
@@ -69,6 +69,44 @@ class HintLayerTest {
     }
 
     @Test
+    void addressAlreadyOnTheFootprintMovesToItsCentre() {
+        DataSet target = new DataSet();
+        DataSet source = new DataSet();
+        DataSet hints = new DataSet();
+        DataSet parcels = new DataSet();
+        Fixtures.rect(parcels, 0, 0, 40, 60, "oa:pid=A");
+        Fixtures.rect(hints, 0, 15, 12, 10, "building=yes");
+        Fixtures.node(source, 4, 18, Fixtures.addr("12", "West Olive Avenue")); // inside, near a corner
+        ConflationSettings s = new ConflationSettings();
+        AnalysisResult r = Analyzer.analyze(source, target, hints, new ParcelCellSource(parcels, "p"), s);
+        Proposal p = only(r, Bucket.CLEAN);
+        assertTrue(ProposalApplier.build(p, target, source, r.getProjection(), s).getTargetCommand().executeCommand());
+        Node placed = target.getNodes().stream().filter(n -> n.hasKey("addr:housenumber")).findFirst().orElseThrow();
+        assertTrue(placed.getCoor().greatCircleDistance(Fixtures.at(0, 15)) < 0.5,
+                "placed " + placed.getCoor().greatCircleDistance(Fixtures.at(0, 15)) + " m from the footprint centre");
+    }
+
+    @Test
+    void lShapedFootprintStillGetsTheNodeInside() {
+        DataSet target = new DataSet();
+        DataSet source = new DataSet();
+        DataSet hints = new DataSet();
+        DataSet parcels = new DataSet();
+        Fixtures.rect(parcels, 0, 0, 60, 60, "oa:pid=A");
+        // Thin L: its centroid lies in the empty corner.
+        Way footprint = Fixtures.polygon(hints, new String[] {"building=yes"},
+                Fixtures.at(0, 0), Fixtures.at(20, 0), Fixtures.at(20, 3), Fixtures.at(3, 3), Fixtures.at(3, 20), Fixtures.at(0, 20));
+        Fixtures.node(source, 10, -10, Fixtures.addr("12", "West Olive Avenue"));
+        ConflationSettings s = new ConflationSettings();
+        AnalysisResult r = Analyzer.analyze(source, target, hints, new ParcelCellSource(parcels, "p"), s);
+        Proposal p = only(r, Bucket.CLEAN);
+        assertTrue(ProposalApplier.build(p, target, source, r.getProjection(), s).getTargetCommand().executeCommand());
+        Node placed = target.getNodes().stream().filter(n -> n.hasKey("addr:housenumber")).findFirst().orElseThrow();
+        assertTrue(OsmGeometry.toPolygon(footprint, r.getProjection()).contains(
+                OsmGeometry.factory().createPoint(r.getProjection().toXY(placed.getCoor()))), "node sits on the L");
+    }
+
+    @Test
     void hintBeatsALoneShedButNotAHouse() {
         DataSet parcels = new DataSet();
         Fixtures.rect(parcels, 0, 0, 40, 60, "oa:pid=A");
@@ -79,7 +117,7 @@ class HintLayerTest {
         Fixtures.rect(target, 0, -20, 4, 4, "building=shed");
         DataSet source = new DataSet();
         Fixtures.node(source, 0, 0, Fixtures.addr("12", "West Olive Avenue"));
-        Proposal p = only(Analyzer.analyze(source, target, hints, new ParcelCellSource(parcels, "p"), new ConflationSettings()), Bucket.HINTED_POSITION);
+        Proposal p = only(Analyzer.analyze(source, target, hints, new ParcelCellSource(parcels, "p"), new ConflationSettings()), Bucket.CLEAN);
         assertSame(footprint, p.getTarget().getPrimitive());
         assertTrue(p.getReasons().get(0).contains("building=shed"), p.getReasons().toString());
 
@@ -102,7 +140,7 @@ class HintLayerTest {
         LatLon before = addr.getCoor();
         ConflationSettings s = new ConflationSettings();
         AnalysisResult r = Analyzer.analyze(ds, ds, hints, new VoronoiCellSource(), s);
-        Proposal p = only(r, Bucket.HINTED_POSITION);
+        Proposal p = only(r, Bucket.CLEAN);
         Applied a = ProposalApplier.build(p, ds, ds, r.getProjection(), s);
         assertNull(a.getSourceCommand());
         assertTrue(a.getTargetCommand().executeCommand());
@@ -140,7 +178,7 @@ class HintLayerTest {
             if (p.getBucket() == Bucket.NO_BUILDING) {
                 noBuilding++;
             }
-            if (p.getTarget() == null || !p.getTarget().isHint() || p.getBucket() != Bucket.HINTED_POSITION) {
+            if (p.getTarget() == null || !p.getTarget().isHint() || p.getBucket() != Bucket.CLEAN) {
                 continue; // ambiguous stacks (the 206-unit complex) go to review, not to the metric
             }
             Applied a = ProposalApplier.build(p, target, addresses, r.getProjection(), s);

@@ -79,7 +79,7 @@ layer. Polygon layers you load can serve as parcels or hints in the same way.
 
 **Analyze...** opens a setup window:
 
-* **Buildings**: always the active layer. Its buildings get the addresses.
+* **OSM Layer**: always the active layer. Its buildings get the addresses.
 * **Addresses**: the layer whose address nodes are matched. Pick the active layer itself to tidy
   up its own loose address nodes. They are moved or folded into buildings, keeping their history.
 * **Parcels**: a parcel layer, or **Voronoi cells (no parcel layer)**. With Voronoi cells, each
@@ -109,16 +109,17 @@ address node by that offset (undoable) and analyzes again.
 
 ## Reviewing and applying
 
-Results are grouped into buckets, in order from "apply in bulk" to "needs eyes". Hover a bucket
-for its description and a row for the reasons behind the match.
+Results are grouped into buckets by what you need to do, in order from "apply in bulk" to "needs
+eyes". Whether a match came from an OSM building or a hint footprint does not change its bucket;
+the row says which (`→ building=house` or `→ hint`). Hover a bucket for its description and a
+row for the reasons behind the match.
 
 | Bucket | What it means | When applied |
 |---|---|---|
-| Clean | One address, one clear primary building. | The building gets the `addr:*` tags. |
-| Multi-address building | Several addresses on one building. | Each stays a node, moved inside the building. Never merged, never interpolated. |
-| Placed by hint | No usable OSM building, but a hint footprint shows where it is. | The node is placed on the footprint. The footprint is not imported. |
+| Clean | One address, one clear building. | An OSM building gets the `addr:*` tags. On a hint footprint, the address becomes a node at the centre of the footprint; the footprint is not imported. |
+| Multi-address building | Several addresses on one OSM building. | Each stays a node, moved inside the building. Never merged, never interpolated. |
 | No building | No building in the address's cell. | The node is copied as-is. |
-| Building spans parcels | One outline covers several addressed parcels, such as a townhouse row mapped as one building. | The nodes go inside the building. |
+| Check, then apply | Probably right, but look first. A parcel line splits the building (see **Split building tolerance** below), one outline covers several addressed parcels (such as a townhouse row mapped as one building), or several addresses land on one hint footprint, which may really be several buildings. | Same as Clean or Multi-address building, one row at a time. Several addresses always stay separate nodes inside the building. |
 | Ambiguous building | The runner-up building is close in size to the primary. | You pick (see below). |
 | Existing address | The building or cell already has an address that is identical, differs only in `addr:unit`, is a street spelling variant, has a different street, or the building carries a different address. | Identical: the redundant source node is dropped. The others are for you to resolve by hand. |
 | Duplicate across cells | The same address appears in more than one cell. | Review only. |
@@ -126,8 +127,14 @@ for its description and a row for the reasons behind the match.
 
 * Click a row to select its address and candidate buildings on the map. Double-click a row, or
   use **Zoom**, to zoom to it. Shift- and Ctrl-click select several rows.
+* It works the other way too: make the address, hint or parcel layer active and select address
+  nodes, footprints or parcels on the map, and their rows are selected in the panel, ready for
+  **Apply**. A hint footprint selects the addresses that would be placed on it; a parcel selects
+  every address in it. Selecting buildings
+  in the layer being analyzed does not change the rows, so you can pick a building for an
+  ambiguous row.
 * **Apply** applies the selected rows. **Apply bucket** applies every remaining row in the selected
-  bucket. Bulk apply is offered only for the first five buckets.
+  bucket. Bulk apply is offered only for the first three buckets.
 * **Ambiguous buildings**: select the row, then on the map select just the one building the address
   belongs to, and click **Apply**.
 * By default the matched address node is deleted from the address layer, so nothing is applied
@@ -151,6 +158,7 @@ whichever tool put them there.
 |---|---|---|
 | Match distance (m) | 30 | How far an address point may sit from its parcel or building. Raise it in spread-out rural areas. |
 | Ambiguity ratio | 0.75 | When the second-best building scores at least this fraction of the best, the address goes to review. |
+| Split building tolerance (%) | 20 | With a parcel layer: how much of a building may lie outside the address's parcel before the match goes to **Check, then apply**. The slack absorbs thin slivers where parcels and footprints are offset by a few metres. Raise it where the layers are badly offset; lower it to see every building that crosses a lot line. Not used with Voronoi cells. |
 | Outbuilding values | garage, garages, shed, carport, roof, canopy, outbuilding, greenhouse, barn, hut, cabin, shelter, kiosk, storage_tank, silo, service | `building=*` values ranked low as address targets. |
 | Delete address nodes after applying | on | Removes the matched node from the address layer. |
 
