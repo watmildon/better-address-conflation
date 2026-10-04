@@ -24,17 +24,18 @@ one-off script. This plugin puts those rules inside JOSM.
 Requires JOSM 19439 or newer. The plugin is not in JOSM's built-in plugin list yet, so it is
 installed by hand:
 
-1. Download `better-address-conflation.jar` from the
-   [Releases page](https://github.com/watmildon/better-address-conflation/releases).
-   (No release has been tagged yet. Until then, build the jar yourself: see
-   [development/README.md](development/README.md).)
-2. Put it in JOSM's plugins folder:
+1. Download
+   [`better-address-conflation.jar`](https://github.com/watmildon/better-address-conflation/releases/latest/download/better-address-conflation.jar)
+   from the latest release (all versions are on the
+   [Releases page](https://github.com/watmildon/better-address-conflation/releases)).
+2. Put it in JOSM's plugins folder. Close JOSM first if it is running.
    * Windows: `%APPDATA%\JOSM\plugins\`
    * macOS: `~/Library/JOSM/plugins/`
    * Linux: `~/.local/share/JOSM/plugins/` (older installs: `~/.josm/plugins/`)
 3. In JOSM, open **Preferences → Plugins**, tick **better-address-conflation**, and restart JOSM.
 
-To update, replace the jar and restart JOSM.
+To update, close JOSM, replace the jar, and start JOSM again. **Preferences → Plugins** shows
+the installed version.
 
 ## Quick start
 
@@ -175,7 +176,9 @@ Bugs and ideas: [GitHub issues](https://github.com/watmildon/better-address-conf
 
 ## License
 
-[MIT](LICENSE).
+[MIT](LICENSE). The plugin jar bundles the
+[JTS Topology Suite](https://github.com/locationtech/jts), used under the Eclipse Distribution
+License 1.0 ([licenses/](licenses/)).
 
 The test beds in [test-data/](test-data/) are extracts of OpenStreetMap (© OpenStreetMap
 contributors, ODbL) and of OpenAddresses sources, and keep their own licences.

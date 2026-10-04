@@ -44,6 +44,12 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
 }
 
+// Ship the licence texts inside the plugin jar: ours, and those of bundled libraries (JTS).
+jar {
+    from('LICENSE') { into 'META-INF' }
+    from('licenses') { into 'META-INF/licenses' }
+}
+
 sourceSets {
     test {
         resources {

@@ -78,3 +78,19 @@ JOSM preferences, projections, icons or HTTP.
 * `.github/workflows/release.yml` runs on a `v*` tag. It builds with `RELEASE_VERSION` set from
   the tag (`v0.1.0` becomes `0.1.0`), runs the tests, and attaches
   `build/dist/better-address-conflation.jar` to a GitHub Release with generated notes.
+
+### Cutting a release
+
+1. Dry-run the release build locally:
+   `RELEASE_VERSION=0.1.0 ./gradlew clean build`, then check `Plugin-Version` in
+   `unzip -p build/dist/better-address-conflation.jar META-INF/MANIFEST.MF`.
+2. Push `main` and wait for CI to pass.
+3. Tag and push: `git tag v0.1.0 && git push origin v0.1.0`. The release workflow builds the jar
+   and publishes the GitHub Release.
+4. Edit the release notes on GitHub if the generated ones need a summary.
+
+The README links to `releases/latest/download/better-address-conflation.jar`, so it always
+points at the newest release.
+
+The jar carries `LICENSE` and the texts in `licenses/` under `META-INF/` (see `build.gradle`).
+A newly bundled (`packIntoJar`) library needs its licence text added to `licenses/`.
