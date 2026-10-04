@@ -39,7 +39,7 @@ public class AddressConflationPreferences extends DefaultTabPreferenceSetting {
     private final JCheckBox deleteSource = new JCheckBox(tr("Delete address nodes from the address layer after applying"));
 
     public AddressConflationPreferences() {
-        super("address-conflation", tr("Address Conflation"), tr("Settings for matching address points to buildings"));
+        super("address-conflation", tr("Better Address Conflation"), tr("Settings for matching address points to buildings"));
     }
 
     /** Current preferences as engine settings. */

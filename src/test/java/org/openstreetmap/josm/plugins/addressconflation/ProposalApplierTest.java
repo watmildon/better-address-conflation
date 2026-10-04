@@ -137,7 +137,7 @@ class ProposalApplierTest {
         Node addr = Fixtures.node(source, 0, 0, Fixtures.addr("12", "West Olive Avenue"));
         ConflationSettings s = new ConflationSettings();
         AnalysisResult r = Analyzer.analyze(source, target, new VoronoiCellSource(), s);
-        Proposal p = only(r, Bucket.EXISTING_ADDRESS);
+        Proposal p = only(r, Bucket.CLEAN);
         assertTrue(ProposalApplier.isApplicable(p));
         Applied a = ProposalApplier.build(p, target, source, r.getProjection(), s);
         assertNull(a.getTargetCommand());

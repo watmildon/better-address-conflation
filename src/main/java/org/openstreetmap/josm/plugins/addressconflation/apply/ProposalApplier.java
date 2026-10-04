@@ -20,6 +20,7 @@ import org.openstreetmap.josm.command.MoveCommand;
 import org.openstreetmap.josm.command.SequenceCommand;
 import org.openstreetmap.josm.data.osm.DataSet;
 import org.openstreetmap.josm.data.osm.Node;
+import org.openstreetmap.josm.data.osm.OsmPrimitive;
 import org.openstreetmap.josm.data.projection.ProjectionRegistry;
 import org.openstreetmap.josm.plugins.addressconflation.engine.ConflationSettings;
 import org.openstreetmap.josm.plugins.addressconflation.engine.LocalProjection;
@@ -117,6 +118,21 @@ public final class ProposalApplier {
 
         if (bucket == Bucket.EXISTING_ADDRESS) {
             // Identical address already mapped: the source node is redundant.
+            toDelete.addAll(p.getSourceNodes());
+        } else if (bucket == Bucket.CLEAN && p.getExistingKind() == ExistingKind.IDENTICAL && !p.getExisting().isEmpty()) {
+            // Already mapped without conflicts: add only what OSM lacks (postcode, state...),
+            // never touch a value it already has, and wherever the mapper clicked, keep it on
+            // the feature that has it.
+            OsmPrimitive existing = p.getExisting().get(0).getPrimitive();
+            Map<String, String> added = new TreeMap<>();
+            for (Map.Entry<String, String> e : copyTags(p.getAddresses().get(0), settings).entrySet()) {
+                if (!existing.hasKey(e.getKey())) {
+                    added.put(e.getKey(), e.getValue());
+                }
+            }
+            if (!added.isEmpty()) {
+                targetCmds.add(new ChangePropertyCommand(Collections.singleton(existing), added));
+            }
             toDelete.addAll(p.getSourceNodes());
         } else if (bucket == Bucket.NO_BUILDING) {
             for (AddressGroup g : p.getAddresses()) {

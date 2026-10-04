@@ -441,8 +441,19 @@ public final class Analyzer {
                 }
             }
             if (bestKind != null) {
+                List<String> reasons = existingReasons(g, bestKind, matches);
+                if (bestKind == ExistingKind.IDENTICAL && matches.size() == 1
+                        && AddressNormalizer.conflictingKeys(g.getTags(), matches.get(0).getTags()).isEmpty()) {
+                    BuildingCandidate on = candidateFor(matches.get(0).getPrimitive(), cell);
+                    String misplaced = matches.get(0).isBuilding() ? otherBuildingIsPrimary(g, cell, on) : null;
+                    if (misplaced == null) {
+                        proposals.add(alreadyMapped(g, cell, matches.get(0), on));
+                        continue;
+                    }
+                    reasons.add(misplaced);
+                }
                 proposals.add(new Proposal(Bucket.EXISTING_ADDRESS, Collections.singletonList(g), null, cell.getBuildings(),
-                        confidenceFor(bestKind), Collections.singletonList(describeExisting(bestKind, matches)), bestKind, matches, cell));
+                        confidenceFor(bestKind), reasons, bestKind, matches, cell));
                 continue;
             }
             Assignment a = rank(g, cell);
@@ -470,8 +481,12 @@ public final class Analyzer {
                 ExistingKind k = AddressNormalizer.compare(g.getTags(), primary.getAddrTags());
                 ExistingKind kind = k == null ? ExistingKind.OTHER_ADDRESS_ON_BUILDING : k;
                 List<ExistingAddress> ex = Collections.singletonList(new ExistingAddress(primary.getPrimitive()));
+                if (kind == ExistingKind.IDENTICAL && AddressNormalizer.conflictingKeys(g.getTags(), ex.get(0).getTags()).isEmpty()) {
+                    proposals.add(alreadyMapped(g, cell, ex.get(0), primary));
+                    continue;
+                }
                 proposals.add(new Proposal(Bucket.EXISTING_ADDRESS, Collections.singletonList(g), primary, a.ranked,
-                        confidenceFor(kind), Collections.singletonList(describeExisting(kind, ex)), kind, ex, cell));
+                        confidenceFor(kind), existingReasons(g, kind, ex), kind, ex, cell));
                 continue;
             }
             byBuilding.computeIfAbsent(primary, x -> new ArrayList<>()).add(a);
@@ -809,6 +824,71 @@ public final class Analyzer {
         default:
             return 0.2;
         }
+    }
+
+    /**
+     * OSM already has this address and nothing it says disagrees with the source: a clean
+     * row that adds whatever the source knows and OSM lacks (postcode, state...) to the
+     * existing feature.
+     *
+     * @param building the existing feature as a building candidate, or null when it is a node, POI...
+     */
+    private Proposal alreadyMapped(AddressGroup g, Cell cell, ExistingAddress e, BuildingCandidate building) {
+        List<String> reasons = new ArrayList<>();
+        reasons.add(describeExisting(ExistingKind.IDENTICAL, Collections.singletonList(e)));
+        List<String> added = new ArrayList<>();
+        for (String key : g.getTags().keySet()) {
+            if (settings.shouldCopyKey(key) && !e.getTags().containsKey(key)) {
+                added.add(key);
+            }
+        }
+        reasons.add(added.isEmpty() ? "Nothing to add; applying drops the source node" : "Adds " + String.join(", ", added));
+        return new Proposal(Bucket.CLEAN, Collections.singletonList(g), building, cell.getBuildings(), confidenceFor(ExistingKind.IDENTICAL),
+                reasons, ExistingKind.IDENTICAL, Collections.singletonList(e), cell);
+    }
+
+    /**
+     * When OSM has the address on a building, that building has to be the one the address
+     * would go to anyway, or the row is not clean: an address on the garage or the gas-station
+     * canopy is the mistake this plugin exists to catch. Returns why not, or null when it is.
+     */
+    private String otherBuildingIsPrimary(AddressGroup g, Cell cell, BuildingCandidate on) {
+        Assignment best = rank(g, cell);
+        if (!best.ranked.isEmpty() && best.ranked.get(0).getBuilding() == on) {
+            return null;
+        }
+        if (best.ranked.isEmpty() || on == null) {
+            return "The building carrying it is not a candidate for this address";
+        }
+        BuildingCandidate primary = best.ranked.get(0).getBuilding();
+        return String.format(Locale.ROOT, "But %s %d (%.0f m²) looks like the main building here", nameOf(primary),
+                primary.getPrimitive().getUniqueId(), primary.getArea());
+    }
+
+    /** The cell's building candidate for a primitive, or null when it is not one. */
+    private static BuildingCandidate candidateFor(OsmPrimitive prim, Cell cell) {
+        for (CellBuilding cb : cell.getBuildings()) {
+            if (cb.getBuilding().getPrimitive() == prim) {
+                return cb.getBuilding();
+            }
+        }
+        return null;
+    }
+
+    /** Why an existing address needs a look, naming the keys that disagree. */
+    private static List<String> existingReasons(AddressGroup g, ExistingKind kind, List<ExistingAddress> matches) {
+        List<String> reasons = new ArrayList<>();
+        reasons.add(describeExisting(kind, matches));
+        if (matches.size() > 1) {
+            reasons.add(matches.size() + " features in this cell already carry a matching address");
+        }
+        if (kind == ExistingKind.IDENTICAL) {
+            Map<String, String> theirs = matches.get(0).getTags();
+            for (String key : AddressNormalizer.conflictingKeys(g.getTags(), theirs)) {
+                reasons.add(key + " differs: OSM '" + theirs.get(key) + "', source '" + g.getTags().get(key) + "'");
+            }
+        }
+        return reasons;
     }
 
     private static String describeExisting(ExistingKind kind, Collection<ExistingAddress> matches) {

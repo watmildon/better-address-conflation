@@ -52,6 +52,7 @@ import org.openstreetmap.josm.data.UndoRedoHandler.CommandUndoneEvent;
 import org.openstreetmap.josm.data.coor.EastNorth;
 import org.openstreetmap.josm.data.projection.ProjectionRegistry;
 import org.openstreetmap.josm.data.osm.DataSelectionListener;
+import org.openstreetmap.josm.data.osm.DefaultNameFormatter;
 import org.openstreetmap.josm.data.osm.DataSet;
 import org.openstreetmap.josm.data.osm.Node;
 import org.openstreetmap.josm.data.osm.OsmPrimitive;
@@ -124,8 +125,8 @@ public class AddressConflationDialog extends ToggleDialog
     private DataSet syncingFrom;
 
     public AddressConflationDialog() {
-        super(tr("Address Conflation"), "address-conflation", tr("Match address points to buildings"),
-                Shortcut.registerShortcut("subwindow:addressconflation", tr("Windows: {0}", tr("Address Conflation")),
+        super(tr("Better Address Conflation"), "address-conflation", tr("Match address points to buildings"),
+                Shortcut.registerShortcut("subwindow:addressconflation", tr("Windows: {0}", tr("Better Address Conflation")),
                         KeyEvent.VK_A, Shortcut.ALT_CTRL_SHIFT), 250);
 
         analyzeAction = new AbstractAction(tr("Analyze...")) {
@@ -364,7 +365,7 @@ public class AddressConflationDialog extends ToggleDialog
         OsmDataLayer edit = MainApplication.getLayerManager().getEditLayer();
         if (edit == null) {
             JOptionPane.showMessageDialog(MainApplication.getMainFrame(), tr("Need an active edit layer with buildings."),
-                    tr("Address Conflation"), JOptionPane.WARNING_MESSAGE);
+                    tr("Better Address Conflation"), JOptionPane.WARNING_MESSAGE);
             return;
         }
         AnalysisSetupDialog.Choice choice = AnalysisSetupDialog.show(edit);
@@ -746,7 +747,9 @@ public class AddressConflationDialog extends ToggleDialog
             } else if (o instanceof Proposal) {
                 Proposal p = (Proposal) o;
                 StringBuilder sb = new StringBuilder(p.describe());
-                if (p.getTarget() != null && p.getTarget().isNode()) {
+                if (p.getBucket() == Bucket.CLEAN && !p.getExisting().isEmpty()) {
+                    sb.append(" → already on ").append(p.getExisting().get(0).getPrimitive().getDisplayName(DefaultNameFormatter.getInstance()));
+                } else if (p.getTarget() != null && p.getTarget().isNode()) {
                     sb.append(" → building node ").append(Objects.toString(p.getTarget().getBuildingValue(), "?"));
                 } else if (p.getTarget() != null) {
                     sb.append(p.getTarget().isHint() ? " → hint " : " → building=").append(Objects.toString(p.getTarget().getBuildingValue(), "?"))

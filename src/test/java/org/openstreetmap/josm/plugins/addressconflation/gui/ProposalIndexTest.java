@@ -154,7 +154,7 @@ class ProposalIndexTest {
         Fixtures.node(addresses, 0, -25, Fixtures.addr("10", "West Olive Avenue"));
         Proposal[] p = new Proposal[1];
         ProposalIndex idx = oneParcel(osm, addresses, p);
-        assertEquals(Bucket.EXISTING_ADDRESS, p[0].getBucket());
+        assertEquals(Bucket.CLEAN, p[0].getBucket());
         assertEquals(Set.of(p[0]), idx.find(osm, List.of(addressed)));
     }
 

@@ -252,13 +252,14 @@ class AnalyzerEdgeCasesTest {
         p = only(parcelsRun(source2, target2, parcels, new ConflationSettings()), Bucket.EXISTING_ADDRESS);
         assertEquals(ExistingKind.OTHER_ADDRESS_ON_BUILDING, p.getExistingKind());
 
-        // a POI node already carrying the address, no building tags involved
+        // a POI node already carrying the address, no building tags involved: nothing
+        // conflicts, so it is clean
         DataSet target3 = new DataSet();
         Fixtures.rect(target3, 0, 0, 12, 10, "building=retail");
         Fixtures.node(target3, 1, 1, Fixtures.concat(Fixtures.addr("12", "West Olive Avenue"), "shop=convenience"));
         DataSet source3 = new DataSet();
         Fixtures.node(source3, 0, 0, Fixtures.addr("12", "West Olive Avenue"));
-        p = only(parcelsRun(source3, target3, parcels, new ConflationSettings()), Bucket.EXISTING_ADDRESS);
+        p = only(parcelsRun(source3, target3, parcels, new ConflationSettings()), Bucket.CLEAN);
         assertEquals(ExistingKind.IDENTICAL, p.getExistingKind());
     }
 

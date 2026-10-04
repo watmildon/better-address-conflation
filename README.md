@@ -35,7 +35,7 @@ To update, replace the jar and restart JOSM.
 ## Quick start
 
 1. Download or open the OSM data for the area (buildings and streets) as your edit layer.
-2. Open the **Address Conflation** panel (Ctrl+Alt+Shift+A, or **Windows → Address Conflation**).
+2. Open the **Better Address Conflation** panel (Ctrl+Alt+Shift+A, or **Windows → Better Address Conflation**).
 3. Click **Download...** to fetch address points, building footprints and parcels for the
    current view (see [Getting source data](#getting-source-data)), or load your own address layer.
 4. Make sure the OSM layer is the active layer, then click **Analyze...**, check the layers, and
@@ -116,12 +116,12 @@ row for the reasons behind the match.
 
 | Bucket | What it means | When applied |
 |---|---|---|
-| Clean | One address, one clear building. | An OSM building gets the `addr:*` tags. On a hint footprint, the address becomes a node at the centre of the footprint; the footprint is not imported. |
+| Clean | One address, one clear building. Also an address OSM already has, when nothing disagrees: the source may add keys such as `addr:postcode` or `addr:state` (case-only differences don't count). | An OSM building gets the `addr:*` tags. On a hint footprint, the address becomes a node at the centre of the footprint; the footprint is not imported. Already mapped: only the missing keys are added to the feature that has the address, and the source node is dropped. |
 | Multi-address building | Several addresses on one OSM building. | Each stays a node, moved inside the building. Never merged, never interpolated. |
 | No building | No building in the address's cell. | The node is copied as-is. |
 | Check, then apply | Probably right, but look first. A parcel line splits the building (see **Split building tolerance** below), one outline covers several addressed parcels (such as a townhouse row mapped as one building), or several addresses land on one hint footprint, which may really be several buildings. | Same as Clean or Multi-address building, one row at a time. Several addresses always stay separate nodes inside the building. |
 | Ambiguous building | The runner-up building is close in size to the primary. | You pick (see below). |
-| Existing address | The building or cell already has an address that is identical, differs only in `addr:unit`, is a street spelling variant, has a different street, or the building carries a different address. | Identical: the redundant source node is dropped. The others are for you to resolve by hand. |
+| Existing address | OSM already has a matching address, but something disagrees: a value differs (the row names the key, e.g. `addr:postcode`), `addr:unit` differs or is on one side only, the street is spelled differently or is another street, the building carries a different address, the address is on an outbuilding instead of the main building, or OSM has it on more than one feature. | Same housenumber, street and unit: the source node is dropped and OSM is left as it is. The others are for you to resolve by hand. |
 | Duplicate across cells | The same address appears in more than one cell. | Review only. |
 | Outside parcels | The point is in no parcel and none is within the match distance. | Review only. |
 
@@ -155,7 +155,7 @@ whichever tool put them there.
 
 ## Preferences
 
-**Preferences → Address Conflation**:
+**Preferences → Better Address Conflation**:
 
 | Setting | Default | What it does |
 |---|---|---|

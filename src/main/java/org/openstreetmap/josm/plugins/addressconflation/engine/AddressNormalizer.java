@@ -1,7 +1,9 @@
 // License: GPL. For details, see LICENSE file.
 package org.openstreetmap.josm.plugins.addressconflation.engine;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.TreeMap;
@@ -79,6 +81,22 @@ public final class AddressNormalizer {
     public static String key(Map<String, String> tags) {
         return normalizeHousenumber(tags.get("addr:housenumber")) + '|' + normalizeStreet(tags.get("addr:street")) + '|'
                 + normalizeUnit(tags.get("addr:unit"));
+    }
+
+    /**
+     * The addr:* keys both sides carry with different values, ignoring case and surrounding
+     * spaces. A key only one side has is not a conflict: a source adding addr:postcode or
+     * addr:state to an address OSM already has is expected.
+     */
+    public static List<String> conflictingKeys(Map<String, String> source, Map<String, String> existing) {
+        List<String> out = new ArrayList<>();
+        for (Map.Entry<String, String> e : new TreeMap<>(source).entrySet()) {
+            String other = existing.get(e.getKey());
+            if (e.getKey().startsWith("addr:") && other != null && !other.trim().equalsIgnoreCase(e.getValue().trim())) {
+                out.add(e.getKey());
+            }
+        }
+        return out;
     }
 
     /** Exact-duplicate key: every addr:* tag, verbatim. */
