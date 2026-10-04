@@ -204,7 +204,7 @@ us/in/statewide`:
 * the parcel layer, when a parcel decided the match.
 
 The tag is filled in before JOSM's upload dialog opens, so you can see and edit it. Anything
-already in `source` is kept. Only the plugin's own layers (downloads and your sources) are named;
+already in `source` is kept. Only the plugin's own layers (downloads and custom sources) are named;
 add any other layer you used yourself.
 
 ## Validator
