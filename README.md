@@ -1,5 +1,8 @@
 # Better Address Conflation
 
+<img width="1641" height="715" alt="image" src="https://github.com/user-attachments/assets/471b9666-1ac8-4e1f-965f-616cb489716b" />
+
+
 A [JOSM](https://josm.openstreetmap.de/) plugin that matches address points to buildings the way
 a careful mapper would: by parcel, not by nearest centroid. It picks the primary structure over
 the garage, keeps every address in a multi-address building as its own node, flags what is
