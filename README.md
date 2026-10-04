@@ -53,15 +53,19 @@ the installed version.
 
 ## Getting source data
 
-**Download...** in the panel offers, for the current map view:
+**Download...** in the panel has one row per kind of data for the current map view. Tick the
+rows you want and pick a source for each:
 
-* **Address points from the National Address Database (NAD)**: US address points.
-* **Microsoft building footprints**: used only as placement hints where OSM has no building.
-  They are never imported.
-* **Parcels**: the panel asks OpenAddresses which parcel sources cover the view and lists them,
-  most local first. Only ESRI services can be downloaded for just the view, so other sources are
-  listed but cannot be ticked.
-* **Your sources**: layers from your own county or city GIS (see below).
+* **Addresses from**: the National Address Database (NAD), US address points, or one of your own
+  address sources.
+* **Building outlines (hints) from**: Microsoft building footprints, or one of your own. Outlines
+  are used only to position addresses where OSM has no building. They are never imported.
+* **Parcels from**: the parcel sources OpenAddresses lists for the view (only those that can be
+  downloaded for just the view, most local first), or one of your own. If a county's parcels are
+  on an ArcGIS or OGC API server that OpenAddresses does not list, add it as your own source.
+
+Custom sources (see below) appear in the row for their kind wherever they cover the view. The
+dialog remembers your pick for each row; until you pick, it prefers custom sources.
 
 Every source shows a licence badge (hover it for details):
 
@@ -81,17 +85,17 @@ never uploaded either way, but the address data you add to OSM must have a compa
 Zoom in if the view is too large: downloads are limited to 0.02 square degrees, roughly
 15 km across at US latitudes. Downloading again over a neighbouring area adds to the existing layers.
 
-### Your own sources
+### Custom sources
 
-If your county or city publishes its GIS layers online, add them once and they appear in
-**Download...** whenever they cover the view. Two kinds of endpoint work:
+If your county or city publishes its GIS layers online, add them once and they appear in the
+matching row of **Download...** whenever they cover the view. Two kinds of endpoint work:
 
 * **ArcGIS REST layers**: `https://.../arcgis/rest/services/Parcels/FeatureServer/0` (or
   `MapServer/3`). Use the URL of one layer, ending in its number.
 * **OGC API - Features collections**: `https://.../collections/parcels`.
 
 Click **Add source...** in the Download dialog, or use **Preferences → Better Address Conflation →
-Your sources**:
+Custom Sources**:
 
 1. Paste the layer URL; the type is recognised from it. Click **Check**. The plugin reads the
    layer's name, fields, geometry and coverage from the service.

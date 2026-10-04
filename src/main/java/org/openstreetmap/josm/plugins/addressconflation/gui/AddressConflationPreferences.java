@@ -114,7 +114,7 @@ public class AddressConflationPreferences extends DefaultTabPreferenceSetting {
         panel.add(deleteSource, gc);
         gc.gridy++;
         gc.insets = new Insets(12, 4, 4, 4);
-        panel.add(new JLabel(tr("Your sources (offered in Download... wherever they cover the view):")), gc);
+        panel.add(new JLabel(tr("Custom Sources")), gc);
         gc.insets = new Insets(4, 4, 4, 4);
         gc.gridy++;
         gc.weighty = 1;
