@@ -2,6 +2,7 @@
 package org.openstreetmap.josm.plugins.addressconflation.io;
 
 import static org.openstreetmap.josm.tools.I18n.tr;
+import static org.openstreetmap.josm.tools.I18n.trn;
 
 import java.awt.Component;
 import java.awt.GridBagConstraints;
@@ -12,11 +13,15 @@ import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.EnumSet;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
 import javax.swing.DefaultListCellRenderer;
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -36,6 +41,7 @@ import org.openstreetmap.josm.gui.layer.Layer;
 import org.openstreetmap.josm.gui.progress.ProgressMonitor;
 import org.openstreetmap.josm.io.OsmTransferException;
 import org.openstreetmap.josm.plugins.addressconflation.gui.AddressConflationPreferences;
+import org.openstreetmap.josm.plugins.addressconflation.gui.CustomSourceEditor;
 import org.openstreetmap.josm.plugins.addressconflation.gui.OutsideUsNotice;
 import org.openstreetmap.josm.plugins.addressconflation.license.LicenseAssessment;
 import org.openstreetmap.josm.plugins.addressconflation.license.LicenseBadge;
@@ -59,6 +65,8 @@ public class DownloadSourceAction extends JosmAction {
     private static final String PREF_NAD = "addressconflation.download.nad";
     private static final String PREF_MS_BUILDINGS = "addressconflation.download.msBuildings";
     private static final String PREF_PARCELS = "addressconflation.download.parcels";
+    /** Names of the mapper's sources they unticked; a source is ticked by default. */
+    private static final String PREF_CUSTOM_OFF = "addressconflation.download.customOff";
 
     public DownloadSourceAction() {
         super(tr("Download..."), "download_in_view",
@@ -161,6 +169,57 @@ public class DownloadSourceAction extends JosmAction {
         gc.gridwidth = 2;
         gc.fill = GridBagConstraints.HORIZONTAL;
         panel.add(parcelStatus, gc);
+
+        // The mapper's own sources that cover the view, and a way to add one right here.
+        Set<String> off = new LinkedHashSet<>(Config.getPref().getList(PREF_CUSTOM_OFF));
+        Map<CustomSource, JCheckBox> custom = new LinkedHashMap<>();
+        JPanel customPanel = new JPanel(new GridBagLayout());
+        int elsewhere = 0;
+        for (CustomSource cs : CustomSource.load()) {
+            if (cs.covers(bounds)) {
+                addCustomRow(customPanel, custom, cs, !off.contains(cs.getName()));
+            } else {
+                elsewhere++;
+            }
+        }
+        JLabel customNote = new JLabel(elsewhere == 0 ? " "
+                : trn("{0} of your sources does not cover this area.", "{0} of your sources do not cover this area.", elsewhere, elsewhere));
+        JButton addSource = new JButton(tr("Add source..."));
+        addSource.setToolTipText(tr("Add your own ArcGIS REST or OGC API layer of addresses, parcels or building outlines"));
+        addSource.addActionListener(ev -> {
+            List<CustomSource> all = CustomSource.load();
+            CustomSource cs = CustomSourceEditor.edit(addSource, null, CustomSourceEditor.namesExcept(all, null));
+            if (cs == null) {
+                return;
+            }
+            all.add(cs);
+            CustomSource.save(all);
+            if (cs.covers(bounds)) {
+                addCustomRow(customPanel, custom, cs, true);
+            } else {
+                customNote.setText(tr("{0} is saved but does not cover this area.", cs.getName()));
+            }
+            Window w = SwingUtilities.getWindowAncestor(addSource);
+            if (w != null) {
+                w.pack();
+            }
+        });
+        JPanel customFooter = new JPanel(new GridBagLayout());
+        GridBagConstraints fc = new GridBagConstraints();
+        fc.anchor = GridBagConstraints.WEST;
+        customFooter.add(addSource, fc);
+        fc.insets = new Insets(0, 8, 0, 0);
+        fc.weightx = 1;
+        customFooter.add(customNote, fc);
+        gc.gridy++;
+        gc.insets = new Insets(10, 3, 3, 3);
+        panel.add(new JLabel(tr("Your sources:")), gc);
+        gc.insets = new Insets(3, 3, 3, 3);
+        gc.gridy++;
+        panel.add(customPanel, gc);
+        gc.gridy++;
+        panel.add(customFooter, gc);
+
         SwingWorker<List<ParcelSourceFinder.Offer>, Void> lookup = new SwingWorker<List<ParcelSourceFinder.Offer>, Void>() {
             @Override
             protected List<ParcelSourceFinder.Offer> doInBackground() throws IOException {
@@ -230,9 +289,35 @@ public class DownloadSourceAction extends JosmAction {
         if (parcels.isSelected() && offer != null && offer.getEsriSource() != null) {
             sources.add(offer.getEsriSource());
         }
+        for (Map.Entry<CustomSource, JCheckBox> row : custom.entrySet()) {
+            if (row.getValue().isSelected()) {
+                sources.add(row.getKey().toFeatureSource());
+                off.remove(row.getKey().getName());
+            } else {
+                off.add(row.getKey().getName());
+            }
+        }
+        Config.getPref().putList(PREF_CUSTOM_OFF, new ArrayList<>(off));
         if (!sources.isEmpty()) {
             MainApplication.worker.submit(new DownloadTask(sources, bounds));
         }
+    }
+
+    /** One of the mapper's sources as a tickable row with its licence badge. */
+    private static void addCustomRow(JPanel panel, Map<CustomSource, JCheckBox> rows, CustomSource cs, boolean selected) {
+        JCheckBox box = new JCheckBox(tr("{0} ({1})", cs.getName(), CustomSourceEditor.kindLabel(cs.getKind())), selected);
+        box.setToolTipText(cs.getUrl());
+        GridBagConstraints gc = new GridBagConstraints();
+        gc.anchor = GridBagConstraints.WEST;
+        gc.gridy = rows.size();
+        gc.gridx = 0;
+        gc.weightx = 1;
+        panel.add(box, gc);
+        gc.gridx = 1;
+        gc.weightx = 0;
+        panel.add(new LicenseBadge(Licensing.userProvided()), gc);
+        rows.put(cs, box);
+        panel.revalidate();
     }
 
     /** Downloads each source and adds or merges its layer. */
@@ -290,7 +375,8 @@ public class DownloadSourceAction extends JosmAction {
                 pm.indeterminateSubTask(tr("Downloading {0}", src.getName()));
                 DataSet ds;
                 try {
-                    ds = EsriFeatureClient.download(src, bounds, pm);
+                    ds = src.getProtocol() == EsriFeatureSource.Protocol.OGC_FEATURES
+                            ? OgcFeatureClient.download(src, bounds, pm) : EsriFeatureClient.download(src, bounds, pm);
                 } catch (IOException e) {
                     // One county server being down must not cost the user the other layers.
                     Logging.warn(e);

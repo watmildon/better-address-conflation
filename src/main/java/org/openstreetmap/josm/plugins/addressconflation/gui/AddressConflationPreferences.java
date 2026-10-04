@@ -3,23 +3,34 @@ package org.openstreetmap.josm.plugins.addressconflation.gui;
 
 import static org.openstreetmap.josm.tools.I18n.tr;
 
+import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
 
 import org.openstreetmap.josm.gui.preferences.DefaultTabPreferenceSetting;
 import org.openstreetmap.josm.gui.preferences.PreferenceTabbedPane;
 import org.openstreetmap.josm.plugins.addressconflation.engine.ConflationSettings;
+import org.openstreetmap.josm.plugins.addressconflation.io.CustomSource;
+import org.openstreetmap.josm.plugins.addressconflation.io.EsriFeatureSource;
+import org.openstreetmap.josm.tools.Utils;
 import org.openstreetmap.josm.spi.preferences.Config;
 
 /** Preferences tab. */
@@ -37,6 +48,9 @@ public class AddressConflationPreferences extends DefaultTabPreferenceSetting {
     private final JSpinner splitTolerance = new JSpinner(new SpinnerNumberModel(20, 0, 100, 5));
     private final JTextField outbuildings = new JTextField(40);
     private final JCheckBox deleteSource = new JCheckBox(tr("Delete address nodes from the address layer after applying"));
+    /** The mapper's own sources, edited here and saved on OK. */
+    private final DefaultListModel<CustomSource> sources = new DefaultListModel<>();
+    private final JList<CustomSource> sourceList = new JList<>(sources);
 
     public AddressConflationPreferences() {
         super("address-conflation", tr("Better Address Conflation"), tr("Settings for matching address points to buildings"));
@@ -99,8 +113,13 @@ public class AddressConflationPreferences extends DefaultTabPreferenceSetting {
         gc.gridwidth = 3;
         panel.add(deleteSource, gc);
         gc.gridy++;
+        gc.insets = new Insets(12, 4, 4, 4);
+        panel.add(new JLabel(tr("Your sources (offered in Download... wherever they cover the view):")), gc);
+        gc.insets = new Insets(4, 4, 4, 4);
+        gc.gridy++;
         gc.weighty = 1;
-        panel.add(new JPanel(), gc);
+        gc.fill = GridBagConstraints.BOTH;
+        panel.add(sourcesPanel(), gc);
 
         matchDistance.setToolTipText(tr("Addresses farther than this from their parcel or any building are left unmatched. Raise it in spread-out rural areas."));
         ambiguityRatio.setToolTipText(tr("When the second-best building scores at least this fraction of the best, the address goes to review instead of being matched."));
@@ -109,6 +128,9 @@ public class AddressConflationPreferences extends DefaultTabPreferenceSetting {
         outbuildings.setToolTipText(tr("building=* values ranked low as address targets (garages, sheds...). Separate with commas."));
         deleteSource.setToolTipText(tr("After applying, delete the matched node from the address layer so it is not applied twice"));
 
+        for (CustomSource cs : CustomSource.load()) {
+            sources.addElement(cs);
+        }
         ConflationSettings s = fromPreferences();
         matchDistance.setValue((int) Math.round(s.matchDistanceMeters));
         ambiguityRatio.setValue(s.ambiguityRatio);
@@ -116,6 +138,84 @@ public class AddressConflationPreferences extends DefaultTabPreferenceSetting {
         outbuildings.setText(String.join(", ", Config.getPref().getList(PREF_OUTBUILDINGS, ConflationSettings.DEFAULT_OUTBUILDINGS)));
         deleteSource.setSelected(s.deleteSourceNodes);
         createPreferenceTabWithScrollPane(gui, panel);
+    }
+
+    private JPanel sourcesPanel() {
+        sourceList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        sourceList.setVisibleRowCount(5);
+        sourceList.setCellRenderer(new DefaultListCellRenderer() {
+            @Override
+            public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean sel, boolean focus) {
+                CustomSource cs = (CustomSource) value;
+                String text = "<html>" + Utils.escapeReservedCharactersHTML(cs.getName()) + " <font color=\"gray\">&mdash; "
+                        + CustomSourceEditor.kindLabel(cs.getKind()) + " &middot; "
+                        + (cs.getProtocol() == EsriFeatureSource.Protocol.OGC_FEATURES ? "OGC API" : "ArcGIS") + "</font></html>";
+                super.getListCellRendererComponent(list, text, index, sel, focus);
+                setToolTipText(Utils.escapeReservedCharactersHTML(cs.getUrl()));
+                return this;
+            }
+        });
+        JButton add = new JButton(tr("Add..."));
+        JButton edit = new JButton(tr("Edit..."));
+        JButton remove = new JButton(tr("Remove"));
+        edit.setEnabled(false);
+        remove.setEnabled(false);
+        sourceList.addListSelectionListener(e -> {
+            edit.setEnabled(sourceList.getSelectedIndex() >= 0);
+            remove.setEnabled(sourceList.getSelectedIndex() >= 0);
+        });
+        add.addActionListener(e -> {
+            CustomSource cs = CustomSourceEditor.edit(sourceList, null, CustomSourceEditor.namesExcept(currentSources(), null));
+            if (cs != null) {
+                sources.addElement(cs);
+                sourceList.setSelectedValue(cs, true);
+            }
+        });
+        edit.addActionListener(e -> {
+            int i = sourceList.getSelectedIndex();
+            if (i >= 0) {
+                CustomSource old = sources.get(i);
+                CustomSource cs = CustomSourceEditor.edit(sourceList, old, CustomSourceEditor.namesExcept(currentSources(), old));
+                if (cs != null) {
+                    sources.set(i, cs);
+                }
+            }
+        });
+        remove.addActionListener(e -> {
+            int i = sourceList.getSelectedIndex();
+            if (i >= 0) {
+                sources.remove(i);
+            }
+        });
+
+        JPanel buttons = new JPanel(new GridBagLayout());
+        GridBagConstraints b = new GridBagConstraints();
+        b.gridx = 0;
+        b.fill = GridBagConstraints.HORIZONTAL;
+        b.insets = new Insets(0, 4, 4, 0);
+        buttons.add(add, b);
+        buttons.add(edit, b);
+        buttons.add(remove, b);
+        b.weighty = 1;
+        buttons.add(new JPanel(), b);
+
+        JPanel p = new JPanel(new GridBagLayout());
+        GridBagConstraints gc = new GridBagConstraints();
+        gc.fill = GridBagConstraints.BOTH;
+        gc.weightx = 1;
+        gc.weighty = 1;
+        p.add(new JScrollPane(sourceList), gc);
+        gc.weightx = 0;
+        p.add(buttons, gc);
+        return p;
+    }
+
+    private List<CustomSource> currentSources() {
+        List<CustomSource> out = new ArrayList<>();
+        for (int i = 0; i < sources.size(); i++) {
+            out.add(sources.get(i));
+        }
+        return out;
     }
 
     @Override
@@ -127,6 +227,7 @@ public class AddressConflationPreferences extends DefaultTabPreferenceSetting {
                 .filter(x -> !x.isEmpty()).collect(Collectors.toList());
         Config.getPref().putList(PREF_OUTBUILDINGS, ob);
         Config.getPref().putBoolean(PREF_DELETE_SOURCE, deleteSource.isSelected());
+        CustomSource.save(currentSources());
         return false;
     }
 }

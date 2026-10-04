@@ -61,6 +61,18 @@ Tests initialise just enough of JOSM through `JosmTestSetup`. Register it with
 `@RegisterExtension static JosmTestSetup josm = new JosmTestSetup();` in any test that touches
 JOSM preferences, projections, icons or HTTP.
 
+## Download sources
+
+`io/` downloads every source through `EsriFeatureSource`, which, despite the name, carries a
+`Protocol`: ArcGIS REST layers go through `EsriFeatureClient`, OGC API - Features collections
+through `OgcFeatureClient`. Both produce GeoJSON features that the source's OpenAddresses-style
+conform maps to OA properties, and `OpenAddressesReader` turns into a layer.
+
+The mapper's own sources are `CustomSource`s, stored as a list of maps under the
+`addressconflation.customSources` preference and edited in `gui/CustomSourceEditor`, whose
+Check button calls `ServiceInspector`. Their licence is always `LicenseStatus.USER_PROVIDED`.
+`FakeServer` in the tests stands in for both kinds of service.
+
 ## Code in the tree with no UI yet
 
 * `OpenAddressesImportAction` loads an OpenAddresses addresses, parcels or buildings file

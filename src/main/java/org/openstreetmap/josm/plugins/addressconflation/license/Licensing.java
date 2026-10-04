@@ -23,6 +23,11 @@ public final class Licensing {
     private Licensing() {
     }
 
+    /** A source the mapper added: their word that it may be used. */
+    public static LicenseAssessment userProvided() {
+        return new LicenseAssessment(LicenseStatus.USER_PROVIDED, tr("Added by you"), null, null);
+    }
+
     /**
      * @param sourceId OpenAddresses source id such as {@code us/ca/placer}
      * @param layer    {@code addresses}, {@code parcels} or {@code buildings}

@@ -19,7 +19,12 @@ public enum LicenseStatus {
     /** Terms exist (a terms page, an indemnification clause) and need reading. */
     CHECK_TERMS(new Color(0xB26A00)),
     /** Nothing is known about the licence. */
-    UNKNOWN(new Color(0x616161));
+    UNKNOWN(new Color(0x616161)),
+    /**
+     * A source the mapper added themselves. They vouch that its terms allow use in OSM; the
+     * plugin cannot check, and any problem is for the DWG and other mappers to raise later.
+     */
+    USER_PROVIDED(new Color(0x1565C0));
 
     private final Color color;
 
@@ -42,6 +47,8 @@ public enum LicenseStatus {
             return tr("Not compatible");
         case CHECK_TERMS:
             return tr("Check terms");
+        case USER_PROVIDED:
+            return tr("User provided");
         default:
             return tr("Unknown");
         }
@@ -58,6 +65,8 @@ public enum LicenseStatus {
             return tr("The licence is not compatible with OpenStreetMap; permission from the data owner is needed.");
         case CHECK_TERMS:
             return tr("The source has terms of use that need reading before the data is used for OpenStreetMap.");
+        case USER_PROVIDED:
+            return tr("You added this source and confirmed that its terms allow use in OpenStreetMap.");
         default:
             return tr("No licence is known. Without documented terms the data should not be used for OpenStreetMap.");
         }

@@ -35,7 +35,7 @@ public final class EsriFeatureClient {
     /** Largest bbox we will fetch, in square degrees (~0.14° x 0.14°, about 15 km x 12 km). */
     public static final double MAX_AREA_DEGREES = 0.02;
     private static final int PAGE = 1000;
-    private static final int MAX_FEATURES = 200_000;
+    static final int MAX_FEATURES = 200_000;
     private static final int CONNECT_TIMEOUT_MS = 15_000;
     private static final int READ_TIMEOUT_MS = 60_000;
 
@@ -61,6 +61,11 @@ public final class EsriFeatureClient {
         } catch (IOException e) {
             throw new IOException(describe(e), e);
         }
+        return toDataSet(source, features);
+    }
+
+    /** GeoJSON features from the service, mapped through the source's conform, as a dataset. */
+    static DataSet toDataSet(EsriFeatureSource source, List<JsonObject> features) {
         List<JsonObject> oa = new ArrayList<>(features.size());
         for (JsonObject f : features) {
             JsonObject o = source.toOaFeature(f);
@@ -213,16 +218,36 @@ public final class EsriFeatureClient {
         return sb.toString();
     }
 
-    private static String enc(String s) {
+    static String enc(String s) {
         return URLEncoder.encode(s, StandardCharsets.UTF_8);
     }
 
-    private static JsonObject get(String url) throws IOException {
-        Logging.info("ESRI query: " + url);
-        HttpClient.Response resp = HttpClient.create(URI.create(url).toURL())
-                .setAccept("application/geo+json, application/json")
+    /** GET a JSON object; HTTP errors and web pages become exceptions carrying the server's reason. */
+    static JsonObject get(String url) throws IOException {
+        return get(url, "application/geo+json, application/json");
+    }
+
+    /**
+     * {@link #get(String)} asking for particular media types. Strict OGC API servers answer
+     * a request for GeoJSON with 404 when the resource is plain JSON (a collection document).
+     */
+    static JsonObject get(String url, String accept) throws IOException {
+        return get(url, accept, READ_TIMEOUT_MS);
+    }
+
+    /** {@link #get(String, String)} giving up on an answer after {@code readTimeoutMs}. */
+    static JsonObject get(String url, String accept, int readTimeoutMs) throws IOException {
+        Logging.info("Feature service query: " + url);
+        URI uri;
+        try {
+            uri = URI.create(url);
+        } catch (IllegalArgumentException e) {
+            throw new IOException(tr("not a valid web address"), e);
+        }
+        HttpClient.Response resp = HttpClient.create(uri.toURL())
+                .setAccept(accept)
                 .setConnectTimeout(CONNECT_TIMEOUT_MS)
-                .setReadTimeout(READ_TIMEOUT_MS)
+                .setReadTimeout(readTimeoutMs)
                 .connect();
         try {
             if (resp.getResponseCode() != 200) {

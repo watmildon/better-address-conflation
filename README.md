@@ -61,6 +61,7 @@ the installed version.
 * **Parcels**: the panel asks OpenAddresses which parcel sources cover the view and lists them,
   most local first. Only ESRI services can be downloaded for just the view, so other sources are
   listed but cannot be ticked.
+* **Your sources**: layers from your own county or city GIS (see below).
 
 Every source shows a licence badge (hover it for details):
 
@@ -71,6 +72,7 @@ Every source shows a licence badge (hover it for details):
 | Not compatible | Share-alike, non-commercial or no-derivatives terms. Needs permission from the owner. |
 | Check terms | The source has terms of use that need reading first. |
 | Unknown | No licence is known. Do not use it for OSM without documented terms. |
+| User provided | A source you added. You vouch that its terms allow use in OSM. |
 
 NAD (public domain) and the Microsoft footprints (ODbL) are both compatible. The badges inform;
 they never block a download. Parcel layers decide which building an address belongs to and are
@@ -79,9 +81,36 @@ never uploaded either way, but the address data you add to OSM must have a compa
 Zoom in if the view is too large: downloads are limited to 0.02 square degrees, roughly
 15 km across at US latitudes. Downloading again over a neighbouring area adds to the existing layers.
 
-You can also use any layer of your own whose nodes carry `addr:housenumber` as the address
-source, such as the MapWithAI layer, a GeoJSON file opened with the OpenData plugin, or a pasted
-layer. Polygon layers you load can serve as parcels or hints in the same way.
+### Your own sources
+
+If your county or city publishes its GIS layers online, add them once and they appear in
+**Download...** whenever they cover the view. Two kinds of endpoint work:
+
+* **ArcGIS REST layers**: `https://.../arcgis/rest/services/Parcels/FeatureServer/0` (or
+  `MapServer/3`). Use the URL of one layer, ending in its number.
+* **OGC API - Features collections**: `https://.../collections/parcels`.
+
+Click **Add source...** in the Download dialog, or use **Preferences → Better Address Conflation →
+Your sources**:
+
+1. Paste the layer URL; the type is recognised from it. Click **Check**. The plugin reads the
+   layer's name, fields, geometry and coverage from the service.
+2. Check **Used as**: addresses, parcels, or building outlines (hints). Check fills it in from the
+   layer's geometry and name (points are addresses; "UtahStatewideParcels" is parcels; other
+   polygons default to parcels). Change it if that guess is wrong.
+3. Map the fields. Common names are filled in for you.
+   * Addresses: housenumber and street (required), plus unit, city, state and postcode. Join
+     several fields with `+`, for example `PREFIX + NAME + SUFFIX`.
+   * Parcels: the parcel ID (optional); it names the parcel in the match reasons.
+   * Building outlines: nothing; every outline becomes `building=yes`, used for position only.
+
+Sources you add are marked **User provided**: by saving one you confirm its licence allows use in
+OpenStreetMap. The plugin cannot check that for you. Services that need a login or token are not
+supported yet.
+
+You can also use any layer already loaded in JOSM: nodes with `addr:housenumber` as addresses,
+closed polygons as parcels, and `building=*` outlines as hints (see **Analyzing**). That covers
+the MapWithAI layer, a GeoJSON file opened with the OpenData plugin, or a pasted layer.
 
 ## Analyzing
 

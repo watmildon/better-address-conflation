@@ -28,15 +28,25 @@ import org.openstreetmap.josm.plugins.addressconflation.license.Licensing;
 import org.openstreetmap.josm.tools.Logging;
 
 /**
- * An ArcGIS FeatureServer/MapServer layer plus the OpenAddresses-style
- * "conform" that maps its fields onto OA properties. Covers the National
- * Address Database preset and any layer of an OpenAddresses source definition.
+ * A feature service layer plus the OpenAddresses-style "conform" that maps its fields onto
+ * OA properties. Covers the National Address Database preset, any layer of an OpenAddresses
+ * source definition, and the mapper's own sources. Mostly ArcGIS FeatureServer/MapServer
+ * layers, hence the name; {@link Protocol#OGC_FEATURES} sources are OGC API - Features
+ * collections, which return the same GeoJSON and share the conversion.
  */
 public final class EsriFeatureSource {
 
     /** Which OpenAddresses layer the service feeds. */
     public enum Kind {
         ADDRESSES, PARCELS, BUILDINGS
+    }
+
+    /** How the layer is queried. */
+    public enum Protocol {
+        /** An ArcGIS REST FeatureServer or MapServer layer, {@code .../FeatureServer/0}. */
+        ARCGIS,
+        /** An OGC API - Features collection, {@code .../collections/parcels}. */
+        OGC_FEATURES
     }
 
     public static final String NAD_URL =
@@ -50,6 +60,7 @@ public final class EsriFeatureSource {
 
     private final String name;
     private final String url;
+    private final Protocol protocol;
     private final Kind kind;
     private final Map<String, List<String>> conform;
     private final String where;
@@ -60,13 +71,14 @@ public final class EsriFeatureSource {
     private final LicenseAssessment license;
 
     public EsriFeatureSource(String name, String url, Kind kind, Map<String, List<String>> conform, String where, boolean expandStreets) {
-        this(name, url, kind, conform, where, expandStreets, null, null);
+        this(name, url, Protocol.ARCGIS, kind, conform, where, expandStreets, null, null);
     }
 
-    private EsriFeatureSource(String name, String url, Kind kind, Map<String, List<String>> conform, String where, boolean expandStreets,
-            JsonValue declaredLicense, LicenseAssessment license) {
+    private EsriFeatureSource(String name, String url, Protocol protocol, Kind kind, Map<String, List<String>> conform, String where,
+            boolean expandStreets, JsonValue declaredLicense, LicenseAssessment license) {
         this.name = name;
         this.url = url;
+        this.protocol = protocol;
         this.kind = kind;
         this.conform = Collections.unmodifiableMap(new LinkedHashMap<>(conform));
         this.where = where;
@@ -77,17 +89,26 @@ public final class EsriFeatureSource {
 
     /** This source with the licence its definition declares. */
     public EsriFeatureSource withDeclaredLicense(JsonValue declared) {
-        return new EsriFeatureSource(name, url, kind, conform, where, expandStreets, declared, license);
+        return new EsriFeatureSource(name, url, protocol, kind, conform, where, expandStreets, declared, license);
     }
 
     /** This source with a licence verdict attached. */
     public EsriFeatureSource withLicense(LicenseAssessment assessment) {
-        return new EsriFeatureSource(name, url, kind, conform, where, expandStreets, declaredLicense, assessment);
+        return new EsriFeatureSource(name, url, protocol, kind, conform, where, expandStreets, declaredLicense, assessment);
     }
 
     /** This source under another display name (the layer name after download). */
     public EsriFeatureSource withName(String newName) {
-        return new EsriFeatureSource(newName, url, kind, conform, where, expandStreets, declaredLicense, license);
+        return new EsriFeatureSource(newName, url, protocol, kind, conform, where, expandStreets, declaredLicense, license);
+    }
+
+    /** This source queried over another protocol. */
+    public EsriFeatureSource withProtocol(Protocol p) {
+        return new EsriFeatureSource(name, url, p, kind, conform, where, expandStreets, declaredLicense, license);
+    }
+
+    public Protocol getProtocol() {
+        return protocol;
     }
 
     public JsonValue getDeclaredLicense() {
@@ -152,7 +173,7 @@ public final class EsriFeatureSource {
                 fixed.put(e.getKey(), fields);
             }
         }
-        return new EsriFeatureSource(name, url, kind, fixed, where, expandStreets, declaredLicense, license);
+        return new EsriFeatureSource(name, url, protocol, kind, fixed, where, expandStreets, declaredLicense, license);
     }
 
     private static String uniqueBySuffix(String wanted, Collection<String> serviceFields) {
