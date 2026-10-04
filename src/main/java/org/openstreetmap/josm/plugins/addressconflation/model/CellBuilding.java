@@ -1,4 +1,4 @@
-// License: GPL. For details, see LICENSE file.
+// SPDX-License-Identifier: MIT
 package org.openstreetmap.josm.plugins.addressconflation.model;
 
 /** A building's membership in one cell: how much of it is inside, and its score there. */

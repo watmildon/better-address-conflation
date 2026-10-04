@@ -175,4 +175,7 @@ Bugs and ideas: [GitHub issues](https://github.com/watmildon/better-address-conf
 
 ## License
 
-GPL v2 or later, like JOSM.
+[MIT](LICENSE).
+
+The test beds in [test-data/](test-data/) are extracts of OpenStreetMap (© OpenStreetMap
+contributors, ODbL) and of OpenAddresses sources, and keep their own licences.

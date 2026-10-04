@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 package org.openstreetmap.josm.plugins.addressconflation;
 
 import java.io.IOException;

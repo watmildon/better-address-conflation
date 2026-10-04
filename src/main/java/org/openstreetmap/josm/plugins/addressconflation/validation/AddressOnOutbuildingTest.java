@@ -1,4 +1,4 @@
-// License: GPL. For details, see LICENSE file.
+// SPDX-License-Identifier: MIT
 package org.openstreetmap.josm.plugins.addressconflation.validation;
 
 import static org.openstreetmap.josm.tools.I18n.tr;
