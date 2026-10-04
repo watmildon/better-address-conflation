@@ -35,7 +35,7 @@ public final class OgcFeatureClient {
     }
 
     /** Fetch and convert. */
-    public static DataSet download(EsriFeatureSource source, Bounds bounds, ProgressMonitor monitor) throws IOException {
+    public static DataSet download(FeatureSource source, Bounds bounds, ProgressMonitor monitor) throws IOException {
         List<JsonObject> features;
         try {
             features = fetchRaw(source, bounds, monitor);
@@ -47,7 +47,7 @@ public final class OgcFeatureClient {
     }
 
     /** Raw GeoJSON features for the bounds, every page. */
-    static List<JsonObject> fetchRaw(EsriFeatureSource source, Bounds bounds, ProgressMonitor monitor) throws IOException {
+    static List<JsonObject> fetchRaw(FeatureSource source, Bounds bounds, ProgressMonitor monitor) throws IOException {
         List<JsonObject> all = new ArrayList<>();
         Set<String> visited = new HashSet<>();
         String next = itemsUrl(source.getUrl(), bounds);
@@ -122,8 +122,8 @@ public final class OgcFeatureClient {
     }
 
     /** Point features cannot be parcels or building outlines. */
-    static void checkGeometry(EsriFeatureSource source, List<JsonObject> features) throws IOException {
-        if (source.getKind() == EsriFeatureSource.Kind.ADDRESSES || features.isEmpty()) {
+    static void checkGeometry(FeatureSource source, List<JsonObject> features) throws IOException {
+        if (source.getKind() == FeatureSource.Kind.ADDRESSES || features.isEmpty()) {
             return;
         }
         for (JsonObject f : features) {
@@ -133,12 +133,12 @@ public final class OgcFeatureClient {
                 return;
             }
         }
-        throw new IOException(tr("this layer holds points, not {0} outlines", source.getKind() == EsriFeatureSource.Kind.PARCELS
+        throw new IOException(tr("this layer holds points, not {0} outlines", source.getKind() == FeatureSource.Kind.PARCELS
                 ? tr("parcel") : tr("building")));
     }
 
     /** The source with its field names matched, ignoring case, to the properties the features carry. */
-    static EsriFeatureSource matchFields(EsriFeatureSource source, List<JsonObject> features) {
+    static FeatureSource matchFields(FeatureSource source, List<JsonObject> features) {
         if (source.getConform().isEmpty() || features.isEmpty()) {
             return source;
         }

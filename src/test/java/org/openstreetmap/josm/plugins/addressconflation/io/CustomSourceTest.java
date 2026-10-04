@@ -16,8 +16,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.openstreetmap.josm.data.Bounds;
 import org.openstreetmap.josm.plugins.addressconflation.JosmTestSetup;
-import org.openstreetmap.josm.plugins.addressconflation.io.EsriFeatureSource.Kind;
-import org.openstreetmap.josm.plugins.addressconflation.io.EsriFeatureSource.Protocol;
+import org.openstreetmap.josm.plugins.addressconflation.io.FeatureSource.Kind;
+import org.openstreetmap.josm.plugins.addressconflation.io.FeatureSource.Protocol;
 import org.openstreetmap.josm.plugins.addressconflation.license.LicenseStatus;
 import org.openstreetmap.josm.spi.preferences.Config;
 
@@ -143,7 +143,7 @@ class CustomSourceTest {
 
     @Test
     void downloadsWithAUserProvidedLicence() {
-        EsriFeatureSource src = parcels(COUNTY).toFeatureSource();
+        FeatureSource src = parcels(COUNTY).toFeatureSource();
         assertEquals(Protocol.ARCGIS, src.getProtocol());
         assertEquals(LicenseStatus.USER_PROVIDED, src.getLicense().getStatus());
         assertNull(src.getWhere(), "no filter on the mapper's sources");

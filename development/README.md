@@ -63,10 +63,10 @@ JOSM preferences, projections, icons or HTTP.
 
 ## Download sources
 
-`io/` downloads every source through `EsriFeatureSource`, which, despite the name, carries a
-`Protocol`: ArcGIS REST layers go through `EsriFeatureClient`, OGC API - Features collections
-through `OgcFeatureClient`. Both produce GeoJSON features that the source's OpenAddresses-style
-conform maps to OA properties, and `OpenAddressesReader` turns into a layer.
+`io/` downloads every source through a `FeatureSource`, whose `Protocol` says how: ArcGIS REST
+layers go through `EsriFeatureClient`, OGC API - Features collections through
+`OgcFeatureClient`. Both produce GeoJSON features that the source's OpenAddresses-style conform
+maps to OA properties, and `OpenAddressesReader` turns into a layer.
 
 The mapper's own sources are `CustomSource`s, stored as a list of maps under the
 `addressconflation.customSources` preference and edited in `gui/CustomSourceEditor`, whose

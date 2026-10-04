@@ -29,7 +29,7 @@ import org.openstreetmap.josm.gui.preferences.DefaultTabPreferenceSetting;
 import org.openstreetmap.josm.gui.preferences.PreferenceTabbedPane;
 import org.openstreetmap.josm.plugins.addressconflation.engine.ConflationSettings;
 import org.openstreetmap.josm.plugins.addressconflation.io.CustomSource;
-import org.openstreetmap.josm.plugins.addressconflation.io.EsriFeatureSource;
+import org.openstreetmap.josm.plugins.addressconflation.io.FeatureSource;
 import org.openstreetmap.josm.tools.Utils;
 import org.openstreetmap.josm.spi.preferences.Config;
 
@@ -149,7 +149,7 @@ public class AddressConflationPreferences extends DefaultTabPreferenceSetting {
                 CustomSource cs = (CustomSource) value;
                 String text = "<html>" + Utils.escapeReservedCharactersHTML(cs.getName()) + " <font color=\"gray\">&mdash; "
                         + CustomSourceEditor.kindLabel(cs.getKind()) + " &middot; "
-                        + (cs.getProtocol() == EsriFeatureSource.Protocol.OGC_FEATURES ? "OGC API" : "ArcGIS") + "</font></html>";
+                        + (cs.getProtocol() == FeatureSource.Protocol.OGC_FEATURES ? "OGC API" : "ArcGIS") + "</font></html>";
                 super.getListCellRendererComponent(list, text, index, sel, focus);
                 setToolTipText(Utils.escapeReservedCharactersHTML(cs.getUrl()));
                 return this;

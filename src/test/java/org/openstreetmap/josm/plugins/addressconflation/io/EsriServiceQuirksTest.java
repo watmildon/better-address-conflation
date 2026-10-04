@@ -22,9 +22,9 @@ class EsriServiceQuirksTest {
         Map<String, List<String>> conform = new LinkedHashMap<>();
         conform.put("pid", List.of("STATE_PARCEL_ID"));
         conform.put("id", List.of("GONE_FIELD"));
-        EsriFeatureSource src = new EsriFeatureSource("in", "https://example.org/FeatureServer/0", EsriFeatureSource.Kind.PARCELS,
+        FeatureSource src = new FeatureSource("in", "https://example.org/FeatureServer/0", FeatureSource.Kind.PARCELS,
                 conform, null, false);
-        EsriFeatureSource fixed = src.withServiceFields(List.of("objectid", "state_parcel_id", "parcel_id"));
+        FeatureSource fixed = src.withServiceFields(List.of("objectid", "state_parcel_id", "parcel_id"));
         assertEquals(List.of("state_parcel_id"), fixed.getConform().get("pid"));
         assertFalse(fixed.getConform().containsKey("id"), "fields the service lacks are dropped");
         assertEquals("state_parcel_id", fixed.outFields());
@@ -50,12 +50,12 @@ class EsriServiceQuirksTest {
     void qualifiedFieldNamesMatchOnTheirLastPart() {
         Map<String, List<String>> conform = new LinkedHashMap<>();
         conform.put("pid", List.of("SDE_GISA.Parcel_Boundary.APN"));
-        EsriFeatureSource carsonCity = new EsriFeatureSource("nv", "https://example.org/FeatureServer/0", EsriFeatureSource.Kind.PARCELS,
+        FeatureSource carsonCity = new FeatureSource("nv", "https://example.org/FeatureServer/0", FeatureSource.Kind.PARCELS,
                 conform, null, false);
         assertEquals("APN", carsonCity.withServiceFields(List.of("OBJECTID", "APN", "APN_NUM")).outFields());
 
         conform.put("pid", List.of("Huntington.DBO.Parcels.APN"));
-        EsriFeatureSource huntington = new EsriFeatureSource("ca", "https://example.org/FeatureServer/0", EsriFeatureSource.Kind.PARCELS,
+        FeatureSource huntington = new FeatureSource("ca", "https://example.org/FeatureServer/0", FeatureSource.Kind.PARCELS,
                 conform, null, false);
         assertEquals("DATA.Parcels.APN", huntington.withServiceFields(List.of("DATA.Parcels.OBJECTID", "DATA.Parcels.APN")).outFields());
         // two candidates: no guessing
@@ -74,13 +74,13 @@ class EsriServiceQuirksTest {
     @Test
     void pointLayersAreNotParcels() {
         // us/wa/clark and us/pa/susquehanna list address-point layers as their parcels.
-        EsriFeatureSource parcels = new EsriFeatureSource("wa", "https://example.org/FeatureServer/0", EsriFeatureSource.Kind.PARCELS,
+        FeatureSource parcels = new FeatureSource("wa", "https://example.org/FeatureServer/0", FeatureSource.Kind.PARCELS,
                 Map.of(), null, false);
         java.io.IOException e = org.junit.jupiter.api.Assertions.assertThrows(java.io.IOException.class,
                 () -> EsriFeatureClient.checkGeometry(parcels, "esriGeometryPoint"));
         assertEquals("this layer holds points, not parcel outlines", e.getMessage());
         org.junit.jupiter.api.Assertions.assertDoesNotThrow(() -> EsriFeatureClient.checkGeometry(parcels, "esriGeometryPolygon"));
-        org.junit.jupiter.api.Assertions.assertDoesNotThrow(() -> EsriFeatureClient.checkGeometry(EsriFeatureSource.nad(), "esriGeometryPoint"));
+        org.junit.jupiter.api.Assertions.assertDoesNotThrow(() -> EsriFeatureClient.checkGeometry(FeatureSource.nad(), "esriGeometryPoint"));
     }
 
     @Test

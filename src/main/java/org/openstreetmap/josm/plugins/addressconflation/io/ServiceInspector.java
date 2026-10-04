@@ -18,7 +18,7 @@ import jakarta.json.JsonObject;
 import jakarta.json.JsonValue;
 
 import org.openstreetmap.josm.data.Bounds;
-import org.openstreetmap.josm.plugins.addressconflation.io.EsriFeatureSource.Protocol;
+import org.openstreetmap.josm.plugins.addressconflation.io.FeatureSource.Protocol;
 import org.openstreetmap.josm.tools.Logging;
 
 /**

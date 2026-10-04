@@ -54,7 +54,7 @@ public final class OpenAddressesSourceReader {
     }
 
     /** Fetch and parse the definition at a resolved URL or path. */
-    public static List<EsriFeatureSource> load(String urlOrPath, boolean expandStreets) throws IOException {
+    public static List<FeatureSource> load(String urlOrPath, boolean expandStreets) throws IOException {
         String text;
         if (urlOrPath.startsWith("http://") || urlOrPath.startsWith("https://")) {
             HttpClient.Response resp = HttpClient.create(URI.create(urlOrPath).toURL()).setConnectTimeout(15000).setReadTimeout(30000).connect();
@@ -72,11 +72,11 @@ public final class OpenAddressesSourceReader {
         return parse(text, expandStreets);
     }
 
-    public static List<EsriFeatureSource> parse(InputStream is, boolean expandStreets) throws IOException {
+    public static List<FeatureSource> parse(InputStream is, boolean expandStreets) throws IOException {
         return parse(new String(is.readAllBytes(), StandardCharsets.UTF_8), expandStreets);
     }
 
-    public static List<EsriFeatureSource> parse(String json, boolean expandStreets) throws IOException {
+    public static List<FeatureSource> parse(String json, boolean expandStreets) throws IOException {
         JsonObject root;
         try (JsonReader reader = JsonSupport.JSON.createReader(new StringReader(json))) {
             root = reader.readObject();
@@ -87,22 +87,22 @@ public final class OpenAddressesSourceReader {
             throw new IOException("Only OpenAddresses schema 2 sources are supported");
         }
         String base = coverageName(root);
-        List<EsriFeatureSource> out = new ArrayList<>();
+        List<FeatureSource> out = new ArrayList<>();
         JsonObject layers = root.getJsonObject("layers");
         if (layers == null) {
             return out;
         }
         for (Map.Entry<String, JsonValue> layer : layers.entrySet()) {
-            EsriFeatureSource.Kind kind;
+            FeatureSource.Kind kind;
             switch (layer.getKey()) {
             case "addresses":
-                kind = EsriFeatureSource.Kind.ADDRESSES;
+                kind = FeatureSource.Kind.ADDRESSES;
                 break;
             case "parcels":
-                kind = EsriFeatureSource.Kind.PARCELS;
+                kind = FeatureSource.Kind.PARCELS;
                 break;
             case "buildings":
-                kind = EsriFeatureSource.Kind.BUILDINGS;
+                kind = FeatureSource.Kind.BUILDINGS;
                 break;
             default:
                 continue;
@@ -129,7 +129,7 @@ public final class OpenAddressesSourceReader {
                         conform.put(ce.getKey(), fields);
                     }
                 }
-                if (kind == EsriFeatureSource.Kind.ADDRESSES && !conform.containsKey("number")) {
+                if (kind == FeatureSource.Kind.ADDRESSES && !conform.containsKey("number")) {
                     ok = false;
                 }
                 if (!ok) {
@@ -138,7 +138,7 @@ public final class OpenAddressesSourceReader {
                 }
                 String name = base + " " + layer.getKey() + (entry.containsKey("name") ? " (" + entry.getString("name") + ")" : "");
                 JsonValue license = entry.containsKey("license") ? entry.get("license") : root.get("license");
-                out.add(new EsriFeatureSource(name, entry.getString("data"), kind, conform, entry.getString("_where", null), expandStreets)
+                out.add(new FeatureSource(name, entry.getString("data"), kind, conform, entry.getString("_where", null), expandStreets)
                         .withDeclaredLicense(license));
             }
         }

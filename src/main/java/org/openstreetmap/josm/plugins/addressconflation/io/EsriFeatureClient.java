@@ -53,7 +53,7 @@ public final class EsriFeatureClient {
     }
 
     /** Fetch and convert. */
-    public static DataSet download(EsriFeatureSource source, Bounds bounds, ProgressMonitor monitor) throws IOException {
+    public static DataSet download(FeatureSource source, Bounds bounds, ProgressMonitor monitor) throws IOException {
         source = matchServiceFields(source);
         List<JsonObject> features;
         try {
@@ -65,7 +65,7 @@ public final class EsriFeatureClient {
     }
 
     /** GeoJSON features from the service, mapped through the source's conform, as a dataset. */
-    static DataSet toDataSet(EsriFeatureSource source, List<JsonObject> features) {
+    static DataSet toDataSet(FeatureSource source, List<JsonObject> features) {
         List<JsonObject> oa = new ArrayList<>(features.size());
         for (JsonObject f : features) {
             JsonObject o = source.toOaFeature(f);
@@ -92,7 +92,7 @@ public final class EsriFeatureClient {
      * not describe itself. Fails when the layer cannot be what the source claims: some
      * OpenAddresses "parcel" sources point at address-point layers.
      */
-    static EsriFeatureSource matchServiceFields(EsriFeatureSource source) throws IOException {
+    static FeatureSource matchServiceFields(FeatureSource source) throws IOException {
         JsonObject info;
         try {
             info = get(source.getUrl().replaceAll("/+$", "") + "?f=json");
@@ -115,16 +115,16 @@ public final class EsriFeatureClient {
         return source.withServiceFields(names);
     }
 
-    static void checkGeometry(EsriFeatureSource source, String esriGeometryType) throws IOException {
+    static void checkGeometry(FeatureSource source, String esriGeometryType) throws IOException {
         boolean points = "esriGeometryPoint".equals(esriGeometryType) || "esriGeometryMultipoint".equals(esriGeometryType);
-        if (points && source.getKind() != EsriFeatureSource.Kind.ADDRESSES) {
-            throw new IOException(tr("this layer holds points, not {0} outlines", source.getKind() == EsriFeatureSource.Kind.PARCELS
+        if (points && source.getKind() != FeatureSource.Kind.ADDRESSES) {
+            throw new IOException(tr("this layer holds points, not {0} outlines", source.getKind() == FeatureSource.Kind.PARCELS
                     ? tr("parcel") : tr("building")));
         }
     }
 
     /** Raw ESRI GeoJSON features for the bounds. */
-    public static List<JsonObject> fetchRaw(EsriFeatureSource source, Bounds bounds, ProgressMonitor monitor) throws IOException {
+    public static List<JsonObject> fetchRaw(FeatureSource source, Bounds bounds, ProgressMonitor monitor) throws IOException {
         List<JsonObject> all = new ArrayList<>();
         int offset = 0;
         // Start with GeoJSON; older servers only speak Esri JSON, and when anything goes wrong
@@ -189,7 +189,7 @@ public final class EsriFeatureClient {
     }
 
     /** One query page as GeoJSON, whatever format was asked for; service errors become exceptions. */
-    private static JsonObject queryPage(EsriFeatureSource source, Bounds b, int offset, String format, boolean paging) throws IOException {
+    private static JsonObject queryPage(FeatureSource source, Bounds b, int offset, String format, boolean paging) throws IOException {
         JsonObject page = get(queryUrl(source, b, offset, format, paging));
         String error = errorText(page);
         if (error != null) {
@@ -198,11 +198,11 @@ public final class EsriFeatureClient {
         return "json".equals(format) ? toGeoJson(page) : page;
     }
 
-    static String queryUrl(EsriFeatureSource source, Bounds b, int offset, String format) {
+    static String queryUrl(FeatureSource source, Bounds b, int offset, String format) {
         return queryUrl(source, b, offset, format, true);
     }
 
-    static String queryUrl(EsriFeatureSource source, Bounds b, int offset, String format, boolean paging) {
+    static String queryUrl(FeatureSource source, Bounds b, int offset, String format, boolean paging) {
         StringBuilder sb = new StringBuilder(source.getUrl().replaceAll("/+$", "")).append("/query?");
         sb.append("f=").append(format);
         sb.append("&geometry=").append(enc(String.format(Locale.ROOT, "%f,%f,%f,%f", b.getMinLon(), b.getMinLat(), b.getMaxLon(), b.getMaxLat())));

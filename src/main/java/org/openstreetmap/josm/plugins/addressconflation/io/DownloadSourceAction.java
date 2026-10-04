@@ -278,12 +278,12 @@ public class DownloadSourceAction extends JosmAction {
         if (parcels.isEnabled()) {
             Config.getPref().putBoolean(PREF_PARCELS, parcels.isSelected());
         }
-        List<EsriFeatureSource> sources = new ArrayList<>();
+        List<FeatureSource> sources = new ArrayList<>();
         if (nad.isSelected()) {
-            sources.add(EsriFeatureSource.nad());
+            sources.add(FeatureSource.nad());
         }
         if (msBuildings.isSelected()) {
-            sources.add(EsriFeatureSource.microsoftBuildings());
+            sources.add(FeatureSource.microsoftBuildings());
         }
         ParcelSourceFinder.Offer offer = (ParcelSourceFinder.Offer) parcelSource.getSelectedItem();
         if (parcels.isSelected() && offer != null && offer.getEsriSource() != null) {
@@ -322,21 +322,21 @@ public class DownloadSourceAction extends JosmAction {
 
     /** Downloads each source and adds or merges its layer. */
     public static final class DownloadTask extends PleaseWaitRunnable {
-        private final List<EsriFeatureSource> sources;
+        private final List<FeatureSource> sources;
         /** OpenAddresses source to resolve in the background, or null. */
         private final String oaRef;
-        private final Set<EsriFeatureSource.Kind> oaKinds;
+        private final Set<FeatureSource.Kind> oaKinds;
         private final Bounds bounds;
         private final List<OpenAddressesLayer> newLayers = new ArrayList<>();
         private final List<String> messages = new ArrayList<>();
         private final List<String> failures = new ArrayList<>();
         private boolean cancelled;
 
-        DownloadTask(List<EsriFeatureSource> sources, Bounds bounds) {
+        DownloadTask(List<FeatureSource> sources, Bounds bounds) {
             super(tr("Downloading"));
             this.sources = new ArrayList<>(sources);
             this.oaRef = null;
-            this.oaKinds = EnumSet.noneOf(EsriFeatureSource.Kind.class);
+            this.oaKinds = EnumSet.noneOf(FeatureSource.Kind.class);
             this.bounds = bounds;
         }
 
@@ -344,7 +344,7 @@ public class DownloadSourceAction extends JosmAction {
          * Download the wanted layers of an OpenAddresses source: an id such as
          * us/az/maricopa, a URL, or a local source file.
          */
-        public DownloadTask(String oaRef, Set<EsriFeatureSource.Kind> kinds, Bounds bounds) {
+        public DownloadTask(String oaRef, Set<FeatureSource.Kind> kinds, Bounds bounds) {
             super(tr("Downloading {0}", oaRef));
             this.sources = new ArrayList<>();
             this.oaRef = oaRef;
@@ -357,7 +357,7 @@ public class DownloadSourceAction extends JosmAction {
             ProgressMonitor pm = getProgressMonitor();
             if (oaRef != null) {
                 pm.indeterminateSubTask(tr("Resolving source {0}", oaRef));
-                for (EsriFeatureSource s : OpenAddressesSourceReader.load(OpenAddressesSourceReader.resolve(oaRef),
+                for (FeatureSource s : OpenAddressesSourceReader.load(OpenAddressesSourceReader.resolve(oaRef),
                         AddressConflationPreferences.isExpandStreets())) {
                     if (oaKinds.contains(s.getKind())) {
                         sources.add(s);
@@ -368,14 +368,14 @@ public class DownloadSourceAction extends JosmAction {
                     return;
                 }
             }
-            for (EsriFeatureSource src : sources) {
+            for (FeatureSource src : sources) {
                 if (cancelled) {
                     return;
                 }
                 pm.indeterminateSubTask(tr("Downloading {0}", src.getName()));
                 DataSet ds;
                 try {
-                    ds = src.getProtocol() == EsriFeatureSource.Protocol.OGC_FEATURES
+                    ds = src.getProtocol() == FeatureSource.Protocol.OGC_FEATURES
                             ? OgcFeatureClient.download(src, bounds, pm) : EsriFeatureClient.download(src, bounds, pm);
                 } catch (IOException e) {
                     // One county server being down must not cost the user the other layers.
@@ -383,9 +383,9 @@ public class DownloadSourceAction extends JosmAction {
                     failures.add(tr("{0}: {1}", src.getName(), EsriFeatureClient.describe(e)));
                     continue;
                 }
-                int n = src.getKind() == EsriFeatureSource.Kind.ADDRESSES ? ds.getNodes().size() : ds.getWays().size() + ds.getRelations().size();
-                OpenAddressesReader.Layer kind = src.getKind() == EsriFeatureSource.Kind.PARCELS ? OpenAddressesReader.Layer.PARCELS
-                        : src.getKind() == EsriFeatureSource.Kind.BUILDINGS ? OpenAddressesReader.Layer.BUILDINGS : OpenAddressesReader.Layer.ADDRESSES;
+                int n = src.getKind() == FeatureSource.Kind.ADDRESSES ? ds.getNodes().size() : ds.getWays().size() + ds.getRelations().size();
+                OpenAddressesReader.Layer kind = src.getKind() == FeatureSource.Kind.PARCELS ? OpenAddressesReader.Layer.PARCELS
+                        : src.getKind() == FeatureSource.Kind.BUILDINGS ? OpenAddressesReader.Layer.BUILDINGS : OpenAddressesReader.Layer.ADDRESSES;
                 newLayers.add(new OpenAddressesLayer(ds, src.getName(), null, kind, src.getLicense()));
                 messages.add(tr("{0}: {1} features", src.getName(), n));
             }

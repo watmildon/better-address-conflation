@@ -77,10 +77,10 @@ public final class ParcelSourceFinder {
         private final String sourceId;
         private final String level;
         private final String updated;
-        private final EsriFeatureSource esri;
+        private final FeatureSource esri;
         private final String problem;
 
-        Offer(String sourceId, String level, String updated, EsriFeatureSource esri, String problem) {
+        Offer(String sourceId, String level, String updated, FeatureSource esri, String problem) {
             this.sourceId = sourceId;
             this.level = level;
             this.updated = updated;
@@ -93,7 +93,7 @@ public final class ParcelSourceFinder {
         }
 
         /** The ESRI parcel layer to download, or null when this source cannot be fetched for a view. */
-        public EsriFeatureSource getEsriSource() {
+        public FeatureSource getEsriSource() {
             return esri;
         }
 
@@ -147,16 +147,16 @@ public final class ParcelSourceFinder {
     }
 
     private static Offer offerFor(Dataset d) {
-        List<EsriFeatureSource> layers;
+        List<FeatureSource> layers;
         try {
             layers = OpenAddressesSourceReader.load(OpenAddressesSourceReader.resolve(d.source), false);
         } catch (IOException e) {
             Logging.warn("OpenAddresses source " + d.source + ": " + e.getMessage());
             return new Offer(d.source, d.level, d.updated, null, tr("source definition unavailable"));
         }
-        for (EsriFeatureSource s : layers) {
-            if (s.getKind() == EsriFeatureSource.Kind.PARCELS) {
-                EsriFeatureSource named = s.withName(tr("Parcels {0}", d.source))
+        for (FeatureSource s : layers) {
+            if (s.getKind() == FeatureSource.Kind.PARCELS) {
+                FeatureSource named = s.withName(tr("Parcels {0}", d.source))
                         .withLicense(Licensing.assess(d.source, "parcels", s.getUrl(), s.getDeclaredLicense()));
                 return new Offer(d.source, d.level, d.updated, named, null);
             }

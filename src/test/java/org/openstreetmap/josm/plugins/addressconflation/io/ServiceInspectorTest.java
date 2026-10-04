@@ -13,7 +13,7 @@ import java.util.Map;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.openstreetmap.josm.plugins.addressconflation.JosmTestSetup;
-import org.openstreetmap.josm.plugins.addressconflation.io.EsriFeatureSource.Protocol;
+import org.openstreetmap.josm.plugins.addressconflation.io.FeatureSource.Protocol;
 import org.openstreetmap.josm.plugins.addressconflation.io.ServiceInspector.Geometry;
 import org.openstreetmap.josm.plugins.addressconflation.io.ServiceInspector.Info;
 import org.openstreetmap.josm.plugins.addressconflation.io.ServiceInspector.NotALayerException;

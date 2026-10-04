@@ -14,7 +14,7 @@ import jakarta.json.JsonValue;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.openstreetmap.josm.plugins.addressconflation.JosmTestSetup;
-import org.openstreetmap.josm.plugins.addressconflation.io.EsriFeatureSource;
+import org.openstreetmap.josm.plugins.addressconflation.io.FeatureSource;
 import org.openstreetmap.josm.plugins.addressconflation.io.OpenAddressesSourceReader;
 
 /** Declared licences as OpenAddresses writes them, and the clearances that override them. */
@@ -98,12 +98,12 @@ class LicensingTest {
 
     @Test
     void builtInSourcesAndReaderCarryTheirLicence() throws Exception {
-        assertEquals(LicenseStatus.COMPATIBLE, EsriFeatureSource.nad().getLicense().getStatus());
-        assertEquals(LicenseStatus.COMPATIBLE, EsriFeatureSource.microsoftBuildings().getLicense().getStatus());
+        assertEquals(LicenseStatus.COMPATIBLE, FeatureSource.nad().getLicense().getStatus());
+        assertEquals(LicenseStatus.COMPATIBLE, FeatureSource.microsoftBuildings().getLicense().getStatus());
         String def = "{\"schema\":2,\"coverage\":{\"county\":\"Mono\"},\"layers\":{\"parcels\":[{\"name\":\"county\",\"protocol\":\"ESRI\","
                 + "\"data\":\"https://example.org/FeatureServer/0\",\"license\":{\"text\":\"CC BY-SA 4.0\",\"share-alike\":true},"
                 + "\"conform\":{\"format\":\"geojson\",\"pid\":\"APN\"}}]}}";
-        EsriFeatureSource s = OpenAddressesSourceReader.parse(def, false).get(0);
+        FeatureSource s = OpenAddressesSourceReader.parse(def, false).get(0);
         assertEquals("CC BY-SA 4.0", s.getDeclaredLicense().asJsonObject().getString("text"));
         assertTrue(s.withServiceFields(List.of("APN")).getDeclaredLicense() != null, "kept through field matching");
     }

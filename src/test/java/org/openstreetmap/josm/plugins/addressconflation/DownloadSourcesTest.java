@@ -26,7 +26,7 @@ import org.openstreetmap.josm.data.Bounds;
 import org.openstreetmap.josm.data.osm.DataSet;
 import org.openstreetmap.josm.data.osm.Node;
 import org.openstreetmap.josm.plugins.addressconflation.io.EsriFeatureClient;
-import org.openstreetmap.josm.plugins.addressconflation.io.EsriFeatureSource;
+import org.openstreetmap.josm.plugins.addressconflation.io.FeatureSource;
 import org.openstreetmap.josm.plugins.addressconflation.io.OpenAddressesReader;
 import org.openstreetmap.josm.plugins.addressconflation.io.OpenAddressesSourceReader;
 
@@ -37,17 +37,17 @@ class DownloadSourcesTest {
 
     @Test
     void parsesMaricopaSource() throws IOException {
-        List<EsriFeatureSource> sources;
+        List<FeatureSource> sources;
         try (InputStream is = JosmTestSetup.resource("fixtures/us-az-maricopa.oa.json")) {
             sources = OpenAddressesSourceReader.parse(is, true);
         }
         // addresses, parcels, centerlines (centerlines are neither addresses nor parcels but still ESRI)
         assertTrue(sources.size() >= 2, sources.toString());
-        EsriFeatureSource addr = sources.stream().filter(s -> s.getKind() == EsriFeatureSource.Kind.ADDRESSES).findFirst().orElseThrow();
+        FeatureSource addr = sources.stream().filter(s -> s.getKind() == FeatureSource.Kind.ADDRESSES).findFirst().orElseThrow();
         assertEquals(Arrays.asList("HseNo", "HseNoSufx"), addr.getConform().get("number"));
         assertEquals(Arrays.asList("StDir", "StName", "StType", "StSufx"), addr.getConform().get("street"));
         assertTrue(addr.getName().startsWith("Maricopa"), addr.getName());
-        EsriFeatureSource parcels = sources.stream().filter(s -> s.getKind() == EsriFeatureSource.Kind.PARCELS).findFirst().orElseThrow();
+        FeatureSource parcels = sources.stream().filter(s -> s.getKind() == FeatureSource.Kind.PARCELS).findFirst().orElseThrow();
         assertEquals(List.of("APN"), parcels.getConform().get("pid"));
         assertTrue(addr.outFields().contains("HseNo,"));
     }
@@ -68,7 +68,7 @@ class DownloadSourcesTest {
              JsonReader r = Json.createReader(is)) {
             page = r.readObject();
         }
-        EsriFeatureSource nad = EsriFeatureSource.nad();
+        FeatureSource nad = FeatureSource.nad();
         List<JsonObject> oa = new ArrayList<>();
         for (JsonValue v : page.getJsonArray("features")) {
             JsonObject o = nad.toOaFeature(v.asJsonObject());
@@ -93,7 +93,7 @@ class DownloadSourcesTest {
         Map<String, List<String>> conform = new LinkedHashMap<>();
         conform.put("number", List.of("NUM"));
         conform.put("street", List.of("DIR", "STREET", "TYPE"));
-        EsriFeatureSource src = new EsriFeatureSource("t", "https://example.org/FeatureServer/0", EsriFeatureSource.Kind.ADDRESSES, conform, null, true);
+        FeatureSource src = new FeatureSource("t", "https://example.org/FeatureServer/0", FeatureSource.Kind.ADDRESSES, conform, null, true);
         JsonObject feature = parse("{\"type\":\"Feature\",\"properties\":{\"NUM\":\"12\",\"DIR\":\"N\",\"STREET\":\"MAIN\",\"TYPE\":\"ST\"},"
                 + "\"geometry\":{\"type\":\"Polygon\",\"coordinates\":[[[-112.0,33.0],[-111.999,33.0],[-111.999,33.001],[-112.0,33.001],[-112.0,33.0]]]}}");
         JsonObject oa = src.toOaFeature(feature);
@@ -113,8 +113,8 @@ class DownloadSourcesTest {
 
     @Test
     void convertsMicrosoftFootprints() {
-        EsriFeatureSource ms = EsriFeatureSource.microsoftBuildings();
-        assertEquals(EsriFeatureSource.Kind.BUILDINGS, ms.getKind());
+        FeatureSource ms = FeatureSource.microsoftBuildings();
+        assertEquals(FeatureSource.Kind.BUILDINGS, ms.getKind());
         JsonObject feature = parse("{\"type\":\"Feature\",\"properties\":{\"OBJECTID\":42,\"StateAbbrev\":\"ID\"},"
                 + "\"geometry\":{\"type\":\"Polygon\",\"coordinates\":[[[-116.1,43.0],[-116.0999,43.0],[-116.0999,43.0001],[-116.1,43.0001],[-116.1,43.0]]]}}");
         JsonObject oa = ms.toOaFeature(feature);

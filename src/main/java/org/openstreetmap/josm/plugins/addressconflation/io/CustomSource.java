@@ -16,8 +16,8 @@ import java.util.regex.Pattern;
 
 import org.openstreetmap.josm.data.Bounds;
 import org.openstreetmap.josm.plugins.addressconflation.gui.AddressConflationPreferences;
-import org.openstreetmap.josm.plugins.addressconflation.io.EsriFeatureSource.Kind;
-import org.openstreetmap.josm.plugins.addressconflation.io.EsriFeatureSource.Protocol;
+import org.openstreetmap.josm.plugins.addressconflation.io.FeatureSource.Kind;
+import org.openstreetmap.josm.plugins.addressconflation.io.FeatureSource.Protocol;
 import org.openstreetmap.josm.plugins.addressconflation.license.Licensing;
 import org.openstreetmap.josm.spi.preferences.Config;
 import org.openstreetmap.josm.tools.Logging;
@@ -112,9 +112,9 @@ public final class CustomSource {
     }
 
     /** The source ready to download, with its user-provided licence. */
-    public EsriFeatureSource toFeatureSource() {
+    public FeatureSource toFeatureSource() {
         boolean expand = kind == Kind.ADDRESSES && AddressConflationPreferences.isExpandStreets();
-        return new EsriFeatureSource(name, url, kind, fields, null, expand)
+        return new FeatureSource(name, url, kind, fields, null, expand)
                 .withProtocol(protocol).withLicense(Licensing.userProvided());
     }
 

@@ -101,9 +101,9 @@ class ParcelSourceSurvey {
             if (first.containsKey("conform")) {
                 r.add("conform", first.getJsonObject("conform"));
             }
-            EsriFeatureSource esri = null;
-            for (EsriFeatureSource s : OpenAddressesSourceReader.parse(text, false)) {
-                if (s.getKind() == EsriFeatureSource.Kind.PARCELS) {
+            FeatureSource esri = null;
+            for (FeatureSource s : OpenAddressesSourceReader.parse(text, false)) {
+                if (s.getKind() == FeatureSource.Kind.PARCELS) {
                     esri = s;
                     break;
                 }
@@ -117,7 +117,7 @@ class ParcelSourceSurvey {
             }
             r.add("lon", at[0]).add("lat", at[1]);
             Bounds box = new Bounds(at[1] - HALF_BOX, at[0] - HALF_BOX, at[1] + HALF_BOX, at[0] + HALF_BOX);
-            EsriFeatureSource matched = EsriFeatureClient.matchServiceFields(esri);
+            FeatureSource matched = EsriFeatureClient.matchServiceFields(esri);
             r.add("fieldsBefore", esri.outFields()).add("fieldsAfter", matched.outFields());
             DataSet ds;
             try {

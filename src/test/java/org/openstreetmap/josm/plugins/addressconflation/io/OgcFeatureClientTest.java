@@ -23,8 +23,8 @@ import org.openstreetmap.josm.data.osm.Way;
 import org.openstreetmap.josm.gui.progress.NullProgressMonitor;
 import org.openstreetmap.josm.plugins.addressconflation.JosmTestSetup;
 import org.openstreetmap.josm.plugins.addressconflation.JsonSupport;
-import org.openstreetmap.josm.plugins.addressconflation.io.EsriFeatureSource.Kind;
-import org.openstreetmap.josm.plugins.addressconflation.io.EsriFeatureSource.Protocol;
+import org.openstreetmap.josm.plugins.addressconflation.io.FeatureSource.Kind;
+import org.openstreetmap.josm.plugins.addressconflation.io.FeatureSource.Protocol;
 
 /** OGC API - Features collections download page by page and convert like ArcGIS layers. */
 class OgcFeatureClientTest {
@@ -38,8 +38,8 @@ class OgcFeatureClientTest {
                 + "\"coordinates\":[[[%f,40.0],[%f,40.0],[%f,40.001],[%f,40.0]]]}}", pin, lon, lon + 0.001, lon + 0.001, lon);
     }
 
-    private static EsriFeatureSource parcels(String url) {
-        return new EsriFeatureSource("County parcels", url, Kind.PARCELS, Map.of("pid", List.of("PIN")), null, false)
+    private static FeatureSource parcels(String url) {
+        return new FeatureSource("County parcels", url, Kind.PARCELS, Map.of("pid", List.of("PIN")), null, false)
                 .withProtocol(Protocol.OGC_FEATURES);
     }
 

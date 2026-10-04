@@ -47,7 +47,7 @@ reading the definition and the job sample, which the plugin does not repeat.
 
 | Issue | How it showed | Sources | Fix |
 |-|-|-:|-|
-| Field names differ in case from the definition | HTTP 500 "Field name 'STATE_PARCEL_ID' does not exist" (Indiana statewide), or parcels without ids | 11 | Read the layer's field list first and match names ignoring case (`EsriFeatureSource.withServiceFields`) |
+| Field names differ in case from the definition | HTTP 500 "Field name 'STATE_PARCEL_ID' does not exist" (Indiana statewide), or parcels without ids | 11 | Read the layer's field list first and match names ignoring case (`FeatureSource.withServiceFields`) |
 | Field names carry a database or table prefix on one side only | `SDE_GISA.Parcel_Boundary.APN` in the definition, `APN` in the service, or the reverse | 4 recovered | When the full name does not match, match on the last dotted part if exactly one field has it |
 | Server refuses paging | "Pagination is not supported." | 14 | Retry once without `resultOffset`/`resultRecordCount`; log if the server says it truncated |
 | Server cannot produce GeoJSON | HTTP 400 "Output format not supported", or an HTML page with HTTP 200 | 4 | Any failure of the GeoJSON request falls back to Esri JSON |

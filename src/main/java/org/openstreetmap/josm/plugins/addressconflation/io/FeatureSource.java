@@ -30,11 +30,11 @@ import org.openstreetmap.josm.tools.Logging;
 /**
  * A feature service layer plus the OpenAddresses-style "conform" that maps its fields onto
  * OA properties. Covers the National Address Database preset, any layer of an OpenAddresses
- * source definition, and the mapper's own sources. Mostly ArcGIS FeatureServer/MapServer
- * layers, hence the name; {@link Protocol#OGC_FEATURES} sources are OGC API - Features
- * collections, which return the same GeoJSON and share the conversion.
+ * source definition, and the mapper's own sources. The {@link Protocol} says how it is
+ * queried: an ArcGIS FeatureServer/MapServer layer or an OGC API - Features collection, both
+ * of which return GeoJSON that shares the conversion.
  */
-public final class EsriFeatureSource {
+public final class FeatureSource {
 
     /** Which OpenAddresses layer the service feeds. */
     public enum Kind {
@@ -70,11 +70,11 @@ public final class EsriFeatureSource {
     /** The licence verdict for this source, or null when nobody assessed it. */
     private final LicenseAssessment license;
 
-    public EsriFeatureSource(String name, String url, Kind kind, Map<String, List<String>> conform, String where, boolean expandStreets) {
+    public FeatureSource(String name, String url, Kind kind, Map<String, List<String>> conform, String where, boolean expandStreets) {
         this(name, url, Protocol.ARCGIS, kind, conform, where, expandStreets, null, null);
     }
 
-    private EsriFeatureSource(String name, String url, Protocol protocol, Kind kind, Map<String, List<String>> conform, String where,
+    private FeatureSource(String name, String url, Protocol protocol, Kind kind, Map<String, List<String>> conform, String where,
             boolean expandStreets, JsonValue declaredLicense, LicenseAssessment license) {
         this.name = name;
         this.url = url;
@@ -88,23 +88,23 @@ public final class EsriFeatureSource {
     }
 
     /** This source with the licence its definition declares. */
-    public EsriFeatureSource withDeclaredLicense(JsonValue declared) {
-        return new EsriFeatureSource(name, url, protocol, kind, conform, where, expandStreets, declared, license);
+    public FeatureSource withDeclaredLicense(JsonValue declared) {
+        return new FeatureSource(name, url, protocol, kind, conform, where, expandStreets, declared, license);
     }
 
     /** This source with a licence verdict attached. */
-    public EsriFeatureSource withLicense(LicenseAssessment assessment) {
-        return new EsriFeatureSource(name, url, protocol, kind, conform, where, expandStreets, declaredLicense, assessment);
+    public FeatureSource withLicense(LicenseAssessment assessment) {
+        return new FeatureSource(name, url, protocol, kind, conform, where, expandStreets, declaredLicense, assessment);
     }
 
     /** This source under another display name (the layer name after download). */
-    public EsriFeatureSource withName(String newName) {
-        return new EsriFeatureSource(newName, url, protocol, kind, conform, where, expandStreets, declaredLicense, license);
+    public FeatureSource withName(String newName) {
+        return new FeatureSource(newName, url, protocol, kind, conform, where, expandStreets, declaredLicense, license);
     }
 
     /** This source queried over another protocol. */
-    public EsriFeatureSource withProtocol(Protocol p) {
-        return new EsriFeatureSource(name, url, p, kind, conform, where, expandStreets, declaredLicense, license);
+    public FeatureSource withProtocol(Protocol p) {
+        return new FeatureSource(name, url, p, kind, conform, where, expandStreets, declaredLicense, license);
     }
 
     public Protocol getProtocol() {
@@ -121,7 +121,7 @@ public final class EsriFeatureSource {
     }
 
     /** The National Address Database as processed by Esri (streets already expanded). */
-    public static EsriFeatureSource nad() {
+    public static FeatureSource nad() {
         Map<String, List<String>> c = new LinkedHashMap<>();
         c.put("number", Collections.singletonList("addr_housenumber"));
         c.put("street", Collections.singletonList("addr_street"));
@@ -129,14 +129,14 @@ public final class EsriFeatureSource {
         c.put("city", Collections.singletonList("addr_city"));
         c.put("region", Collections.singletonList("addr_state"));
         c.put("postcode", Collections.singletonList("addr_postcode"));
-        return new EsriFeatureSource("National Address Database", NAD_URL, Kind.ADDRESSES, c, null, false).withLicense(Licensing.NAD);
+        return new FeatureSource("National Address Database", NAD_URL, Kind.ADDRESSES, c, null, false).withLicense(Licensing.NAD);
     }
 
     /** Microsoft building footprints, for use as placement hints. */
-    public static EsriFeatureSource microsoftBuildings() {
+    public static FeatureSource microsoftBuildings() {
         Map<String, List<String>> c = new LinkedHashMap<>();
         c.put("id", Collections.singletonList("OBJECTID"));
-        return new EsriFeatureSource("Microsoft building footprints", MS_BUILDINGS_URL, Kind.BUILDINGS, c, null, false)
+        return new FeatureSource("Microsoft building footprints", MS_BUILDINGS_URL, Kind.BUILDINGS, c, null, false)
                 .withLicense(Licensing.MICROSOFT_BUILDINGS);
     }
 
@@ -147,7 +147,7 @@ public final class EsriFeatureSource {
      * statewide parcels list STATE_PARCEL_ID; the service has state_parcel_id). Fields the
      * service does not have are dropped so the query does not fail outright.
      */
-    public EsriFeatureSource withServiceFields(Collection<String> serviceFields) {
+    public FeatureSource withServiceFields(Collection<String> serviceFields) {
         Map<String, String> byLower = new HashMap<>();
         for (String f : serviceFields) {
             byLower.putIfAbsent(f.toLowerCase(Locale.ROOT), f);
@@ -173,7 +173,7 @@ public final class EsriFeatureSource {
                 fixed.put(e.getKey(), fields);
             }
         }
-        return new EsriFeatureSource(name, url, protocol, kind, fixed, where, expandStreets, declaredLicense, license);
+        return new FeatureSource(name, url, protocol, kind, fixed, where, expandStreets, declaredLicense, license);
     }
 
     private static String uniqueBySuffix(String wanted, Collection<String> serviceFields) {

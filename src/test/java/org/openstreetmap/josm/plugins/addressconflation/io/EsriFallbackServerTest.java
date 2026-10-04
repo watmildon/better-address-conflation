@@ -39,7 +39,7 @@ class EsriFallbackServerTest {
     private HttpServer server;
 
     /** Serve /FeatureServer/0 with a handler from the query string to (status, content type, body). */
-    private EsriFeatureSource serve(Function<String, Object[]> handler) throws IOException {
+    private FeatureSource serve(Function<String, Object[]> handler) throws IOException {
         server = HttpServer.create(new InetSocketAddress("127.0.0.1", 0), 0);
         server.createContext("/FeatureServer/0", ex -> {
             String q = String.valueOf(ex.getRequestURI().getRawQuery());
@@ -54,7 +54,7 @@ class EsriFallbackServerTest {
         });
         server.start();
         String url = "http://127.0.0.1:" + server.getAddress().getPort() + "/FeatureServer/0";
-        return new EsriFeatureSource("test", url, EsriFeatureSource.Kind.PARCELS, Map.of("pid", List.of("PID")), null, false);
+        return new FeatureSource("test", url, FeatureSource.Kind.PARCELS, Map.of("pid", List.of("PID")), null, false);
     }
 
     @AfterEach
@@ -67,7 +67,7 @@ class EsriFallbackServerTest {
     @Test
     void htmlForGeoJsonAndNoPagingStillDownloads() throws IOException {
         // Like us/fl/clay (no GeoJSON) and us/ca/riverside (no pagination) at once.
-        EsriFeatureSource src = serve(q -> {
+        FeatureSource src = serve(q -> {
             if (q.contains("f=geojson")) {
                 return new Object[] {200, "text/html", "<html><head><title>Error: Output format not supported</title></head></html>"};
             }
@@ -84,7 +84,7 @@ class EsriFallbackServerTest {
     @Test
     void deadServiceReportsTheReasonNotTheUrl() throws IOException {
         // Like us/id/kootenai: an HTML page for GeoJSON, the real reason only in Esri JSON.
-        EsriFeatureSource src = serve(q -> q.contains("f=geojson")
+        FeatureSource src = serve(q -> q.contains("f=geojson")
                 ? new Object[] {200, "text/html", "<!DOCTYPE html><html><body>oops</body></html>"}
                 : new Object[] {200, "application/json", "{\"status\":\"error\",\"messages\":[\"Could not access any server machines.\"]}"});
         IOException e = assertThrows(IOException.class, () -> EsriFeatureClient.download(src, VIEW, NullProgressMonitor.INSTANCE));
