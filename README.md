@@ -8,6 +8,10 @@ time goes to the ambiguous ones.
 
 Status: early. Expect rough edges, and review what you apply.
 
+Built for the United States and its territories: the downloads (NAD, Microsoft US footprints,
+OpenAddresses' US parcel listings) and the street and unit rules are US-specific. Downloading or
+analyzing elsewhere shows a warning once per JOSM session; you can continue past it.
+
 ## Why
 
 The standard JOSM Conflation plugin matches on centroid distance. County and NAD address points

@@ -50,6 +50,8 @@ import org.openstreetmap.josm.data.UndoRedoHandler.CommandQueuePreciseListener;
 import org.openstreetmap.josm.data.UndoRedoHandler.CommandRedoneEvent;
 import org.openstreetmap.josm.data.UndoRedoHandler.CommandUndoneEvent;
 import org.openstreetmap.josm.data.coor.EastNorth;
+import org.openstreetmap.josm.data.coor.LatLon;
+import org.openstreetmap.josm.data.osm.BBox;
 import org.openstreetmap.josm.data.projection.ProjectionRegistry;
 import org.openstreetmap.josm.data.osm.DataSelectionListener;
 import org.openstreetmap.josm.data.osm.DefaultNameFormatter;
@@ -369,10 +371,21 @@ public class AddressConflationDialog extends ToggleDialog
             return;
         }
         AnalysisSetupDialog.Choice choice = AnalysisSetupDialog.show(edit);
-        if (choice != null) {
+        if (choice != null && OutsideUsNotice.confirm(addressCenter(choice.addressLayer))) {
             lastChoice = choice;
             run(choice);
         }
+    }
+
+    /** Middle of the layer's address points, or null when it has none. */
+    private static LatLon addressCenter(OsmDataLayer layer) {
+        BBox box = new BBox();
+        for (Node n : layer.getDataSet().getNodes()) {
+            if (n.isUsable() && n.hasKey("addr:housenumber") && n.isLatLonKnown()) {
+                box.add(n);
+            }
+        }
+        return box.isValid() ? box.getCenter() : null;
     }
 
     private void run(AnalysisSetupDialog.Choice choice) {

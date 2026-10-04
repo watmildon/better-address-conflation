@@ -36,6 +36,7 @@ import org.openstreetmap.josm.gui.layer.Layer;
 import org.openstreetmap.josm.gui.progress.ProgressMonitor;
 import org.openstreetmap.josm.io.OsmTransferException;
 import org.openstreetmap.josm.plugins.addressconflation.gui.AddressConflationPreferences;
+import org.openstreetmap.josm.plugins.addressconflation.gui.OutsideUsNotice;
 import org.openstreetmap.josm.plugins.addressconflation.license.LicenseAssessment;
 import org.openstreetmap.josm.plugins.addressconflation.license.LicenseBadge;
 import org.openstreetmap.josm.plugins.addressconflation.license.LicenseStatus;
@@ -79,6 +80,9 @@ public class DownloadSourceAction extends JosmAction {
         String problem = EsriFeatureClient.areaProblem(bounds);
         if (problem != null) {
             JOptionPane.showMessageDialog(MainApplication.getMainFrame(), problem, tr("Download addresses"), JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        if (!OutsideUsNotice.confirm(bounds.getCenter())) {
             return;
         }
 
