@@ -1,11 +1,13 @@
 // SPDX-License-Identifier: MIT
 package org.openstreetmap.josm.plugins.addressconflation;
 
+import org.openstreetmap.josm.actions.UploadAction;
 import org.openstreetmap.josm.data.validation.OsmValidator;
 import org.openstreetmap.josm.gui.MapFrame;
 import org.openstreetmap.josm.gui.preferences.PreferenceSetting;
 import org.openstreetmap.josm.plugins.Plugin;
 import org.openstreetmap.josm.plugins.PluginInformation;
+import org.openstreetmap.josm.plugins.addressconflation.apply.ChangesetSources;
 import org.openstreetmap.josm.plugins.addressconflation.gui.AddressConflationDialog;
 import org.openstreetmap.josm.plugins.addressconflation.gui.AddressConflationPreferences;
 import org.openstreetmap.josm.plugins.addressconflation.validation.AddressOnOutbuildingTest;
@@ -23,6 +25,8 @@ public class AddressConflationPlugin extends Plugin {
     public AddressConflationPlugin(PluginInformation info) {
         super(info);
         OsmValidator.addTest(AddressOnOutbuildingTest.class);
+        // Name the plugin's layers in the source tag of changesets that use them.
+        UploadAction.registerUploadHook(ChangesetSources.HOOK);
     }
 
     @Override

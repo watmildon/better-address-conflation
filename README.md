@@ -185,6 +185,20 @@ row for the reasons behind the match.
   highlighted in yellow. Show, hide or delete it in the Layers panel like any other layer; the
   next analysis brings it back if deleted. It is never saved or uploaded.
 
+## Uploading
+
+When you upload, the changeset's `source` tag names the plugin layers your applied edits came
+from, for example `National Address Database; Microsoft building footprints; Parcels
+us/in/statewide`:
+
+* the address layer, for every applied address;
+* the hint layer, when an address was placed on a hint footprint;
+* the parcel layer, when a parcel decided the match.
+
+The tag is filled in before JOSM's upload dialog opens, so you can see and edit it. Anything
+already in `source` is kept. Only the plugin's own layers (downloads and your sources) are named;
+add any other layer you used yourself.
+
 ## Validator
 
 The plugin adds an **Address on outbuilding** warning to JOSM's validator. It flags addresses on

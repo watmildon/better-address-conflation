@@ -73,6 +73,14 @@ The mapper's own sources are `CustomSource`s, stored as a list of maps under the
 Check button calls `ServiceInspector`. Their licence is always `LicenseStatus.USER_PROVIDED`.
 `FakeServer` in the tests stands in for both kinds of service.
 
+## Changeset source tag
+
+`apply/ChangesetSources` is a JOSM `UploadHook`. The dialog records, for each applied command,
+the plugin layers it drew on (`OpenAddressesLayer.getSourceLabel()`), keyed by the primitives the
+command touched. At upload, `checkUpload` collects the sources of the primitives being uploaded
+and `modifyChangesetTags` merges them into `source` before the upload dialog shows. Primitives
+are tracked by identity, per dataset, because a new object's id (and hash code) changes on upload.
+
 ## Code in the tree with no UI yet
 
 * `OpenAddressesImportAction` loads an OpenAddresses addresses, parcels or buildings file

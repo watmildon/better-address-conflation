@@ -66,6 +66,7 @@ import org.openstreetmap.josm.gui.layer.LayerManager.LayerChangeListener;
 import org.openstreetmap.josm.gui.layer.LayerManager.LayerOrderChangeEvent;
 import org.openstreetmap.josm.gui.layer.LayerManager.LayerRemoveEvent;
 import org.openstreetmap.josm.gui.layer.OsmDataLayer;
+import org.openstreetmap.josm.plugins.addressconflation.apply.ChangesetSources;
 import org.openstreetmap.josm.plugins.addressconflation.apply.ProposalApplier;
 import org.openstreetmap.josm.plugins.addressconflation.apply.ProposalApplier.Applied;
 import org.openstreetmap.josm.plugins.addressconflation.cells.CellSource;
@@ -77,6 +78,7 @@ import org.openstreetmap.josm.plugins.addressconflation.engine.ConflationSetting
 import org.openstreetmap.josm.plugins.addressconflation.engine.LocalProjection;
 import org.openstreetmap.josm.plugins.addressconflation.engine.ShiftEstimator;
 import org.openstreetmap.josm.plugins.addressconflation.io.DownloadSourceAction;
+import org.openstreetmap.josm.plugins.addressconflation.io.OpenAddressesLayer;
 import org.openstreetmap.josm.plugins.addressconflation.model.AnalysisResult;
 import org.openstreetmap.josm.plugins.addressconflation.model.Bucket;
 import org.openstreetmap.josm.plugins.addressconflation.model.BuildingCandidate;
@@ -116,6 +118,9 @@ public class AddressConflationDialog extends ToggleDialog
     /** Hint and parcel data of the last run, or null; looked up when the mapper selects in them. */
     private DataSet hintData;
     private DataSet parcelData;
+    /** Hint and parcel layers of the last run, or null; named in the changeset source tag. */
+    private OsmDataLayer hintLayer;
+    private OsmDataLayer parcelLayer;
     private ProposalIndex index;
     /** Layers and options of the last run, reused by shift-and-rerun. */
     private AnalysisSetupDialog.Choice lastChoice;
@@ -397,6 +402,8 @@ public class AddressConflationDialog extends ToggleDialog
         DataSet hintDs = choice.hintLayer != null && choice.hintLayer != edit ? choice.hintLayer.getDataSet() : null;
         hintData = hintDs;
         parcelData = choice.parcelLayer != null ? choice.parcelLayer.getDataSet() : null;
+        hintLayer = hintDs != null ? choice.hintLayer : null;
+        parcelLayer = choice.parcelLayer;
         SwingWorker<AnalysisResult, Void> worker = new SwingWorker<AnalysisResult, Void>() {
             @Override
             protected AnalysisResult doInBackground() {
@@ -666,6 +673,9 @@ public class AddressConflationDialog extends ToggleDialog
                     UndoRedoHandler.getInstance().add(c);
                 }
             }
+            if (a.getTargetCommand() != null) {
+                ChangesetSources.HOOK.record(a.getTargetCommand().getParticipatingPrimitives(), sourcesOf(p, pick));
+            }
             applied.add(p);
             removeFromTree(p);
             if (overlay != null) {
@@ -681,6 +691,30 @@ public class AddressConflationDialog extends ToggleDialog
             if (sourceLayer != targetLayer) {
                 sourceLayer.invalidate();
             }
+        }
+    }
+
+    /**
+     * The plugin's layers an applied proposal drew on, as changeset source names: the address
+     * layer always, the hint layer when the address went on a hint footprint, the parcel layer
+     * when a parcel decided the match. Layers the mapper loaded some other way are not named.
+     */
+    private List<String> sourcesOf(Proposal p, BuildingCandidate pick) {
+        List<String> out = new ArrayList<>();
+        addSource(out, sourceLayer);
+        BuildingCandidate target = pick != null ? pick : p.getTarget();
+        if (target != null && target.isHint()) {
+            addSource(out, hintLayer);
+        }
+        if (p.getCell() != null && !p.getCell().isSynthetic()) {
+            addSource(out, parcelLayer);
+        }
+        return out;
+    }
+
+    private static void addSource(List<String> out, OsmDataLayer layer) {
+        if (layer instanceof OpenAddressesLayer && !out.contains(((OpenAddressesLayer) layer).getSourceLabel())) {
+            out.add(((OpenAddressesLayer) layer).getSourceLabel());
         }
     }
 

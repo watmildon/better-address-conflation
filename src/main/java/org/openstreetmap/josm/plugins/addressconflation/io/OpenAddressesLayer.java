@@ -11,6 +11,8 @@ import org.openstreetmap.josm.plugins.addressconflation.license.LicenseAssessmen
 public class OpenAddressesLayer extends OsmDataLayer {
     private final OpenAddressesReader.Layer kind;
     private final LicenseAssessment license;
+    /** The name the layer was created with: the source, for the changeset source tag. */
+    private final String sourceLabel;
 
     public OpenAddressesLayer(DataSet data, String name, File file, OpenAddressesReader.Layer kind) {
         this(data, name, file, kind, null);
@@ -21,6 +23,7 @@ public class OpenAddressesLayer extends OsmDataLayer {
         super(data, name, file);
         this.kind = kind;
         this.license = license;
+        this.sourceLabel = name;
         setUploadDiscouraged(true);
     }
 
@@ -37,6 +40,11 @@ public class OpenAddressesLayer extends OsmDataLayer {
         }
         // Keep the licence with the data after the download dialog is gone.
         return base.replaceFirst("</html>$", "") + "<br><br>" + license.toolTipBody() + "</html>";
+    }
+
+    /** What to call this data in a changeset source tag; unaffected by renaming the layer. */
+    public String getSourceLabel() {
+        return sourceLabel;
     }
 
     public OpenAddressesReader.Layer getKind() {
