@@ -127,12 +127,15 @@ row for the reasons behind the match.
 
 * Click a row to select its address and candidate buildings on the map. Double-click a row, or
   use **Zoom**, to zoom to it. Shift- and Ctrl-click select several rows.
-* It works the other way too: make the address, hint or parcel layer active and select address
-  nodes, footprints or parcels on the map, and their rows are selected in the panel, ready for
-  **Apply**. A hint footprint selects the addresses that would be placed on it; a parcel selects
-  every address in it. Selecting buildings
-  in the layer being analyzed does not change the rows, so you can pick a building for an
-  ambiguous row.
+* It works the other way too: select address nodes, OSM buildings, hint footprints or parcels on
+  the map (in whichever layer is active), and their rows are selected in the panel, ready for
+  **Apply**.
+  * An OSM building or hint footprint selects the addresses that would go on it, the address it
+    already carries, and ambiguous rows that offer it as a choice. A building that only lost to
+    a better one selects nothing.
+  * A parcel selects every address in it.
+  * Selecting part of what the current rows highlight keeps those rows, so you can narrow an
+    ambiguous row down to one building and click **Apply**.
 * **Apply** applies the selected rows. **Apply bucket** applies every remaining row in the selected
   bucket. Bulk apply is offered only for the first three buckets.
 * **Ambiguous buildings**: select the row, then on the map select just the one building the address

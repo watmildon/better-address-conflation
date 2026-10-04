@@ -18,6 +18,7 @@ import java.util.Collection;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
@@ -435,7 +436,7 @@ public class AddressConflationDialog extends ToggleDialog
 
     private void showResult(AnalysisResult r) {
         result = r;
-        index = new ProposalIndex(r.getProposals(), sourceLayer.getDataSet(), hintData, parcelData);
+        index = new ProposalIndex(r.getProposals(), sourceLayer.getDataSet(), targetLayer.getDataSet(), hintData, parcelData);
         applied.clear();
         commandProposals.clear();
         root.removeAllChildren();
@@ -553,15 +554,20 @@ public class AddressConflationDialog extends ToggleDialog
         }
     }
 
-    /** Address nodes, hint footprints or parcels selected on the map select their rows. */
+    /** Address nodes, buildings, hint footprints or parcels selected on the map select their rows. */
     @Override
     public void selectionChanged(SelectionChangeEvent event) {
         if (updatingSelection || index == null) {
             return;
         }
+        if (withinSelectedRows(event.getSelection())) {
+            // Narrowing what the rows highlight, such as picking one building for an ambiguous
+            // row: the rows stay, so Apply uses the pick.
+            return;
+        }
         Set<Proposal> found = index.find(event.getSource(), event.getSelection());
         if (found.isEmpty()) {
-            // Nothing of ours, such as a building picked for an ambiguous row: keep the rows as they are.
+            // Nothing of ours: keep the rows as they are.
             return;
         }
         List<TreePath> paths = new ArrayList<>();
@@ -585,6 +591,19 @@ public class AddressConflationDialog extends ToggleDialog
         } finally {
             syncingFrom = null;
         }
+    }
+
+    /** True when every selected primitive is something the selected rows already highlight. */
+    private boolean withinSelectedRows(Collection<? extends OsmPrimitive> selection) {
+        List<Proposal> rows = selectedProposals();
+        if (selection.isEmpty() || rows.isEmpty()) {
+            return false;
+        }
+        Set<OsmPrimitive> highlighted = new HashSet<>();
+        for (Proposal p : rows) {
+            highlighted.addAll(p.getHighlightPrimitives());
+        }
+        return highlighted.containsAll(selection);
     }
 
     private void zoomToSelected() {

@@ -68,7 +68,7 @@ class ProposalIndexTest {
         assertEquals(Bucket.CLEAN, pA.getBucket());
         assertEquals(Bucket.CLEAN, pB.getBucket());
         assertEquals(Bucket.NO_BUILDING, pC.getBucket());
-        index = new ProposalIndex(r.getProposals(), source, hints, parcels);
+        index = new ProposalIndex(r.getProposals(), source, target, hints, parcels);
     }
 
     private static Proposal proposalFor(AnalysisResult r, Node n) {
@@ -104,8 +104,58 @@ class ProposalIndexTest {
     }
 
     @Test
-    void editLayerBuildingsAreLeftForPickingAmbiguousRows() {
-        assertTrue(index.find(target, List.of(house)).isEmpty());
+    void osmBuildingFindsTheAddressGoingOnIt() {
+        assertEquals(Set.of(pA), index.find(target, List.of(house)));
+    }
+
+    /** One parcel holding the given OSM buildings and one address; the index over the result. */
+    private static ProposalIndex oneParcel(DataSet osm, DataSet addresses, Proposal[] out) {
+        DataSet lots = new DataSet();
+        Fixtures.rect(lots, 0, 0, 40, 60, "oa:pid=A");
+        AnalysisResult r = Analyzer.analyze(addresses, osm, null, new ParcelCellSource(lots, "p"), new ConflationSettings());
+        assertEquals(1, r.getProposals().size(), r.getProposals().toString());
+        out[0] = r.getProposals().get(0);
+        return new ProposalIndex(r.getProposals(), addresses, osm, null, lots);
+    }
+
+    @Test
+    void everyChoiceOfAnAmbiguousRowFindsIt() {
+        DataSet osm = new DataSet();
+        Way left = Fixtures.rect(osm, -10, 10, 10, 10, "building=house");
+        Way right = Fixtures.rect(osm, 10, 10, 10, 10, "building=house");
+        DataSet addresses = new DataSet();
+        Fixtures.node(addresses, 0, -25, Fixtures.addr("10", "West Olive Avenue"));
+        Proposal[] p = new Proposal[1];
+        ProposalIndex idx = oneParcel(osm, addresses, p);
+        assertEquals(Bucket.AMBIGUOUS_BUILDING, p[0].getBucket());
+        assertEquals(Set.of(p[0]), idx.find(osm, List.of(left)));
+        assertEquals(Set.of(p[0]), idx.find(osm, List.of(right)));
+    }
+
+    @Test
+    void losingRunnerUpFindsNothing() {
+        // Applying with the shed selected would move the address onto it.
+        DataSet osm = new DataSet();
+        Fixtures.rect(osm, 0, 10, 12, 10, "building=house");
+        Way shed = Fixtures.rect(osm, 10, -15, 4, 4, "building=shed");
+        DataSet addresses = new DataSet();
+        Fixtures.node(addresses, 0, -25, Fixtures.addr("10", "West Olive Avenue"));
+        Proposal[] p = new Proposal[1];
+        ProposalIndex idx = oneParcel(osm, addresses, p);
+        assertEquals(Bucket.CLEAN, p[0].getBucket());
+        assertTrue(idx.find(osm, List.of(shed)).isEmpty());
+    }
+
+    @Test
+    void buildingAlreadyCarryingTheAddressFindsTheRow() {
+        DataSet osm = new DataSet();
+        Way addressed = Fixtures.rect(osm, 0, 10, 12, 10, Fixtures.concat(Fixtures.addr("10", "West Olive Avenue"), "building=house"));
+        DataSet addresses = new DataSet();
+        Fixtures.node(addresses, 0, -25, Fixtures.addr("10", "West Olive Avenue"));
+        Proposal[] p = new Proposal[1];
+        ProposalIndex idx = oneParcel(osm, addresses, p);
+        assertEquals(Bucket.EXISTING_ADDRESS, p[0].getBucket());
+        assertEquals(Set.of(p[0]), idx.find(osm, List.of(addressed)));
     }
 
     @Test
@@ -117,7 +167,7 @@ class ProposalIndexTest {
 
     @Test
     void voronoiRunHasNoParcelLayer() {
-        ProposalIndex noParcels = new ProposalIndex(List.of(pA, pB, pC), source, hints, null);
+        ProposalIndex noParcels = new ProposalIndex(List.of(pA, pB, pC), source, target, hints, null);
         assertTrue(noParcels.find(parcels, List.of(parcelB)).isEmpty());
         assertEquals(Set.of(pA), noParcels.find(source, List.of(addrA)));
     }
