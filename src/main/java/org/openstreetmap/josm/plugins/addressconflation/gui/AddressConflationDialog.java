@@ -21,7 +21,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.EnumMap;
 import java.util.List;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
@@ -105,7 +104,7 @@ public class AddressConflationDialog extends ToggleDialog
     private final JButton shiftButton = new JButton();
     private ProposalOverlayLayer overlay;
     /** Commands we issued, so undo can bring the proposal back. */
-    private final Map<Command, Proposal> commandProposals = new HashMap<>();
+    private final AppliedProposals applied = new AppliedProposals();
     private final DefaultMutableTreeNode root = new DefaultMutableTreeNode(tr("Proposals"));
     private final DefaultTreeModel treeModel = new DefaultTreeModel(root);
     private final JTree tree = new JTree(treeModel);
@@ -281,13 +280,14 @@ public class AddressConflationDialog extends ToggleDialog
 
     @Override
     public void cleaned(CommandQueueCleanedEvent e) {
-        commandProposals.clear();
+        // Undo history gone: applied proposals stay applied.
+        applied.forgetCommands();
     }
 
     @Override
     public void commandUndone(CommandUndoneEvent e) {
-        Proposal p = commandProposals.get(e.getCommand());
-        if (p != null && applied.remove(p)) {
+        Proposal p = applied.undone(e.getCommand());
+        if (p != null) {
             addToTree(p);
             if (overlay != null) {
                 overlay.unhide(p);
@@ -297,9 +297,8 @@ public class AddressConflationDialog extends ToggleDialog
 
     @Override
     public void commandRedone(CommandRedoneEvent e) {
-        Proposal p = commandProposals.get(e.getCommand());
-        if (p != null && !applied.contains(p)) {
-            applied.add(p);
+        Proposal p = applied.redone(e.getCommand());
+        if (p != null) {
             removeFromTree(p);
             if (overlay != null) {
                 overlay.hide(p);
@@ -449,7 +448,6 @@ public class AddressConflationDialog extends ToggleDialog
         result = r;
         index = new ProposalIndex(r.getProposals(), sourceLayer.getDataSet(), targetLayer.getDataSet(), hintData, parcelData);
         applied.clear();
-        commandProposals.clear();
         root.removeAllChildren();
         Map<Bucket, DefaultMutableTreeNode> bucketNodes = new EnumMap<>(Bucket.class);
         for (Proposal p : r.getProposals()) {
@@ -487,7 +485,6 @@ public class AddressConflationDialog extends ToggleDialog
         result = null;
         index = null;
         applied.clear();
-        commandProposals.clear();
         root.removeAllChildren();
         treeModel.reload();
         summary.setText(" ");
@@ -644,14 +641,12 @@ public class AddressConflationDialog extends ToggleDialog
         }
         List<Proposal> ps = new ArrayList<>();
         for (Proposal p : result.getProposals()) {
-            if (p.getBucket() == b && !applied.contains(p)) {
+            if (p.getBucket() == b && !applied.isApplied(p)) {
                 ps.add(p);
             }
         }
         apply(ps);
     }
-
-    private final List<Proposal> applied = new ArrayList<>();
 
     private void apply(List<Proposal> proposals) {
         if (result == null || targetLayer == null || sourceLayer == null) {
@@ -659,8 +654,16 @@ public class AddressConflationDialog extends ToggleDialog
         }
         int done = 0;
         int needPick = 0;
+        int gone = 0;
+        int failed = 0;
         for (Proposal p : proposals) {
-            if (applied.contains(p)) {
+            if (applied.isApplied(p)) {
+                continue;
+            }
+            if (isStale(p)) {
+                // Its address points were all deleted since the analysis, by hand or by another tool.
+                gone++;
+                dropFromList(p);
                 continue;
             }
             BuildingCandidate pick = pickedCandidate(p);
@@ -668,34 +671,70 @@ public class AddressConflationDialog extends ToggleDialog
                 needPick++;
                 continue;
             }
-            Applied a = ProposalApplier.build(p, pick, targetLayer.getDataSet(), sourceLayer.getDataSet(), result.getProjection(), settings);
-            if (a == null || a.isEmpty()) {
-                continue;
-            }
-            for (Command c : Arrays.asList(a.getTargetCommand(), a.getSourceCommand())) {
-                if (c != null) {
-                    commandProposals.put(c, p);
-                    UndoRedoHandler.getInstance().add(c);
+            List<Command> executed = new ArrayList<>();
+            Command running = null;
+            try {
+                Applied a = ProposalApplier.build(p, pick, targetLayer.getDataSet(), sourceLayer.getDataSet(), result.getProjection(), settings);
+                if (a == null || a.isEmpty()) {
+                    continue;
+                }
+                for (Command c : Arrays.asList(a.getTargetCommand(), a.getSourceCommand())) {
+                    if (c != null) {
+                        running = c;
+                        UndoRedoHandler.getInstance().add(c);
+                        executed.add(c);
+                        running = null;
+                    }
+                }
+                if (a.getTargetCommand() != null) {
+                    ChangesetSources.HOOK.record(a.getTargetCommand().getParticipatingPrimitives(), sourcesOf(p, pick));
+                }
+                done++;
+            } catch (RuntimeException ex) {
+                // One proposal that cannot be applied must not cost the mapper the others.
+                Logging.error(ex);
+                failed++;
+                if (running != null && UndoRedoHandler.getInstance().getLastCommand() == running) {
+                    // It ran and is on the undo stack; something listening to it failed.
+                    executed.add(running);
+                }
+            } finally {
+                // Anything that took effect makes the proposal applied, so it cannot be applied twice.
+                if (!executed.isEmpty()) {
+                    applied.applied(p, executed);
+                    dropFromList(p);
                 }
             }
-            if (a.getTargetCommand() != null) {
-                ChangesetSources.HOOK.record(a.getTargetCommand().getParticipatingPrimitives(), sourcesOf(p, pick));
-            }
-            applied.add(p);
-            removeFromTree(p);
-            if (overlay != null) {
-                overlay.hide(p);
-            }
-            done++;
         }
-        summary.setText(needPick == 0 ? tr("Applied {0} proposals", done)
-                : tr("Applied {0} proposals; {1} need a building picked: select one of the highlighted buildings on the map, then Apply",
-                        done, needPick));
+        StringBuilder text = new StringBuilder(tr("Applied {0} proposals", done));
+        if (needPick > 0) {
+            text.append("; ").append(tr("{0} need a building picked: select one of the highlighted buildings on the map, then Apply", needPick));
+        }
+        if (gone > 0) {
+            text.append("; ").append(tr("{0} skipped: their address points were already deleted", gone));
+        }
+        if (failed > 0) {
+            text.append("; ").append(tr("{0} could not be applied (details in the JOSM log)", failed));
+        }
+        summary.setText(text.toString());
         if (done > 0) {
             targetLayer.invalidate();
             if (sourceLayer != targetLayer) {
                 sourceLayer.invalidate();
             }
+        }
+    }
+
+    /** True when none of the proposal's address points exists any more. */
+    private static boolean isStale(Proposal p) {
+        return ProposalApplier.liveAddresses(p).isEmpty();
+    }
+
+    /** Take a proposal out of the list and off the overlay. */
+    private void dropFromList(Proposal p) {
+        removeFromTree(p);
+        if (overlay != null) {
+            overlay.hide(p);
         }
     }
 

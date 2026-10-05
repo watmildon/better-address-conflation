@@ -234,6 +234,20 @@ class AnalyzerEdgeCasesTest {
     }
 
     @Test
+    void stackedPointsDoNotBreakVoronoiCells() {
+        // JTS's older overlay threw "non-noded intersection" clipping the cells of two points
+        // half a metre apart, which failed the whole analysis.
+        DataSet target = new DataSet();
+        Fixtures.rect(target, 0, 0, 12, 10, "building=house");
+        DataSet source = new DataSet();
+        Fixtures.node(source, 0, 0, Fixtures.addr("12", "West Olive Avenue"));
+        Fixtures.node(source, 0.5, 0, Fixtures.addr("12", "West Olive Avenue"));
+        AnalysisResult r = Analyzer.analyze(source, target, new VoronoiCellSource(), new ConflationSettings());
+        assertEquals(2, r.getCells().size());
+        assertEquals(2, r.getProposals().stream().mapToInt(p -> p.getSourceNodes().size()).sum(), r.getProposals().toString());
+    }
+
+    @Test
     void existingAddressKinds() {
         DataSet parcels = new DataSet();
         Fixtures.rect(parcels, 0, 0, 40, 40, "oa:pid=A");

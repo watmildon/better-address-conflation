@@ -23,6 +23,7 @@ import org.openstreetmap.josm.plugins.addressconflation.cells.VoronoiCellSource;
 import org.openstreetmap.josm.plugins.addressconflation.engine.Analyzer;
 import org.openstreetmap.josm.plugins.addressconflation.engine.ConflationSettings;
 import org.openstreetmap.josm.plugins.addressconflation.engine.OsmGeometry;
+import org.openstreetmap.josm.plugins.addressconflation.model.AddressGroup;
 import org.openstreetmap.josm.plugins.addressconflation.model.AnalysisResult;
 import org.openstreetmap.josm.plugins.addressconflation.model.Bucket;
 import org.openstreetmap.josm.plugins.addressconflation.model.Proposal;
@@ -156,6 +157,59 @@ class ProposalApplierTest {
         Proposal p = only(r, Bucket.EXISTING_ADDRESS);
         assertFalse(ProposalApplier.isApplicable(p));
         assertNull(ProposalApplier.build(p, target, source, r.getProjection(), s));
+    }
+
+    @Test
+    void aDuplicateDeletedSinceTheAnalysisIsNotDeletedAgain() {
+        // JOSM refuses to delete a node twice ("is already deleted"), which aborted Apply.
+        DataSet target = new DataSet();
+        DataSet source = new DataSet();
+        Fixtures.rect(target, 0, 0, 12, 10, "building=house");
+        Fixtures.node(source, 0, 0, Fixtures.addr("12", "West Olive Avenue"));
+        Fixtures.node(source, 0.5, 0, Fixtures.addr("12", "West Olive Avenue"));
+        DataSet parcels = new DataSet();
+        Fixtures.rect(parcels, 0, 0, 40, 40, "oa:pid=A");
+        ConflationSettings s = new ConflationSettings();
+        AnalysisResult r = Analyzer.analyze(source, target, new ParcelCellSource(parcels, "p"), s);
+        Proposal p = only(r, Bucket.CLEAN);
+        AddressGroup g = p.getAddresses().get(0);
+        assertEquals(1, g.getDuplicates().size(), "the duplicate in the same parcel rides along with the primary");
+        g.getDuplicates().get(0).setDeleted(true);
+        Applied a = ProposalApplier.build(p, target, source, r.getProjection(), s);
+        assertTrue(a.getTargetCommand().executeCommand());
+        assertTrue(a.getSourceCommand().executeCommand());
+        assertTrue(g.getPrimary().isDeleted());
+    }
+
+    @Test
+    void anAddressMergedByHandIsLeftOutAndTheRestStillApply() {
+        // The mapper merged one of two addresses on a building into OSM by hand and deleted its
+        // NAD point; applying the row used to fail with "is already deleted".
+        DataSet target = new DataSet();
+        DataSet source = new DataSet();
+        DataSet parcels = new DataSet();
+        Fixtures.rect(parcels, 0, 0, 40, 40, "oa:pid=A");
+        Way building = Fixtures.rect(target, 0, 0, 20, 12, "building=apartments");
+        Node merged = Fixtures.node(source, -5, -15, Fixtures.addr("10", "Watson Circle"));
+        Node left = Fixtures.node(source, 5, -15, Fixtures.addr("12", "Watson Circle"));
+        ConflationSettings s = new ConflationSettings();
+        AnalysisResult r = Analyzer.analyze(source, target, new ParcelCellSource(parcels, "p"), s);
+        Proposal p = only(r, Bucket.MULTI_ADDRESS_BUILDING);
+        merged.setDeleted(true);
+        Applied a = ProposalApplier.build(p, target, source, r.getProjection(), s);
+        assertTrue(a.getTargetCommand().executeCommand());
+        assertTrue(a.getSourceCommand().executeCommand());
+        List<Node> added = target.getNodes().stream().filter(n -> n.hasKey("addr:housenumber")).collect(Collectors.toList());
+        assertEquals(1, added.size());
+        assertEquals("12", added.get(0).get("addr:housenumber"));
+        assertTrue(left.isDeleted());
+        assertTrue(OsmGeometry.toPolygon(building, r.getProjection()).contains(
+                OsmGeometry.factory().createPoint(r.getProjection().toXY(added.get(0).getCoor()))));
+
+        left.setDeleted(false);
+        merged.setDeleted(true);
+        left.setDeleted(true);
+        assertNull(ProposalApplier.build(p, target, source, r.getProjection(), s), "nothing left to apply");
     }
 
     @Test

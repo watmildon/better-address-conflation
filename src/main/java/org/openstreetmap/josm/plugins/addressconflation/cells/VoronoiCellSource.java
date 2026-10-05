@@ -9,6 +9,8 @@ import org.locationtech.jts.geom.Envelope;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.Polygon;
 import org.locationtech.jts.geom.TopologyException;
+import org.locationtech.jts.operation.overlayng.OverlayNG;
+import org.locationtech.jts.operation.overlayng.OverlayNGRobust;
 import org.locationtech.jts.triangulate.VoronoiDiagramBuilder;
 import org.openstreetmap.josm.plugins.addressconflation.engine.ConflationSettings;
 import org.openstreetmap.josm.plugins.addressconflation.engine.LocalProjection;
@@ -39,13 +41,22 @@ public class VoronoiCellSource implements CellSource {
         builder.setSites(addressSites);
         builder.setClipEnvelope(clip);
         builder.setTolerance(0.01);
-        Geometry diagram = builder.getDiagram(OsmGeometry.factory());
+        // Clip each raw cell with the robust overlay rather than letting getDiagram clip them:
+        // its older overlay throws "non-noded intersection" on near-duplicate points (stacked
+        // address points half a metre apart), which failed the whole analysis.
+        @SuppressWarnings("unchecked")
+        List<Polygon> raw = builder.getSubdivision().getVoronoiCellPolygons(OsmGeometry.factory());
+        Geometry clipPolygon = OsmGeometry.factory().toGeometry(clip);
         LocalSpacing spacing = settings.voronoiReachFactor > 0 ? new LocalSpacing(addressSites) : null;
-        for (int i = 0; i < diagram.getNumGeometries(); i++) {
-            Geometry g = diagram.getGeometryN(i);
+        for (int i = 0; i < raw.size(); i++) {
+            Polygon cellPolygon = raw.get(i);
+            Object site = cellPolygon.getUserData();
+            Geometry g = clip.contains(cellPolygon.getEnvelopeInternal()) ? cellPolygon
+                    : OverlayNGRobust.overlay(cellPolygon, clipPolygon, OverlayNG.INTERSECTION);
             if (g.isEmpty()) {
                 continue;
             }
+            g.setUserData(site);
             if (spacing != null && g.getUserData() instanceof Coordinate) {
                 g = trim(g, (Coordinate) g.getUserData(), spacing, settings);
             }

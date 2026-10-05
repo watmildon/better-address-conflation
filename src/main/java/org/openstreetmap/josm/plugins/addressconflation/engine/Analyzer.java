@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.IdentityHashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
@@ -18,6 +19,8 @@ import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Envelope;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.Point;
+import org.locationtech.jts.geom.prep.PreparedGeometry;
+import org.locationtech.jts.geom.prep.PreparedGeometryFactory;
 import org.locationtech.jts.geom.TopologyException;
 import org.locationtech.jts.index.strtree.STRtree;
 import org.openstreetmap.josm.data.coor.LatLon;
@@ -132,7 +135,7 @@ public final class Analyzer {
         indexHints(extent);
         indexExisting(new HashSet<>(sourceNodes));
 
-        List<Proposal> proposals = bucket(groups);
+        List<Proposal> proposals = keepNodesInSharedBuildings(bucket(groups));
         proposals.sort(Comparator.comparing(Proposal::getBucket).thenComparingDouble(p -> p.getBucket() == Bucket.CLEAN ? -p.getConfidence() : p.getConfidence()));
         AnalysisResult result = new AnalysisResult(proposals, cells, proj, sourceNodes.size(), duplicatesRemoved, cellSource.isSynthetic());
         result.setShift(ShiftEstimator.estimate(proposals, proj));
@@ -502,6 +505,138 @@ public final class Analyzer {
             proposals.addAll(buildingNodeProposals(e.getKey(), e.getValue()));
         }
         return proposals;
+    }
+
+    /**
+     * An address only goes on a building outline when it is that building's only address. When
+     * the building also holds another one, from the source (one that went to another bucket,
+     * such as a duplicate of an existing address) or already in OSM (an amenity, a shop, a bare
+     * address node), every address stays its own node, as in a multi-address building.
+     */
+    @SuppressWarnings("unchecked")
+    private List<Proposal> keepNodesInSharedBuildings(List<Proposal> proposals) {
+        Map<AddressGroup, Proposal> owner = new IdentityHashMap<>();
+        STRtree sourcePoints = new STRtree();
+        for (Proposal p : proposals) {
+            for (AddressGroup g : p.getAddresses()) {
+                owner.put(g, p);
+                sourcePoints.insert(new Envelope(proj.toXY(g.getPosition())), g);
+            }
+        }
+        sourcePoints.build();
+        STRtree osmPoints = new STRtree();
+        Set<OsmPrimitive> seen = Collections.newSetFromMap(new IdentityHashMap<>());
+        for (Cell cell : cells) {
+            for (ExistingAddress e : cell.getExisting()) {
+                Coordinate c = seen.add(e.getPrimitive()) ? representative(e.getPrimitive()) : null;
+                if (c != null) {
+                    osmPoints.insert(new Envelope(c), e);
+                }
+            }
+        }
+        osmPoints.build();
+        // Units of one housenumber and street, by the buildings they go to: when the units go to
+        // different buildings, OSM maps each unit's outline and a unit belongs on its own.
+        Map<String, Set<OsmPrimitive>> unitBuildings = new HashMap<>();
+        for (Proposal p : proposals) {
+            BuildingCandidate t = p.getTarget();
+            for (AddressGroup g : p.getAddresses()) {
+                if (t != null && !t.isHint() && hasUnit(g)) {
+                    unitBuildings.computeIfAbsent(withoutUnit(g), k -> Collections.newSetFromMap(new IdentityHashMap<>()))
+                            .add(t.getPrimitive());
+                }
+            }
+        }
+        List<Proposal> out = new ArrayList<>(proposals.size());
+        for (Proposal p : proposals) {
+            if (!wouldTagBuilding(p)) {
+                out.add(p);
+                continue;
+            }
+            String shared = otherAddressInBuilding(p, owner, sourcePoints, osmPoints);
+            AddressGroup only = p.getAddresses().get(0);
+            String unit = hasUnit(only) && unitBuildings.getOrDefault(withoutUnit(only), Collections.emptySet()).size() <= 1
+                    ? only.getTags().get("addr:unit") : null;
+            if (shared == null && unit == null) {
+                out.add(p);
+                continue;
+            }
+            List<String> why = new ArrayList<>();
+            Bucket bucket = p.getBucket();
+            String where = p.getTarget().isNode() ? "beside the building node" : "inside the building";
+            if (unit != null) {
+                // A unit is one of several in the building, whether or not the others are known.
+                why.add("Has a unit (addr:unit=" + unit.trim() + ") and no other unit of this address has a building of its own: "
+                        + "it stays a node " + where + ". Check for the building's other units");
+                if (bucket == Bucket.CLEAN) {
+                    bucket = Bucket.REVIEW;
+                }
+            }
+            if (shared != null) {
+                why.add(shared + "; the address stays a node " + where);
+                if (bucket == Bucket.CLEAN) {
+                    bucket = Bucket.MULTI_ADDRESS_BUILDING;
+                }
+            }
+            out.add(p.keepingNode(bucket, why));
+        }
+        return out;
+    }
+
+    /**
+     * One address about to go on an OSM building: an outline or a building mapped as a node
+     * (not a hint footprint, not an address OSM already has).
+     */
+    private static boolean wouldTagBuilding(Proposal p) {
+        BuildingCandidate t = p.getTarget();
+        return t != null && !t.isHint() && p.getAddresses().size() == 1 && p.getExisting().isEmpty()
+                && (p.getBucket() == Bucket.CLEAN || p.getBucket() == Bucket.REVIEW || p.getBucket() == Bucket.AMBIGUOUS_BUILDING);
+    }
+
+    /** Why the proposal's building holds another address, or null when it does not. */
+    @SuppressWarnings("unchecked")
+    private String otherAddressInBuilding(Proposal p, Map<AddressGroup, Proposal> owner, STRtree sourcePoints, STRtree osmPoints) {
+        BuildingCandidate building = p.getTarget();
+        AddressGroup mine = p.getAddresses().get(0);
+        PreparedGeometry footprint = PreparedGeometryFactory.prepare(building.getGeometry());
+        Envelope env = building.getGeometry().getEnvelopeInternal();
+        for (AddressGroup g : (List<AddressGroup>) sourcePoints.query(env)) {
+            if (g == mine) {
+                continue;
+            }
+            BuildingCandidate theirs = owner.get(g).getTarget();
+            boolean sentElsewhere = theirs != null && !theirs.isHint() && theirs.getPrimitive() != building.getPrimitive();
+            if (!sentElsewhere && footprint.contains(OsmGeometry.factory().createPoint(proj.toXY(g.getPosition())))) {
+                return "Another source address is " + inOrNear(building) + " (" + g.describe() + ")";
+            }
+        }
+        for (ExistingAddress e : (List<ExistingAddress>) osmPoints.query(env)) {
+            Coordinate c = representative(e.getPrimitive());
+            if (e.getPrimitive() != building.getPrimitive() && c != null && footprint.contains(OsmGeometry.factory().createPoint(c))) {
+                return "OSM already has an address " + inOrNear(building) + " (" + nameOf(e.getPrimitive()) + " "
+                        + e.getPrimitive().getUniqueId() + ", " + e.getTags().getOrDefault(HOUSENUMBER, "?") + " "
+                        + e.getTags().getOrDefault("addr:street", "") + ")";
+            }
+        }
+        return null;
+    }
+
+    private static boolean hasUnit(AddressGroup g) {
+        String unit = g.getTags().get("addr:unit");
+        return unit != null && !unit.trim().isEmpty();
+    }
+
+    /** Housenumber and street of an address, its unit left out. */
+    private static String withoutUnit(AddressGroup g) {
+        Map<String, String> tags = new HashMap<>(g.getTags());
+        tags.remove("addr:unit");
+        return AddressNormalizer.key(tags);
+    }
+
+    /** "inside this building", or for a building mapped as a node, how near counts. */
+    private static String inOrNear(BuildingCandidate building) {
+        return building.isNode() ? String.format(Locale.ROOT, "within %.0f m of this building node", BUILDING_NODE_RADIUS)
+                : "inside this building";
     }
 
     /**
@@ -879,6 +1014,10 @@ public final class Analyzer {
     private static List<String> existingReasons(AddressGroup g, ExistingKind kind, List<ExistingAddress> matches) {
         List<String> reasons = new ArrayList<>();
         reasons.add(describeExisting(kind, matches));
+        if (kind == ExistingKind.OTHER_ADDRESS_ON_BUILDING) {
+            reasons.add("If both addresses belong to this building, move the outline's address onto a node of its own and "
+                    + "analyze again: both then stay nodes");
+        }
         if (matches.size() > 1) {
             reasons.add(matches.size() + " features in this cell already carry a matching address");
         }

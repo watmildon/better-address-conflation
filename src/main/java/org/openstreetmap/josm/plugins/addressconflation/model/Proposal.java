@@ -19,6 +19,8 @@ public final class Proposal {
     private final ExistingKind existingKind;
     private final List<ExistingAddress> existing;
     private final Cell cell;
+    /** The building has other addresses: this one stays a node instead of tagging the outline. */
+    private final boolean keepsNode;
 
     public Proposal(Bucket bucket, List<AddressGroup> addresses, BuildingCandidate target,
             List<CellBuilding> candidates, double confidence, List<String> reasons,
@@ -32,6 +34,38 @@ public final class Proposal {
         this.existingKind = existingKind;
         this.existing = existing == null ? Collections.emptyList() : Collections.unmodifiableList(new ArrayList<>(existing));
         this.cell = cell;
+        this.keepsNode = false;
+    }
+
+    private Proposal(Proposal p, Bucket bucket, List<String> reasons) {
+        this.bucket = bucket;
+        this.addresses = p.addresses;
+        this.target = p.target;
+        this.candidates = p.candidates;
+        this.confidence = p.confidence;
+        this.reasons = Collections.unmodifiableList(new ArrayList<>(reasons));
+        this.existingKind = p.existingKind;
+        this.existing = p.existing;
+        this.cell = p.cell;
+        this.keepsNode = true;
+    }
+
+    /**
+     * This proposal with its address kept as a node inside the building, because the building
+     * holds other addresses too.
+     *
+     * @param newBucket the bucket that fits the new action
+     * @param why       the reasons, added to the others
+     */
+    public Proposal keepingNode(Bucket newBucket, List<String> why) {
+        List<String> r = new ArrayList<>(reasons);
+        r.addAll(why);
+        return new Proposal(this, newBucket, r);
+    }
+
+    /** True when the address stays a node inside the building rather than tagging it. */
+    public boolean keepsNode() {
+        return keepsNode;
     }
 
     public Bucket getBucket() {
