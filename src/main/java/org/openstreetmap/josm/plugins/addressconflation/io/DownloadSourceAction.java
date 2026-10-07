@@ -39,6 +39,7 @@ import org.openstreetmap.josm.gui.MainApplication;
 import org.openstreetmap.josm.gui.PleaseWaitRunnable;
 import org.openstreetmap.josm.gui.layer.Layer;
 import org.openstreetmap.josm.gui.progress.ProgressMonitor;
+import org.openstreetmap.josm.gui.util.GuiHelper;
 import org.openstreetmap.josm.io.OsmTransferException;
 import org.openstreetmap.josm.plugins.addressconflation.gui.AddressConflationPreferences;
 import org.openstreetmap.josm.plugins.addressconflation.gui.CustomSourceEditor;
@@ -454,9 +455,18 @@ public class DownloadSourceAction extends JosmAction {
                 }
                 pm.indeterminateSubTask(tr("Downloading {0}", src.getName()));
                 DataSet ds;
+                FeatureLimit limit = FeatureLimit.asking(DownloadTask::askForMore);
                 try {
-                    ds = src.getProtocol() == FeatureSource.Protocol.OGC_FEATURES
-                            ? OgcFeatureClient.download(src, bounds, pm) : EsriFeatureClient.download(src, bounds, pm);
+                    switch (src.getProtocol()) {
+                    case OGC_FEATURES:
+                        ds = OgcFeatureClient.download(src, bounds, pm, limit);
+                        break;
+                    case PMTILES:
+                        ds = PmtilesClient.download(src, bounds, pm, limit);
+                        break;
+                    default:
+                        ds = EsriFeatureClient.download(src, bounds, pm, limit);
+                    }
                 } catch (IOException e) {
                     // One county server being down must not cost the user the other layers.
                     Logging.warn(e);
@@ -469,6 +479,17 @@ public class DownloadSourceAction extends JosmAction {
                 newLayers.add(new OpenAddressesLayer(ds, src.getName(), null, kind, src.getLicense()));
                 messages.add(tr("{0}: {1} features", src.getName(), n));
             }
+        }
+
+        /** The download reached the feature limit: ask, from the downloading thread, whether to fetch the rest. */
+        private static boolean askForMore(String sourceName, int count) {
+            Boolean more = GuiHelper.runInEDTAndWaitAndReturn(() -> JOptionPane.showConfirmDialog(MainApplication.getMainFrame(),
+                    tr("<html>The download from {0} has reached {1} features and is not finished.<br>"
+                            + "Download the rest? It can take a while and use a lot of memory.<br><br>"
+                            + "No keeps the {1} features downloaded so far; parts of the view will be missing.</html>",
+                            Utils.escapeReservedCharactersHTML(sourceName), count),
+                    tr("Large download"), JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION);
+            return Boolean.TRUE.equals(more);
         }
 
         @Override

@@ -31,6 +31,7 @@ public final class CustomSource {
 
     private static final Pattern ARCGIS_LAYER = Pattern.compile("(?i).*/(FeatureServer|MapServer)/\\d+/*$");
     private static final Pattern OGC_COLLECTION = Pattern.compile("(?i).*/collections/[^/]+/*$");
+    private static final Pattern PMTILES_FILE = Pattern.compile("(?i).*\\.pmtiles$");
     private static final Pattern FIELD_SEPARATOR = Pattern.compile("\\s*[+,]\\s*");
 
     /** The OpenAddresses properties a mapper maps fields onto, per kind, in display order. */
@@ -154,12 +155,15 @@ public final class CustomSource {
 
     /** The protocol a URL's shape gives away, or null. */
     public static Protocol detect(String url) {
-        String path = url == null ? "" : url.trim().replaceFirst("\\?.*$", "");
+        String path = url == null ? "" : url.trim().replaceFirst("#.*$", "").replaceFirst("\\?.*$", "");
         if (ARCGIS_LAYER.matcher(path).matches()) {
             return Protocol.ARCGIS;
         }
         if (OGC_COLLECTION.matcher(path).matches()) {
             return Protocol.OGC_FEATURES;
+        }
+        if (PMTILES_FILE.matcher(path).matches()) {
+            return Protocol.PMTILES;
         }
         return null;
     }

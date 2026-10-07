@@ -19,7 +19,6 @@ import jakarta.json.JsonValue;
 import org.openstreetmap.josm.data.Bounds;
 import org.openstreetmap.josm.data.osm.DataSet;
 import org.openstreetmap.josm.gui.progress.ProgressMonitor;
-import org.openstreetmap.josm.tools.Logging;
 
 /**
  * Fetches the features of an OGC API - Features collection inside a bounding box, following
@@ -34,11 +33,16 @@ public final class OgcFeatureClient {
     private OgcFeatureClient() {
     }
 
-    /** Fetch and convert. */
+    /** Fetch and convert, stopping at {@link FeatureLimit#MAX} features. */
     public static DataSet download(FeatureSource source, Bounds bounds, ProgressMonitor monitor) throws IOException {
+        return download(source, bounds, monitor, FeatureLimit.stop());
+    }
+
+    /** Fetch and convert, with {@code limit} deciding what happens at the feature limit. */
+    public static DataSet download(FeatureSource source, Bounds bounds, ProgressMonitor monitor, FeatureLimit limit) throws IOException {
         List<JsonObject> features;
         try {
-            features = fetchRaw(source, bounds, monitor);
+            features = fetchRaw(source, bounds, monitor, limit);
         } catch (IOException e) {
             throw new IOException(EsriFeatureClient.describe(e), e);
         }
@@ -47,7 +51,7 @@ public final class OgcFeatureClient {
     }
 
     /** Raw GeoJSON features for the bounds, every page. */
-    static List<JsonObject> fetchRaw(FeatureSource source, Bounds bounds, ProgressMonitor monitor) throws IOException {
+    static List<JsonObject> fetchRaw(FeatureSource source, Bounds bounds, ProgressMonitor monitor, FeatureLimit limit) throws IOException {
         List<JsonObject> all = new ArrayList<>();
         Set<String> visited = new HashSet<>();
         String next = itemsUrl(source.getUrl(), bounds);
@@ -71,11 +75,11 @@ public final class OgcFeatureClient {
             if (feats.asJsonArray().isEmpty()) {
                 break;
             }
-            if (all.size() >= EsriFeatureClient.MAX_FEATURES) {
-                Logging.warn("Feature download hit the safety limit of " + EsriFeatureClient.MAX_FEATURES);
+            next = link(page, "next", next);
+            // Only worth asking about the rest when there is a rest.
+            if (next != null && !visited.contains(next) && limit.reached(source.getName(), all.size())) {
                 break;
             }
-            next = link(page, "next", next);
         }
         return all;
     }

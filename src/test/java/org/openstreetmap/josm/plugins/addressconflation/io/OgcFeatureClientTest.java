@@ -67,6 +67,45 @@ class OgcFeatureClientTest {
         }
     }
 
+    /** Two pages: A and B with a next link, then C. */
+    private static FakeServer twoPages() throws IOException {
+        return new FakeServer(r -> {
+            if (r.startsWith("/c/collections/p/items") && r.contains("page=2")) {
+                return FakeServer.json("{\"type\":\"FeatureCollection\",\"features\":[" + parcel("C", -86.996) + "],\"links\":[]}");
+            }
+            if (r.startsWith("/c/collections/p/items")) {
+                return FakeServer.json("{\"type\":\"FeatureCollection\",\"features\":[" + parcel("A", -86.999) + "," + parcel("B", -86.998)
+                        + "],\"links\":[{\"rel\":\"next\",\"type\":\"application/geo+json\",\"href\":\"items?page=2\"}]}");
+            }
+            return null;
+        });
+    }
+
+    @Test
+    void atTheFeatureLimitTheMapperDecidesWhetherToPageOn() throws IOException {
+        List<Integer> asked = new java.util.ArrayList<>();
+        try (FakeServer server = twoPages()) {
+            DataSet ds = OgcFeatureClient.download(parcels(server.url("/c/collections/p")), VIEW, NullProgressMonitor.INSTANCE,
+                    new FeatureLimit(2, (name, count) -> asked.add(count) && false));
+            assertEquals(List.of(2), asked);
+            assertEquals(2, ds.getWays().size(), "no keeps what came");
+            assertEquals(1, server.requests.size());
+        }
+        asked.clear();
+        try (FakeServer server = twoPages()) {
+            DataSet ds = OgcFeatureClient.download(parcels(server.url("/c/collections/p")), VIEW, NullProgressMonitor.INSTANCE,
+                    new FeatureLimit(2, (name, count) -> asked.add(count)));
+            assertEquals(List.of(2), asked);
+            assertEquals(3, ds.getWays().size(), "yes fetches the rest");
+        }
+        asked.clear();
+        try (FakeServer server = twoPages()) {
+            OgcFeatureClient.download(parcels(server.url("/c/collections/p")), VIEW, NullProgressMonitor.INSTANCE,
+                    new FeatureLimit(3, (name, count) -> asked.add(count)));
+            assertEquals(List.of(), asked, "reaching the limit on the last page asks nothing");
+        }
+    }
+
     @Test
     void keepsTheQueryAKeyLivesIn() {
         String u = OgcFeatureClient.itemsUrl("https://m.example.gov/ogc/collections/parcels/?apikey=abc", VIEW);

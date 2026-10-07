@@ -32,7 +32,8 @@ import org.openstreetmap.josm.tools.Logging;
  * OA properties. Covers the National Address Database preset, any layer of an OpenAddresses
  * source definition, and the mapper's own sources. The {@link Protocol} says how it is
  * queried: an ArcGIS FeatureServer/MapServer layer or an OGC API - Features collection, both
- * of which return GeoJSON that shares the conversion.
+ * of which return GeoJSON that shares the conversion, or a PMTiles archive whose points are
+ * turned into the same GeoJSON shape.
  */
 public final class FeatureSource {
 
@@ -46,7 +47,9 @@ public final class FeatureSource {
         /** An ArcGIS REST FeatureServer or MapServer layer, {@code .../FeatureServer/0}. */
         ARCGIS,
         /** An OGC API - Features collection, {@code .../collections/parcels}. */
-        OGC_FEATURES
+        OGC_FEATURES,
+        /** A PMTiles archive of vector tiles read by range requests, {@code .../nad-r24.pmtiles}; points only. */
+        PMTILES
     }
 
     public static final String NAD_URL =

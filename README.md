@@ -88,11 +88,15 @@ Zoom in if the view is too large: downloads are limited to 0.02 square degrees, 
 ### Custom sources
 
 If your county or city publishes its GIS layers online, add them once and they appear in the
-matching row of **Download...** whenever they cover the view. Two kinds of endpoint work:
+matching row of **Download...** whenever they cover the view. Three kinds of endpoint work:
 
 * **ArcGIS REST layers**: `https://.../arcgis/rest/services/Parcels/FeatureServer/0` (or
   `MapServer/3`). Use the URL of one layer, ending in its number.
 * **OGC API - Features collections**: `https://.../collections/parcels`.
+* **PMTiles files** (experimental, address points only): `https://.../nad-r24.pmtiles`. The file
+  is read in small pieces for the view, never downloaded whole, so its server must support range
+  requests. If the file has several layers, Check asks which one and adds it to the URL as
+  `#layer`. Only gzip-compressed or uncompressed vector tiles can be read.
 
 Click **Add source...** in the Download dialog, or use **Preferences → Better Address Conflation →
 Custom Sources**:

@@ -149,7 +149,8 @@ public class AddressConflationPreferences extends DefaultTabPreferenceSetting {
                 CustomSource cs = (CustomSource) value;
                 String text = "<html>" + Utils.escapeReservedCharactersHTML(cs.getName()) + " <font color=\"gray\">&mdash; "
                         + CustomSourceEditor.kindLabel(cs.getKind()) + " &middot; "
-                        + (cs.getProtocol() == FeatureSource.Protocol.OGC_FEATURES ? "OGC API" : "ArcGIS") + "</font></html>";
+                        + (cs.getProtocol() == FeatureSource.Protocol.OGC_FEATURES ? "OGC API"
+                                : cs.getProtocol() == FeatureSource.Protocol.PMTILES ? "PMTiles" : "ArcGIS") + "</font></html>";
                 super.getListCellRendererComponent(list, text, index, sel, focus);
                 setToolTipText(Utils.escapeReservedCharactersHTML(cs.getUrl()));
                 return this;

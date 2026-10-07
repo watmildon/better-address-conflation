@@ -35,7 +35,6 @@ public final class EsriFeatureClient {
     /** Largest bbox we will fetch, in square degrees (~0.14° x 0.14°, about 15 km x 12 km). */
     public static final double MAX_AREA_DEGREES = 0.02;
     private static final int PAGE = 1000;
-    static final int MAX_FEATURES = 200_000;
     private static final int CONNECT_TIMEOUT_MS = 15_000;
     private static final int READ_TIMEOUT_MS = 60_000;
 
@@ -52,12 +51,17 @@ public final class EsriFeatureClient {
         return null;
     }
 
-    /** Fetch and convert. */
+    /** Fetch and convert, stopping at {@link FeatureLimit#MAX} features. */
     public static DataSet download(FeatureSource source, Bounds bounds, ProgressMonitor monitor) throws IOException {
+        return download(source, bounds, monitor, FeatureLimit.stop());
+    }
+
+    /** Fetch and convert, with {@code limit} deciding what happens at the feature limit. */
+    public static DataSet download(FeatureSource source, Bounds bounds, ProgressMonitor monitor, FeatureLimit limit) throws IOException {
         source = matchServiceFields(source);
         List<JsonObject> features;
         try {
-            features = fetchRaw(source, bounds, monitor);
+            features = fetchRaw(source, bounds, monitor, limit);
         } catch (IOException e) {
             throw new IOException(describe(e), e);
         }
@@ -123,8 +127,12 @@ public final class EsriFeatureClient {
         }
     }
 
-    /** Raw ESRI GeoJSON features for the bounds. */
+    /** Raw ESRI GeoJSON features for the bounds, stopping at {@link FeatureLimit#MAX}. */
     public static List<JsonObject> fetchRaw(FeatureSource source, Bounds bounds, ProgressMonitor monitor) throws IOException {
+        return fetchRaw(source, bounds, monitor, FeatureLimit.stop());
+    }
+
+    static List<JsonObject> fetchRaw(FeatureSource source, Bounds bounds, ProgressMonitor monitor, FeatureLimit limit) throws IOException {
         List<JsonObject> all = new ArrayList<>();
         int offset = 0;
         // Start with GeoJSON; older servers only speak Esri JSON, and when anything goes wrong
@@ -171,8 +179,7 @@ public final class EsriFeatureClient {
                 break;
             }
             offset += feats.size();
-            if (all.size() >= MAX_FEATURES) {
-                Logging.warn("Feature download hit the safety limit of " + MAX_FEATURES);
+            if (limit.reached(source.getName(), all.size())) {
                 break;
             }
         }

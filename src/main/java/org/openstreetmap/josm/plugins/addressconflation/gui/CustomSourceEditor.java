@@ -116,6 +116,7 @@ public final class CustomSourceEditor extends ExtendedDialog {
             @Override
             public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean sel, boolean focus) {
                 return super.getListCellRendererComponent(list, value == Protocol.OGC_FEATURES ? tr("OGC API - Features collection")
+                        : value == Protocol.PMTILES ? tr("PMTiles vector tiles (address points only)")
                         : tr("ArcGIS REST layer (FeatureServer or MapServer)"), index, sel, focus);
             }
         });
@@ -126,7 +127,8 @@ public final class CustomSourceEditor extends ExtendedDialog {
             }
         });
         url.setToolTipText(tr("<html>The layer''s URL, for example<br>https://gis.example.gov/arcgis/rest/services/Parcels/FeatureServer/0<br>"
-                + "https://maps.example.gov/ogc/collections/parcels</html>"));
+                + "https://maps.example.gov/ogc/collections/parcels<br>"
+                + "https://data.example.org/nad-r24.pmtiles</html>"));
         check.setToolTipText(tr("Ask the service for the layer''s fields, geometry and coverage"));
         url.getDocument().addDocumentListener(new DocumentListener() {
             @Override
@@ -375,8 +377,8 @@ public final class CustomSourceEditor extends ExtendedDialog {
         }
         // Points can only be addresses; otherwise suggest from the layer's name and geometry,
         // unless the mapper already chose.
-        Kind suggested = CustomSource.suggestKind(info.getTitle(), u, geometry);
-        if (suggested != null && (geometry == ServiceInspector.Geometry.POINTS || !kindPickedByMapper)) {
+        Kind suggested = p == Protocol.PMTILES ? Kind.ADDRESSES : CustomSource.suggestKind(info.getTitle(), u, geometry);
+        if (suggested != null && (geometry == ServiceInspector.Geometry.POINTS || p == Protocol.PMTILES || !kindPickedByMapper)) {
             settingKind = true;
             try {
                 kind.setSelectedItem(suggested);
@@ -427,6 +429,9 @@ public final class CustomSourceEditor extends ExtendedDialog {
             if (taken.equalsIgnoreCase(n)) {
                 return refuse(tr("Another source is already called {0}.", n));
             }
+        }
+        if (p == Protocol.PMTILES && k != Kind.ADDRESSES) {
+            return refuse(tr("Only address points can be read from PMTiles."));
         }
         if (geometry == ServiceInspector.Geometry.POINTS && k != Kind.ADDRESSES) {
             return refuse(tr("This layer holds points, so it can only be used for addresses."));

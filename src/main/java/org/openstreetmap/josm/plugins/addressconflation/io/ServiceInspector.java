@@ -23,8 +23,8 @@ import org.openstreetmap.josm.tools.Logging;
 
 /**
  * Reads what a service says about itself, so the source editor can offer its fields and know
- * its geometry and coverage: the ArcGIS layer description, or the OGC API collection document
- * and queryables.
+ * its geometry and coverage: the ArcGIS layer description, the OGC API collection document
+ * and queryables, or a PMTiles archive's header and metadata.
  */
 public final class ServiceInspector {
 
@@ -92,6 +92,9 @@ public final class ServiceInspector {
     /** Ask the service about the layer; fails with a reason the mapper can act on. */
     public static Info inspect(String url, Protocol protocol) throws IOException {
         try {
+            if (protocol == Protocol.PMTILES) {
+                return PmtilesClient.inspect(url.trim());
+            }
             return protocol == Protocol.OGC_FEATURES ? ogc(url.trim()) : arcgis(url.trim());
         } catch (NotALayerException e) {
             throw e;
