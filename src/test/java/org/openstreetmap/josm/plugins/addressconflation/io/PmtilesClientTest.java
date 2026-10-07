@@ -155,6 +155,53 @@ class PmtilesClientTest {
         }
     }
 
+    /** Tiles X..X+1 by Y..Y+1, just inside their outer edges. */
+    private static Bounds fourTiles() {
+        double inset = 0.5 / EXTENT;
+        return new Bounds(lat(Z, Y + 2 - inset), lon(Z, X + inset), lat(Z, Y + inset), lon(Z, X + 2 - inset));
+    }
+
+    private static List<String> streets(DataSet ds) {
+        return ds.getNodes().stream().map(n -> n.get("addr:street") + " " + String.valueOf(n.get("addr:unit"))).sorted()
+                .collect(Collectors.toList());
+    }
+
+    @Test
+    void seamPointsOfAnUnbufferedTilesetAreKept() throws IOException {
+        // Without a buffer a point on the east or south seam is only in the tile whose extent it is at.
+        MvtLayer a = new MvtLayer("addresses", EXTENT)
+                .point(EXTENT, 1000, address("1", "East Seam Road", null))
+                .point(1000, EXTENT, address("2", "South Seam Road", null))
+                .point(EXTENT, EXTENT, address("3", "Corner Road", null));
+        PmtilesFixture.Archive archive = new PmtilesFixture.Archive().tile(Z, X, Y, PmtilesFixture.tile(a));
+        try (RangeServer server = new RangeServer(archive.build())) {
+            DataSet ds = PmtilesClient.download(nadSource(server.url()), fourTiles(), null);
+            assertEquals(List.of("Corner Road null", "East Seam Road null", "South Seam Road null"), streets(ds));
+            Node east = ds.getNodes().stream().filter(n -> "1".equals(n.get("addr:housenumber"))).findFirst().orElseThrow();
+            assertEquals(lon(Z, X + 1), east.lon(), 1e-9);
+        }
+    }
+
+    @Test
+    void seamPointsOfABufferedTilesetAreReadOnce() throws IOException {
+        // With a buffer the same point is at the extent in one tile and at 0 in its neighbours.
+        Map<String, String> seam = address("1", "East Seam Road", null);
+        Map<String, String> corner = address("3", "Corner Road", null);
+        MvtLayer a = new MvtLayer("addresses", EXTENT).point(EXTENT, 1000, seam).point(EXTENT, EXTENT, corner)
+                // Another unit at the very same spot is another address.
+                .point(EXTENT, 1000, address("1", "East Seam Road", "Apt 2"));
+        MvtLayer b = new MvtLayer("addresses", EXTENT).point(0, 1000, seam).point(0, EXTENT, corner);
+        MvtLayer c = new MvtLayer("addresses", EXTENT).point(EXTENT, 0, corner);
+        MvtLayer d = new MvtLayer("addresses", EXTENT).point(0, 0, corner);
+        PmtilesFixture.Archive archive = new PmtilesFixture.Archive()
+                .tile(Z, X, Y, PmtilesFixture.tile(a)).tile(Z, X + 1, Y, PmtilesFixture.tile(b))
+                .tile(Z, X, Y + 1, PmtilesFixture.tile(c)).tile(Z, X + 1, Y + 1, PmtilesFixture.tile(d));
+        try (RangeServer server = new RangeServer(archive.build())) {
+            DataSet ds = PmtilesClient.download(nadSource(server.url()), fourTiles(), null);
+            assertEquals(List.of("Corner Road null", "East Seam Road Apt 2", "East Seam Road null"), streets(ds));
+        }
+    }
+
     @Test
     void entriesInALeafDirectoryAreFound() throws IOException {
         PmtilesFixture.Archive archive = nadArchive();

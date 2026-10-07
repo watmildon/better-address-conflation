@@ -14,12 +14,14 @@ import java.nio.ByteOrder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.concurrent.CompletionService;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutionException;
@@ -125,11 +127,13 @@ public final class PmtilesClient {
         int z = archive.header.maxZoom;
         List<int[]> tiles = tilesCovering(bounds, z);
         List<JsonObject> all = new ArrayList<>();
+        List<JsonObject> seam = new ArrayList<>();
+        Set<String> edge = new HashSet<>();
         ExecutorService pool = Executors.newFixedThreadPool(Math.max(1, Math.min(THREADS, tiles.size())),
                 Utils.newThreadFactory("addressconflation-pmtiles-%d", Thread.NORM_PRIORITY));
-        List<Future<List<JsonObject>>> futures = new ArrayList<>();
+        List<Future<TilePoints>> futures = new ArrayList<>();
         try {
-            CompletionService<List<JsonObject>> done = new ExecutorCompletionService<>(pool);
+            CompletionService<TilePoints> done = new ExecutorCompletionService<>(pool);
             for (int[] t : tiles) {
                 futures.add(done.submit(() -> points(archive, z, t[0], t[1], layer, bounds)));
             }
@@ -141,7 +145,10 @@ public final class PmtilesClient {
                     monitor.setCustomText(tr("{0}: tile {1} of {2}, {3} features so far", source.getName(), i + 1, tiles.size(), all.size()));
                 }
                 try {
-                    all.addAll(done.take().get());
+                    TilePoints tp = done.take().get();
+                    all.addAll(tp.points);
+                    seam.addAll(tp.seam);
+                    edge.addAll(tp.edgeKeys);
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                     throw new IOException(tr("Cancelled"), e);
@@ -157,22 +164,50 @@ public final class PmtilesClient {
             }
         } finally {
             // Drop the tiles not started; let those in flight finish rather than interrupt their requests.
-            for (Future<List<JsonObject>> f : futures) {
+            for (Future<TilePoints> f : futures) {
                 f.cancel(false);
             }
             pool.shutdown();
+        }
+        // A seam point counts unless its neighbour already gave the same point at 0 (or another
+        // tile gave the same seam point: a corner).
+        for (JsonObject p : seam) {
+            if (edge.add(key(p))) {
+                all.add(p);
+            }
         }
         return all;
     }
 
     /** The points of one tile that fall inside the bounds; none when the archive has no such tile. */
-    private static List<JsonObject> points(Archive archive, int z, int x, int y, String layer, Bounds bounds) throws IOException {
+    private static TilePoints points(Archive archive, int z, int x, int y, String layer, Bounds bounds) throws IOException {
         byte[] tile = archive.tile(z, x, y);
-        List<JsonObject> out = new ArrayList<>();
+        TilePoints out = new TilePoints();
         if (tile != null) {
             decode(tile, z, x, y, layer, bounds, out, null);
         }
         return out;
+    }
+
+    /**
+     * One tile's points. A point on the tile's east or south seam (coordinate exactly the extent)
+     * may also be in the neighbouring tile at 0, from a buffer or from how the generator split the
+     * seam, or only here; so seam points are held back until every tile is read, and checked
+     * against the points read at 0.
+     */
+    static final class TilePoints {
+        /** Points inside the tile, seam excluded. */
+        final List<JsonObject> points = new ArrayList<>();
+        /** Points at x or y exactly the extent. */
+        final List<JsonObject> seam = new ArrayList<>();
+        /** {@link #key} of the points at x or y exactly 0, where a neighbour's seam point would also be. */
+        final Set<String> edgeKeys = new HashSet<>();
+    }
+
+    /** A point's identity: exact position and properties. Seam copies compute the same doubles. */
+    static String key(JsonObject point) {
+        return point.getJsonObject("geometry").getJsonArray("coordinates").toString()
+                + new TreeMap<>(point.getJsonObject("properties"));
     }
 
     /** The {@code {x, y}} tiles at zoom {@code z} that cover the bounds. */
@@ -243,13 +278,13 @@ public final class PmtilesClient {
                 byte[] tile = archive.tile(z, x, y);
                 if (tile != null) {
                     Set<GeometryTypes> seen = new LinkedHashSet<>();
-                    List<JsonObject> sample = new ArrayList<>();
+                    TilePoints sample = new TilePoints();
                     decode(tile, z, x, y, layer, null, sample, seen);
                     if (geometry == ServiceInspector.Geometry.UNKNOWN && !seen.isEmpty()) {
                         geometry = seen.contains(GeometryTypes.POLYGON) ? ServiceInspector.Geometry.POLYGONS
                                 : seen.equals(Set.of(GeometryTypes.POINT)) ? ServiceInspector.Geometry.POINTS : ServiceInspector.Geometry.OTHER;
                     }
-                    for (JsonObject f : sample) {
+                    for (JsonObject f : sample.points) {
                         fields.addAll(f.getJsonObject("properties").keySet());
                     }
                 }
@@ -694,12 +729,13 @@ public final class PmtilesClient {
     // ---- vector tiles -------------------------------------------------------------------------
 
     /**
-     * Add the tile's points to {@code out} as GeoJSON-shaped features. Points in the tile's
-     * buffer belong to its neighbour and are skipped, so no point is read twice; with
-     * {@code bounds}, so are points outside it. {@code geometries} collects every geometry type
-     * met, when not null.
+     * Add the tile's points to {@code out} as GeoJSON-shaped features. The tile owns the closed
+     * range 0 to extent; points beyond it are in the buffer, belong to a neighbour, and are
+     * skipped. Points exactly on the far seam go to {@link TilePoints#seam}. With {@code bounds},
+     * points outside it are skipped. {@code geometries} collects every geometry type met, when
+     * not null.
      */
-    static void decode(byte[] mvt, int z, int x, int y, String layerName, Bounds bounds, List<JsonObject> out,
+    static void decode(byte[] mvt, int z, int x, int y, String layerName, Bounds bounds, TilePoints out,
             Set<GeometryTypes> geometries) throws IOException {
         List<ProtobufRecord> records;
         try (ProtobufParser parser = new ProtobufParser(mvt)) {
@@ -739,7 +775,7 @@ public final class PmtilesClient {
                     for (int k = 0; k + 1 < ops.length; k += 2) {
                         px += ops[k];
                         py += ops[k + 1];
-                        if (px < 0 || py < 0 || px >= extent || py >= extent) {
+                        if (px < 0 || py < 0 || px > extent || py > extent) {
                             continue;
                         }
                         double lon = (x + px / (double) extent) / n * 360 - 180;
@@ -750,7 +786,15 @@ public final class PmtilesClient {
                         if (props == null) {
                             props = properties(f);
                         }
-                        out.add(point(props, lon, lat));
+                        JsonObject p = point(props, lon, lat);
+                        if (px == extent || py == extent) {
+                            out.seam.add(p);
+                        } else {
+                            out.points.add(p);
+                            if (px == 0 || py == 0) {
+                                out.edgeKeys.add(key(p));
+                            }
+                        }
                     }
                 }
             }
