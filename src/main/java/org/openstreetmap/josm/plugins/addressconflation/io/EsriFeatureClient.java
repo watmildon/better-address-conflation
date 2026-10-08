@@ -3,6 +3,7 @@ package org.openstreetmap.josm.plugins.addressconflation.io;
 
 import static org.openstreetmap.josm.tools.I18n.tr;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
 import java.net.URI;
@@ -25,6 +26,7 @@ import org.openstreetmap.josm.gui.progress.ProgressMonitor;
 import org.openstreetmap.josm.plugins.addressconflation.JsonSupport;
 import org.openstreetmap.josm.tools.HttpClient;
 import org.openstreetmap.josm.tools.Logging;
+import org.openstreetmap.josm.tools.Utils;
 
 /**
  * Fetches every feature of an ESRI layer inside a bounding box, paging through
@@ -242,8 +244,19 @@ public final class EsriFeatureClient {
         return get(url, accept, READ_TIMEOUT_MS);
     }
 
+    /**
+     * Largest answer read from a service. A page of 1000 parcels is a few MB; an answer near this
+     * size is a file someone pasted (a .pmtiles archive, a zip), which must not download whole.
+     */
+    static final long MAX_ANSWER_BYTES = 64L * 1024 * 1024;
+
     /** {@link #get(String, String)} giving up on an answer after {@code readTimeoutMs}. */
     static JsonObject get(String url, String accept, int readTimeoutMs) throws IOException {
+        return get(url, accept, readTimeoutMs, MAX_ANSWER_BYTES);
+    }
+
+    /** {@link #get(String, String, int)} refusing an answer longer than {@code maxBytes}. */
+    static JsonObject get(String url, String accept, int readTimeoutMs, long maxBytes) throws IOException {
         Logging.info("Feature service query: " + url);
         URI uri;
         try {
@@ -258,12 +271,12 @@ public final class EsriFeatureClient {
                 .connect();
         try {
             if (resp.getResponseCode() != 200) {
-                String reason = serverMessage(resp.fetchContent());
+                String reason = serverMessage(answer(url, resp, maxBytes));
                 Logging.warn("ESRI query failed with HTTP " + resp.getResponseCode() + ": " + url);
                 throw new IOException(reason == null ? tr("server error (HTTP {0})", resp.getResponseCode())
                         : tr("server error (HTTP {0}): {1}", resp.getResponseCode(), reason));
             }
-            String body = resp.fetchContent();
+            String body = answer(url, resp, maxBytes);
             try (JsonReader reader = JsonSupport.JSON.createReader(new StringReader(body))) {
                 return reader.readObject();
             } catch (JsonException e) {
@@ -275,6 +288,39 @@ public final class EsriFeatureClient {
         } finally {
             resp.disconnect();
         }
+    }
+
+    /**
+     * The answer as text. One the server says is longer than {@code maxBytes} is refused unread;
+     * one that turns out longer (no length given) is refused once it passes the limit.
+     */
+    private static String answer(String url, HttpClient.Response resp, long maxBytes) throws IOException {
+        long length = resp.getContentLength();
+        if (length > maxBytes) {
+            throw notAService(url, length, maxBytes);
+        }
+        StringBuilder sb = new StringBuilder();
+        char[] buf = new char[8192];
+        try (BufferedReader r = resp.getContentReader()) {
+            int n;
+            while ((n = r.read(buf)) > 0) {
+                sb.append(buf, 0, n);
+                if (sb.length() > maxBytes) {
+                    throw notAService(url, -1, maxBytes);
+                }
+            }
+        }
+        return sb.toString();
+    }
+
+    private static IOException notAService(String url, long length, long maxBytes) {
+        if (url.replaceFirst("[?#].*$", "").toLowerCase(Locale.ROOT).endsWith(".pmtiles")) {
+            return new IOException(tr("this is a PMTiles file, not an ArcGIS layer or OGC collection; choose PMTiles as the type"));
+        }
+        return new IOException(length > 0
+                ? tr("this is a file of {0}, not an ArcGIS layer or OGC collection", Utils.getSizeString(length, Locale.getDefault()))
+                : tr("the server sent more than {0}, so this is a file, not an ArcGIS layer or OGC collection",
+                        Utils.getSizeString(maxBytes, Locale.getDefault())));
     }
 
     /** Longest server message we pass on to the user. */
