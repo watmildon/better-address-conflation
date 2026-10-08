@@ -6,6 +6,12 @@ build/
 !gradle/wrapper/gradle-wrapper.jar
 .idea/
 *.iml
+# VS Code / Eclipse Java tooling output and project files
+bin/
+.classpath
+.project
+.settings/
+.vscode/
 .DS_Store
 # LLM / assistant files
 CLAUDE.md
