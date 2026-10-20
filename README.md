@@ -217,6 +217,15 @@ The plugin adds an **Address on outbuilding** warning to JOSM's validator. It fl
 garages, sheds, carports and roofs that carry no POI tag, the classic conflation mistake,
 whichever tool put them there.
 
+It also adds a **Street name not found nearby** warning for anything with `addr:street` that has
+no road of that name within 200 m. Only real streets count (residential, service, primary and the
+like, not footways or cycleways). When a nearby road matches only once abbreviations, case or
+accents are set aside (`W Olive Ave` against `West Olive Avenue`), the warning says
+**addr:street differs from the nearby road name** instead and highlights the road. When the
+200 m circle reaches past the downloaded area the result lands in a separate
+**at edge of downloaded area** bucket: the road may just not be loaded yet. Change the radius
+with the advanced preference `addressconflation.validator.street.radius` (metres).
+
 ## Preferences
 
 **Preferences → Better Address Conflation**:

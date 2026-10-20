@@ -11,6 +11,7 @@ import org.openstreetmap.josm.plugins.addressconflation.apply.ChangesetSources;
 import org.openstreetmap.josm.plugins.addressconflation.gui.AddressConflationDialog;
 import org.openstreetmap.josm.plugins.addressconflation.gui.AddressConflationPreferences;
 import org.openstreetmap.josm.plugins.addressconflation.validation.AddressOnOutbuildingTest;
+import org.openstreetmap.josm.plugins.addressconflation.validation.StreetNameMismatchTest;
 
 /**
  * Better Address Conflation plugin for JOSM.
@@ -25,6 +26,7 @@ public class AddressConflationPlugin extends Plugin {
     public AddressConflationPlugin(PluginInformation info) {
         super(info);
         OsmValidator.addTest(AddressOnOutbuildingTest.class);
+        OsmValidator.addTest(StreetNameMismatchTest.class);
         // Name the plugin's layers in the source tag of changesets that use them.
         UploadAction.registerUploadHook(ChangesetSources.HOOK);
     }

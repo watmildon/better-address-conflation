@@ -60,6 +60,21 @@ public final class Fixtures {
         return w;
     }
 
+    /** Open way through the given points, e.g. a road. */
+    public static Way way(DataSet ds, String[] tags, LatLon... pts) {
+        List<Node> nodes = new ArrayList<>();
+        for (LatLon c : pts) {
+            Node n = new Node(c);
+            ds.addPrimitive(n);
+            nodes.add(n);
+        }
+        Way w = new Way();
+        w.setNodes(nodes);
+        ds.addPrimitive(w);
+        tag(w, tags);
+        return w;
+    }
+
     /** Multipolygon relation with one outer and any number of inner ways (untagged members). */
     public static Relation multipolygon(DataSet ds, Way outer, List<Way> inners, String... tags) {
         Relation r = new Relation();
