@@ -124,6 +124,11 @@ public final class AddressNormalizer {
         String stB = normalizeStreet(existing.get("addr:street"));
         String unA = normalizeUnit(source.get("addr:unit"));
         String unB = normalizeUnit(existing.get("addr:unit"));
+        if (unA.equals(unB) && isBlank(existing.get("addr:street")) && isBlank(existing.get("addr:place"))
+                && (!isBlank(source.get("addr:street")) || !isBlank(source.get("addr:place")))) {
+            // OSM knows only the number (and maybe a postcode or city); the source knows the street.
+            return ExistingKind.PARTIAL;
+        }
         boolean streetSame = stA.equals(stB) || stA.isEmpty() || stB.isEmpty();
         boolean streetRawSame = String.valueOf(source.get("addr:street")).equalsIgnoreCase(String.valueOf(existing.get("addr:street")));
         if (streetSame && unA.equals(unB)) {
@@ -138,5 +143,9 @@ public final class AddressNormalizer {
             return ExistingKind.STREET_DIFF;
         }
         return null;
+    }
+
+    private static boolean isBlank(String s) {
+        return s == null || s.trim().isEmpty();
     }
 }

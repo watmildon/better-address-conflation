@@ -71,6 +71,7 @@ public class ProposalOverlayLayer extends Layer {
 
     static {
         COLORS.put(Bucket.CLEAN, APPLY);
+        COLORS.put(Bucket.FILL_EXISTING, APPLY);
         COLORS.put(Bucket.MULTI_ADDRESS_BUILDING, APPLY);
         COLORS.put(Bucket.REVIEW, LOOK);
         COLORS.put(Bucket.NO_BUILDING, LOOK);

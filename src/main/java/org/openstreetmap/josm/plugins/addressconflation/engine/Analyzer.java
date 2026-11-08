@@ -445,12 +445,12 @@ public final class Analyzer {
             }
             if (bestKind != null) {
                 List<String> reasons = existingReasons(g, bestKind, matches);
-                if (bestKind == ExistingKind.IDENTICAL && matches.size() == 1
+                if (fillable(bestKind) && matches.size() == 1
                         && AddressNormalizer.conflictingKeys(g.getTags(), matches.get(0).getTags()).isEmpty()) {
                     BuildingCandidate on = candidateFor(matches.get(0).getPrimitive(), cell);
                     String misplaced = matches.get(0).isBuilding() ? otherBuildingIsPrimary(g, cell, on) : null;
                     if (misplaced == null) {
-                        proposals.add(alreadyMapped(g, cell, matches.get(0), on));
+                        proposals.add(alreadyMapped(g, cell, matches.get(0), on, bestKind));
                         continue;
                     }
                     reasons.add(misplaced);
@@ -484,8 +484,8 @@ public final class Analyzer {
                 ExistingKind k = AddressNormalizer.compare(g.getTags(), primary.getAddrTags());
                 ExistingKind kind = k == null ? ExistingKind.OTHER_ADDRESS_ON_BUILDING : k;
                 List<ExistingAddress> ex = Collections.singletonList(new ExistingAddress(primary.getPrimitive()));
-                if (kind == ExistingKind.IDENTICAL && AddressNormalizer.conflictingKeys(g.getTags(), ex.get(0).getTags()).isEmpty()) {
-                    proposals.add(alreadyMapped(g, cell, ex.get(0), primary));
+                if (fillable(kind) && AddressNormalizer.conflictingKeys(g.getTags(), ex.get(0).getTags()).isEmpty()) {
+                    proposals.add(alreadyMapped(g, cell, ex.get(0), primary, kind));
                     continue;
                 }
                 proposals.add(new Proposal(Bucket.EXISTING_ADDRESS, Collections.singletonList(g), primary, a.ranked,
@@ -950,6 +950,8 @@ public final class Analyzer {
         switch (k) {
         case IDENTICAL:
             return 0.95;
+        case PARTIAL:
+            return 0.85;
         case STREET_VARIANT:
             return 0.7;
         case UNIT_DIFF:
@@ -961,16 +963,22 @@ public final class Analyzer {
         }
     }
 
+    /** OSM's address can take the source's missing tags as they are: it is the same address, or a part of it. */
+    private static boolean fillable(ExistingKind k) {
+        return k == ExistingKind.IDENTICAL || k == ExistingKind.PARTIAL;
+    }
+
     /**
-     * OSM already has this address and nothing it says disagrees with the source: a clean
-     * row that adds whatever the source knows and OSM lacks (postcode, state...) to the
-     * existing feature.
+     * OSM already has this address, whole or in part, and nothing it says disagrees with the
+     * source: a row that adds whatever the source knows and OSM lacks (postcode, state, or for
+     * a partial address the street...) to the existing feature. Clean when OSM has the whole
+     * address, Fill existing address when it has only part of it.
      *
      * @param building the existing feature as a building candidate, or null when it is a node, POI...
      */
-    private Proposal alreadyMapped(AddressGroup g, Cell cell, ExistingAddress e, BuildingCandidate building) {
+    private Proposal alreadyMapped(AddressGroup g, Cell cell, ExistingAddress e, BuildingCandidate building, ExistingKind kind) {
         List<String> reasons = new ArrayList<>();
-        reasons.add(describeExisting(ExistingKind.IDENTICAL, Collections.singletonList(e)));
+        reasons.add(describeExisting(kind, Collections.singletonList(e)));
         List<String> added = new ArrayList<>();
         for (String key : g.getTags().keySet()) {
             if (settings.shouldCopyKey(key) && !e.getTags().containsKey(key)) {
@@ -978,8 +986,9 @@ public final class Analyzer {
             }
         }
         reasons.add(added.isEmpty() ? "Nothing to add; applying drops the source node" : "Adds " + String.join(", ", added));
-        return new Proposal(Bucket.CLEAN, Collections.singletonList(g), building, cell.getBuildings(), confidenceFor(ExistingKind.IDENTICAL),
-                reasons, ExistingKind.IDENTICAL, Collections.singletonList(e), cell);
+        Bucket bucket = kind == ExistingKind.PARTIAL ? Bucket.FILL_EXISTING : Bucket.CLEAN;
+        return new Proposal(bucket, Collections.singletonList(g), building, cell.getBuildings(), confidenceFor(kind),
+                reasons, kind, Collections.singletonList(e), cell);
     }
 
     /**
@@ -1021,7 +1030,7 @@ public final class Analyzer {
         if (matches.size() > 1) {
             reasons.add(matches.size() + " features in this cell already carry a matching address");
         }
-        if (kind == ExistingKind.IDENTICAL) {
+        if (fillable(kind)) {
             Map<String, String> theirs = matches.get(0).getTags();
             for (String key : AddressNormalizer.conflictingKeys(g.getTags(), theirs)) {
                 reasons.add(key + " differs: OSM '" + theirs.get(key) + "', source '" + g.getTags().get(key) + "'");
@@ -1036,7 +1045,12 @@ public final class Analyzer {
         switch (kind) {
         case IDENTICAL:
             return "Already mapped on " + what;
+        case PARTIAL:
+            return "Partly mapped on " + what + ": OSM has the housenumber but no street";
         case STREET_VARIANT:
+            if (e.getTags().get("addr:street") == null) {
+                return "Already mapped on " + what + " with addr:place '" + e.getTags().getOrDefault("addr:place", "") + "' instead of a street";
+            }
             return "Already mapped on " + what + " with street spelled '" + e.getTags().get("addr:street") + "'";
         case UNIT_DIFF:
             return "Same housenumber on " + what + ", unit differs ('" + e.getTags().getOrDefault("addr:unit", "") + "')";

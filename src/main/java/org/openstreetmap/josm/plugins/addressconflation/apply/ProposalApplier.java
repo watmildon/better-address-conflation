@@ -74,6 +74,7 @@ public final class ProposalApplier {
     public static boolean isApplicable(Proposal p) {
         switch (p.getBucket()) {
         case CLEAN:
+        case FILL_EXISTING:
         case MULTI_ADDRESS_BUILDING:
         case NO_BUILDING:
         case REVIEW:
@@ -130,10 +131,11 @@ public final class ProposalApplier {
         if (bucket == Bucket.EXISTING_ADDRESS) {
             // Identical address already mapped: the source node is redundant.
             toDelete.addAll(p.getSourceNodes());
-        } else if (bucket == Bucket.CLEAN && p.getExistingKind() == ExistingKind.IDENTICAL && !p.getExisting().isEmpty()) {
-            // Already mapped without conflicts: add only what OSM lacks (postcode, state...),
-            // never touch a value it already has, and wherever the mapper clicked, keep it on
-            // the feature that has it.
+        } else if ((bucket == Bucket.CLEAN && p.getExistingKind() == ExistingKind.IDENTICAL || bucket == Bucket.FILL_EXISTING)
+                && !p.getExisting().isEmpty()) {
+            // Already mapped, whole or in part, without conflicts: add only what OSM lacks
+            // (street, postcode, state...), never touch a value it already has, and wherever the
+            // mapper clicked, keep it on the feature that has it.
             OsmPrimitive existing = p.getExisting().get(0).getPrimitive();
             Map<String, String> added = new TreeMap<>();
             for (Map.Entry<String, String> e : copyTags(p.getAddresses().get(0), settings).entrySet()) {

@@ -5,6 +5,11 @@ package org.openstreetmap.josm.plugins.addressconflation.model;
 public enum ExistingKind {
     /** Every addr:* tag is identical. */
     IDENTICAL,
+    /**
+     * Same housenumber and unit, but OSM has neither addr:street nor addr:place (often a bare
+     * housenumber added on foot): the source can fill in the rest.
+     */
+    PARTIAL,
     /** Same housenumber and street, only addr:unit differs (or is missing on one side). */
     UNIT_DIFF,
     /** Same housenumber, street differs only by abbreviation, case or directional. */

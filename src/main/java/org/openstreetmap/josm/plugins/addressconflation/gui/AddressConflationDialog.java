@@ -859,6 +859,8 @@ public class AddressConflationDialog extends ToggleDialog
                 StringBuilder sb = new StringBuilder(p.describe());
                 if (p.getBucket() == Bucket.CLEAN && !p.getExisting().isEmpty()) {
                     sb.append(" → already on ").append(p.getExisting().get(0).getPrimitive().getDisplayName(DefaultNameFormatter.getInstance()));
+                } else if (p.getBucket() == Bucket.FILL_EXISTING && !p.getExisting().isEmpty()) {
+                    sb.append(" → fills ").append(p.getExisting().get(0).getPrimitive().getDisplayName(DefaultNameFormatter.getInstance()));
                 } else if (p.getTarget() != null && p.getTarget().isNode()) {
                     sb.append(" → building node ").append(Objects.toString(p.getTarget().getBuildingValue(), "?"));
                 } else if (p.getTarget() != null) {

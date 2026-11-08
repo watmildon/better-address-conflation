@@ -10,6 +10,7 @@ import static org.openstreetmap.josm.tools.I18n.tr;
  */
 public enum Bucket {
     CLEAN("Clean", "One address, one clear building. An OSM building gets the address tags; on a hint footprint the address becomes a node in its middle. Safe to apply in bulk.", true),
+    FILL_EXISTING("Fill existing address", "OSM already has this address with only some of its tags, often just the housenumber, and nothing it has disagrees with the source. Applying adds the missing tags (street, postcode...) to the feature that has it and never changes a value it already has. Matched on housenumber alone, so skim before applying in bulk.", true),
     MULTI_ADDRESS_BUILDING("Multi-address building", "Several addresses belong to one OSM building, from the source or already in OSM. Each stays its own node: where the source has it if that is inside the building, otherwise moved inside.", true),
     REVIEW("Check, then apply", "Probably right, but look first: a parcel line splits the building, one outline covers several addressed parcels, several addresses land on one hint footprint, or an address with a unit has no outline of its own (it stays a node). Apply rows one at a time.", false),
     NO_BUILDING("No building", "No building or hint footprint in the address's cell, so nothing confirms where the address belongs: the building may be unmapped or the point misplaced. Check the imagery; applying copies the node as-is. Apply rows one at a time.", false),

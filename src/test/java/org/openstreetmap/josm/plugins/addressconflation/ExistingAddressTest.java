@@ -116,6 +116,78 @@ class ExistingAddressTest {
         assertTrue(p.getReasons().stream().anyMatch(x -> x.contains("2 features")), p.getReasons().toString());
     }
 
+    // ---- partial addresses: OSM has the housenumber, the source has the rest ----------------
+
+    @Test
+    void aBareHousenumberOnTheBuildingIsFilledIn() {
+        Way house = Fixtures.rect(target, 0, 10, 12, 10, "building=house", "addr:housenumber=10");
+        Node addr = Fixtures.node(source, 0, -20, Fixtures.concat(addr("10", "West Market Street"), "addr:postcode=47933"));
+        AnalysisResult r = run();
+        Proposal p = only(r, Bucket.FILL_EXISTING);
+        assertSame(house, p.getExisting().get(0).getPrimitive());
+        assertTrue(Bucket.FILL_EXISTING.isBulkApplicable());
+        assertTrue(ProposalApplier.isApplicable(p));
+        assertTrue(p.getReasons().stream().anyMatch(x -> x.contains("addr:street") && x.contains("addr:postcode")), p.getReasons().toString());
+
+        Applied a = ProposalApplier.build(p, target, source, r.getProjection(), settings);
+        assertTrue(a.getTargetCommand().executeCommand());
+        assertEquals("10", house.get("addr:housenumber"));
+        assertEquals("West Market Street", house.get("addr:street"));
+        assertEquals("47933", house.get("addr:postcode"));
+        assertTrue(a.getSourceCommand().executeCommand());
+        assertTrue(addr.isDeleted());
+    }
+
+    @Test
+    void aBareHousenumberNodeIsFilledInPlace() {
+        Way house = Fixtures.rect(target, 0, 10, 14, 12, "building=house");
+        Node bare = Fixtures.node(target, 0, 10, "addr:housenumber=10");
+        Fixtures.node(source, 0, -20, addr("10", "West Market Street"));
+        AnalysisResult r = run();
+        Proposal p = only(r, Bucket.FILL_EXISTING);
+        assertTrue(ProposalApplier.build(p, target, source, r.getProjection(), settings).getTargetCommand().executeCommand());
+        assertEquals("West Market Street", bare.get("addr:street"));
+        assertNull(house.get("addr:housenumber"), "the building is left alone");
+        assertEquals(1, target.getNodes().stream().filter(n -> n.hasKey("addr:housenumber")).count(), "no second address node");
+    }
+
+    @Test
+    void aPartialAddressWithAConflictNeedsReview() {
+        Way house = Fixtures.rect(target, 0, 10, 12, 10, "building=house", "addr:housenumber=10", "addr:postcode=47933");
+        Fixtures.node(source, 0, -20, Fixtures.concat(addr("10", "West Market Street"), "addr:postcode=47934"));
+        AnalysisResult r = run();
+        Proposal p = only(r, Bucket.EXISTING_ADDRESS);
+        assertTrue(p.getReasons().stream().anyMatch(x -> x.contains("addr:postcode differs")), p.getReasons().toString());
+        assertNull(ProposalApplier.build(p, target, source, r.getProjection(), settings),
+                "dropping the source node would lose the street OSM lacks");
+        assertNull(house.get("addr:street"));
+    }
+
+    @Test
+    void aPartialAddressOnAnOutbuildingIsNotFilled() {
+        Fixtures.rect(target, 0, 10, 14, 12, "building=house");
+        Fixtures.rect(target, 12, -20, 6, 6, "building=garage", "addr:housenumber=10");
+        Fixtures.node(source, 0, -20, addr("10", "West Market Street"));
+        Proposal p = only(run(), Bucket.EXISTING_ADDRESS);
+        assertTrue(p.getReasons().stream().anyMatch(x -> x.contains("main building")), p.getReasons().toString());
+    }
+
+    @Test
+    void anAddrPlaceInOsmIsNotTreatedAsMissingStreet() {
+        Fixtures.rect(target, 0, 10, 12, 10, "building=house", "addr:housenumber=10", "addr:place=Market Square");
+        Fixtures.node(source, 0, -20, addr("10", "West Market Street"));
+        Proposal p = only(run(), Bucket.EXISTING_ADDRESS);
+        assertTrue(p.getReasons().stream().anyMatch(x -> x.contains("addr:place 'Market Square'")), p.getReasons().toString());
+        assertTrue(p.getReasons().stream().noneMatch(x -> x.contains("'null'")), p.getReasons().toString());
+    }
+
+    @Test
+    void aSourceUnitOnABareHousenumberNeedsReview() {
+        Fixtures.rect(target, 0, 10, 14, 12, "building=apartments", "addr:housenumber=10");
+        Fixtures.node(source, 0, -20, Fixtures.concat(addr("10", "West Market Street"), "addr:unit=2"));
+        only(run(), Bucket.EXISTING_ADDRESS);
+    }
+
     @Test
     void unitOnOneSideIsStillAConflict() {
         Fixtures.rect(target, 0, 10, 14, 12, Fixtures.concat(addr("10", "West Market Street"), "building=apartments"));

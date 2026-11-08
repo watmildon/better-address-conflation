@@ -1,0 +1,2078 @@
+{
+ "type": "FeatureCollection",
+ "generator": "JOSM",
+ "features": [
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:street": "Oak Street",
+    "addr:housenumber": "305",
+    "note": "ok"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.0293002,
+     39.6328044
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "103",
+    "addr:street": "Bar Court"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.0291799242,
+     39.62772502059
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "102",
+    "addr:street": "Bar Court"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.02886540069,
+     39.6276636512
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:street": "Maple Street",
+    "addr:housenumber": "202",
+    "note": "ok"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.0295918,
+     39.631945
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "note": "47107 at informational level: several address nodes mean a multi-unit building",
+    "addr:street": "Birch Court",
+    "addr:housenumber": "514"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.0249963,
+     39.6310856
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:street": "Demo Avenue",
+    "note": "ok",
+    "addr:housenumber": "111"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.0288336,
+     39.6298643
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "highway": "residential",
+    "name": "Maple Street"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -86.0305832,
+      39.6318093
+     ],
+     [
+      -86.0270841,
+      39.6318093
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "building": "garage",
+    "note": "no address: nothing to compare the node inside with"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -86.0250779,
+       39.6306966
+      ],
+      [
+       -86.025008,
+       39.6306966
+      ],
+      [
+       -86.025008,
+       39.6307509
+      ],
+      [
+       -86.0250779,
+       39.6307509
+      ],
+      [
+       -86.0250779,
+       39.6306966
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:street": "Demo Ave",
+    "note": "47102 addr:street differs from the nearby road name (Demo Ave vs Demo Avenue)",
+    "addr:housenumber": "112"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.0281338,
+     39.6301357
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:street": "Birch Court",
+    "addr:housenumber": "510",
+    "building": "apartments",
+    "note": "ok"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -86.0251596,
+       39.6309951
+      ],
+      [
+       -86.0249263,
+       39.6309951
+      ],
+      [
+       -86.0249263,
+       39.631176
+      ],
+      [
+       -86.0251596,
+       39.631176
+      ],
+      [
+       -86.0251596,
+       39.6309951
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:street": "Oak Street",
+    "addr:housenumber": "204",
+    "note": "47106 addr:street differs from the neighbouring addresses (fix sets Maple Street)"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.0294168,
+     39.631945
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "109",
+    "addr:street": "Bar Court"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.02920927973,
+     39.62889102868
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:street": "Demo Avenue",
+    "note": "ok",
+    "addr:housenumber": "102"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.0295335,
+     39.6301357
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Demo Avenue",
+    "highway": "residential"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -86.0305832,
+      39.63
+     ],
+     [
+      -86.0270841,
+      39.63
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:street": "Demo Avenue",
+    "note": "47104 House number out of sequence (110 between 104 and 106)",
+    "addr:housenumber": "110"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.0290669,
+     39.6301357
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:street": "Birch Court",
+    "note": "ok",
+    "addr:housenumber": "500",
+    "building": "house"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -86.0251129,
+       39.6301267
+      ],
+      [
+       -86.024973,
+       39.6301267
+      ],
+      [
+       -86.024973,
+       39.6302352
+      ],
+      [
+       -86.0251129,
+       39.6302352
+      ],
+      [
+       -86.0251129,
+       39.6301267
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:street": "Demo Avenue",
+    "note": "ok",
+    "addr:housenumber": "101"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.0297667,
+     39.6298643
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "note": "47107 Address node differs from the address of its building (WARNING)",
+    "addr:street": "Birch Court",
+    "addr:housenumber": "502"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.0250429,
+     39.6301809
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "106",
+    "addr:street": "Bar Court",
+    "note": "Out of order along cul-du-sac"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.02885701339,
+     39.62812876523
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:street": "Oak Street",
+    "note": "ok",
+    "addr:housenumber": "303"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.0295335,
+     39.6328044
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "105",
+    "addr:street": "Bar Court"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.02918831149,
+     39.62816752459
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "highway": "residential",
+    "name": "Foo Street"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -86.03048834201,
+      39.62752799235
+     ],
+     [
+      -86.02936025101,
+      39.62753122233
+     ],
+     [
+      -86.02902895291,
+      39.62756998202
+     ],
+     [
+      -86.02743536712,
+      39.62747308274
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "117",
+    "note": "47101 Street name not found nearby",
+    "addr:street": "Phantom Road"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.0279005,
+     39.6298643
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:street": "Maple Street",
+    "note": "ok",
+    "addr:housenumber": "200"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.0297667,
+     39.631945
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "note": "47107 at informational level: several address nodes mean a multi-unit building",
+    "addr:street": "Birch Court",
+    "addr:housenumber": "512"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.0250896,
+     39.6310856
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "109",
+    "addr:street": "Demo Avenue",
+    "note": "ok"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.0290669,
+     39.6298643
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "note": "no address: nothing to compare the node inside with",
+    "building": "house"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -86.0251129,
+       39.630398
+      ],
+      [
+       -86.024973,
+       39.630398
+      ],
+      [
+       -86.024973,
+       39.6305066
+      ],
+      [
+       -86.0251129,
+       39.6305066
+      ],
+      [
+       -86.0251129,
+       39.630398
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:street": "Demo Avenue",
+    "addr:housenumber": "108",
+    "note": "ok"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.0286004,
+     39.6301357
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:street": "Maple Street",
+    "addr:housenumber": "208",
+    "note": "ok"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.0290669,
+     39.631945
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "108",
+    "addr:street": "Bar Court"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.02896185456,
+     39.62896208671
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:street": "Oak Street",
+    "addr:housenumber": "307",
+    "note": "ok"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.0290669,
+     39.6328044
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:street": "Demo Avenue",
+    "note": "ok",
+    "addr:housenumber": "100"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.0297667,
+     39.6301357
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:street": "Maple Street",
+    "addr:housenumber": "206",
+    "note": "ok"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.0292419,
+     39.631945
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:street": "Demo Avenue",
+    "note": "ok",
+    "addr:housenumber": "113"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.0286004,
+     39.6298643
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:street": "Birch Court",
+    "addr:housenumber": "504",
+    "note": "ok: building has no address, so nothing is reported"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.0250429,
+     39.6304523
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Oak Street",
+    "highway": "residential"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -86.0305832,
+      39.6326687
+     ],
+     [
+      -86.0270841,
+      39.6326687
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:street": "Demo Avenue",
+    "note": "ok",
+    "addr:housenumber": "104"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.0293002,
+     39.6301357
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "506",
+    "addr:street": "Birch Court",
+    "note": "ok: building has no address, so nothing is reported"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.0250429,
+     39.6307237
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Birch Court",
+    "highway": "residential"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -86.0253345,
+      39.6298191
+     ],
+     [
+      -86.0253345,
+      39.6318093
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:street": "Demo Avenue",
+    "note": "47105 House number parity differs from its side of the street",
+    "addr:housenumber": "105"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.0279005,
+     39.6301357
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:street": "Oak Street",
+    "addr:housenumber": "301",
+    "note": "ok"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.0297667,
+     39.6328044
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "107",
+    "addr:street": "Bar Court"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.02922605432,
+     39.6285421973
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "highway": "residential",
+    "name": "Bar Court"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -86.02902895291,
+      39.62756998202
+     ],
+     [
+      -86.02901217833,
+      39.62881028083
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "107",
+    "addr:street": "Demo Avenue",
+    "note": "ok"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.0293002,
+     39.6298643
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "building": "garage",
+    "addr:street": "Demo Avenue",
+    "note": "47100 Address on outbuilding",
+    "addr:housenumber": "115"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -86.0282854,
+       39.6298372
+      ],
+      [
+       -86.0282155,
+       39.6298372
+      ],
+      [
+       -86.0282155,
+       39.6298914
+      ],
+      [
+       -86.0282854,
+       39.6298914
+      ],
+      [
+       -86.0282854,
+       39.6298372
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "106",
+    "addr:street": "Demo Avenue",
+    "note": "ok"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.0288336,
+     39.6301357
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:street": "Demo Avenue",
+    "addr:housenumber": "103",
+    "note": "ok"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.0295335,
+     39.6298643
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "104",
+    "addr:street": "Bar Court"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.02884023881,
+     39.62858095643
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "highway": "residential",
+    "name": "Lantern Lane",
+    "note": "[cul-de-sac demo] road"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -86.023235076,
+      39.627738375
+     ],
+     [
+      -86.02276853,
+      39.627738375
+     ],
+     [
+      -86.021135617,
+      39.627738375
+     ],
+     [
+      -86.019502704,
+      39.627738375
+     ],
+     [
+      -86.018103065,
+      39.627738375
+     ],
+     [
+      -86.016703426,
+      39.627738375
+     ],
+     [
+      -86.015303786,
+      39.627738375
+     ],
+     [
+      -86.014603967,
+      39.627738375
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "highway": "residential",
+    "name": "Ember Court",
+    "note": "[cul-de-sac demo] road"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -86.02276853,
+      39.627738375
+     ],
+     [
+      -86.02276853,
+      39.62891442
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "highway": "turning_circle",
+    "note": "[cul-de-sac demo] turning circle"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.02276853,
+     39.62891442
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "2",
+    "addr:street": "Ember Court",
+    "note": "[cul-de-sac demo] ok"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.022593575,
+     39.627919305
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "1",
+    "addr:street": "Ember Court",
+    "note": "[cul-de-sac demo] ok"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.022943485,
+     39.627919305
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "4",
+    "addr:street": "Ember Court",
+    "note": "[cul-de-sac demo] ok"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.022593575,
+     39.628172607
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "3",
+    "addr:street": "Ember Court",
+    "note": "[cul-de-sac demo] ok"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.022943485,
+     39.628172607
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "6",
+    "addr:street": "Ember Court",
+    "note": "[cul-de-sac demo] ok"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.022593575,
+     39.628425909
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "5",
+    "addr:street": "Ember Court",
+    "note": "[cul-de-sac demo] ok"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.022943485,
+     39.628425909
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "8",
+    "addr:street": "Ember Court",
+    "note": "[cul-de-sac demo] ok"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.022593575,
+     39.628679211
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "7",
+    "addr:street": "Ember Court",
+    "note": "[cul-de-sac demo] ok"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.022943485,
+     39.628679211
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "9",
+    "addr:street": "Ember Court",
+    "note": "[cul-de-sac demo] 47105 House number parity differs from its side of the street (9 at the head of the court, among the evens)"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.022570248,
+     39.628968699
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "10",
+    "addr:street": "Ember Court",
+    "note": "[cul-de-sac demo] ok: straight ahead of the dead end, still counted as the head of the court"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.022733539,
+     39.62909535
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "highway": "residential",
+    "name": "Fern Circle",
+    "note": "[cul-de-sac demo] road"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -86.021135617,
+      39.627738375
+     ],
+     [
+      -86.021135617,
+      39.62891442
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "highway": "residential",
+    "name": "Fern Circle",
+    "note": "[cul-de-sac demo] bulb drawn as a closed way"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -86.021135617,
+      39.62891442
+     ],
+     [
+      -86.021018981,
+      39.62893866
+     ],
+     [
+      -86.020933597,
+      39.629004885
+     ],
+     [
+      -86.020902344,
+      39.62909535
+     ],
+     [
+      -86.020933597,
+      39.629185815
+     ],
+     [
+      -86.021018981,
+      39.62925204
+     ],
+     [
+      -86.021135617,
+      39.62927628
+     ],
+     [
+      -86.021252254,
+      39.62925204
+     ],
+     [
+      -86.021337638,
+      39.629185815
+     ],
+     [
+      -86.02136889,
+      39.62909535
+     ],
+     [
+      -86.021337638,
+      39.629004885
+     ],
+     [
+      -86.021252254,
+      39.62893866
+     ],
+     [
+      -86.021135617,
+      39.62891442
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "2",
+    "addr:street": "Fern Circle",
+    "note": "[cul-de-sac demo] ok"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.020960662,
+     39.627846933
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "1",
+    "addr:street": "Fern Circle",
+    "note": "[cul-de-sac demo] ok"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.021310572,
+     39.627846933
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "4",
+    "addr:street": "Fern Circle",
+    "note": "[cul-de-sac demo] ok"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.020960662,
+     39.627978107
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "3",
+    "addr:street": "Fern Circle",
+    "note": "[cul-de-sac demo] ok"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.021310572,
+     39.627978107
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "6",
+    "addr:street": "Fern Circle",
+    "note": "[cul-de-sac demo] ok"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.020960662,
+     39.628109282
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "5",
+    "addr:street": "Fern Circle",
+    "note": "[cul-de-sac demo] ok"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.021310572,
+     39.628109282
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "14",
+    "addr:street": "Fern Circle",
+    "note": "[cul-de-sac demo] 47104 House number out of sequence (14 between 6 and 8)"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.020960662,
+     39.628240456
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "7",
+    "addr:street": "Fern Circle",
+    "note": "[cul-de-sac demo] ok"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.021310572,
+     39.628240456
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "8",
+    "addr:street": "Fern Circle",
+    "note": "[cul-de-sac demo] ok"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.020960662,
+     39.62837163
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "9",
+    "addr:street": "Fern Circle",
+    "note": "[cul-de-sac demo] ok"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.021310572,
+     39.62837163
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "10",
+    "addr:street": "Fern Circle",
+    "note": "[cul-de-sac demo] ok"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.020960662,
+     39.628502804
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "11",
+    "addr:street": "Fern Circle",
+    "note": "[cul-de-sac demo] ok"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.021310572,
+     39.628502804
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "12",
+    "addr:street": "Fern Circle",
+    "note": "[cul-de-sac demo] ok"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.020960662,
+     39.628633979
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "13",
+    "addr:street": "Fern Circle",
+    "note": "[cul-de-sac demo] ok"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.021310572,
+     39.628633979
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "16",
+    "addr:street": "Fern Circle",
+    "note": "[cul-de-sac demo] ok"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.020960662,
+     39.628765153
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "15",
+    "addr:street": "Fern Circle",
+    "note": "[cul-de-sac demo] ok"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.021310572,
+     39.628765153
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "18",
+    "addr:street": "Fern Circle",
+    "note": "[cul-de-sac demo] ok: round the bulb, mixed parity is not a parity error"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.020731576,
+     39.62891442
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "20",
+    "addr:street": "Fern Circle",
+    "note": "[cul-de-sac demo] ok: round the bulb, mixed parity is not a parity error"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.020676159,
+     39.629158186
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "22",
+    "addr:street": "Fern Circle",
+    "note": "[cul-de-sac demo] ok: round the bulb, mixed parity is not a parity error"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.020835727,
+     39.629372551
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "24",
+    "addr:street": "Fern Circle",
+    "note": "[cul-de-sac demo] ok: round the bulb, mixed parity is not a parity error"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.021054602,
+     39.629451713
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "19",
+    "addr:street": "Fern Circle",
+    "note": "[cul-de-sac demo] ok: round the bulb, mixed parity is not a parity error"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.021435507,
+     39.629372551
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "17",
+    "addr:street": "Fern Circle",
+    "note": "[cul-de-sac demo] ok: round the bulb, mixed parity is not a parity error"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.021595076,
+     39.629032514
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "highway": "residential",
+    "name": "Gale Court",
+    "note": "[cul-de-sac demo] road"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -86.019502704,
+      39.627738375
+     ],
+     [
+      -86.019502704,
+      39.628643025
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "1",
+    "addr:street": "Gale Court",
+    "note": "[cul-de-sac demo] ok: numbered round the court"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.01932775,
+     39.627919305
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "2",
+    "addr:street": "Gale Court",
+    "note": "[cul-de-sac demo] ok: numbered round the court"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.01932775,
+     39.628145468
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "3",
+    "addr:street": "Gale Court",
+    "note": "[cul-de-sac demo] ok: numbered round the court"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.01932775,
+     39.62837163
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "4",
+    "addr:street": "Gale Court",
+    "note": "[cul-de-sac demo] ok: numbered round the court (head)"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.01945605,
+     39.628805862
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "5",
+    "addr:street": "Gale Court",
+    "note": "[cul-de-sac demo] ok: numbered round the court (head)"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.019549359,
+     39.628805862
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "6",
+    "addr:street": "Gale Court",
+    "note": "[cul-de-sac demo] ok: numbered round the court"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.019677659,
+     39.62837163
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "7",
+    "addr:street": "Gale Court",
+    "note": "[cul-de-sac demo] ok: numbered round the court"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.019677659,
+     39.628145468
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "8",
+    "addr:street": "Gale Court",
+    "note": "[cul-de-sac demo] ok: numbered round the court"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.019677659,
+     39.627919305
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "highway": "residential",
+    "name": "Hazel Court",
+    "note": "[cul-de-sac demo] road"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -86.018103065,
+      39.627738375
+     ],
+     [
+      -86.018103065,
+      39.62855256
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "2",
+    "addr:street": "Hazel Court",
+    "note": "[cul-de-sac demo] ok"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.01792811,
+     39.627919305
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "1",
+    "addr:street": "Hazel Court",
+    "note": "[cul-de-sac demo] ok"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.01827802,
+     39.627919305
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "6",
+    "addr:street": "Hazel Court",
+    "note": "[cul-de-sac demo] 47104 House number out of sequence (6 between 2 and 4; three a side are enough now)"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.01792811,
+     39.628145468
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "3",
+    "addr:street": "Hazel Court",
+    "note": "[cul-de-sac demo] ok"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.01827802,
+     39.628145468
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "4",
+    "addr:street": "Hazel Court",
+    "note": "[cul-de-sac demo] ok"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.01792811,
+     39.62837163
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "5",
+    "addr:street": "Hazel Court",
+    "note": "[cul-de-sac demo] ok"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.01827802,
+     39.62837163
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "highway": "residential",
+    "name": "Iris Court",
+    "note": "[cul-de-sac demo] road"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -86.016703426,
+      39.627738375
+     ],
+     [
+      -86.016703426,
+      39.628643025
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "highway": "residential",
+    "name": "Iris Court",
+    "note": "[cul-de-sac demo] hammerhead cross-piece"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -86.017053336,
+      39.628643025
+     ],
+     [
+      -86.016703426,
+      39.628643025
+     ],
+     [
+      -86.016353516,
+      39.628643025
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "2",
+    "addr:street": "Iris Court",
+    "note": "[cul-de-sac demo] ok"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.016528471,
+     39.627919305
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "1",
+    "addr:street": "Iris Court",
+    "note": "[cul-de-sac demo] ok"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.016878381,
+     39.627919305
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "4",
+    "addr:street": "Iris Court",
+    "note": "[cul-de-sac demo] ok"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.016528471,
+     39.628145468
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "3",
+    "addr:street": "Iris Court",
+    "note": "[cul-de-sac demo] ok"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.016878381,
+     39.628145468
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "6",
+    "addr:street": "Iris Court",
+    "note": "[cul-de-sac demo] ok"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.016528471,
+     39.62837163
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "5",
+    "addr:street": "Iris Court",
+    "note": "[cul-de-sac demo] ok"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.016878381,
+     39.62837163
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "7",
+    "addr:street": "Iris Court",
+    "note": "[cul-de-sac demo] ok: on the hammerhead"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.017006681,
+     39.628778723
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "8",
+    "addr:street": "Iris Court",
+    "note": "[cul-de-sac demo] ok: on the hammerhead"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.01640017,
+     39.628778723
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "highway": "residential",
+    "name": "Juniper Court",
+    "note": "[cul-de-sac demo] road"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -86.015303786,
+      39.627738375
+     ],
+     [
+      -86.015303786,
+      39.62873349
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "2",
+    "addr:street": "Juniper Court",
+    "note": "[cul-de-sac demo] ok"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.015128831,
+     39.627964538
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "1",
+    "addr:street": "Juniper Court",
+    "note": "[cul-de-sac demo] ok"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.015478741,
+     39.627964538
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "4",
+    "addr:street": "Juniper Court",
+    "note": "[cul-de-sac demo] ok"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.015128831,
+     39.6281907
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "3",
+    "addr:street": "Juniper Court",
+    "note": "[cul-de-sac demo] ok"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.015478741,
+     39.6281907
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "6",
+    "addr:street": "Juniper Court",
+    "note": "[cul-de-sac demo] ok"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.015128831,
+     39.628416863
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "5",
+    "addr:street": "Juniper Court",
+    "note": "[cul-de-sac demo] ok"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.015478741,
+     39.628416863
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "8",
+    "addr:street": "Juniper Court",
+    "note": "[cul-de-sac demo] ok"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.015128831,
+     39.628643025
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "7",
+    "addr:street": "Juniper Court",
+    "note": "[cul-de-sac demo] ok"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.015478741,
+     39.628643025
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "addr:housenumber": "9",
+    "addr:street": "Juniper Court",
+    "note": "[cul-de-sac demo] ok: corner lot much nearer Lantern Lane, left out (counted, it would be odd among the evens)"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.01483724,
+     39.627792654
+    ]
+   }
+  }
+ ]
+}
