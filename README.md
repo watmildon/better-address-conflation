@@ -226,6 +226,21 @@ accents are set aside (`W Olive Ave` against `West Olive Avenue`), the warning s
 **at edge of downloaded area** bucket: the road may just not be loaded yet. Change the radius
 with the advanced preference `addressconflation.validator.street.radius` (metres).
 
+Three more checks look at addresses together with their neighbours:
+
+- **House number out of sequence along the street** and **House number parity differs from its
+  side of the street** follow each street (however many ways it is split into) and flag a number
+  that breaks the run of its neighbours, or an odd number among even ones on one side. Addresses
+  more than 100 m from their street are not checked
+  (`addressconflation.validator.sequence.radius`); turn the parity check off with
+  `addressconflation.validator.parity.enabled=false`.
+- **addr:street differs from the neighbouring addresses** flags an address whose street differs
+  from what nearly all its neighbours on the same side of the road use, when the road is the
+  neighbours' street. Neighbours count within 60 m (`addressconflation.validator.neighbour.radius`).
+  When the neighbours agree on one spelling, the fix sets it.
+- **Address node differs from the address of its building** flags a plain address node inside a
+  building that has a different address.
+
 ## Preferences
 
 **Preferences → Better Address Conflation**:

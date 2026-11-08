@@ -9,7 +9,9 @@ import org.openstreetmap.josm.data.osm.Way;
 import org.openstreetmap.josm.data.validation.Severity;
 import org.openstreetmap.josm.data.validation.Test;
 import org.openstreetmap.josm.data.validation.TestError;
+import org.openstreetmap.josm.gui.progress.ProgressMonitor;
 import org.openstreetmap.josm.plugins.addressconflation.engine.ConflationSettings;
+import org.openstreetmap.josm.plugins.addressconflation.gui.AddressConflationPreferences;
 
 /**
  * Warns when an address sits on a garage, shed, carport or roof that carries
@@ -20,8 +22,17 @@ public class AddressOnOutbuildingTest extends Test {
     /** Error code, unique within JOSM's validator space. */
     public static final int CODE = 47100;
 
+    /** The mapper's outbuilding list, read with the other preferences at the start of each run. */
+    private ConflationSettings settings = new ConflationSettings();
+
     public AddressOnOutbuildingTest() {
         super(tr("Address on outbuilding"), tr("Finds addresses on garages, sheds, carports and roofs without a POI tag"));
+    }
+
+    @Override
+    public void startTest(ProgressMonitor progressMonitor) {
+        super.startTest(progressMonitor);
+        settings = AddressConflationPreferences.fromPreferences();
     }
 
     @Override
@@ -38,8 +49,7 @@ public class AddressOnOutbuildingTest extends Test {
         if (!p.isUsable() || !p.hasKey("addr:housenumber") || !p.hasKey("building")) {
             return;
         }
-        ConflationSettings s = new ConflationSettings();
-        if (s.weightFor(p) >= 1.0) {
+        if (settings.weightFor(p) >= 1.0) {
             return;
         }
         errors.add(TestError.builder(this, Severity.WARNING, CODE)

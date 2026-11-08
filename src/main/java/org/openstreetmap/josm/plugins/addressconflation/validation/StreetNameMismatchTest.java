@@ -6,20 +6,13 @@ import static org.openstreetmap.josm.tools.I18n.tr;
 
 import java.awt.geom.Area;
 import java.awt.geom.Rectangle2D;
-import java.text.Normalizer;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
-import java.util.Set;
-import java.util.regex.Pattern;
 
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Geometry;
@@ -36,7 +29,6 @@ import org.openstreetmap.josm.data.validation.Severity;
 import org.openstreetmap.josm.data.validation.Test;
 import org.openstreetmap.josm.data.validation.TestError;
 import org.openstreetmap.josm.gui.progress.ProgressMonitor;
-import org.openstreetmap.josm.plugins.addressconflation.engine.AddressNormalizer;
 import org.openstreetmap.josm.plugins.addressconflation.engine.LocalProjection;
 import org.openstreetmap.josm.spi.preferences.Config;
 
@@ -65,24 +57,6 @@ public class StreetNameMismatchTest extends Test {
     /** Default search radius in metres. */
     public static final double DEFAULT_RADIUS = 200.0;
 
-    /**
-     * highway=* values that are streets an address can be on. Footways, cycleways,
-     * paths and corridors are left out on purpose: a trail that shares a street's
-     * name must not hide an address that is on the wrong street.
-     */
-    static final Set<String> ROAD_HIGHWAYS = new HashSet<>(Arrays.asList(
-            "motorway", "motorway_link", "trunk", "trunk_link", "primary", "primary_link",
-            "secondary", "secondary_link", "tertiary", "tertiary_link", "unclassified", "residential",
-            "living_street", "service", "pedestrian", "track", "busway", "road"));
-
-    private static final Set<String> NAME_KEYS = new HashSet<>(Arrays.asList(
-            "name", "alt_name", "official_name", "short_name", "loc_name", "old_name", "name_1", "name_2"));
-
-    /** name:* sub-keys that hold metadata about the name rather than a name. */
-    private static final String[] NAME_METADATA_PARTS = {"etymology", "pronunciation", "wikidata", "wikipedia"};
-
-    private static final Pattern SPACES = Pattern.compile("\\s+");
-    private static final Pattern MARKS = Pattern.compile("\\p{M}+");
     private static final double METRES_PER_DEGREE_LAT = 110540.0;
     private static final double METRES_PER_DEGREE_LON_AT_EQUATOR = 111320.0;
 
@@ -134,13 +108,13 @@ public class StreetNameMismatchTest extends Test {
         if (isCanceled() || !p.isUsable() || p.hasKey("highway") || p.getDataSet() == null) {
             return;
         }
-        List<String> parts = splitValues(p.get("addr:street"));
+        List<String> parts = StreetNames.splitValues(p.get("addr:street"));
         if (parts.isEmpty()) {
             return;
         }
         Address address = null;
         for (String part : parts) {
-            String canon = canonical(part);
+            String canon = StreetNames.canonical(part);
             if (inAssociatedStreet(p, canon)) {
                 continue;
             }
@@ -164,8 +138,8 @@ public class StreetNameMismatchTest extends Test {
             }
         }
         // Tier 2: the same name once case, diacritics or abbreviations are set aside.
-        String folded = fold(canon);
-        String expanded = expand(folded);
+        String folded = StreetNames.fold(canon);
+        String expanded = StreetNames.expand(folded);
         for (Candidate c : address.candidates) {
             for (RoadName n : c.names) {
                 if (n.canonical.equals(canon) || n.folded.equals(folded)
@@ -235,7 +209,7 @@ public class StreetNameMismatchTest extends Test {
 
         List<Candidate> candidates = new ArrayList<>();
         for (Way w : ds.searchWays(new BBox(west, south, east, north))) {
-            if (w == p || !isRoad(w)) {
+            if (w == p || !StreetNames.isRoad(w)) {
                 continue;
             }
             List<RoadName> names = namesOf(w);
@@ -264,7 +238,7 @@ public class StreetNameMismatchTest extends Test {
     private boolean hasRoads(DataSet ds) {
         Boolean known = datasetHasRoads.get(ds);
         if (known == null) {
-            known = ds.getWays().stream().anyMatch(StreetNameMismatchTest::isRoad);
+            known = ds.getWays().stream().anyMatch(StreetNames::isRoad);
             datasetHasRoads.put(ds, known);
         }
         return known;
@@ -326,11 +300,6 @@ public class StreetNameMismatchTest extends Test {
         return parts.isEmpty() ? null : factory.buildGeometry(parts);
     }
 
-    private static boolean isRoad(Way w) {
-        String hw = w.get("highway");
-        return hw != null && w.isUsable() && ROAD_HIGHWAYS.contains(hw);
-    }
-
     /** The road's own names plus those of any street relation it belongs to, cached per run. */
     private List<RoadName> namesOf(Way w) {
         List<RoadName> cached = roadNames.get(w);
@@ -339,12 +308,12 @@ public class StreetNameMismatchTest extends Test {
         }
         Map<String, RoadName> byName = new LinkedHashMap<>();
         for (Map.Entry<String, String> tag : w.getKeys().entrySet()) {
-            if (isNameKey(tag.getKey())) {
+            if (StreetNames.isNameKey(tag.getKey())) {
                 addNames(byName, tag.getValue());
             }
         }
         for (OsmPrimitive ref : w.getReferrers()) {
-            if (ref instanceof Relation && ref.isUsable() && isStreetRelation(ref)) {
+            if (ref instanceof Relation && ref.isUsable() && StreetNames.isStreetRelation(ref)) {
                 addNames(byName, ref.get("name"));
             }
         }
@@ -354,88 +323,25 @@ public class StreetNameMismatchTest extends Test {
     }
 
     private static void addNames(Map<String, RoadName> byName, String value) {
-        for (String v : splitValues(value)) {
+        for (String v : StreetNames.splitValues(value)) {
             if (!byName.containsKey(v)) {
-                byName.put(v, new RoadName(v, canonical(v)));
+                byName.put(v, new RoadName(v, StreetNames.canonical(v)));
             }
         }
-    }
-
-    static boolean isNameKey(String key) {
-        if (NAME_KEYS.contains(key)) {
-            return true;
-        }
-        if (!key.startsWith("name:")) {
-            return false;
-        }
-        for (String part : NAME_METADATA_PARTS) {
-            if (key.contains(part)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private static boolean isStreetRelation(OsmPrimitive r) {
-        String type = r.get("type");
-        return "associatedStreet".equals(type) || "street".equals(type);
     }
 
     /** True when p belongs to a street relation whose name is this street. */
     private static boolean inAssociatedStreet(OsmPrimitive p, String canon) {
         for (OsmPrimitive ref : p.getReferrers()) {
-            if (ref instanceof Relation && ref.isUsable() && isStreetRelation(ref)) {
-                for (String name : splitValues(ref.get("name"))) {
-                    if (canonical(name).equals(canon)) {
+            if (ref instanceof Relation && ref.isUsable() && StreetNames.isStreetRelation(ref)) {
+                for (String name : StreetNames.splitValues(ref.get("name"))) {
+                    if (StreetNames.canonical(name).equals(canon)) {
                         return true;
                     }
                 }
             }
         }
         return false;
-    }
-
-    /** Values of a ';'-separated tag in NFC, trimmed and single-spaced, without empties and duplicates. */
-    static List<String> splitValues(String value) {
-        if (value == null) {
-            return Collections.emptyList();
-        }
-        Set<String> out = new LinkedHashSet<>();
-        for (String s : value.split(";")) {
-            String t = SPACES.matcher(Normalizer.normalize(s, Normalizer.Form.NFC).trim()).replaceAll(" ");
-            if (!t.isEmpty()) {
-                out.add(t);
-            }
-        }
-        return new ArrayList<>(out);
-    }
-
-    /** NFC, trimmed, single-spaced, lower case. */
-    static String canonical(String s) {
-        return SPACES.matcher(Normalizer.normalize(s, Normalizer.Form.NFC).trim()).replaceAll(" ").toLowerCase(Locale.ROOT);
-    }
-
-    /** Canonical form with combining marks removed ("peña" gives "pena"). */
-    static String fold(String canonical) {
-        return Normalizer.normalize(MARKS.matcher(Normalizer.normalize(canonical, Normalizer.Form.NFD)).replaceAll(""),
-                Normalizer.Form.NFC);
-    }
-
-    /**
-     * Abbreviation-expanded form, or null when the name has letters or digits
-     * outside ASCII. The normaliser drops those, so two different names in
-     * another script would otherwise compare equal.
-     */
-    static String expand(String folded) {
-        for (int i = 0; i < folded.length(); ) {
-            int cp = folded.codePointAt(i);
-            if (cp > 127 && Character.isLetterOrDigit(cp)) {
-                return null;
-            }
-            i += Character.charCount(cp);
-        }
-        String e = AddressNormalizer.normalizeStreet(folded);
-        return e.isEmpty() ? null : e;
     }
 
     private static final class RoadName {
@@ -448,8 +354,8 @@ public class StreetNameMismatchTest extends Test {
         RoadName(String display, String canonical) {
             this.display = display;
             this.canonical = canonical;
-            this.folded = fold(canonical);
-            this.expanded = expand(folded);
+            this.folded = StreetNames.fold(canonical);
+            this.expanded = StreetNames.expand(folded);
         }
     }
 
