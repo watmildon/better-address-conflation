@@ -343,6 +343,7 @@ public final class Analyzer {
             }
             BuildingCandidate b = new BuildingCandidate(prim, g, settings.weightFor(prim), asHint);
             index.insert(g.getEnvelopeInternal(), b);
+            Map<Cell, Double> areas = new LinkedHashMap<>();
             for (Cell cell : (List<Cell>) cellIndex.query(g.getEnvelopeInternal())) {
                 if (!cell.getPrepared().intersects(g)) {
                     continue;
@@ -354,10 +355,21 @@ public final class Analyzer {
                     Logging.trace(ex);
                     areaIn = cell.getPrepared().containsProperly(g.getInteriorPoint()) ? b.getArea() : 0;
                 }
-                if (areaIn <= 0) {
+                if (areaIn > 0) {
+                    areas.put(cell, areaIn);
+                }
+            }
+            Cell home = homeParcel(b, areas);
+            for (Map.Entry<Cell, Double> e : areas.entrySet()) {
+                Cell cell = e.getKey();
+                double areaIn = e.getValue();
+                double share = areaIn / b.getArea();
+                if (home != null && cell != home) {
+                    // A sliver of a house that sits in its own addressed lot: the parcel lines and
+                    // the outline overlap at the back fence. It is no candidate here (an address
+                    // point inside it still finds it, see rank).
                     continue;
                 }
-                double share = areaIn / b.getArea();
                 if (share >= settings.minShareInCell || areaIn >= 20) {
                     CellBuilding cb = new CellBuilding(b, cell, areaIn);
                     cb.setScore(areaIn * b.getTagFactor());
@@ -365,6 +377,22 @@ public final class Analyzer {
                 }
             }
         }
+    }
+
+    /**
+     * Parcel mode: the addressed parcel a building lies in, give or take the split tolerance
+     * (the slack that also keeps such a building from counting as split), or null when the
+     * building really spans parcels (a duplex on a lot line, a townhouse row) or its parcel
+     * has no address.
+     */
+    private Cell homeParcel(BuildingCandidate b, Map<Cell, Double> areas) {
+        for (Map.Entry<Cell, Double> e : areas.entrySet()) {
+            Cell cell = e.getKey();
+            if (!cell.isSynthetic() && !cell.getAddresses().isEmpty() && e.getValue() / b.getArea() >= 1 - settings.splitTolerance) {
+                return cell;
+            }
+        }
+        return null;
     }
 
     /** Buildings whose footprint contains the point, whether or not they made the cell's list. */
@@ -743,7 +771,7 @@ public final class Analyzer {
             reasons.add("Footprint covers " + cellsHit.size() + " addressed cells");
         }
         double far = farthest(footprint, groups);
-        if (far > settings.farMatchMeters && bucket != Bucket.AMBIGUOUS_BUILDING) {
+        if (far > settings.farMatchMeters) {
             reasons.add(String.format(Locale.ROOT, "Footprint is %.0f m from the address point", far));
             bucket = Bucket.AMBIGUOUS_BUILDING;
             confidence = Math.min(confidence, 0.4);
@@ -913,9 +941,13 @@ public final class Analyzer {
             bucket = Bucket.CLEAN;
         }
         double far = farthest(building, groups);
-        if (far > settings.farMatchMeters && (bucket == Bucket.CLEAN || bucket == Bucket.MULTI_ADDRESS_BUILDING)) {
+        if (far > settings.farMatchMeters) {
+            // Say so whatever the bucket: a far match that is already in review for another
+            // reason still needs the mapper to know how far.
             reasons.add(String.format(Locale.ROOT, "Building is %.0f m from the address point", far));
-            bucket = Bucket.AMBIGUOUS_BUILDING;
+            if (bucket == Bucket.CLEAN || bucket == Bucket.MULTI_ADDRESS_BUILDING) {
+                bucket = Bucket.AMBIGUOUS_BUILDING;
+            }
             confidence = Math.min(confidence, 0.4);
         }
         if ((bucket == Bucket.CLEAN || bucket == Bucket.MULTI_ADDRESS_BUILDING) && splitByParcel(building, assignments, reasons)) {
