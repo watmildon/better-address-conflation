@@ -148,14 +148,16 @@ Inside each cell, buildings are ranked by footprint area times a tag factor:
 Where a cell's only buildings are mapped as nodes, the address can go on the building node.
 Exact duplicate address points are dropped.
 
-If most address points sit the same distance and direction off their buildings, the panel
-offers **Points look shifted by N m: move the address layer and re-run**. This moves every
-address node by that offset (undoable) and analyzes again.
+After an analysis, the plugin checks whether a layer looks shifted as a whole and, if so, asks:
 
-Likewise, if the parcel layer is a few metres off the buildings, so houses poke over their lot
-lines, the panel offers **Parcels look shifted by N m: move the parcel layer and re-run**. This
-moves the parcel layer by the offset that puts the most buildings back inside a single parcel
-(undoable) and analyzes again.
+* **Address layer looks shifted**: most address points sit the same distance and direction off
+  their buildings.
+* **Parcel layer looks shifted**: houses poke over their lot lines, because the parcel layer is a
+  few metres off the buildings.
+
+**Accept and re-run** moves that layer by the offset (one undoable step) and analyzes again.
+**No thanks** leaves it, and the plugin does not ask again about that layer; a button at the top
+of the panel stays available in case you change your mind.
 
 ## Reviewing and applying
 

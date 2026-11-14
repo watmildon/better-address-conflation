@@ -19,6 +19,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Locale;
@@ -26,6 +27,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.WeakHashMap;
 import java.util.concurrent.ExecutionException;
 
 import javax.swing.AbstractAction;
@@ -36,6 +38,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
+import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 import javax.swing.ToolTipManager;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -103,8 +106,12 @@ public class AddressConflationDialog extends ToggleDialog
         implements LayerChangeListener, CommandQueuePreciseListener, DataSelectionListener {
 
     private final JLabel summary = new JLabel(" ");
+    /** Shown only after the mapper turned the shift popup down, as a way back. */
     private final JButton shiftButton = new JButton();
     private final JButton parcelShiftButton = new JButton();
+    /** Layers whose shift the mapper turned down: not asked again this session. */
+    private final Set<OsmDataLayer> declinedAddressShift = Collections.newSetFromMap(new WeakHashMap<>());
+    private final Set<OsmDataLayer> declinedParcelShift = Collections.newSetFromMap(new WeakHashMap<>());
     private ProposalOverlayLayer overlay;
     /** Commands we issued, so undo can bring the proposal back. */
     private final AppliedProposals applied = new AppliedProposals();
@@ -339,38 +346,146 @@ public class AddressConflationDialog extends ToggleDialog
 
     // ---- shift -----------------------------------------------------------------------
 
-    private void shiftAndRerun() {
-        if (result == null || result.getShift() == null || sourceLayer == null || lastChoice == null) {
+    private boolean addressShiftFound(AnalysisResult r) {
+        return r.getShift() != null && r.getShift().isSignificant() && sourceLayer != null;
+    }
+
+    private boolean parcelShiftFound(AnalysisResult r) {
+        return r.getParcelShift() != null && r.getParcelShift().isSignificant() && parcelLayer != null;
+    }
+
+    /**
+     * After an analysis: when a layer looks shifted and the mapper has not turned that down
+     * for it already, explain and ask. Accepted moves are made, then the analysis runs once more.
+     */
+    private void offerShifts(AnalysisResult r) {
+        if (r != result || lastChoice == null) {
+            // A newer analysis replaced this one, or there is nothing to re-run.
             return;
         }
-        ShiftEstimator.Shift shift = result.getShift();
+        boolean moved = false;
+        if (addressShiftFound(r) && !declinedAddressShift.contains(sourceLayer)) {
+            if (ask(tr("Address layer looks shifted"), addressShiftMessage(r.getShift()))) {
+                moved |= moveAddresses(r.getShift());
+            } else {
+                declinedAddressShift.add(sourceLayer);
+            }
+        }
+        if (parcelShiftFound(r) && !declinedParcelShift.contains(parcelLayer)) {
+            if (ask(tr("Parcel layer looks shifted"), parcelShiftMessage(r.getParcelShift()))) {
+                moved |= moveParcels(r.getParcelShift());
+            } else {
+                declinedParcelShift.add(parcelLayer);
+            }
+        }
+        if (moved) {
+            run(lastChoice);
+        } else {
+            updateShiftButtons(r);
+        }
+    }
+
+    private static boolean ask(String title, String message) {
+        Object[] options = {tr("Accept and re-run"), tr("No thanks")};
+        int choice = JOptionPane.showOptionDialog(MainApplication.getMainFrame(), message, title,
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+        return choice == 0;
+    }
+
+    private static String addressShiftMessage(ShiftEstimator.Shift s) {
+        return tr("<html><body style=''width: 400px''><b>The address layer looks shifted.</b><br><br>"
+                + "Most address points sit about {0} m from their buildings, all in the same direction. That usually means "
+                + "the address layer as a whole should be offset to reduce mismatches caused by the misalignment.<br><br>"
+                + "Shifting the address layer {1} brings the points to within a typical {2} m of their building''s centre "
+                + "({3} addresses measured).<br><br>Would you like this shift to be applied to the address layer?</body></html>",
+                Math.round(s.getDistance()), direction(s.getDx(), s.getDy()),
+                String.format(Locale.ROOT, "%.1f", s.getSpread()), s.getSamples());
+    }
+
+    private static String parcelShiftMessage(ParcelShiftEstimator.Shift s) {
+        return tr("<html><body style=''width: 400px''><b>The parcel layer looks shifted.</b><br><br>"
+                + "Many buildings are split by parcel boundaries. That usually means the parcel layer is offset from "
+                + "the imagery the buildings were traced from, and shifting it would reduce mismatches caused by the "
+                + "misalignment.<br><br>"
+                + "Shifting the parcel layer {0} puts {1}% of the building outlines inside a single parcel, up from {2}% "
+                + "({3} buildings measured).<br><br>Would you like this shift to be applied to the parcel layer?</body></html>",
+                direction(s.getDx(), s.getDy()), Math.round(s.getShareAfter() * 100), Math.round(s.getShareBefore() * 100),
+                s.getSamples());
+    }
+
+    /** "2.5 m west and 0.8 m south", leaving out a direction the move does not go in. */
+    private static String direction(double dx, double dy) {
+        String ew = Math.abs(dx) < 0.05 ? null : String.format(Locale.ROOT, "%.1f m %s", Math.abs(dx), dx > 0 ? tr("east") : tr("west"));
+        String ns = Math.abs(dy) < 0.05 ? null : String.format(Locale.ROOT, "%.1f m %s", Math.abs(dy), dy > 0 ? tr("north") : tr("south"));
+        if (ew != null && ns != null) {
+            return tr("{0} and {1}", ew, ns);
+        }
+        return ew != null ? ew : ns;
+    }
+
+    /** The pane's buttons: a way back to a shift the mapper turned down. */
+    private void updateShiftButtons(AnalysisResult r) {
+        if (addressShiftFound(r) && declinedAddressShift.contains(sourceLayer)) {
+            shiftButton.setText(tr("Points look shifted by {0} m: move the address layer and re-run", Math.round(r.getShift().getDistance())));
+            shiftButton.setToolTipText(addressShiftMessage(r.getShift()));
+            shiftButton.setVisible(true);
+        } else {
+            shiftButton.setVisible(false);
+        }
+        if (parcelShiftFound(r) && declinedParcelShift.contains(parcelLayer)) {
+            parcelShiftButton.setText(tr("Parcels look shifted by {0} m: move the parcel layer and re-run",
+                    String.format(Locale.ROOT, "%.1f", r.getParcelShift().getDistance())));
+            parcelShiftButton.setToolTipText(parcelShiftMessage(r.getParcelShift()));
+            parcelShiftButton.setVisible(true);
+        } else {
+            parcelShiftButton.setVisible(false);
+        }
+    }
+
+    private void shiftAndRerun() {
+        if (result != null && result.getShift() != null && lastChoice != null && moveAddresses(result.getShift())) {
+            run(lastChoice);
+        }
+    }
+
+    private void shiftParcelsAndRerun() {
+        if (result != null && result.getParcelShift() != null && lastChoice != null && moveParcels(result.getParcelShift())) {
+            run(lastChoice);
+        }
+    }
+
+    private boolean moveAddresses(ShiftEstimator.Shift shift) {
+        if (sourceLayer == null) {
+            return false;
+        }
         List<OsmPrimitive> nodes = new ArrayList<>();
         for (Node n : sourceLayer.getDataSet().getNodes()) {
             if (n.isUsable() && n.hasKey("addr:housenumber") && n.getCoor() != null) {
                 nodes.add(n);
             }
         }
-        if (move(nodes, shift.getDx(), shift.getDy())) {
-            sourceLayer.invalidate();
-            run(lastChoice);
+        if (!move(nodes, shift.getDx(), shift.getDy())) {
+            return false;
         }
+        sourceLayer.invalidate();
+        return true;
     }
 
-    private void shiftParcelsAndRerun() {
-        if (result == null || result.getParcelShift() == null || parcelLayer == null || lastChoice == null) {
-            return;
+    private boolean moveParcels(ParcelShiftEstimator.Shift shift) {
+        if (parcelLayer == null) {
+            return false;
         }
-        ParcelShiftEstimator.Shift shift = result.getParcelShift();
         List<OsmPrimitive> nodes = new ArrayList<>();
         for (Node n : parcelLayer.getDataSet().getNodes()) {
             if (n.isUsable() && n.getCoor() != null) {
                 nodes.add(n);
             }
         }
-        if (move(nodes, shift.getDx(), shift.getDy())) {
-            parcelLayer.invalidate();
-            run(lastChoice);
+        if (!move(nodes, shift.getDx(), shift.getDy())) {
+            return false;
         }
+        parcelLayer.invalidate();
+        return true;
     }
 
     /** Move nodes by a metre offset as one undoable command; false when there is nothing to move. */
@@ -499,27 +614,11 @@ public class AddressConflationDialog extends ToggleDialog
         applyBucketAction.setEnabled(false);
         applyAction.setEnabled(false);
         zoomAction.setEnabled(false);
-        ShiftEstimator.Shift shift = r.getShift();
-        if (shift != null && shift.isSignificant()) {
-            shiftButton.setText(tr("Points look shifted by {0} m: move the address layer and re-run", Math.round(shift.getDistance())));
-            shiftButton.setToolTipText(tr("<html>Most address points sit the same distance and direction off their buildings ({0}).<br>"
-                    + "Moves every address node in the address layer by that offset (undoable) and re-runs the analysis.</html>", shift));
-            shiftButton.setVisible(true);
-        } else {
-            shiftButton.setVisible(false);
-        }
-        ParcelShiftEstimator.Shift parcelShift = r.getParcelShift();
-        if (parcelShift != null && parcelShift.isSignificant() && parcelLayer != null) {
-            parcelShiftButton.setText(tr("Parcels look shifted by {0} m: move the parcel layer and re-run",
-                    String.format(Locale.ROOT, "%.1f", parcelShift.getDistance())));
-            parcelShiftButton.setToolTipText(tr("<html>The buildings sit inside single parcels better with the parcel layer moved ({0}).<br>"
-                    + "Moves every node in the parcel layer by that offset (undoable) and re-runs the analysis.</html>", parcelShift));
-            parcelShiftButton.setVisible(true);
-        } else {
-            parcelShiftButton.setVisible(false);
-        }
+        updateShiftButtons(r);
         // Shown and hidden from the Layers panel like any other layer.
         ensureOverlay().setResult(r);
+        // Ask once the results are on screen, so the mapper sees what the question is about.
+        SwingUtilities.invokeLater(() -> offerShifts(r));
     }
 
     private void clearResult() {
