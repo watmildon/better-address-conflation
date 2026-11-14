@@ -62,6 +62,8 @@ public final class Analyzer {
     private List<Cell> cells;
     private STRtree cellIndex;
     private STRtree buildingIndex;
+    /** Every OSM building outline indexed, for the parcel shift estimate. */
+    private final List<BuildingCandidate> osmBuildings = new ArrayList<>();
     private STRtree hintIndex;
     private int duplicatesRemoved;
     /** For hinted assignments: the OSM outbuilding the hint overrode, or null when OSM had nothing. */
@@ -139,6 +141,9 @@ public final class Analyzer {
         proposals.sort(Comparator.comparing(Proposal::getBucket).thenComparingDouble(p -> p.getBucket() == Bucket.CLEAN ? -p.getConfidence() : p.getConfidence()));
         AnalysisResult result = new AnalysisResult(proposals, cells, proj, sourceNodes.size(), duplicatesRemoved, cellSource.isSynthetic());
         result.setShift(ShiftEstimator.estimate(proposals, proj));
+        if (!cellSource.isSynthetic()) {
+            result.setParcelShift(ParcelShiftEstimator.estimate(cells, osmBuildings));
+        }
         return result;
     }
 
@@ -343,6 +348,9 @@ public final class Analyzer {
             }
             BuildingCandidate b = new BuildingCandidate(prim, g, settings.weightFor(prim), asHint);
             index.insert(g.getEnvelopeInternal(), b);
+            if (!asHint) {
+                osmBuildings.add(b);
+            }
             Map<Cell, Double> areas = new LinkedHashMap<>();
             for (Cell cell : (List<Cell>) cellIndex.query(g.getEnvelopeInternal())) {
                 if (!cell.getPrepared().intersects(g)) {

@@ -21,6 +21,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.EnumMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
@@ -80,6 +81,7 @@ import org.openstreetmap.josm.plugins.addressconflation.cells.VoronoiCellSource;
 import org.openstreetmap.josm.plugins.addressconflation.engine.Analyzer;
 import org.openstreetmap.josm.plugins.addressconflation.engine.ConflationSettings;
 import org.openstreetmap.josm.plugins.addressconflation.engine.LocalProjection;
+import org.openstreetmap.josm.plugins.addressconflation.engine.ParcelShiftEstimator;
 import org.openstreetmap.josm.plugins.addressconflation.engine.ShiftEstimator;
 import org.openstreetmap.josm.plugins.addressconflation.io.DownloadSourceAction;
 import org.openstreetmap.josm.plugins.addressconflation.io.OpenAddressesLayer;
@@ -102,6 +104,7 @@ public class AddressConflationDialog extends ToggleDialog
 
     private final JLabel summary = new JLabel(" ");
     private final JButton shiftButton = new JButton();
+    private final JButton parcelShiftButton = new JButton();
     private ProposalOverlayLayer overlay;
     /** Commands we issued, so undo can bring the proposal back. */
     private final AppliedProposals applied = new AppliedProposals();
@@ -191,6 +194,10 @@ public class AddressConflationDialog extends ToggleDialog
         shiftButton.setVisible(false);
         shiftButton.addActionListener(e -> shiftAndRerun());
         top.add(shiftButton, gc);
+        gc.gridy = 2;
+        parcelShiftButton.setVisible(false);
+        parcelShiftButton.addActionListener(e -> shiftParcelsAndRerun());
+        top.add(parcelShiftButton, gc);
         summary.setToolTipText(tr("Result of the last analysis: address points read, exact duplicates dropped, cells built, proposals made"));
 
         tree.setRootVisible(false);
@@ -337,22 +344,46 @@ public class AddressConflationDialog extends ToggleDialog
             return;
         }
         ShiftEstimator.Shift shift = result.getShift();
-        LocalProjection proj = result.getProjection();
-        // Express the metre offset in the map projection's units through two points.
-        EastNorth a = ProjectionRegistry.getProjection().latlon2eastNorth(proj.toLatLon(new Coordinate(0, 0)));
-        EastNorth b = ProjectionRegistry.getProjection().latlon2eastNorth(proj.toLatLon(new Coordinate(shift.getDx(), shift.getDy())));
         List<OsmPrimitive> nodes = new ArrayList<>();
         for (Node n : sourceLayer.getDataSet().getNodes()) {
             if (n.isUsable() && n.hasKey("addr:housenumber") && n.getCoor() != null) {
                 nodes.add(n);
             }
         }
-        if (nodes.isEmpty()) {
+        if (move(nodes, shift.getDx(), shift.getDy())) {
+            sourceLayer.invalidate();
+            run(lastChoice);
+        }
+    }
+
+    private void shiftParcelsAndRerun() {
+        if (result == null || result.getParcelShift() == null || parcelLayer == null || lastChoice == null) {
             return;
         }
+        ParcelShiftEstimator.Shift shift = result.getParcelShift();
+        List<OsmPrimitive> nodes = new ArrayList<>();
+        for (Node n : parcelLayer.getDataSet().getNodes()) {
+            if (n.isUsable() && n.getCoor() != null) {
+                nodes.add(n);
+            }
+        }
+        if (move(nodes, shift.getDx(), shift.getDy())) {
+            parcelLayer.invalidate();
+            run(lastChoice);
+        }
+    }
+
+    /** Move nodes by a metre offset as one undoable command; false when there is nothing to move. */
+    private boolean move(List<OsmPrimitive> nodes, double dx, double dy) {
+        if (nodes.isEmpty()) {
+            return false;
+        }
+        LocalProjection proj = result.getProjection();
+        // Express the metre offset in the map projection's units through two points.
+        EastNorth a = ProjectionRegistry.getProjection().latlon2eastNorth(proj.toLatLon(new Coordinate(0, 0)));
+        EastNorth b = ProjectionRegistry.getProjection().latlon2eastNorth(proj.toLatLon(new Coordinate(dx, dy)));
         UndoRedoHandler.getInstance().add(new MoveCommand(nodes, b.east() - a.east(), b.north() - a.north()));
-        sourceLayer.invalidate();
-        run(lastChoice);
+        return true;
     }
 
     // ---- analysis ----------------------------------------------------------------
@@ -477,6 +508,16 @@ public class AddressConflationDialog extends ToggleDialog
         } else {
             shiftButton.setVisible(false);
         }
+        ParcelShiftEstimator.Shift parcelShift = r.getParcelShift();
+        if (parcelShift != null && parcelShift.isSignificant() && parcelLayer != null) {
+            parcelShiftButton.setText(tr("Parcels look shifted by {0} m: move the parcel layer and re-run",
+                    String.format(Locale.ROOT, "%.1f", parcelShift.getDistance())));
+            parcelShiftButton.setToolTipText(tr("<html>The buildings sit inside single parcels better with the parcel layer moved ({0}).<br>"
+                    + "Moves every node in the parcel layer by that offset (undoable) and re-runs the analysis.</html>", parcelShift));
+            parcelShiftButton.setVisible(true);
+        } else {
+            parcelShiftButton.setVisible(false);
+        }
         // Shown and hidden from the Layers panel like any other layer.
         ensureOverlay().setResult(r);
     }
@@ -489,6 +530,7 @@ public class AddressConflationDialog extends ToggleDialog
         treeModel.reload();
         summary.setText(" ");
         shiftButton.setVisible(false);
+        parcelShiftButton.setVisible(false);
         removeOverlay();
     }
 

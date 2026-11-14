@@ -152,6 +152,11 @@ If most address points sit the same distance and direction off their buildings, 
 offers **Points look shifted by N m: move the address layer and re-run**. This moves every
 address node by that offset (undoable) and analyzes again.
 
+Likewise, if the parcel layer is a few metres off the buildings, so houses poke over their lot
+lines, the panel offers **Parcels look shifted by N m: move the parcel layer and re-run**. This
+moves the parcel layer by the offset that puts the most buildings back inside a single parcel
+(undoable) and analyzes again.
+
 ## Reviewing and applying
 
 Results are grouped into buckets by what you need to do, in order from "apply in bulk" to "needs

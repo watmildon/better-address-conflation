@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.openstreetmap.josm.plugins.addressconflation.engine.LocalProjection;
+import org.openstreetmap.josm.plugins.addressconflation.engine.ParcelShiftEstimator;
 import org.openstreetmap.josm.plugins.addressconflation.engine.ShiftEstimator;
 
 /** Output of one analysis run. */
@@ -18,6 +19,7 @@ public final class AnalysisResult {
     private final int duplicatesRemoved;
     private final boolean synthetic;
     private ShiftEstimator.Shift shift;
+    private ParcelShiftEstimator.Shift parcelShift;
 
     public AnalysisResult(List<Proposal> proposals, List<Cell> cells, LocalProjection projection,
             int sourceNodes, int duplicatesRemoved, boolean synthetic) {
@@ -57,6 +59,15 @@ public final class AnalysisResult {
 
     public void setShift(ShiftEstimator.Shift shift) {
         this.shift = shift;
+    }
+
+    /** Systematic offset of the parcel layer against the buildings, or null when none was estimated. */
+    public ParcelShiftEstimator.Shift getParcelShift() {
+        return parcelShift;
+    }
+
+    public void setParcelShift(ParcelShiftEstimator.Shift parcelShift) {
+        this.parcelShift = parcelShift;
     }
 
     /** True when cells were Voronoi cells rather than parcels. */
